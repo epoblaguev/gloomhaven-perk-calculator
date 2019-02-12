@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    Deck Reliability
+  </mat-card-header>
+  <mat-table [dataSource]="reliabilityData">
+    <ng-container matColumnDef="value">
+      <mat-cell *matCellDef="let reliability"> {{reliability.label}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="chance">
+      <mat-cell *matCellDef="let reliability"> {{reliability.function}}% </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="percent-bar">
+      <mat-cell *matCellDef="let reliability">
+        <mat-progress-bar mode="determinate" value="{{reliability.function}}"></mat-progress-bar>
+      </mat-cell>
+    </ng-container>
+    <mat-row *matRowDef="let row; columns: reliabilityTableColumns;"></mat-row>
+  </mat-table>
+</mat-card>

@@ -1,64 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Gloomhaven Perk Calculator
-  </h1>
-</div>
 
-<table>
-  <tr>
-    <td>
-      <table>
-        <tr>
-          <th>Card</th>
-          <th>Count</th>
-          <th>Percent</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let cardType of deck.getCardTypes()">
-          <td>{{ cardType }}</td>
-          <td>{{ deck.cards[cardType] }}</td>
-          <td>{{ deck.cardChance(cardType) }}%</td>
-          <td><input type="range" min="1" max="100" value="{{ deck.cardChance(cardType) }}" disabled /></td>
-        </tr>
-      </table>
-    </td>
-    <td>
-      <table>
-        <tr>
-          <td>&#8804; -1</td>
-          <td>{{ deck.reliabilityNegative()}}%</td>
-          <td><input type="range" min="1" max="100" value="{{ deck.reliabilityNegative() }}" disabled /></td>
-        </tr>
-        <tr>
-          <td>= 0</td>
-          <td>{{ deck.reliabilityZero()}}%</td>
-          <td><input type="range" min="1" max="100" value="{{ deck.reliabilityZero() }}" disabled /></td>
-        </tr>
-        <tr>
-          <td>&#8805; +1</td>
-          <td>{{ deck.reliabilityPositive()}}%</td>
-          <td><input type="range" min="1" max="100" value="{{ deck.reliabilityPositive() }}" disabled /></td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
 
-<br />
-<b>Select Character: </b>
-<select [(ngModel)]="selectedCharacter" (change)="characterChanged()">
-  <option *ngFor="let character of characters, let char_i = index" [ngValue]="char_i" >{{ character.name }}</option>
-</select>
+<div class="mat-typography">
+  <div>
+    <h1>
+      Gloomhaven Pork Calculator
+    </h1>
+  </div>
+  <mat-card>
+  <mat-table [dataSource]="mainTableDataSource">
+    <!-- Card Column -->
+    <ng-container matColumnDef="card">
+      <mat-header-cell *matHeaderCellDef> Card </mat-header-cell>
+      <mat-cell *matCellDef="let cardType"> {{cardType}} </mat-cell>
+    </ng-container>
+    <!-- Count Column -->
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
+      <mat-cell *matCellDef="let cardType"> {{deck.cards[cardType]}}</mat-cell>
+    </ng-container>
+    <!-- Percent Column -->
+    <ng-container matColumnDef="percent">
+      <mat-header-cell *matHeaderCellDef> Percent </mat-header-cell>
+      <mat-cell *matCellDef="let cardType">
+       {{deck.cardChance(cardType)}}%
+     </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="percent-bar">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let cardType">
+        <mat-progress-bar mode="determinate" value="{{deck.cardChance(cardType)}}"></mat-progress-bar>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>
 
-<div>
-  <h1>{{ characters[selectedCharacter].name }} Perks:</h1>
-  <div *ngFor="let perk of characters[selectedCharacter].perkList">
-    <span *ngFor="let use of ' '.repeat(perk.uses).split(''), let use_i = index">
-      <input type="checkbox" (change)="selectPerk($event, perk.set, perk.unset)" />
-    </span>
-    <b>{{perk.name}}</b>
+  <deck-reliability [deck]="deck" [cards]="deck.cards"></deck-reliability>
+
+<br/>
+  <mat-form-field>
+    <mat-select placeholder="Select Character" [(ngModel)]="selectedCharacter" (change)="characterChanged()">
+      <mat-option *ngFor="let character of characters, let char_i = index" [value]="char_i" >
+        {{ character.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <h1>{{ characters[selectedCharacter].name }} Perks:</h1>
+    <div *ngFor="let perk of characters[selectedCharacter].perkList">
+      <div *ngFor="let use of ' '.repeat(perk.uses).split(''), let use_i = index">
+        <mat-checkbox (change)="selectPerk($event, perk.set, perk.unset)">
+          <b>{{perk.name}}</b>
+        </mat-checkbox>
+      </div>
+    </div>
   </div>
 </div>
-
 <router-outlet></router-outlet>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DeckReliabilityComponent } from './deck-reliability/deck-reliability.component';
+
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   standardDeck = new Deck();
   deck = new Deck();
+
+  // Table data
+  mainTableDataSource = this.deck.getCardTypes();
+  displayedColumns: string[] = ['card', 'count', 'percent', 'percent-bar'];
 
   characters: Array<Character> = [
     new Cragheart(),
@@ -22,7 +28,7 @@ export class AppComponent {
   }
 
   selectPerk(event, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
-    if (event.target.checked) {
+    if (event.checked) {
       set(this.deck);
     } else {
       unset(this.deck);
@@ -30,7 +36,7 @@ export class AppComponent {
   }
 }
 
-class Deck {
+export class Deck {
   cards = {
     x0: 1,
     '-2': 1,
