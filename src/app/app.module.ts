@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UIModule } from './ui-modules/ui.module'
+import { UIModule } from './modules/ui-modules/ui.module'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DeckReliabilityComponent } from './deck-reliability/deck-reliability.component';
+import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
 
 @NgModule({
   declarations: [
