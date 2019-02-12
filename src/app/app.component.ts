@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Deck } from './classes/deck';
-import { Character, Cragheart, Scoundrel, Brute, Spellweaver } from './classes/character';
+import { Character} from './classes/character';
 import settings from './settings/settings.json';
 
 @Component({

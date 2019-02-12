@@ -1,0 +1,52 @@
+{
+    "characters": [
+        {
+            "name": "Cragheart",
+            "hidden_name": "Cragheart",
+            "perks": [
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
+                {"name": "Add one (-2) card and two (+2) cards", "uses": 1},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Add one (+2) MUDDLE card", "uses": 2}
+            ]
+        },
+        {
+            "name": "Scoundrel",
+            "hidden_name": "Scoundrel",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (-2) with one (+0) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2}
+            ]
+        },
+        {
+            "name": "Brute",
+            "hidden_name": "Brute",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
+                {"name": "Add two (+1) cards", "uses": 2},
+                {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Spellweaver",
+            "hidden_name": "Spellweaver",
+            "perks": [
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
+                {"name": "Add two (+1) cards", "uses": 2},
+                {"name": "Add one (+0) STUN card", "uses": 1},
+                {"name": "Add one (+1) WOUND card", "uses": 1},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 1},
+                {"name": "Add one (+1) CURSE card", "uses": 1},
+                {"name": "Add one (+2) FIRE card", "uses": 2},
+                {"name": "Add one (+2) FROST card", "uses": 2}
+            ]
+        }
+    ]
+}
