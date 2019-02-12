@@ -11,10 +11,15 @@ import {
 	MatSliderModule,
 	MatTableModule
 } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
+/**
+Include all UI Components here
+**/
 @NgModule({
 	imports: [
 		BrowserAnimationsModule,
+		FlexLayoutModule,
 		MatButtonModule,
 		MatCardModule,
 		MatCheckboxModule,
@@ -26,6 +31,7 @@ import {
 	],
 	exports: [
 		BrowserAnimationsModule,
+		FlexLayoutModule,
 		MatButtonModule,
 		MatCardModule,
 		MatCheckboxModule,
@@ -36,4 +42,4 @@ import {
 		MatTableModule
 	],
 })
-export class MaterialModule { }
+export class UIModule { }
