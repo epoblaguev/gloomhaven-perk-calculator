@@ -19,7 +19,8 @@
                 {"name": "Remove four (+0) cards", "uses": 1},
                 {"name": "Replace one (-2) with one (+0) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
-                {"name": "Replace one (+0) card with one (+2) card", "uses": 2}
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add two rolling (+1) cards", "uses": 2}
             ]
         },
         {
@@ -30,6 +31,7 @@
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
                 {"name": "Add two (+1) cards", "uses": 2},
                 {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Add one (+1) Shield 1 self card", "uses": 1},
                 {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
             ]
         },

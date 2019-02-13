@@ -43,6 +43,10 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.cards['+2'] += 1; },
         unset: (deck: Deck) => { deck.cards['+2'] -= 1; }
     },
+    'Add one (+1) Shield 1 self card': {
+        set: (deck: Deck) => { deck.cards['+1'] += 1; },
+        unset: (deck: Deck) => { deck.cards['+1'] -= 1; }
+    },
     'Add one (+3) card': {
         set: (deck: Deck) => { deck.cards['+3'] += 1; },
         unset: (deck: Deck) => { deck.cards['+3'] -= 1; }
@@ -54,6 +58,10 @@ export const PERK_LIST = {
     'Add two (+1) cards': {
         set: (deck: Deck) => { deck.cards['+1'] += 2; },
         unset: (deck: Deck) => { deck.cards['+1'] -= 2; }
+    },
+    'Add two rolling (+1) cards': {
+        set: (deck: Deck) => {deck.cards['r+1'] += 2; },
+        unset: (deck: Deck) => {deck.cards['r+1'] -= 2; }
     },
     'Ignore negative item effects and add one (+1) card': {
         set: (deck: Deck) => { deck.cards['+1'] += 1; },
