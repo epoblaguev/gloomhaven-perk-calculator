@@ -35,6 +35,22 @@ export class Deck {
         return Object.values(cards).reduce((prev, cur) => prev + cur);
     }
 
+    public rollingSum(cards = this.cards): number {
+        let sum = 0;
+        for (const key of Object.keys(cards)) {
+            sum += key.startsWith('r') ? cards[key] : 0;
+        }
+        return sum;
+    }
+
+    public nonRollingSum(cards = this.cards): number {
+        let sum = 0;
+        for (const key of Object.keys(cards)) {
+            sum += !key.startsWith('r') ? cards[key] : 0;
+        }
+        return sum;
+    }
+
     public cardChance(cardType: string): number {
         return Math.round((this.cards[cardType] / this.sum()) * 100);
     }
@@ -50,10 +66,6 @@ export class Deck {
     }
     */
 
-    public reliabilityNegative_old() {
-        return Math.round((this.cards.x0 + this.cards['-2'] + this.cards['-1']) * 100 / this.sum());
-    }
-
     private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {
         /*
         let compareFunc: (x: number) => boolean;
@@ -68,23 +80,46 @@ export class Deck {
         }
         */
 
-       let probability = 0;
+        /*
+        let probability = 0;
 
-       for (const cardType of Object.keys(cards)) {
-           if (cardType.startsWith('r') && cards[cardType] > 0) {
-               const sum = this.sum(cards);
-               const newCards = Object.assign({}, cards);
-               newCards[cardType] -= 1;
+        for (const cardType of Object.keys(cards)) {
+            if (cardType.startsWith('r') && cards[cardType] > 0) {
+                const sum = this.sum(cards);
+                const newCards = Object.assign({}, cards);
+                newCards[cardType] -= 1;
 
-               let tempProbability = (sum - cards[cardType]) / sum;
-               tempProbability *= this.getReliability(newCards, this.cardValue[cardType], compareFunc) / (sum - 1);
-               probability += tempProbability;
-           } else if (compareFunc(rollingValue + this.cardValue[cardType])) {
-               probability += cards[cardType] / this.sum(cards);
-           }
-       }
+                let tempProbability = (sum - cards[cardType]) / sum;
+                tempProbability *= this.getReliability(newCards, this.cardValue[cardType], compareFunc) / (sum - 1);
+                probability += tempProbability;
+            } else if (compareFunc(rollingValue + this.cardValue[cardType])) {
+                probability += cards[cardType] / this.sum(cards);
+            }
+        }
 
-       return probability;
+        return probability;
+        */
+
+        let probability = 0;
+
+        for (const cardType of Object.keys(cards)) {
+            // Ignore cards not in deck
+            if (cards[cardType] === 0) {
+                continue;
+            }
+
+            if (!cardType.startsWith('r') && compareFunc(rollingValue + this.cardValue[cardType])) {
+                probability += cards[cardType] / this.sum(cards);
+            } else if (cardType.startsWith('r')) {
+                const newCards = Object.assign({}, cards);
+                newCards[cardType] -= 1;
+
+                probability += (cards[cardType] / this.sum(cards))
+                    * this.getReliability(newCards, rollingValue + this.cardValue[cardType], compareFunc);
+            }
+        }
+
+        return probability;
 
     }
 
