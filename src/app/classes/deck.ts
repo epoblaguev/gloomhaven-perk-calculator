@@ -1,3 +1,4 @@
+import Utils from '../utils'
 export class Deck {
     readonly defaultCards = {
         x0: 1,
@@ -30,7 +31,7 @@ export class Deck {
     public cards = {};
 
     constructor() {
-        this.cards = this.defaultCards;
+        this.cards = Utils.clone(this.defaultCards);
     }
 
     public getCardTypes() {
@@ -113,6 +114,6 @@ export class Deck {
     }
 
     public reset() {
-        this.cards = this.defaultCards;
+        this.cards = Utils.clone(this.defaultCards);
     }
 }
