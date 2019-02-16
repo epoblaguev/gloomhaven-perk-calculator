@@ -2,7 +2,13 @@
   <mat-card-header>
     Deck Reliability
   </mat-card-header>
-  <mat-table [dataSource]="reliabilityData">
+  <mat-card-content>
+    <canvas baseChart [datasets]="getRelibilityData()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+    <button (click)="update()">Update</button>
+
+  </mat-card-content>
+  <!-- Old Reliability -->
+  <!-- <mat-table [dataSource]="reliabilityData">
     <ng-container matColumnDef="value">
       <mat-cell *matCellDef="let reliability"> {{reliability.label}} </mat-cell>
     </ng-container>
@@ -15,5 +21,5 @@
       </mat-cell>
     </ng-container>
     <mat-row *matRowDef="let row; columns: reliabilityTableColumns;"></mat-row>
-  </mat-table>
+  </mat-table> -->
 </mat-card>

@@ -1,5 +1,5 @@
 export class Deck {
-    cards = {
+    public cards = {
         x0: 1,
         '-2': 1,
         '-1': 5,
@@ -7,38 +7,102 @@ export class Deck {
         '+1': 5,
         '+2': 1,
         '+3': 0,
-        x2: 1
+        '+4': 0,
+        x2: 1,
+        'r+1': 0,
+        'r+2': 0,
     };
 
-    getCardTypes() {
+    private cardValue = {
+        x0: -1000,
+        '-2': -2,
+        '-1': -1,
+        '+0': 0,
+        '+1': 1,
+        '+2': 2,
+        '+3': 3,
+        '+4': 4,
+        x2: 1000,
+        'r+1': 1,
+        'r+2': 2,
+    };
+
+    public getCardTypes() {
         return Object.keys(this.cards);
     }
 
-    sum(): number {
-        return Object.values(this.cards).reduce((prev, cur) => prev + cur);
+    public sum(cards = this.cards): number {
+        return Object.values(cards).reduce((prev, cur) => prev + cur);
     }
 
-    cardChance(cardType: string): number {
-        return Math.round((this.cards[cardType] / this.sum()) * 100);
+    public rollingSum(cards = this.cards): number {
+        let sum = 0;
+        for (const key of Object.keys(cards)) {
+            sum += key.startsWith('r') ? cards[key] : 0;
+        }
+        return sum;
     }
 
-    reliabilityNegative() {
-        return Math.round((this.cards.x0 + this.cards['-2'] + this.cards['-1']) * 100 / this.sum());
+    public nonRollingSum(cards = this.cards): number {
+        let sum = 0;
+        for (const key of Object.keys(cards)) {
+            sum += !key.startsWith('r') ? cards[key] : 0;
+        }
+        return sum;
     }
 
-    reliabilityZero() {
-        return Math.round((this.cards['+0'] * 100 / this.sum()));
+    public cardChance(cardType: string): number {
+        const sum = cardType.startsWith('r') ? this.nonRollingSum() + this.cards[cardType] : this.nonRollingSum();
+        return Math.round((this.cards[cardType] / sum) * 100);
     }
 
-    reliabilityPositive() {
-        return Math.round((this.cards.x2 + this.cards['+3'] + this.cards['+2'] + this.cards['+1']) * 100 / this.sum());
+    private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {
+        let probability = 0;
+
+        for (const cardType of Object.keys(cards)) {
+            // Ignore cards not in deck
+            if (cards[cardType] === 0) {
+                continue;
+            }
+
+            if (!cardType.startsWith('r') && compareFunc(rollingValue + this.cardValue[cardType])) {
+                probability += cards[cardType] / this.sum(cards);
+            } else if (cardType.startsWith('r')) {
+                const newCards = Object.assign({}, cards);
+                newCards[cardType] -= 1;
+
+                probability += (cards[cardType] / this.sum(cards))
+                    * this.getReliability(newCards, rollingValue + this.cardValue[cardType], compareFunc);
+            }
+        }
+
+        return probability;
+
     }
 
-    addCard(cardType: string) {
+    public reliabilityNegative() {
+        const compareFunc = (x: number) => x < 0;
+        const probability = this.getReliability(this.cards, 0, compareFunc);
+        return Math.round(probability * 100);
+    }
+
+    public reliabilityZero() {
+        const compareFunc = (x: number) => x === 0;
+        const probability = this.getReliability(this.cards, 0, compareFunc);
+        return Math.round(probability * 100);
+    }
+
+    public reliabilityPositive() {
+        const compareFunc = (x: number) => x > 0;
+        const probability = this.getReliability(this.cards, 0, compareFunc);
+        return Math.round(probability * 100);
+    }
+
+    public addCard(cardType: string) {
         this.cards[cardType]++;
     }
 
-    removeCard(cardType: string) {
+    public removeCard(cardType: string) {
         if (this.cards[cardType] > 0) { this.cards[cardType]--; }
     }
 }
