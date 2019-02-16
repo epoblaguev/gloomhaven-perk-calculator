@@ -81,7 +81,7 @@ export class Deck {
         const cardChances = {};
 
         for (const key of Object.keys(cards)) {
-            const val = this.cards[key];
+            const val = cards[key];
             const sum = key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
             cardChances[key] = Math.round((val / sum) * 100);
         }
