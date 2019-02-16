@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
 import { Deck } from './classes/deck';
-import { Character} from './classes/character';
+import { Character } from './classes/character';
 import settings from './settings/settings.json';
 
 @Component({
@@ -12,6 +12,7 @@ import settings from './settings/settings.json';
 export class AppComponent {
   standardDeck = new Deck();
   deck = new Deck();
+
   // Table data
   mainTableDataSource = this.deck.getCardTypes();
   displayedColumns: string[] = ['card', 'count', 'percent', 'percent-bar'];

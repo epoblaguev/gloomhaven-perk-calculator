@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UIModule } from './modules/ui-modules/ui.module'
+import { UIModule } from './modules/ui-modules/ui.module';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliab
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    UIModule
+    UIModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -52,54 +52,11 @@ export class Deck {
     }
 
     public cardChance(cardType: string): number {
-        return Math.round((this.cards[cardType] / this.sum()) * 100);
+        const sum = cardType.startsWith('r') ? this.nonRollingSum() + this.cards[cardType] : this.nonRollingSum();
+        return Math.round((this.cards[cardType] / sum) * 100);
     }
-
-    /*
-    private cloneCards(cards = this.cards) {
-        const newCards = new Object();
-        for (const key of Object.keys(cards)) {
-            Object.defineProperty(newCards, key, {});
-            newCards[key] = cards[key];
-        }
-        return newCards;
-    }
-    */
 
     private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {
-        /*
-        let compareFunc: (x: number) => boolean;
-
-
-        if (compare === 0) {
-            compareFunc = (x: number) => x === 0;
-        } else if (compare < 0) {
-            compareFunc = (x: number) => x < 0;
-        } else if (compare > 0) {
-            compareFunc = (x: number) => x > 0;
-        }
-        */
-
-        /*
-        let probability = 0;
-
-        for (const cardType of Object.keys(cards)) {
-            if (cardType.startsWith('r') && cards[cardType] > 0) {
-                const sum = this.sum(cards);
-                const newCards = Object.assign({}, cards);
-                newCards[cardType] -= 1;
-
-                let tempProbability = (sum - cards[cardType]) / sum;
-                tempProbability *= this.getReliability(newCards, this.cardValue[cardType], compareFunc) / (sum - 1);
-                probability += tempProbability;
-            } else if (compareFunc(rollingValue + this.cardValue[cardType])) {
-                probability += cards[cardType] / this.sum(cards);
-            }
-        }
-
-        return probability;
-        */
-
         let probability = 0;
 
         for (const cardType of Object.keys(cards)) {
@@ -126,19 +83,19 @@ export class Deck {
     public reliabilityNegative() {
         const compareFunc = (x: number) => x < 0;
         const probability = this.getReliability(this.cards, 0, compareFunc);
-        return probability * 100;
+        return Math.round(probability * 100);
     }
 
     public reliabilityZero() {
         const compareFunc = (x: number) => x === 0;
         const probability = this.getReliability(this.cards, 0, compareFunc);
-        return probability * 100;
+        return Math.round(probability * 100);
     }
 
     public reliabilityPositive() {
         const compareFunc = (x: number) => x > 0;
         const probability = this.getReliability(this.cards, 0, compareFunc);
-        return probability * 100;
+        return Math.round(probability * 100);
     }
 
     public addCard(cardType: string) {
