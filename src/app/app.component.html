@@ -3,11 +3,11 @@
     <span> Gloomhaven Pork Calculator</span>
   </mat-toolbar>
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
-    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row">
-      <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40">
-        <app-card-probability [deck]="deck"></app-card-probability>
-        <app-deck-reliability [deck]="deck"></app-deck-reliability>
-        <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
+    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
+      <app-card-probability [deck]="deck" fxFlex="60" fxFlex.xs="100"></app-card-probability>
+      <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40" fxFlex.xs="100">
+        <app-deck-reliability [deck]="deck" fxFlex="100"></app-deck-reliability>
+        <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)' fxFlex="100"></app-perk-chooser>
       </div>
     </div>
   </div>

@@ -34,7 +34,7 @@ export class CardProbabilityComponent implements DoCheck {
         this.data.datasets.forEach((dataset, i) => {
           const meta = chartInstance.controller.getDatasetMeta(i);
           meta.data.forEach((bar, index) => {
-            const data = dataset.data[index];
+            const data = dataset.data[index] + '%';
             ctx.fillText(data, bar._model.x, bar._model.y - 5);
           });
         });
