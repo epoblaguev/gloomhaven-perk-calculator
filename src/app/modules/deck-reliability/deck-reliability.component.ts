@@ -10,8 +10,6 @@ import Utils from '../../utils';
 export class DeckReliabilityComponent implements DoCheck {
     @Input()
     deck: Deck = new Deck();
-    @Input()
-    cards = {};
 
     // Graph Start
     public barChartOptions: any = {
@@ -46,11 +44,10 @@ export class DeckReliabilityComponent implements DoCheck {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
     public barChartType = 'bar';
     public barChartLegend = true;
-
     public barChartData: any[] = this.getReliabilityData();
     // Graph End
 
-    prevDeckValue: Deck = new Deck();
+    private prevDeckValue: Deck = new Deck();
 
     constructor() { }
 

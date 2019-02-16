@@ -29,7 +29,6 @@ export class Deck {
 
     public cards = {};
 
-
     constructor() {
         this.cards = this.defaultCards;
     }

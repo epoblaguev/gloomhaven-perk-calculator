@@ -13,6 +13,7 @@ import { Deck } from '../../classes/deck';
 export class PerkChooserComponent {
 	@Input()
 	deck = new Deck();
+
 	@Output()
 	deckChange = new EventEmitter();
 

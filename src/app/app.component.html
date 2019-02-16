@@ -35,7 +35,7 @@
       </mat-card>
       <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40">
         <app-deck-reliability [deck]="deck"></app-deck-reliability>
-        <app-perk-chooser fxFlex="100" [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
+        <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
       </div>
     </div>
   </div>
