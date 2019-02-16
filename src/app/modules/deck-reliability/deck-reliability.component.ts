@@ -32,44 +32,23 @@ export class DeckReliabilityComponent implements DoCheck {
     public barChartType = 'bar';
     public barChartLegend = true;
 
-    public barChartData: any[] = [
-        {
-            label: 'Reliability', data: [
-                this.deck.reliabilityNegative(),
-                this.deck.reliabilityZero(),
-                this.deck.reliabilityPositive()
-            ]
-        }
-    ];
+    public barChartData: any[] = this.getReliabilityData();
     // Graph End
 
-    reliabilityTableColumns: string[] = ['value', 'chance', 'percent-bar'];
-    reliabilityData = [
-        { label: '≤1', function: this.deck.reliabilityNegative() },
-        { label: '=0', function: this.deck.reliabilityZero() },
-        { label: '≥1', function: this.deck.reliabilityPositive() }
-    ];
     prevDeckValue: Deck = new Deck();
 
     constructor() { }
 
     ngDoCheck() {
         if (!Utils.equals(this.deck, this.prevDeckValue)) {
+            console.log('Reliability Deck changed');
             this.prevDeckValue = Utils.clone(this.deck);
-            this.updateReliabilityData();
+            this.barChartData = this.getReliabilityData();
         }
     }
 
-    updateReliabilityData() {
-        this.reliabilityData = [
-            { label: '≤1', function: this.deck.reliabilityNegative() },
-            { label: '=0', function: this.deck.reliabilityZero() },
-            { label: '≥1', function: this.deck.reliabilityPositive() }
-        ];
-    }
-
     // For Chart
-    public getRelibilityData(): any {
+    public getReliabilityData(): Array<object> {
         return [
             {
                 label: 'Reliability', data: [
@@ -88,38 +67,5 @@ export class DeckReliabilityComponent implements DoCheck {
 
     public chartHovered(e: any): void {
         console.log(e);
-    }
-
-    public update(): void {
-        const data = [
-            this.deck.reliabilityNegative(),
-            this.deck.reliabilityZero(),
-            this.deck.reliabilityPositive()
-        ];
-
-        const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data;
-        this.barChartData = clone;
-    }
-
-    public randomize(): void {
-        // Only Change 3 values
-        const data = [
-            Math.round(Math.random() * 100),
-            59,
-            80,
-            (Math.random() * 100),
-            56,
-            (Math.random() * 100),
-            40];
-        const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data;
-        this.barChartData = clone;
-        /**
-         * (My guess), for Angular to recognize the change in the dataset
-         * it has to change the dataset variable directly,
-         * so one way around it, is to clone the data, change it and then
-         * assign it;
-         */
     }
 }

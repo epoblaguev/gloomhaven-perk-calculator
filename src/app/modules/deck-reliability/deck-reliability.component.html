@@ -3,23 +3,7 @@
     Deck Reliability
   </mat-card-header>
   <mat-card-content>
-    <canvas baseChart [datasets]="getRelibilityData()" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
-    <button (click)="update()">Update</button>
-
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [legend]="barChartLegend" [chartType]="barChartType"></canvas>
   </mat-card-content>
-  <!-- Old Reliability -->
-  <mat-table [dataSource]="reliabilityData">
-    <ng-container matColumnDef="value">
-      <mat-cell *matCellDef="let reliability"> {{reliability.label}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="chance">
-      <mat-cell *matCellDef="let reliability"> {{reliability.function}}% </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="percent-bar">
-      <mat-cell *matCellDef="let reliability">
-        <mat-progress-bar mode="determinate" value="{{reliability.function}}"></mat-progress-bar>
-      </mat-cell>
-    </ng-container>
-    <mat-row *matRowDef="let row; columns: reliabilityTableColumns;"></mat-row>
-  </mat-table>
 </mat-card>
