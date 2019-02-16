@@ -10,8 +10,6 @@ import Utils from '../../utils';
 export class DeckReliabilityComponent implements DoCheck {
     @Input()
     deck: Deck = new Deck();
-    @Input()
-    cards = {};
 
     // Graph Start
     public barChartOptions: any = {
@@ -26,16 +24,30 @@ export class DeckReliabilityComponent implements DoCheck {
                     max: 100,
                 }
             }]
-        }
+        },
+        animation: {
+           onComplete: function () {
+               var chartInstance = this.chart,
+               ctx = chartInstance.ctx;
+               ctx.textAlign = 'center';
+               ctx.textBaseline = 'bottom';
+               this.data.datasets.forEach(function (dataset, i) {
+                   var meta = chartInstance.controller.getDatasetMeta(i);
+                   meta.data.forEach(function (bar, index) {
+                       var data = dataset.data[index];
+                       ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                   });
+               });
+           }
+       }
     };
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
     public barChartType = 'bar';
     public barChartLegend = true;
-
     public barChartData: any[] = this.getReliabilityData();
     // Graph End
 
-    prevDeckValue: Deck = new Deck();
+    private prevDeckValue: Deck = new Deck();
 
     constructor() { }
 

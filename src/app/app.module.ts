@@ -7,12 +7,14 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
+import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
 import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckReliabilityComponent,
+    PerkChooserComponent,
     CardProbabilityComponent
   ],
   imports: [

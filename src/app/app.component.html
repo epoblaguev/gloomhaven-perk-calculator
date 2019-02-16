@@ -2,9 +2,9 @@
   <mat-toolbar>
     <span> Gloomhaven Pork Calculator</span>
   </mat-toolbar>
-  <div fxLayout="column" fxLayoutGap="10px" class="wrapper">
-    <div fxLayoutGap="10px" fxLayout.xs="column wrap" fxLayout="row">
-      <mat-card fxFlex="65" fxFlex.gt-sm="70">
+  <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
+    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row">
+      <mat-card fxFlex="65">
         <mat-table [dataSource]="mainTableDataSource">
           <!-- Card Column -->
           <ng-container matColumnDef="card">
@@ -33,28 +33,10 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </mat-card>
-      <app-deck-reliability [deck]="deck" [cards]="deck.cards" fxFlex="35" fxFlex.gt-sm="30"></app-deck-reliability>
-    </div>
-    <div fxLayout="row" fxFlex="100">
-      <mat-card fxLayout="column" fxFlex="100">
-        <mat-form-field fxLayout="row" fxLayout.xs="column wrap" fxFlex="50">
-          <mat-select placeholder="Select Character" [(ngModel)]="selectedCharacter" (change)="characterChanged()">
-            <mat-option *ngFor="let character of characters, let char_i = index" [value]="char_i">
-              {{ character.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div>
-          <h1>{{ characters[selectedCharacter].name }} Perks:</h1>
-          <div *ngFor="let perk of characters[selectedCharacter].perkList" fxLayoutGap="5px">
-            <span *ngFor="let use of ' '.repeat(perk.uses).split(''), let use_i = index">
-              <mat-checkbox (change)="selectPerk($event, perk.set, perk.unset)">
-              </mat-checkbox>
-            </span>
-            <b>{{perk.name}}</b>
-          </div>
-        </div>
-      </mat-card>
+      <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40">
+        <app-deck-reliability [deck]="deck"></app-deck-reliability>
+        <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
+      </div>
     </div>
   </div>
 </div>
