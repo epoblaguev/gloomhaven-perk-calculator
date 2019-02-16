@@ -2,9 +2,9 @@
   <mat-toolbar>
     <span> Gloomhaven Pork Calculator</span>
   </mat-toolbar>
-  <div fxLayout="column" fxLayoutGap="7px" class="wrapper">
+  <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row">
-      <mat-card fxFlex="65" fxFlex.gt-sm="70">
+      <mat-card fxFlex="65">
         <mat-table [dataSource]="mainTableDataSource">
           <!-- Card Column -->
           <ng-container matColumnDef="card">
@@ -33,9 +33,9 @@
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
       </mat-card>
-      <div fxLayout="column" fxLayoutGap="7px"  fxFlex="35" fxFlex.gt-sm="30">
-        <app-deck-reliability [deck]="deck" [cards]="deck.cards" fxFlex="100"></app-deck-reliability>
-        <app-perk-chooser fxFlex="100" [deck]="deck"></app-perk-chooser>
+      <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40">
+        <app-deck-reliability [deck]="deck"></app-deck-reliability>
+        <app-perk-chooser fxFlex="100" [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
       </div>
     </div>
   </div>

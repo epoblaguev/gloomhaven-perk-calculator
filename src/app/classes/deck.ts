@@ -1,5 +1,5 @@
 export class Deck {
-    public cards = {
+    readonly defaultCards = {
         x0: 1,
         '-2': 1,
         '-1': 5,
@@ -26,6 +26,13 @@ export class Deck {
         'r+1': 1,
         'r+2': 2,
     };
+
+    public cards = {};
+
+
+    constructor() {
+        this.cards = this.defaultCards;
+    }
 
     public getCardTypes() {
         return Object.keys(this.cards);
@@ -104,5 +111,9 @@ export class Deck {
 
     public removeCard(cardType: string) {
         if (this.cards[cardType] > 0) { this.cards[cardType]--; }
+    }
+
+    public reset() {
+        this.cards = this.defaultCards;
     }
 }
