@@ -4,36 +4,8 @@
   </mat-toolbar>
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row">
-      <mat-card fxFlex="65">
-        <mat-table [dataSource]="mainTableDataSource">
-          <!-- Card Column -->
-          <ng-container matColumnDef="card">
-            <mat-header-cell *matHeaderCellDef> Card </mat-header-cell>
-            <mat-cell *matCellDef="let cardType"> {{cardType}} </mat-cell>
-          </ng-container>
-          <!-- Count Column -->
-          <ng-container matColumnDef="count">
-            <mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-            <mat-cell *matCellDef="let cardType"> {{deck.cards[cardType]}}</mat-cell>
-          </ng-container>
-          <!-- Percent Column -->
-          <ng-container matColumnDef="percent">
-            <mat-header-cell *matHeaderCellDef> Percent </mat-header-cell>
-            <mat-cell *matCellDef="let cardType">
-              {{deck.cardChance(cardType)}}%
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="percent-bar">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let cardType">
-              <mat-progress-bar mode="determinate" value="{{deck.cardChance(cardType)}}"></mat-progress-bar>
-            </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-      </mat-card>
       <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40">
+        <app-card-probability [deck]="deck"></app-card-probability>
         <app-deck-reliability [deck]="deck"></app-deck-reliability>
         <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)'></app-perk-chooser>
       </div>

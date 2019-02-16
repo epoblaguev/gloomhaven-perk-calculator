@@ -1,4 +1,5 @@
-import Utils from '../utils'
+import Utils from '../utils';
+
 export class Deck {
     readonly defaultCards = {
         x0: 1,
@@ -28,7 +29,7 @@ export class Deck {
         'r+2': 2,
     };
 
-    public cards = {};
+    public cards: object;
 
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
@@ -61,6 +62,19 @@ export class Deck {
     public cardChance(cardType: string): number {
         const sum = cardType.startsWith('r') ? this.nonRollingSum() + this.cards[cardType] : this.nonRollingSum();
         return Math.round((this.cards[cardType] / sum) * 100);
+    }
+
+    public cardChanceAll(): object {
+        const nonRollingSum = this.nonRollingSum();
+        const cardChances = {};
+
+        for (const key of Object.keys(this.cards)) {
+            const val = this.cards[key];
+            const sum =  key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
+            cardChances[key] = Math.round((val / sum) * 100);
+        }
+
+        return cardChances;
     }
 
     private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {

@@ -6,49 +6,49 @@ import { Deck } from '../../classes/deck';
 
 
 @Component({
-  selector: 'app-perk-chooser',
-  templateUrl: './perk-chooser.component.html',
-  styleUrls: ['./perk-chooser.component.scss']
+    selector: 'app-perk-chooser',
+    templateUrl: './perk-chooser.component.html',
+    styleUrls: ['./perk-chooser.component.scss']
 })
 export class PerkChooserComponent {
-	@Input()
-	deck = new Deck();
+    @Input()
+    deck = new Deck();
 
-	@Output()
-	deckChange = new EventEmitter();
+    @Output()
+    deckChange = new EventEmitter();
 
-	@ViewChildren("checkboxes") checkboxes: QueryList<MatCheckbox>;
+    @ViewChildren('checkboxes') checkboxes: QueryList<MatCheckbox>;
 
-  characters = settings.characters.map(char => new Character(char));
-  selectedCharacter = 0;
+    characters = settings.characters.map(char => new Character(char));
+    selectedCharacter = 0;
 
-  constructor() { }
+    constructor() { }
 
-  characterChanged() {
-    this.resetDeck();
-  }
-
-  selectPerk(event, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
-    if (event.checked) {
-      set(this.deck);
-    } else {
-      unset(this.deck);
+    characterChanged() {
+        this.resetDeck();
     }
-  }
 
-  reset() {
-  	this.resetPerkCheckboxes();
-  	this.resetDeck();
-  }
+    selectPerk(event, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
+        if (event.checked) {
+            set(this.deck);
+        } else {
+            unset(this.deck);
+        }
+    }
 
-  resetPerkCheckboxes() {
-  	this.checkboxes.forEach((checkbox) => {
-  		checkbox.checked = false;
-  	});
-  }
+    reset() {
+        this.resetPerkCheckboxes();
+        this.resetDeck();
+    }
 
-  resetDeck() {
-    this.deck.reset();
-    this.deckChange.emit(this.deck.cards);
-  }
+    resetPerkCheckboxes() {
+        this.checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+    }
+
+    resetDeck() {
+        this.deck.reset();
+        this.deckChange.emit(this.deck.cards);
+    }
 }

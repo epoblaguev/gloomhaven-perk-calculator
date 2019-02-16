@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChange, DoCheck } from '@angular/core';
+import { Component, Input, DoCheck } from '@angular/core';
 import { Deck } from '../../classes/deck';
 import Utils from '../../utils';
 
@@ -26,20 +26,20 @@ export class DeckReliabilityComponent implements DoCheck {
             }]
         },
         animation: {
-           onComplete: function () {
-               var chartInstance = this.chart,
-               ctx = chartInstance.ctx;
-               ctx.textAlign = 'center';
-               ctx.textBaseline = 'bottom';
-               this.data.datasets.forEach(function (dataset, i) {
-                   var meta = chartInstance.controller.getDatasetMeta(i);
-                   meta.data.forEach(function (bar, index) {
-                       var data = dataset.data[index];
-                       ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                   });
-               });
-           }
-       }
+            onComplete() {
+                const chartInstance = this.chart;
+                const ctx = chartInstance.ctx;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                this.data.datasets.forEach((dataset, i) => {
+                    const meta = chartInstance.controller.getDatasetMeta(i);
+                    meta.data.forEach((bar, index) => {
+                        const data = dataset.data[index];
+                        ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                    });
+                });
+            }
+        }
     };
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
     public barChartType = 'bar';
