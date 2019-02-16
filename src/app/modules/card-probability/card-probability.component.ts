@@ -1,6 +1,8 @@
-import { Component, Input, DoCheck } from '@angular/core';
+import { Component, Input, DoCheck, ViewChild } from '@angular/core';
 import { Deck } from 'src/app/classes/deck';
 import Utils from 'src/app/utils';
+import { BaseChartDirective } from 'ng2-charts';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-card-probability',
@@ -10,6 +12,9 @@ import Utils from 'src/app/utils';
 export class CardProbabilityComponent implements DoCheck {
   @Input()
   deck: Deck = new Deck();
+
+  @ViewChild('baseChart')
+  chart: BaseChartDirective;
 
   // Graph Start
   public barChartOptions: any = {
@@ -34,7 +39,7 @@ export class CardProbabilityComponent implements DoCheck {
         this.data.datasets.forEach((dataset, i) => {
           const meta = chartInstance.controller.getDatasetMeta(i);
           meta.data.forEach((bar, index) => {
-            const data = dataset.data[index] + '%';
+            const data = `${dataset.data[index]}%`;
             ctx.fillText(data, bar._model.x, bar._model.y - 5);
           });
         });
@@ -54,18 +59,34 @@ export class CardProbabilityComponent implements DoCheck {
   ngDoCheck() {
     if (!Utils.equals(this.deck, this.prevDeckValue)) {
       console.log('Probability of Deck changed');
+      if (Utils.equals(this.deck.comparisons, this.prevDeckValue.comparisons)) { this.redrawChart(); }
+
       this.prevDeckValue = Utils.clone(this.deck);
       this.barChartData = this.getProbabilityData();
+
     }
   }
 
   // For Chart
-  public getProbabilityData(): Array<object> {
-    return [
-      {
-        label: 'Probability', data: Object.values(this.deck.cardChanceAll())
-      }
-    ];
+  public getProbabilityData(): any[] {
+    const probData = [{
+      label: 'Probability', data: Object.values(this.deck.cardChanceAll()),
+    }];
+
+    this.deck.comparisons.forEach((comparison, index) => {
+      console.log(`Comparison ${index}`);
+      probData.push({
+        label: `Comparison ${index}`, data: Object.values(this.deck.cardChanceAll(comparison))
+      });
+
+      console.log(probData);
+    });
+    return probData;
+  }
+
+  public redrawChart() {
+    this.chart.ngOnDestroy();
+    this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
   }
 
   // events
@@ -74,6 +95,6 @@ export class CardProbabilityComponent implements DoCheck {
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
+    // console.log(e);
   }
 }

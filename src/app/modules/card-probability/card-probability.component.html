@@ -1,6 +1,6 @@
 <mat-card fxFlex="100">
   <mat-card-content>
-    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+    <canvas baseChart #baseChart="base-chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
       [legend]="barChartLegend" [chartType]="barChartType"></canvas>
   </mat-card-content>
 </mat-card>

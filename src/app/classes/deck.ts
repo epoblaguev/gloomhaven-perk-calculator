@@ -1,4 +1,5 @@
 import Utils from '../utils';
+import { TypeofExpr } from '@angular/compiler';
 
 export class Deck {
     readonly defaultCards = {
@@ -31,11 +32,22 @@ export class Deck {
 
     public cards: object;
 
+    public comparisons: Array<object>;
+
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
+        this.comparisons = new Array<object>();
     }
 
-    public getCardTypes() {
+    public saveComparison(cards = this.cards) {
+        this.comparisons.push(Utils.clone(cards));
+    }
+
+    public clearComparisons() {
+        this.comparisons = new Array<object>();
+    }
+
+    public getCardTypes(): Array<string> {
         return Object.keys(this.cards);
     }
 
@@ -64,13 +76,13 @@ export class Deck {
         return Math.round((this.cards[cardType] / sum) * 100);
     }
 
-    public cardChanceAll(): object {
-        const nonRollingSum = this.nonRollingSum();
+    public cardChanceAll(cards = this.cards): object {
+        const nonRollingSum = this.nonRollingSum(cards);
         const cardChances = {};
 
-        for (const key of Object.keys(this.cards)) {
+        for (const key of Object.keys(cards)) {
             const val = this.cards[key];
-            const sum =  key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
+            const sum = key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
             cardChances[key] = Math.round((val / sum) * 100);
         }
 

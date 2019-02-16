@@ -41,6 +41,10 @@ export class PerkChooserComponent {
         this.resetDeck();
     }
 
+    addToComparison() {
+        this.deck.saveComparison();
+    }
+
     resetPerkCheckboxes() {
         this.checkboxes.forEach((checkbox) => {
             checkbox.checked = false;
@@ -49,6 +53,7 @@ export class PerkChooserComponent {
 
     resetDeck() {
         this.deck.reset();
+        this.deck.clearComparisons();
         this.deckChange.emit(this.deck.cards);
     }
 }
