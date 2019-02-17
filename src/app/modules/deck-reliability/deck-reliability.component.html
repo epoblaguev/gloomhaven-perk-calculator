@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-subtitle>Deck Reliability</mat-card-subtitle>
-  <mat-card-content>
+  <mat-card-content (window:resize)="redrawChart($event)">
     <google-chart [data]="gChart"></google-chart>
 
     <!--

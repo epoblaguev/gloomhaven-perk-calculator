@@ -12,7 +12,9 @@ export abstract class GraphModule implements DoCheck {
         chartType: 'ColumnChart',
         options: {
             min: 0, max: 100,
+            legend: { position: 'top' },
             animation: { duration: 500, easing: 'out' },
+            chartArea: {left: '5%', width: '100%'},
         }
     };
 
@@ -30,6 +32,16 @@ export abstract class GraphModule implements DoCheck {
 
             this.gChart.component.draw();
         }
+    }
+
+    public redrawChart(event) {
+        /*
+        console.log(event.target.innerHeight);
+        this.gChart.options.chartArea.width = event.target.innerWidth * 0.8;
+        this.gChart.options.chartArea.height = event.target.innerHeight;
+        */
+
+        this.gChart.component.draw();
     }
 
     public abstract getChartData(): Array<Array<any>>;
