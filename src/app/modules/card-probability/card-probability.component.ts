@@ -59,24 +59,25 @@ export class CardProbabilityComponent implements DoCheck {
   ngDoCheck() {
     if (!Utils.equals(this.deck, this.prevDeckValue)) {
       console.log('Probability of Deck changed');
-      if (Utils.equals(this.deck.comparisons, this.prevDeckValue.comparisons)) { this.redrawChart(); }
+      const needRedraw = !Utils.equals(this.deck.comparisons, this.prevDeckValue.comparisons);
 
       this.prevDeckValue = Utils.clone(this.deck);
       this.barChartData = this.getProbabilityData();
-
+      if (needRedraw) {
+        console.log('Redrawing chart');
+        setTimeout(() => { this.redrawChart(); }, 100);
+      }
     }
   }
 
   // For Chart
   public getProbabilityData(): any[] {
-    const probData = [{
-      label: 'Probability', data: Object.values(this.deck.cardChanceAll()),
-    }];
+    const probData = [{ label: 'Probability', data: Object.values(this.deck.cardChanceAll()) }];
 
     this.deck.comparisons.forEach((comparison, index) => {
-      console.log(`Comparison ${index}`);
+      console.log(`Comparison ${index + 1}`);
       probData.push({
-        label: `Comparison ${index}`, data: Object.values(this.deck.cardChanceAll(comparison))
+        label: `Comparison ${index + 1}`, data: Object.values(this.deck.cardChanceAll(comparison))
       });
 
       console.log(probData);

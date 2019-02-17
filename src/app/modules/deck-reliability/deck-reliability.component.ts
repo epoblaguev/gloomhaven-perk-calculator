@@ -1,6 +1,7 @@
-import { Component, Input, DoCheck } from '@angular/core';
+import { Component, Input, DoCheck, ViewChild } from '@angular/core';
 import { Deck } from '../../classes/deck';
 import Utils from '../../utils';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
     selector: 'app-deck-reliability',
@@ -10,6 +11,9 @@ import Utils from '../../utils';
 export class DeckReliabilityComponent implements DoCheck {
     @Input()
     deck: Deck = new Deck();
+
+    @ViewChild('baseChart')
+    chart: BaseChartDirective;
 
     // Graph Start
     public barChartOptions: any = {
@@ -54,14 +58,21 @@ export class DeckReliabilityComponent implements DoCheck {
     ngDoCheck() {
         if (!Utils.equals(this.deck, this.prevDeckValue)) {
             console.log('Reliability Deck changed');
+            const needRedraw = !Utils.equals(this.deck.comparisons, this.prevDeckValue.comparisons);
+
             this.prevDeckValue = Utils.clone(this.deck);
             this.barChartData = this.getReliabilityData();
+
+            if (needRedraw) {
+                console.log('Redrawing chart');
+                setTimeout(() => { this.redrawChart(); }, 100);
+            }
         }
     }
 
     // For Chart
     public getReliabilityData(): Array<object> {
-        return [
+        const rData = [
             {
                 label: 'Reliability', data: [
                     this.deck.reliabilityNegative(),
@@ -70,6 +81,26 @@ export class DeckReliabilityComponent implements DoCheck {
                 ]
             }
         ];
+
+        this.deck.comparisons.forEach((comparison, index) => {
+            console.log(`Reliability Comparison ${index + 1}`);
+            rData.push({
+                label: `Comparison ${index + 1}`, data: [
+                    this.deck.reliabilityNegative(comparison),
+                    this.deck.reliabilityZero(comparison),
+                    this.deck.reliabilityPositive(comparison)
+                ]
+            });
+
+            console.log(rData);
+        });
+
+        return rData;
+    }
+
+    public redrawChart() {
+        this.chart.ngOnDestroy();
+        this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
     }
 
     // events

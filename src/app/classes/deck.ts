@@ -71,9 +71,9 @@ export class Deck {
         return sum;
     }
 
-    public cardChance(cardType: string): number {
-        const sum = cardType.startsWith('r') ? this.nonRollingSum() + this.cards[cardType] : this.nonRollingSum();
-        return Math.round((this.cards[cardType] / sum) * 100);
+    public cardChance(cardType: string, cards = this.cards): number {
+        const sum = cardType.startsWith('r') ? this.nonRollingSum(cards) + cards[cardType] : this.nonRollingSum(cards);
+        return Math.round((cards[cardType] / sum) * 100);
     }
 
     public cardChanceAll(cards = this.cards): object {
@@ -113,21 +113,21 @@ export class Deck {
 
     }
 
-    public reliabilityNegative() {
+    public reliabilityNegative(cards = this.cards) {
         const compareFunc = (x: number) => x < 0;
-        const probability = this.getReliability(this.cards, 0, compareFunc);
+        const probability = this.getReliability(cards, 0, compareFunc);
         return Math.round(probability * 100);
     }
 
-    public reliabilityZero() {
+    public reliabilityZero(cards = this.cards) {
         const compareFunc = (x: number) => x === 0;
-        const probability = this.getReliability(this.cards, 0, compareFunc);
+        const probability = this.getReliability(cards, 0, compareFunc);
         return Math.round(probability * 100);
     }
 
-    public reliabilityPositive() {
+    public reliabilityPositive(cards = this.cards) {
         const compareFunc = (x: number) => x > 0;
-        const probability = this.getReliability(this.cards, 0, compareFunc);
+        const probability = this.getReliability(cards, 0, compareFunc);
         return Math.round(probability * 100);
     }
 
