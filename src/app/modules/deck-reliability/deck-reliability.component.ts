@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModule';
+import { GraphModule } from 'src/app/classes/graphModuleGCharts';
 
 @Component({
     selector: 'app-deck-reliability',
@@ -7,33 +7,26 @@ import { GraphModule } from 'src/app/classes/graphModule';
     styleUrls: ['./deck-reliability.component.scss']
 })
 export class DeckReliabilityComponent extends GraphModule {
-    public barChartLabels: string[] = ['≤1', '=0', '≥1'];
     constructor() { super(); }
 
     public getChartData() {
-        const chartData = [
-            {
-                label: 'Current', data: [
-                    this.deck.reliabilityNegative(),
-                    this.deck.reliabilityZero(),
-                    this.deck.reliabilityPositive()
-                ]
-            }
-        ];
+        let chartData = [];
 
-        this.deck.comparisons.forEach((comparison, index) => {
-            console.log(`Reliability Comparison ${index + 1}`);
-            chartData.push({
-                label: 'Comparison', data: [
-                    this.deck.reliabilityNegative(comparison),
-                    this.deck.reliabilityZero(comparison),
-                    this.deck.reliabilityPositive(comparison)
-                ]
-            });
-
-            console.log(chartData);
-        });
-
+        if (this.deck.comparisons.length === 0) {
+            chartData = [
+                ['Value', 'Current'],
+                ['≤1', this.deck.reliabilityNegative()],
+                ['=0', this.deck.reliabilityZero()],
+                ['≥1', this.deck.reliabilityPositive()]
+            ];
+        } else {
+            chartData = [
+                ['Value', 'Current', 'Comparison'],
+                ['≤1', this.deck.reliabilityNegative(), this.deck.reliabilityNegative(this.deck.comparisons[0])],
+                ['=0', this.deck.reliabilityZero(), this.deck.reliabilityZero(this.deck.comparisons[0])],
+                ['≥1', this.deck.reliabilityPositive(), this.deck.reliabilityPositive(this.deck.comparisons[0])]
+            ];
+        }
         return chartData;
     }
 }
