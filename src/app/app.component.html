@@ -1,11 +1,11 @@
 <div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
   <mat-toolbar>
-    <span> Gloomhaven Pork Calculator</span>
+    <span>{{ title }}</span>
   </mat-toolbar>
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <app-card-probability [deck]="deck" fxFlex="60" fxFlex.xs="100"></app-card-probability>
-      <div fxLayout="column" fxLayoutGap="6px"  fxFlex="40" fxFlex.xs="100">
+      <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.xs="100">
         <app-deck-reliability [deck]="deck" fxFlex="100"></app-deck-reliability>
         <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)' fxFlex="100"></app-perk-chooser>
       </div>

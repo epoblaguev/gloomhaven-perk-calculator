@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
 import { Deck } from './classes/deck';
 import Utils from './utils';
 
@@ -10,6 +9,7 @@ import Utils from './utils';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = Math.random() < 0.5 ? 'Gloomhaven Pork Calculator' : 'Gloomhaven Perk Calculator';
   deck = new Deck();
 
   // Table data
