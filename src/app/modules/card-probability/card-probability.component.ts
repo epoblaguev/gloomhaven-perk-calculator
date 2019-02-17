@@ -48,7 +48,7 @@ export class CardProbabilityComponent implements DoCheck {
   };
   public barChartLabels: string[] = Object.keys(this.deck.cards);
   public barChartType = 'bar';
-  public barChartLegend = true;
+  public barChartLegend = this.deck.comparisons.length > 0 ? true : false;
   public barChartData: any[] = this.getProbabilityData();
   // Graph End
 
@@ -63,6 +63,8 @@ export class CardProbabilityComponent implements DoCheck {
 
       this.prevDeckValue = Utils.clone(this.deck);
       this.barChartData = this.getProbabilityData();
+      this.barChartLegend = this.deck.comparisons.length > 0 ? true : false;
+
       if (needRedraw) {
         console.log('Redrawing chart');
         setTimeout(() => { this.redrawChart(); }, 100);
@@ -72,7 +74,7 @@ export class CardProbabilityComponent implements DoCheck {
 
   // For Chart
   public getProbabilityData(): any[] {
-    const probData = [{ label: 'Probability', data: Object.values(this.deck.cardChanceAll()) }];
+    const probData = [{ label: 'Current', data: Object.values(this.deck.cardChanceAll()) }];
 
     this.deck.comparisons.forEach((comparison, index) => {
       console.log(`Comparison ${index + 1}`);

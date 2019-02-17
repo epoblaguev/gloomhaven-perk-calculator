@@ -47,7 +47,7 @@ export class DeckReliabilityComponent implements DoCheck {
     };
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
     public barChartType = 'bar';
-    public barChartLegend = true;
+    public barChartLegend = this.deck.comparisons.length > 0 ? true : false;
     public barChartData: any[] = this.getReliabilityData();
     // Graph End
 
@@ -62,6 +62,7 @@ export class DeckReliabilityComponent implements DoCheck {
 
             this.prevDeckValue = Utils.clone(this.deck);
             this.barChartData = this.getReliabilityData();
+            this.barChartLegend = this.deck.comparisons.length > 0 ? true : false;
 
             if (needRedraw) {
                 console.log('Redrawing chart');
@@ -74,7 +75,7 @@ export class DeckReliabilityComponent implements DoCheck {
     public getReliabilityData(): Array<object> {
         const rData = [
             {
-                label: 'Reliability', data: [
+                label: 'Current', data: [
                     this.deck.reliabilityNegative(),
                     this.deck.reliabilityZero(),
                     this.deck.reliabilityPositive()
