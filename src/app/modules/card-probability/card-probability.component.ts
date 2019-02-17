@@ -18,7 +18,7 @@ export class CardProbabilityComponent extends GraphModule {
     this.deck.comparisons.forEach((comparison, index) => {
       console.log(`Comparison ${index + 1}`);
       probData.push({
-        label: `Comparison ${index + 1}`, data: Object.values(this.deck.cardChanceAll(comparison))
+        label: 'Comparison', data: Object.values(this.deck.cardChanceAll(comparison))
       });
 
       console.log(probData);

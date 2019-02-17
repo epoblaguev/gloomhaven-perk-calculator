@@ -52,7 +52,6 @@ export abstract class GraphModule implements DoCheck, OnInit {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
         this.barChartLegend = this.deck.comparisons.length > 0 ? true : false;
-
     }
 
     ngDoCheck() {

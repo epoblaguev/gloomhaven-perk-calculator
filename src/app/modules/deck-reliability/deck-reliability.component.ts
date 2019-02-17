@@ -24,7 +24,7 @@ export class DeckReliabilityComponent extends GraphModule {
         this.deck.comparisons.forEach((comparison, index) => {
             console.log(`Reliability Comparison ${index + 1}`);
             chartData.push({
-                label: `Comparison ${index + 1}`, data: [
+                label: 'Comparison', data: [
                     this.deck.reliabilityNegative(comparison),
                     this.deck.reliabilityZero(comparison),
                     this.deck.reliabilityPositive(comparison)

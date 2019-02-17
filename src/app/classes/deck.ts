@@ -1,5 +1,4 @@
 import Utils from '../utils';
-import { TypeofExpr } from '@angular/compiler';
 
 export class Deck {
     readonly defaultCards = {
@@ -40,7 +39,7 @@ export class Deck {
     }
 
     public saveComparison(cards = this.cards) {
-        this.comparisons.push(Utils.clone(cards));
+        this.comparisons = [Utils.clone(cards)];
     }
 
     public clearComparisons() {

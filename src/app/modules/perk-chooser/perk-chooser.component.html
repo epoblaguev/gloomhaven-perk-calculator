@@ -20,6 +20,6 @@
 	</mat-card-content>
 	<mat-card-actions>
 		<button mat-stroked-button (click)="reset()">Reset</button>
-		<button mat-stroked-button (click)="addToComparison()">Add to Comparison</button>
+		<button mat-stroked-button (click)="toggleComparison()"> {{ deck.comparisons.length === 0 ? 'Add Comparison' : 'Remove Comparison' }}</button>
   </mat-card-actions>
 </mat-card>
