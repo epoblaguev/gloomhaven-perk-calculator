@@ -15,6 +15,8 @@ export abstract class GraphModule implements DoCheck {
             legend: { position: 'top' },
             animation: { duration: 500, easing: 'out' },
             chartArea: {left: '5%', width: '100%'},
+            width: '100%',
+            height: '500px'
         }
     };
 

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UIModule } from './modules/ui-modules/ui.module';
 import { ChartsModule } from 'ng2-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +25,8 @@ import { CardProbabilityComponent } from './modules/card-probability/card-probab
     FormsModule,
     UIModule,
     ChartsModule,
-    Ng2GoogleChartsModule
+    Ng2GoogleChartsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

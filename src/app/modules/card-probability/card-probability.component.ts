@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModuleGCharts';
+import { GraphModule } from 'src/app/classes/graphModuleNGX';
 
 @Component({
   selector: 'app-card-probability',
@@ -13,22 +13,25 @@ export class CardProbabilityComponent extends GraphModule {
   constructor() { super(); }
 
   public getChartData() {
-    let chartData = [];
+    const chartData = [];
 
     if (this.deck.comparisons.length === 0) {
       const cardChances = this.deck.cardChanceAll();
-      chartData = [['Value', 'Current']];
 
       Object.keys(cardChances).forEach(key => {
-        chartData.push([key, cardChances[key]]);
+        chartData.push({ name: key, value: cardChances[key] });
       });
     } else {
       const currentChances = this.deck.cardChanceAll();
       const compareChances = this.deck.cardChanceAll(this.deck.comparisons[0]);
-      chartData = [['Value', 'Current', 'Comparison']];
 
       Object.keys(currentChances).forEach(key => {
-        chartData.push([key, currentChances[key], compareChances[key]]);
+        chartData.push({
+          name: key, series: [
+            { name: 'Current', value: currentChances[key] },
+            { name: 'Compare', value: compareChances[key] }
+          ]
+        });
       });
     }
 

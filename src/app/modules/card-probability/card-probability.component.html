@@ -1,8 +1,16 @@
 <mat-card fxFlex="100">
   <mat-card-subtitle>Card Probability</mat-card-subtitle>
-  <mat-card-content (window:resize)="redrawChart($event)">
 
+  <ngx-charts-bar-vertical [scheme]="ngxOptions.colorScheme" [results]="ngxData" [gradient]="ngxOptions.gradient"
+    [xAxis]="ngxOptions.showXAxis" [yAxis]="ngxOptions.showYAxis" [legend]="ngxOptions.showLegend"
+    [showXAxisLabel]="ngxOptions.showXAxisLabel" [showYAxisLabel]="ngxOptions.showYAxisLabel"
+    [xAxisLabel]="ngxOptions.xAxisLabel" [yAxisLabel]="ngxOptions.yAxisLabel" (select)="onSelect($event)">
+  </ngx-charts-bar-vertical>
+  <mat-card-content>
+
+    <!--
     <google-chart [data]="gChart"></google-chart>
+    -->
     <!--
     <canvas baseChart #baseChart="base-chart" [datasets]="barChartData" [labels]="barChartLabels"
       [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
