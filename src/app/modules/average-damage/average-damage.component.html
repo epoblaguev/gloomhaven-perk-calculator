@@ -1,0 +1,7 @@
+<mat-card fxFlex="100">
+  <mat-card-subtitle>Average Damage</mat-card-subtitle>
+  <mat-card-content>
+    <canvas baseChart #baseChart="base-chart" [datasets]="barChartData" [labels]="barChartLabels"
+      [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+  </mat-card-content>
+</mat-card>

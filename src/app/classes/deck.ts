@@ -35,6 +35,20 @@ export class Deck {
 
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
+        /*this.cards = {
+            x0: 0,
+            '-2': 0,
+            '-1': 0,
+            '+0': 1,
+            '+1': 0,
+            '+2': 0,
+            '+3': 0,
+            '+4': 0,
+            x2: 0,
+            'r+1': 1,
+            'r+2': 1,
+        };
+        */
         this.comparisons = new Array<object>();
     }
 
@@ -128,6 +142,28 @@ export class Deck {
         const compareFunc = (x: number) => x > 0;
         const probability = this.getReliability(cards, 0, compareFunc);
         return Math.round(probability * 100);
+    }
+
+    public getAverageDamage(baseDamage: number, cards = this.cards): number {
+        let damage = 0;
+        const sum = this.sum(cards);
+
+        for (const key of Object.keys(cards)) {
+            if (cards[key] === 0 || key === 'x0') { continue; }
+            if (key.startsWith('r')) {
+                const newCards = Object.assign({}, cards);
+                newCards[key] -= 1;
+                damage += (this.cardValue[key] + this.getAverageDamage(baseDamage, newCards)) * (cards[key] / sum);
+            } else if (key === 'x2') {
+                damage += (baseDamage * 2) * (cards[key] / sum);
+            } else {
+                let tmpDamage = (baseDamage + this.cardValue[key]);
+                tmpDamage = tmpDamage > 0 ? tmpDamage : 0;
+                damage += (tmpDamage) * (cards[key] / sum);
+            }
+        }
+
+        return damage;
     }
 
     public addCard(cardType: string) {

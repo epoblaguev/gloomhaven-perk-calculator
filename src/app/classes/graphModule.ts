@@ -1,5 +1,5 @@
 import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective, ChartsModule } from 'ng2-charts';
 import { Deck } from './deck';
 import Utils from '../utils';
 
@@ -14,39 +14,42 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true,
+        tooltips: false,
         scales: {
             yAxes: [{
                 ticks: {
                     steps: 10,
                     stepValue: 10,
-                    min: 0,
+                    beginAtZero: true,
                     max: 100,
                 }
             }]
         },
         animation: {
-            onComplete() {
-                const chartInstance = this.chart;
-                const ctx = chartInstance.ctx;
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'bottom';
-                this.data.datasets.forEach((dataset, i) => {
-                    const meta = chartInstance.controller.getDatasetMeta(i);
-                    meta.data.forEach((bar, index) => {
-                        const data = `${dataset.data[index]}%`;
-                        ctx.fillText(data, bar._model.x, bar._model.y - 5);
-                    });
-                });
-            }
+            onProgress() { GraphModule.drawDatapointLabels(this.data, this.chart); },
+            onComplete() { GraphModule.drawDatapointLabels(this.data, this.chart); }
         }
     };
     public abstract barChartLabels: string[];
     public barChartType: string;
     public barChartLegend: boolean;
     public barChartData: any[];
-    // Graph End
 
     protected prevDeckValue: Deck = new Deck();
+
+    static drawDatapointLabels(data, chart, numberFormat = (n: number) => `${n}%`) {
+        const chartInstance = chart;
+        const ctx = chartInstance.ctx;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        data.datasets.forEach((dataset, i) => {
+            const meta = chartInstance.controller.getDatasetMeta(i);
+            meta.data.forEach((bar, index) => {
+                const text = numberFormat(dataset.data[index]);
+                ctx.fillText(text, bar._model.x, bar._model.y - 5);
+            });
+        });
+    }
 
     ngOnInit(): void {
         this.barChartType = 'bar';
@@ -64,7 +67,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
             if (needRedraw) {
                 console.log('Redrawing chart');
-                setTimeout(() => { this.redrawChart(); }, 100);
+                setTimeout(() => { this.redrawChart(); }, 50);
             }
         }
     }

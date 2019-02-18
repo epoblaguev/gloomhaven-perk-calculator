@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
 import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
 import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
+import { AverageDamageComponent } from './modules/average-damage/average-damage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckReliabilityComponent,
     PerkChooserComponent,
-    CardProbabilityComponent
+    CardProbabilityComponent,
+    AverageDamageComponent
   ],
   imports: [
     BrowserModule,
