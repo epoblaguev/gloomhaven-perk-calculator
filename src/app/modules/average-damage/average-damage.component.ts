@@ -14,11 +14,18 @@ export class AverageDamageComponent extends GraphModule {
     scaleShowVerticalLines: false,
     responsive: true,
     tooltips: false,
+    label: 'asdf',
     scales: {
       yAxes: [{
         ticks: {
           beginAtZero: true,
           max: this.deck.getAverageDamage(this.baseDamage[this.baseDamage.length - 1]) + 2,
+        },
+      }],
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Base Damage'
         }
       }]
     },
