@@ -35,20 +35,6 @@ export class Deck {
 
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
-        /*this.cards = {
-            x0: 0,
-            '-2': 0,
-            '-1': 0,
-            '+0': 1,
-            '+1': 0,
-            '+2': 0,
-            '+3': 0,
-            '+4': 0,
-            x2: 0,
-            'r+1': 1,
-            'r+2': 1,
-        };
-        */
         this.comparisons = new Array<object>();
     }
 

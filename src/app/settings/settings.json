@@ -17,7 +17,7 @@
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
-                {"name": "Replace one (-2) with one (+0) card", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
                 {"name": "Add two rolling (+1) cards", "uses": 2}
@@ -48,6 +48,32 @@
                 {"name": "Add one (+1) CURSE card", "uses": 1},
                 {"name": "Add one (+2) FIRE card", "uses": 2},
                 {"name": "Add one (+2) FROST card", "uses": 2}
+            ]
+        },
+        {
+            "name": "Tinkerer",
+            "hidden_name": "Tinkerer",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Add two (+1) cards", "uses": 1},
+                {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Add one (+1) WOUND card", "uses": 2},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Add one (+1) HEAL card", "uses": 1},
+                {"name": "Add one (+0) ADD TARGET card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Mindthief",
+            "hidden_name": "Mindthief",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace two (+1) cards with two (+2) cards", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Add one (+2) FROST card", "uses": 2},
+                {"name": "Add two rolling (+1) cards", "uses": 2}
             ]
         }
     ]

@@ -14,6 +14,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true,
+        maintainAspectRatio: false,
         tooltips: false,
         scales: {
             yAxes: [{

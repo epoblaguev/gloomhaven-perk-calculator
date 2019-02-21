@@ -1,5 +1,4 @@
 import { Perk, PERK_LIST } from './perk';
-import { Deck } from './deck';
 
 export class Character {
     name: string;

@@ -15,11 +15,19 @@ export class Perk {
 }
 
 export const PERK_LIST = {
+    'Add one (+0) ADD TARGET card': {
+        set: (deck: Deck) => { deck.cards['+0'] += 1; },
+        unset: (deck: Deck) => { deck.cards['+0'] -= 1; }
+    },
     'Add one (+0) STUN card': {
         set: (deck: Deck) => { deck.cards['+0'] += 1; },
         unset: (deck: Deck) => { deck.cards['+0'] -= 1; }
     },
     'Add one (+1) CURSE card': {
+        set: (deck: Deck) => { deck.cards['+1'] += 1; },
+        unset: (deck: Deck) => { deck.cards['+1'] -= 1; }
+    },
+    'Add one (+1) HEAL card': {
         set: (deck: Deck) => { deck.cards['+1'] += 1; },
         unset: (deck: Deck) => { deck.cards['+1'] -= 1; }
     },
@@ -60,8 +68,8 @@ export const PERK_LIST = {
         unset: (deck: Deck) => { deck.cards['+1'] -= 2; }
     },
     'Add two rolling (+1) cards': {
-        set: (deck: Deck) => {deck.cards['r+1'] += 2; },
-        unset: (deck: Deck) => {deck.cards['r+1'] -= 2; }
+        set: (deck: Deck) => { deck.cards['r+1'] += 2; },
+        unset: (deck: Deck) => { deck.cards['r+1'] -= 2; }
     },
     'Ignore negative item effects and add one (+1) card': {
         set: (deck: Deck) => { deck.cards['+1'] += 1; },
@@ -83,8 +91,12 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.cards['-1'] -= 1; deck.cards['+1'] += 1; },
         unset: (deck: Deck) => { deck.cards['-1'] += 1; deck.cards['+1'] -= 1; }
     },
-    'Replace one (-2) with one (+0) card': {
+    'Replace one (-2) card with one (+0) card': {
         set: (deck: Deck) => { deck.cards['-2'] -= 1; deck.cards['+0'] += 1; },
         unset: (deck: Deck) => { deck.cards['-2'] += 1; deck.cards['+0'] -= 1; }
+    },
+    'Replace two (+1) cards with two (+2) cards': {
+        set: (deck: Deck) => { deck.cards['+1'] -= 2; deck.cards['+2'] += 2; },
+        unset: (deck: Deck) => { deck.cards['+1'] += 2; deck.cards['+2'] -= 2; }
     }
 };
