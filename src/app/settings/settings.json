@@ -76,7 +76,7 @@
                 {"name": "Add three rolling MUDDLE cards", "uses": 1},
                 {"name": "Add one (+1) WOUND card", "uses": 2},
                 {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
-                {"name": "Add one (+1) HEAL card", "uses": 1},
+                {"name": "Add one (+1) HEAL 2 card", "uses": 1},
                 {"name": "Add one (+0) ADD TARGET card", "uses": 1}
             ]
         },
@@ -95,6 +95,85 @@
                 {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
                 {"name": "Add one rolling STUN card", "uses": 1},
                 {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Sunkeeper",
+            "hidden_name": "Sun",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add two rolling HEAL 1 cards", "uses": 2},
+                {"name": "Add one rolling STUN card", "uses": 1},
+                {"name": "Add two rolling SUN cards", "uses": 2},
+                {"name": "Add two rolling SHIELD 1, Self cards", "uses": 1},
+                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+            ]
+        },
+        {
+            "name": "Quartermaster",
+            "hidden_name": "Three Spears",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add three rolling MUDDLE cards", "uses": 1},
+                {"name": "Add two rolling PIERCE 3 cards", "uses": 1},
+                {"name": "Add one rolling STUN card", "uses": 1},
+                {"name": "Add one rolling ADD TARGET card", "uses": 1},
+                {"name": "Add one (+0) Refresh and item card", "uses": 3},
+                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+            ]
+        },
+        {
+            "name": "Summoner",
+            "hidden_name": "Circles",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
+                {"name": "Add one (+2) card", "uses": 2},
+                {"name": "Add two rolling WOUND cards", "uses": 1},
+                {"name": "Add two rolling POISON cards", "uses": 1},
+                {"name": "Add two rolling HEAL 1 cards", "uses": 3},
+                {"name": "Add one rolling FIRE and one rolling WIND card", "uses": 1},
+                {"name": "Add one rolling DARK and one rolling EARTH card", "uses": 1},
+                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+            ]
+        },
+        {
+            "name": "Nightshroud",
+            "hidden_name": "Eclipse",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Add one (-1) DARK card", "uses": 2},
+                {"name": "Replace one (-1) DARK card with one (+1) DARK card", "uses": 2},
+                {"name": "Add one (+1) INVISIBLE card", "uses": 2},
+                {"name": "Add three rolling MUDDLE cards", "uses": 2},
+                {"name": "Add two rolling HEAL 1 cards", "uses": 1},
+                {"name": "Add two rolling CURSE cards", "uses": 1},
+                {"name": "Add one rolling ADD TARGET card", "uses": 1},
+                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+            ]
+        },
+        {
+            "name": "Plagueherald",
+            "hidden_name": "Cthulu",
+            "perks": [
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add two (+1) cards", "uses": 1},
+                {"name": "Add one (+1) WIND card", "uses": 3},
+                {"name": "Add three rolling POISON cards", "uses": 1},
+                {"name": "Add two rolling CURSE cards", "uses": 1},
+                {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
+                {"name": "Add one rolling STUN card", "uses": 2},
+                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
             ]
         }
     ]
