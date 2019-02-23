@@ -55,11 +55,11 @@ export class Deck {
     }
 
     public saveComparison(cards = this.cards, effects = this.effects) {
-        this.comparison = { cards, effects };
+        this.comparison = { cards: Utils.clone(this.cards), effects: Utils.clone(this.effects) };
     }
 
     public clearComparisons() {
-        this.comparison = null;
+        this.comparison = undefined;
     }
 
     public getCardTypes(): Array<string> {

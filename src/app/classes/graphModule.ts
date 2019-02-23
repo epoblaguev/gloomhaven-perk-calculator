@@ -61,6 +61,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
     ngDoCheck() {
         if (!Utils.equals(this.deck, this.prevDeckValue)) {
             const needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
+            console.log(`${this.deck.comparison} == ${this.prevDeckValue.comparison}`);
 
             this.prevDeckValue = Utils.clone(this.deck);
             this.barChartData = this.getChartData();
