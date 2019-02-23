@@ -38,6 +38,11 @@
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
                 {"name": "Add two (+1) cards", "uses": 2},
                 {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Add three rolling PUSH 1 cards", "uses": 2},
+                {"name": "Add two rolling PIERCE 3 cards", "uses": 1},
+                {"name": "Add one rolling STUN card", "uses": 2},
+                {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1},
+                {"name": "Add one rolling ADD TARGET card", "uses": 2},
                 {"name": "Add one (+1) Shield 1 self card", "uses": 1},
                 {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
             ]
@@ -54,7 +59,9 @@
                 {"name": "Add one (+1) IMMOBILIZE card", "uses": 1},
                 {"name": "Add one (+1) CURSE card", "uses": 1},
                 {"name": "Add one (+2) FIRE card", "uses": 2},
-                {"name": "Add one (+2) FROST card", "uses": 2}
+                {"name": "Add one (+2) FROST card", "uses": 2},
+                {"name": "Add one rolling EARTH and one rolling WIND card", "uses": 1},
+                {"name": "Add one rolling SUN and one rolling DARK card", "uses": 1}
             ]
         },
         {
@@ -65,6 +72,8 @@
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Add two (+1) cards", "uses": 1},
                 {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Add two rolling FIRE cards", "uses": 1},
+                {"name": "Add three rolling MUDDLE cards", "uses": 1},
                 {"name": "Add one (+1) WOUND card", "uses": 2},
                 {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
                 {"name": "Add one (+1) HEAL card", "uses": 1},
@@ -80,7 +89,12 @@
                 {"name": "Replace two (+1) cards with two (+2) cards", "uses": 1},
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Add one (+2) FROST card", "uses": 2},
-                {"name": "Add two rolling (+1) cards", "uses": 2}
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add three rolling PULL 1 cards", "uses": 1},
+                {"name": "Add three rolling MUDDLE cards", "uses": 1},
+                {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
+                {"name": "Add one rolling STUN card", "uses": 1},
+                {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1}
             ]
         }
     ]

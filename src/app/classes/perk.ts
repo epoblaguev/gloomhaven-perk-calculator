@@ -112,6 +112,10 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.effects['Rolling Wind'] += 2; },
         unset: (deck: Deck) => { deck.effects['Rolling Wind'] -= 2; }
     },
+    'Add two rolling FIRE cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Fire'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Fire'] -= 2; }
+    },
     'Add two rolling PIERCE 3 cards': {
         set: (deck: Deck) => { deck.effects['Rolling Pierce 3'] += 2; },
         unset: (deck: Deck) => { deck.effects['Rolling Pierce 3'] -= 2; }
@@ -124,8 +128,44 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.effects['Rolling Muddle'] += 2; },
         unset: (deck: Deck) => { deck.effects['Rolling Muddle'] -= 2; }
     },
+    'Add two rolling IMMOBILIZE cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Immobilize'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Immobilize'] -= 2; }
+    },
     'Add one rolling INVISIBLE card': {
         set: (deck: Deck) => { deck.effects['Rolling Invisible'] += 1; },
         unset: (deck: Deck) => { deck.effects['Rolling Invisible'] -= 1; }
+    },
+    'Add one rolling STUN card': {
+        set: (deck: Deck) => { deck.effects['Rolling Stun'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Stun'] -= 1; }
+    },
+    'Add one rolling DISARM and one rolling MUDDLE card': {
+        set: (deck: Deck) => { deck.effects['Rolling Disarm'] += 1; deck.effects['Rolling Muddle'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Disarm'] -= 1; deck.effects['Rolling Muddle'] -= 1; }
+    },
+    'Add one rolling EARTH and one rolling WIND card': {
+        set: (deck: Deck) => { deck.effects['Rolling Earth'] += 1; deck.effects['Rolling Wind'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Earth'] -= 1; deck.effects['Rolling Wind'] -= 1; }
+    },
+    'Add one rolling SUN and one rolling DARK card': {
+        set: (deck: Deck) => { deck.effects['Rolling Sun'] += 1; deck.effects['Rolling Dark'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Sun'] -= 1; deck.effects['Rolling Dark'] -= 1; }
+    },
+    'Add one rolling ADD TARGET card': {
+        set: (deck: Deck) => { deck.effects['Rolling Add Target'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Add Target'] -= 1; }
+    },
+    'Add three rolling PUSH 1 cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Push 1'] += 3; },
+        unset: (deck: Deck) => { deck.effects['Rolling Push 1'] -= 3; }
+    },
+    'Add three rolling PULL 1 cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Pull 1'] += 3; },
+        unset: (deck: Deck) => { deck.effects['Rolling Pull 1'] -= 3; }
+    },
+    'Add three rolling MUDDLE cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Muddle'] += 3; },
+        unset: (deck: Deck) => { deck.effects['Rolling Muddle'] -= 3; }
     }
 };

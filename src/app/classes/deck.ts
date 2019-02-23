@@ -27,13 +27,22 @@ export class Deck {
         Frost: 0,
         Muddle: 0,
         'Shield 1': 0,
+        'Rolling Push 1': 0,
         'Rolling Push 2': 0,
         'Rolling Earth': 0,
         'Rolling Wind': 0,
+        'Rolling Fire': 0,
         'Rolling Pierce 3': 0,
         'Rolling Poison': 0,
         'Rolling Muddle': 0,
         'Rolling Invisible': 0,
+        'Rolling Stun': 0,
+        'Rolling Disarm': 0,
+        'Rolling Add Target': 0,
+        'Rolling Sun': 0,
+        'Rolling Dark': 0,
+        'Rolling Pull 1': 0,
+        'Rolling Immobilize': 0,
     };
 
     private cardValue = {
