@@ -19,14 +19,14 @@ export class CardProbabilityComponent extends GraphModule {
     const probData = [
       {
         label: 'Current',
-        data: Object.values(this.deck.cardChanceAll(this.deck.cards, this.removeZeroColumns))
+        data: this.fitToChart(this.deck.cardChanceAll(this.deck.cards, this.removeZeroColumns))
       }
     ];
 
     if (this.deck.comparison != null) {
       probData.push({
         label: 'Comparison',
-        data: Object.values(this.deck.cardChanceAll(this.deck.comparison.cards, this.removeZeroColumns))
+        data: this.fitToChart(this.deck.cardChanceAll(this.deck.comparison.cards, this.removeZeroColumns))
       });
     }
 
@@ -35,7 +35,7 @@ export class CardProbabilityComponent extends GraphModule {
 
   private setChartLabels() {
     if (!this.removeZeroColumns) {
-      return Object.keys(this.deck.cards);
+      this.barChartLabels = Object.keys(this.deck.cards);
     } else {
       const labels = new Array<string>();
 
@@ -48,7 +48,7 @@ export class CardProbabilityComponent extends GraphModule {
       if (this.barChartLabels.toString() !== labels.toString()) {
         console.log(`${this.barChartLabels} !== ${labels}`);
         this.barChartLabels = labels;
-        setTimeout(() => { this.redrawChart(); }, 50);
+        this.needRedraw = true;
       }
     }
   }

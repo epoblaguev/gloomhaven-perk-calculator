@@ -10,7 +10,9 @@ export abstract class GraphModule implements DoCheck, OnInit {
     @ViewChild('baseChart')
     chart: BaseChartDirective;
 
-    // Graph Start
+    protected prevDeckValue: Deck = new Deck();
+    protected needRedraw = false;
+
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true,
@@ -36,8 +38,6 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public barChartLegend: boolean;
     public barChartData: any[];
 
-    protected prevDeckValue: Deck = new Deck();
-
     static drawDatapointLabels(data, chart, numberFormat = (n: number) => `${n}%`) {
         const chartInstance = chart;
         const ctx = chartInstance.ctx;
@@ -60,16 +60,17 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
     ngDoCheck() {
         if (!Utils.equals(this.deck, this.prevDeckValue)) {
-            const needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
+            this.needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
             console.log(`${this.deck.comparison} == ${this.prevDeckValue.comparison}`);
 
             this.prevDeckValue = Utils.clone(this.deck);
             this.barChartData = this.getChartData();
             this.barChartLegend = this.deck.comparison != null;
 
-            if (needRedraw) {
+            if (this.needRedraw) {
                 console.log('Redrawing chart');
                 setTimeout(() => { this.redrawChart(); }, 50);
+                this.needRedraw = false;
             }
         }
     }
@@ -79,6 +80,20 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public redrawChart() {
         this.chart.ngOnDestroy();
         this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
+    }
+
+    protected fitToChart(cardValues: object): number[] {
+        const values: number[] = [];
+
+        this.barChartLabels.forEach(label => {
+            if (label in cardValues) {
+                values.push(cardValues[label]);
+            } else {
+                values.push(0);
+            }
+        });
+
+        return values;
     }
 
     // events

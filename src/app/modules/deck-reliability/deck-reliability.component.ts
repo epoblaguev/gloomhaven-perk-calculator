@@ -31,21 +31,6 @@ export class DeckReliabilityComponent extends GraphModule {
                 ]
             });
         }
-        /*
-                this.deck.comparisons.forEach((comparison, index) => {
-                    console.log(`Reliability Comparison ${index + 1}`);
-                    chartData.push({
-                        label: 'Comparison', data: [
-                            this.deck.reliabilityNegative(comparison),
-                            this.deck.reliabilityZero(comparison),
-                            this.deck.reliabilityPositive(comparison)
-                        ]
-                    });
-        
-                    console.log(chartData);
-                });
-                */
-
         return chartData;
     }
 }
