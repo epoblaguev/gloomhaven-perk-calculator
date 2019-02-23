@@ -19,7 +19,7 @@ export class AverageDamageComponent extends GraphModule {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-          max: this.deck.getAverageDamage(this.baseDamage[this.baseDamage.length - 1]) + 2,
+          // max: this.deck.getAverageDamage(this.baseDamage[this.baseDamage.length - 1]) + 2,
         },
       }],
       xAxes: [{
@@ -43,8 +43,8 @@ export class AverageDamageComponent extends GraphModule {
 
     const probData = [{ label: 'Current', data: this.baseDamage.map(val => this.deck.getAverageDamage(val)) }];
 
-    if (this.deck.comparisons.length > 0) {
-      probData.push({ label: 'Comparison', data: this.baseDamage.map(val => this.deck.getAverageDamage(val, this.deck.comparisons[0])) });
+    if (this.deck.comparison != null) {
+      probData.push({ label: 'Comparison', data: this.baseDamage.map(val => this.deck.getAverageDamage(val, this.deck.comparison.cards)) });
     }
     return probData;
   }

@@ -43,7 +43,7 @@ export class PerkChooserComponent {
     }
 
     toggleComparison() {
-        if (this.deck.comparisons.length === 0) {
+        if (this.deck.comparison == null) {
             this.deck.saveComparison();
         } else {
             this.deck.clearComparisons();

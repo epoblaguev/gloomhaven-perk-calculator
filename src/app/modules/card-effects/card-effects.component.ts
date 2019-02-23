@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 
 @Component({
-  selector: 'app-card-probability',
-  templateUrl: './card-probability.component.html',
-  styleUrls: ['./card-probability.component.scss']
+  selector: 'app-card-effects',
+  templateUrl: './card-effects.component.html',
+  styleUrls: ['./card-effects.component.scss']
 })
-export class CardProbabilityComponent extends GraphModule {
-  public barChartLabels = Object.keys(this.deck.cards);
-  public removeZeroColumns = false;
+export class CardEffectsComponent extends GraphModule {
+  public barChartLabels = Object.keys(this.deck.effects);
+  public removeZeroColumns = true;
 
   constructor() {
     super();
@@ -19,14 +19,14 @@ export class CardProbabilityComponent extends GraphModule {
     const probData = [
       {
         label: 'Current',
-        data: Object.values(this.deck.cardChanceAll(this.deck.cards, this.removeZeroColumns))
+        data: Object.values(this.deck.cardChanceAll(this.deck.effects, this.removeZeroColumns))
       }
     ];
 
     if (this.deck.comparison != null) {
       probData.push({
         label: 'Comparison',
-        data: Object.values(this.deck.cardChanceAll(this.deck.comparison.cards, this.removeZeroColumns))
+        data: Object.values(this.deck.cardChanceAll(this.deck.comparison.effects, this.removeZeroColumns))
       });
     }
 
@@ -35,12 +35,13 @@ export class CardProbabilityComponent extends GraphModule {
 
   private setChartLabels() {
     if (!this.removeZeroColumns) {
-      return Object.keys(this.deck.cards);
+      return Object.keys(this.deck.effects);
     } else {
       const labels = new Array<string>();
 
-      for (const key of Object.keys(this.deck.cards)) {
-        if (this.deck.cards[key] > 0 || (this.deck.comparison != null && this.deck.comparison.cards[key] > 0)) {
+      for (const key of Object.keys(this.deck.effects)) {
+        if (this.deck.effects[key] > 0 || (this.deck.comparison != null && this.deck.comparison.effects[key] > 0)) {
+          // || this.deck.comparisons.some(comparison => comparison[key] > 0)) {
           labels.push(key);
         }
       }
@@ -53,3 +54,4 @@ export class CardProbabilityComponent extends GraphModule {
     }
   }
 }
+

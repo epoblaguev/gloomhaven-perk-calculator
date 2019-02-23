@@ -10,6 +10,7 @@ import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliab
 import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
 import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
 import { AverageDamageComponent } from './modules/average-damage/average-damage.component';
+import { CardEffectsComponent } from './modules/card-effects/card-effects.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AverageDamageComponent } from './modules/average-damage/average-damage.
     DeckReliabilityComponent,
     PerkChooserComponent,
     CardProbabilityComponent,
-    AverageDamageComponent
+    AverageDamageComponent,
+    CardEffectsComponent
   ],
   imports: [
     BrowserModule,

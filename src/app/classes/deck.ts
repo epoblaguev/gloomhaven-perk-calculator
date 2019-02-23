@@ -15,6 +15,20 @@ export class Deck {
         'r+2': 0,
     };
 
+    readonly defaultEffects = {
+        None: 20,
+        'Add Target': 0,
+        Stun: 0,
+        Curse: 0,
+        Heal: 0,
+        Immobilize: 0,
+        Wound: 0,
+        Fire: 0,
+        Frost: 0,
+        Muddle: 0,
+        'Shield 1': 0,
+    };
+
     private cardValue = {
         x0: -1000,
         '-2': -2,
@@ -29,21 +43,23 @@ export class Deck {
         'r+2': 2,
     };
 
+    public effects: object;
+
     public cards: object;
 
-    public comparisons: Array<object>;
+    public comparison: { cards: object, effects: object };
 
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
-        this.comparisons = new Array<object>();
+        this.effects = Utils.clone(this.defaultEffects);
     }
 
-    public saveComparison(cards = this.cards) {
-        this.comparisons = [Utils.clone(cards)];
+    public saveComparison(cards = this.cards, effects = this.effects) {
+        this.comparison = { cards, effects };
     }
 
     public clearComparisons() {
-        this.comparisons = new Array<object>();
+        this.comparison = null;
     }
 
     public getCardTypes(): Array<string> {
@@ -75,12 +91,13 @@ export class Deck {
         return Math.round((cards[cardType] / sum) * 100);
     }
 
-    public cardChanceAll(cards = this.cards): object {
+    public cardChanceAll(cards = this.cards, removeZero = false): object {
         const nonRollingSum = this.nonRollingSum(cards);
         const cardChances = {};
 
         for (const key of Object.keys(cards)) {
             const val = cards[key];
+            if (val === 0 && removeZero) { continue; }
             const sum = key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
             cardChances[key] = Math.round((val / sum) * 100);
         }
@@ -152,15 +169,18 @@ export class Deck {
         return damage;
     }
 
-    public addCard(cardType: string) {
-        this.cards[cardType]++;
+    public addCard(cardType: string, cardEffect: string, count = 1) {
+        this.cards[cardType] += count;
+        this.effects[cardEffect] += count;
     }
 
-    public removeCard(cardType: string) {
-        if (this.cards[cardType] > 0) { this.cards[cardType]--; }
+    public removeCard(cardType: string, cardEffect: string, count = 1) {
+        this.cards[cardType] -= count;
+        this.effects[cardEffect] -= count;
     }
 
     public reset() {
         this.cards = Utils.clone(this.defaultCards);
+        this.effects = Utils.clone(this.defaultEffects);
     }
 }

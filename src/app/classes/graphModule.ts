@@ -1,5 +1,5 @@
 import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
-import { BaseChartDirective, ChartsModule } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { Deck } from './deck';
 import Utils from '../utils';
 
@@ -55,16 +55,16 @@ export abstract class GraphModule implements DoCheck, OnInit {
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
-        this.barChartLegend = this.deck.comparisons.length > 0 ? true : false;
+        this.barChartLegend = this.deck.comparison != null;
     }
 
     ngDoCheck() {
         if (!Utils.equals(this.deck, this.prevDeckValue)) {
-            const needRedraw = !Utils.equals(this.deck.comparisons, this.prevDeckValue.comparisons);
+            const needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
 
             this.prevDeckValue = Utils.clone(this.deck);
             this.barChartData = this.getChartData();
-            this.barChartLegend = this.deck.comparisons.length > 0 ? true : false;
+            this.barChartLegend = this.deck.comparison != null;
 
             if (needRedraw) {
                 console.log('Redrawing chart');
