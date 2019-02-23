@@ -8,7 +8,10 @@
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
                 {"name": "Add one (-2) card and two (+2) cards", "uses": 1},
                 {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
-                {"name": "Add one (+2) MUDDLE card", "uses": 2}
+                {"name": "Add one (+2) MUDDLE card", "uses": 2},
+                {"name": "Add two rolling PUSH 2 cards", "uses": 1},
+                {"name": "Add two rolling EARTH cards", "uses": 2},
+                {"name": "Add two rolling WIND cards", "uses": 2}
             ]
         },
         {
@@ -20,7 +23,11 @@
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
-                {"name": "Add two rolling (+1) cards", "uses": 2}
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add two rolling PIERCE 3 cards", "uses": 1},
+                {"name": "Add two rolling POISON cards", "uses": 2},
+                {"name": "Add two rolling MUDDLE cards", "uses": 1},
+                {"name": "Add one rolling INVISIBLE card", "uses": 1}
             ]
         },
         {

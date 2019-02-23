@@ -68,8 +68,8 @@ export const PERK_LIST = {
         unset: (deck: Deck) => { deck.addCard('+1', 'None', -2); }
     },
     'Add two rolling (+1) cards': {
-        set: (deck: Deck) => { deck.addCard('r+1', 'None', 2); },
-        unset: (deck: Deck) => { deck.addCard('r+1', 'None', -2); }
+        set: (deck: Deck) => { deck.cards['r+1'] += 2; },
+        unset: (deck: Deck) => { deck.cards['r+1'] -= 2; }
     },
     'Ignore negative item effects and add one (+1) card': {
         set: (deck: Deck) => { deck.addCard('+1', 'None', 1); },
@@ -98,5 +98,34 @@ export const PERK_LIST = {
     'Replace two (+1) cards with two (+2) cards': {
         set: (deck: Deck) => { deck.addCard('+1', 'None', -2); deck.addCard('+2', 'None', 2); },
         unset: (deck: Deck) => { deck.addCard('+1', 'None', 2); deck.addCard('+2', 'None', -2); }
+    },
+    // Effect only perks
+    'Add two rolling PUSH 2 cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Push 2'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Push 2'] -= 2; }
+    },
+    'Add two rolling EARTH cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Earth'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Earth'] -= 2; }
+    },
+    'Add two rolling WIND cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Wind'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Wind'] -= 2; }
+    },
+    'Add two rolling PIERCE 3 cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Pierce 3'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Pierce 3'] -= 2; }
+    },
+    'Add two rolling POISON cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Poison'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Poison'] -= 2; }
+    },
+    'Add two rolling MUDDLE cards': {
+        set: (deck: Deck) => { deck.effects['Rolling Muddle'] += 2; },
+        unset: (deck: Deck) => { deck.effects['Rolling Muddle'] -= 2; }
+    },
+    'Add one rolling INVISIBLE card': {
+        set: (deck: Deck) => { deck.effects['Rolling Invisible'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Invisible'] -= 1; }
     }
 };

@@ -27,6 +27,13 @@ export class Deck {
         Frost: 0,
         Muddle: 0,
         'Shield 1': 0,
+        'Rolling Push 2': 0,
+        'Rolling Earth': 0,
+        'Rolling Wind': 0,
+        'Rolling Pierce 3': 0,
+        'Rolling Poison': 0,
+        'Rolling Muddle': 0,
+        'Rolling Invisible': 0,
     };
 
     private cardValue = {
@@ -73,7 +80,7 @@ export class Deck {
     public rollingSum(cards = this.cards): number {
         let sum = 0;
         for (const key of Object.keys(cards)) {
-            sum += key.startsWith('r') ? cards[key] : 0;
+            sum += key.startsWith('r+') || key.startsWith('Rolling') ? cards[key] : 0;
         }
         return sum;
     }
@@ -81,13 +88,14 @@ export class Deck {
     public nonRollingSum(cards = this.cards): number {
         let sum = 0;
         for (const key of Object.keys(cards)) {
-            sum += !key.startsWith('r') ? cards[key] : 0;
+            sum += !key.startsWith('r+') && !key.startsWith('Rolling') ? cards[key] : 0;
         }
         return sum;
     }
 
     public cardChance(cardType: string, cards = this.cards): number {
-        const sum = cardType.startsWith('r') ? this.nonRollingSum(cards) + cards[cardType] : this.nonRollingSum(cards);
+        const sum = cardType.startsWith('r+') || cardType.startsWith('Rolling')
+            ? this.nonRollingSum(cards) + cards[cardType] : this.nonRollingSum(cards);
         return Math.round((cards[cardType] / sum) * 100);
     }
 
@@ -98,7 +106,7 @@ export class Deck {
         for (const key of Object.keys(cards)) {
             const val = cards[key];
             if (val === 0 && removeZero) { continue; }
-            const sum = key.startsWith('r') ? nonRollingSum + val : nonRollingSum;
+            const sum = key.startsWith('r+') || key.startsWith('Rolling') ? nonRollingSum + val : nonRollingSum;
             cardChances[key] = Math.round((val / sum) * 100);
         }
 
