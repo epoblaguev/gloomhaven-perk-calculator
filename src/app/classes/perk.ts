@@ -55,6 +55,10 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.addCard('+1', 'Wind', 1); },
         unset: (deck: Deck) => { deck.addCard('+1', 'Wind', -1); },
     },
+    'Add one (+1) POISON card': {
+        set: (deck: Deck) => { deck.addCard('+1', 'Poison', 1); },
+        unset: (deck: Deck) => { deck.addCard('+1', 'Poison', -1); },
+    },
     'Add one (+2) FIRE card': {
         set: (deck: Deck) => { deck.addCard('+2', 'Fire', 1); },
         unset: (deck: Deck) => { deck.addCard('+2', 'Fire', -1); },
@@ -71,9 +75,9 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.addCard('+2', 'None', 1); },
         unset: (deck: Deck) => { deck.addCard('+2', 'None', -1); },
     },
-    'Add one (+1) Shield 1 self card': {
-        set: (deck: Deck) => { deck.addCard('+1', 'Shield 1', 1); },
-        unset: (deck: Deck) => { deck.addCard('+1', 'Shield 1', -1); },
+    'Add one (+1) Shield 1, Self card': {
+        set: (deck: Deck) => { deck.addCard('+1', 'Shield 1, Self', 1); },
+        unset: (deck: Deck) => { deck.addCard('+1', 'Shield 1, Self', -1); },
     },
     'Add one (+3) card': {
         set: (deck: Deck) => { deck.addCard('+3', 'None', 1); },
@@ -83,13 +87,53 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.addCard('-2', 'None', 1); deck.addCard('+2', 'None', 2); },
         unset: (deck: Deck) => { deck.addCard('-2', 'None', -1); deck.addCard('+2', 'None', -2); }
     },
+    'Add one rolling (+1) DISARM card': {
+        set: (deck: Deck) => { deck.addCard('r+1', 'Rolling Disarm', 1); },
+        unset: (deck: Deck) => { deck.addCard('r+1', 'Rolling Disarm', -1); }
+    },
+    'Add one rolling (+2) card': {
+        set: (deck: Deck) => { deck.cards['r+2'] += 1; },
+        unset: (deck: Deck) => { deck.cards['r+2'] -= 1; }
+    },
     'Add two (+1) cards': {
         set: (deck: Deck) => { deck.addCard('+1', 'None', 2); },
         unset: (deck: Deck) => { deck.addCard('+1', 'None', -2); }
     },
+    'Add two (+1) PUSH 1 cards': {
+        set: (deck: Deck) => { deck.addCard('+1', 'Push 1', 2); },
+        unset: (deck: Deck) => { deck.addCard('+1', 'Push 1', -2); }
+    },
     'Add two rolling (+1) cards': {
         set: (deck: Deck) => { deck.cards['r+1'] += 2; },
         unset: (deck: Deck) => { deck.cards['r+1'] -= 2; }
+    },
+    'Add three rolling (+1) cards': {
+        set: (deck: Deck) => { deck.cards['r+1'] += 3; },
+        unset: (deck: Deck) => { deck.cards['r+1'] -= 3; }
+    },
+    'Add three (+0) FIRE cards': {
+        set: (deck: Deck) => { deck.addCard('+0', 'Fire', 3); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'Fire', -3); }
+    },
+    'Add three (+0) FROST cards': {
+        set: (deck: Deck) => { deck.addCard('+0', 'Frost', 3); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'Frost', -3); }
+    },
+    'Add three (+0) WIND cards': {
+        set: (deck: Deck) => { deck.addCard('+0', 'Wind', 3); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'Wind', -3); }
+    },
+    'Add three (+0) EARTH cards': {
+        set: (deck: Deck) => { deck.addCard('+0', 'Earth', 3); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'Earth', -3); }
+    },
+    'Ignore negative scenario effects': {
+        set: (deck: Deck) => { /* Do nothing */ },
+        unset: (deck: Deck) => { /* Do nothing */ }
+    },
+    'Ignore negative item effects': {
+        set: (deck: Deck) => { /* Do nothing */ },
+        unset: (deck: Deck) => { /* Do nothing */ }
     },
     'Ignore negative item effects and add one (+1) card': {
         set: (deck: Deck) => { deck.addCard('+1', 'None', 1); },
@@ -107,13 +151,49 @@ export const PERK_LIST = {
         set: (deck: Deck) => { deck.addCard('-1', 'None', -2); },
         unset: (deck: Deck) => { deck.addCard('-1', 'None', 2); }
     },
+    'Remove one (-2) card': {
+        set: (deck: Deck) => { deck.addCard('-2', 'None', -1); },
+        unset: (deck: Deck) => { deck.addCard('-2', 'None', 1); }
+    },
     'Replace one (-1) DARK card with one (+1) DARK card': {
         set: (deck: Deck) => { deck.addCard('-1', 'Dark', -1); deck.addCard('+1', 'Dark', 1); },
         unset: (deck: Deck) => { deck.addCard('-1', 'Dark', 1); deck.addCard('+1', 'Dark', -1); }
     },
+    'Replace one (-1) card with one (+0) STUN card': {
+        set: (deck: Deck) => { deck.addCard('-1', 'None', -1); deck.addCard('+0', 'Stun', 1); },
+        unset: (deck: Deck) => { deck.addCard('-1', 'None', 1); deck.addCard('+0', 'Stun', -1); }
+    },
     'Replace one (+0) card with one (+2) card': {
         set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'None', 1); },
         unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'None', -1); }
+    },
+    'Replace one (+0) card with one (+2) WOUND card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'Wound', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Wound', -1); }
+    },
+    'Replace one (+0) card with one (+2) POISON card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'Poison', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Poison', -1); }
+    },
+    'Replace one (+0) card with one (+2) CURSE card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'Curse', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Curse', -1); }
+    },
+    'Replace one (+0) card with one (+3) MUDDLE card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'Muddle', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Muddle', -1); }
+    },
+    'Replace one (+0) card with one (+1) IMMOBILIZE card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+1', 'Immobilize', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+1', 'Immobilize', -1); }
+    },
+    'Replace one (+0) card with one (+1) DISARM card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+1', 'Disarm', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+1', 'Disarm', -1); }
+    },
+    'Replace one (+0) card with one rolling (+2) card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('r+2', 'None', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('r+2', 'None', -1); }
     },
     'Replace one (-1) card with one (+1) card': {
         set: (deck: Deck) => { deck.addCard('-1', 'None', -1); deck.addCard('+1', 'None', 1); },
@@ -126,6 +206,22 @@ export const PERK_LIST = {
     'Replace two (+1) cards with two (+2) cards': {
         set: (deck: Deck) => { deck.addCard('+1', 'None', -2); deck.addCard('+2', 'None', 2); },
         unset: (deck: Deck) => { deck.addCard('+1', 'None', 2); deck.addCard('+2', 'None', -2); }
+    },
+    'Replace two (+0) cards with two (+1) cards': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -2); deck.addCard('+1', 'None', 2); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 2); deck.addCard('+1', 'None', -2); }
+    },
+    'Replace two (+1) cards with one (+4) card': {
+        set: (deck: Deck) => { deck.addCard('+1', 'None', -2); deck.addCard('+4', 'None', 1); },
+        unset: (deck: Deck) => { deck.addCard('+1', 'None', 2); deck.addCard('+4', 'None', -1); }
+    },
+    'Replace two (+0) cards with one (+0) FIRE and one (+0) EARTH card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -2); deck.addCard('+0', 'Fire', 1); deck.addCard('+0', 'Earth', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 2); deck.addCard('+0', 'Fire', -1); deck.addCard('+0', 'Earth', -1); }
+    },
+    'Replace two (+0) cards with one (+0) FROST and one (+0) WIND card': {
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -2); deck.addCard('+0', 'Frost', 1); deck.addCard('+0', 'Wind', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 2); deck.addCard('+0', 'Frost', -1); deck.addCard('+0', 'Wind', -1); }
     },
     // Effect only perks
     'Add two rolling PUSH 2 cards': {
@@ -163,6 +259,10 @@ export const PERK_LIST = {
     'Add two rolling HEAL 1 cards': {
         set: (deck: Deck) => { deck.effects['Rolling Heal 1'] += 2; },
         unset: (deck: Deck) => { deck.effects['Rolling Heal 1'] -= 2; }
+    },
+    'Add one rolling HEAL 3 card': {
+        set: (deck: Deck) => { deck.effects['Rolling Heal 3'] += 1; },
+        unset: (deck: Deck) => { deck.effects['Rolling Heal 3'] -= 1; }
     },
     'Add two rolling STUN cards': {
         set: (deck: Deck) => { deck.effects['Rolling Stun'] += 2; },

@@ -11,7 +11,9 @@
                 {"name": "Add one (+2) MUDDLE card", "uses": 2},
                 {"name": "Add two rolling PUSH 2 cards", "uses": 1},
                 {"name": "Add two rolling EARTH cards", "uses": 2},
-                {"name": "Add two rolling WIND cards", "uses": 2}
+                {"name": "Add two rolling WIND cards", "uses": 2},
+                {"name": "Ignore negative item effects", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         },
         {
@@ -27,7 +29,8 @@
                 {"name": "Add two rolling PIERCE 3 cards", "uses": 1},
                 {"name": "Add two rolling POISON cards", "uses": 2},
                 {"name": "Add two rolling MUDDLE cards", "uses": 1},
-                {"name": "Add one rolling INVISIBLE card", "uses": 1}
+                {"name": "Add one rolling INVISIBLE card", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         },
         {
@@ -43,7 +46,7 @@
                 {"name": "Add one rolling STUN card", "uses": 2},
                 {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1},
                 {"name": "Add one rolling ADD TARGET card", "uses": 2},
-                {"name": "Add one (+1) Shield 1 self card", "uses": 1},
+                {"name": "Add one (+1) Shield 1, Self card", "uses": 1},
                 {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
             ]
         },
@@ -77,7 +80,8 @@
                 {"name": "Add one (+1) WOUND card", "uses": 2},
                 {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
                 {"name": "Add one (+1) HEAL 2 card", "uses": 1},
-                {"name": "Add one (+0) ADD TARGET card", "uses": 1}
+                {"name": "Add one (+0) ADD TARGET card", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         },
         {
@@ -94,7 +98,8 @@
                 {"name": "Add three rolling MUDDLE cards", "uses": 1},
                 {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
                 {"name": "Add one rolling STUN card", "uses": 1},
-                {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1}
+                {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         },
         {
@@ -109,7 +114,8 @@
                 {"name": "Add one rolling STUN card", "uses": 1},
                 {"name": "Add two rolling SUN cards", "uses": 2},
                 {"name": "Add two rolling SHIELD 1, Self cards", "uses": 1},
-                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         },
         {
@@ -174,6 +180,105 @@
                 {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
                 {"name": "Add one rolling STUN card", "uses": 2},
                 {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Berserker",
+            "hidden_name": "Lightning Bolt",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
+                {"name": "Replace one (+0) card with one rolling (+2) card", "uses": 2},
+                {"name": "Add two rolling WOUND cards", "uses": 2},
+                {"name": "Add one rolling STUN card", "uses": 2},
+                {"name": "Add one rolling (+1) DISARM card", "uses": 1},
+                {"name": "Add two rolling HEAL 1 cards", "uses": 1},
+                {"name": "Add one (+2) FIRE card", "uses": 2},
+                {"name": "Ignore negative item effects", "uses": 1}
+            ]
+        },
+        {
+            "name": "Soothsinger",
+            "hidden_name": "Music Note",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove one (-2) card", "uses": 1},
+                {"name": "Replace two (+1) cards with one (+4) card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) IMMOBILIZE card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+1) DISARM card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) WOUND card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) POISON card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) CURSE card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+3) MUDDLE card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+0) STUN card", "uses": 1},
+                {"name": "Add three rolling (+1) cards", "uses": 1},
+                {"name": "Add two rolling CURSE cards", "uses": 2}
+            ]
+        },
+        {
+            "name": "Doom Stalker",
+            "hidden_name": "Angry Face",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Replace two (+0) cards with two (+1) cards", "uses": 3},
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add one (+2) MUDDLE card", "uses": 1},
+                {"name": "Add one (+1) POISON card", "uses": 1},
+                {"name": "Add one (+1) WOUND card", "uses": 1},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 1},
+                {"name": "Add one (+0) STUN card", "uses": 1},
+                {"name": "Add one rolling ADD TARGET card", "uses": 2},
+                {"name": "Ignore negative scenario effects", "uses": 1}
+            ]
+        },
+        {
+            "name": "Sawbones",
+            "hidden_name": "Saw",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add one rolling (+2) card", "uses": 2},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Add two rolling WOUND cards", "uses": 2},
+                {"name": "Add one rolling STUN card", "uses": 1},
+                {"name": "Add one rolling HEAL 3 card", "uses": 2},
+                {"name": "Add one (+0) Refresh and item card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Elementalist",
+            "hidden_name": "Triforce",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add three (+0) FIRE cards", "uses": 1},
+                {"name": "Add three (+0) FROST cards", "uses": 1},
+                {"name": "Add three (+0) WIND cards", "uses": 1},
+                {"name": "Add three (+0) EARTH cards", "uses": 1},
+                {"name": "Replace two (+0) cards with one (+0) FIRE and one (+0) EARTH card", "uses": 1},
+                {"name": "Replace two (+0) cards with one (+0) FROST and one (+0) WIND card", "uses": 1},
+                {"name": "Add two (+1) PUSH 1 cards", "uses": 1},
+                {"name": "Add one (+1) WOUND card", "uses": 1},
+                {"name": "Add one (+0) STUN card", "uses": 1},
+                {"name": "Add one (+0) ADD TARGET card", "uses": 1}
+
+            ]
+        },
+        {
+            "name": "Beast Tyrant",
+            "hidden_name": "Two Minis",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 2},
+                {"name": "Add one (+1) WOUND card", "uses": 2},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Add two rolling HEAL 1 cards", "uses": 3},
+                {"name": "Add two rolling EARTH cards", "uses": 1},
+                {"name": "Ignore negative scenario effects", "uses": 1}
             ]
         }
     ]
