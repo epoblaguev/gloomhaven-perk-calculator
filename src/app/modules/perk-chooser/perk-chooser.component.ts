@@ -23,6 +23,7 @@ export class PerkChooserComponent {
     public selectedCharacter = 0;
 
     public perkCount = 0;
+    public hideRealNames = true;
 
     constructor() { }
 
