@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { MatCheckbox } from '@angular/material';
 import settings from '../../settings/settings.json';
 import { Character } from '../../classes/character';
@@ -19,8 +19,10 @@ export class PerkChooserComponent {
 
     @ViewChildren('checkboxes') checkboxes: QueryList<MatCheckbox>;
 
-    characters = settings.characters.map(char => new Character(char));
-    selectedCharacter = 0;
+    public characters = settings.characters.map(char => new Character(char));
+    public selectedCharacter = 0;
+
+    public perkCount = 0;
 
     constructor() { }
 
@@ -32,8 +34,10 @@ export class PerkChooserComponent {
     selectPerk(event, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
         if (event.checked) {
             set(this.deck);
+            this.perkCount += 1;
         } else {
             unset(this.deck);
+            this.perkCount -= 1;
         }
     }
 
@@ -59,5 +63,6 @@ export class PerkChooserComponent {
     resetDeck() {
         this.deck.reset();
         this.deckChange.emit(this.deck.cards);
+        this.perkCount = 0;
     }
 }

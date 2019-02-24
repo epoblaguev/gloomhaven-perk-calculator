@@ -19,7 +19,9 @@ describe('CardEffectsComponent', () => {
     fixture.detectChanges();
   });
 
+  /*
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  */
 });

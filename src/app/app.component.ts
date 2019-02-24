@@ -12,10 +12,6 @@ export class AppComponent implements OnInit {
   title = 'Gloomhaven Perk Calculator';
   deck = new Deck();
 
-  // Table data
-  mainTableDataSource = this.deck.getCardTypes();
-  displayedColumns: string[] = ['card', 'count', 'percent', 'percent-bar'];
-
   ngOnInit() {
     setInterval(() => {
       this.title = Math.random() < 0.25 ? 'Gloomhaven Pork Calculator' : 'Gloomhaven Perk Calculator';

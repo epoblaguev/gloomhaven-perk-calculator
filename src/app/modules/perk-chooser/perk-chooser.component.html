@@ -9,6 +9,7 @@
 		  </mat-select>
 		</mat-form-field>
 		<div>
+			<span>Perks Chosen: {{ perkCount }}</span>
 		  <div *ngFor="let perk of characters[selectedCharacter].perkList" fxLayoutGap="5px">
 		    <span *ngFor="let use of ' '.repeat(perk.uses).split(''), let use_i = index">
 		      <mat-checkbox #checkboxes (change)="selectPerk($event, perk.set, perk.unset)">
