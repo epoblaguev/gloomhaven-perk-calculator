@@ -1,7 +1,7 @@
 import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { Deck } from './deck';
-import Utils from '../utils';
+import Utils from './utils';
 
 export abstract class GraphModule implements DoCheck, OnInit {
     @Input()

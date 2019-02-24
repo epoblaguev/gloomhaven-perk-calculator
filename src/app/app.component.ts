@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
-import Utils from './utils';
+import Utils from './classes/utils';
 
 
 @Component({
