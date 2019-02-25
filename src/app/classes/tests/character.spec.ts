@@ -26,8 +26,8 @@ describe('Character', () => {
         const originalDeck: Deck = Utils.clone(deck);
         perk.set(deck);
         perk.unset(deck);
-        expect(Utils.equals(deck.cards, originalDeck.cards)).toBeTruthy(`"${perk.name}" cards aren't reversable`);
-        expect(Utils.equals(deck.effects, originalDeck.effects)).toBeTruthy(`"${perk.name}" effects aren't reversable`);
+        expect(deck.cards).toEqual(originalDeck.cards, `"${perk.name}" cards aren't reversable`);
+        expect(deck.effects).toEqual(originalDeck.effects, `"${perk.name}" effects aren't reversable`);
       });
     });
   });

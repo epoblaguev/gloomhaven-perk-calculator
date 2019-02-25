@@ -17,8 +17,8 @@ describe('Perk', () => {
             PERK_LIST[key].set(deck);
             PERK_LIST[key].unset(deck);
 
-            expect(Utils.equals(deck.cards, originalDeck.cards)).toBeTruthy(`"${key}" cards aren't reversable`);
-            expect(Utils.equals(deck.effects, originalDeck.effects)).toBeTruthy(`"${key}" effects aren't reversable`);
+            expect(deck.cards).toEqual(originalDeck.cards, `"${key}" cards aren't reversable`);
+            expect(deck.effects).toEqual(originalDeck.effects, `"${key}" effects aren't reversable`);
         });
     });
 });

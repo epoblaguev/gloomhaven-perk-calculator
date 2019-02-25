@@ -115,13 +115,7 @@ export class Deck {
         return sum;
     }
 
-    public cardChance(cardType: string, cards = this.cards): number {
-        const sum = cardType.startsWith('r+') || cardType.startsWith('Rolling')
-            ? this.nonRollingSum(cards) + cards[cardType] : this.nonRollingSum(cards);
-        return Math.round((cards[cardType] / sum) * 100);
-    }
-
-    public cardChanceAll(cards = this.cards, removeZero = false): object {
+    public getCardsProbability(cards = this.cards, removeZero = false): object {
         const nonRollingSum = this.nonRollingSum(cards);
         const cardChances = {};
 
@@ -156,7 +150,6 @@ export class Deck {
         }
 
         return probability;
-
     }
 
     public reliabilityNegative(cards = this.cards) {
@@ -175,6 +168,19 @@ export class Deck {
         const compareFunc = (x: number) => x > 0;
         const probability = this.getReliability(cards, 0, compareFunc);
         return Math.round(probability * 100);
+    }
+
+    public getEffectsProbability(effects = this.effects): object {
+        const probability = {};
+        const nonRollingSum = this.nonRollingSum(effects);
+
+        Object.keys(effects).forEach(key => {
+            if (effects[key] > 0) {
+                probability[key] = effects[key] / nonRollingSum;
+            }
+        });
+
+        return probability;
     }
 
     public getAverageDamage(baseDamage: number, cards = this.cards): number {

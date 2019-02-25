@@ -19,14 +19,14 @@ export class CardProbabilityComponent extends GraphModule {
     const probData = [
       {
         label: 'Current',
-        data: this.fitToChart(this.deck.cardChanceAll(this.deck.cards, this.removeZeroColumns))
+        data: this.fitToChart(this.deck.getCardsProbability(this.deck.cards, this.removeZeroColumns))
       }
     ];
 
     if (this.deck.comparison != null) {
       probData.push({
         label: 'Comparison',
-        data: this.fitToChart(this.deck.cardChanceAll(this.deck.comparison.cards, this.removeZeroColumns))
+        data: this.fitToChart(this.deck.getCardsProbability(this.deck.comparison.cards, this.removeZeroColumns))
       });
     }
 
