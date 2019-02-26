@@ -5,24 +5,28 @@ import Utils from '../utils';
 
 
 describe('Character', () => {
-  it('should create an instance', () => {
-    Object.values(settings.characters).forEach(character => {
+  // Test that all characters can be initialized
+  Object.values(settings.characters).forEach(character => {
+    it(`should create an instance of character ${character.name}`, () => {
       expect(new Character(character)).toBeTruthy();
     });
   });
 
-  it('each class should have 15 perks', () => {
-    Object.values(settings.characters).forEach(character => {
+  // Test that all characters have exactly 15 perks
+  Object.values(settings.characters).forEach(character => {
+    it(`${character.name} should have 15 perks`, () => {
       const char = new Character(character);
       expect(char.perkList.map(perk => perk.uses).reduce((prev, cur) => prev + cur)).toBe(15, `${char.name} failed`);
     });
   });
 
-  it('perks should be reversable', () => {
-    const deck = new Deck();
-    Object.values(settings.characters).forEach(character => {
-      const char = new Character(character);
-      Object.values(char.perkList).forEach(perk => {
+
+  // Test that all perks are reversable
+  Object.values(settings.characters).forEach(character => {
+    const char = new Character(character);
+    Object.values(char.perkList).forEach(perk => {
+      it(`${char.name} perk '${perk.name}' should be reversable`, () => {
+        const deck = new Deck();
         const originalDeck: Deck = Utils.clone(deck);
         perk.set(deck);
         perk.unset(deck);

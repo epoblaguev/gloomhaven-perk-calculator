@@ -3,15 +3,15 @@ import { Deck } from '../deck';
 import Utils from '../utils';
 
 describe('Perk', () => {
-    it('should create an instance', () => {
-        Object.keys(PERK_LIST).forEach(key => {
+    Object.keys(PERK_LIST).forEach(key => {
+        it(`should create an instance of '${key}'`, () => {
             expect(new Perk(key, 1, PERK_LIST[key].set, PERK_LIST[key].unset)).toBeTruthy(`'[${key}] is not truthy`);
         });
     });
 
-    it('perks should be reversable', () => {
-        const deck = new Deck();
-        Object.keys(PERK_LIST).forEach(key => {
+    Object.keys(PERK_LIST).forEach(key => {
+        it(`should have reversable perks '${key}'`, () => {
+            const deck = new Deck();
             const originalDeck: Deck = Utils.clone(deck);
 
             PERK_LIST[key].set(deck);

@@ -8,14 +8,22 @@ describe('Deck', () => {
     it('should start with 20 cards', () => {
         const deck = new Deck();
         const cardCount = Object.values(deck.cards).reduce((a, b) => a + b);
-        const effectCount = Object.values(deck.effects).reduce((a, b) => a + b);
         expect(cardCount).toEqual(20, `Deck starts with ${cardCount} cards instead of 20`);
-        expect(effectCount).toEqual(20, `Deck starts with ${cardCount} effects instead of 20`);
+    });
+
+    it('should start with 20 effects', () => {
+        const deck = new Deck();
+        const effectCount = Object.values(deck.effects).reduce((a, b) => a + b);
+        expect(effectCount).toEqual(20, `Deck starts with ${effectCount} effects instead of 20`);
+    });
+
+    it('should have undefined comparison by default', () => {
+        const deck = new Deck();
+        expect(deck.comparison).toBeUndefined('Comparison doesn\'t start as null');
     });
 
     it('comparison should create clone of cards and effects', () => {
         const deck = new Deck();
-        expect(deck.comparison).toBeUndefined('Comparison doesn\'t start as null');
 
         deck.saveComparison();
         expect(deck.comparison.cards).toEqual(deck.cards, 'Comparison isn\'t exact copy of cards');
@@ -28,7 +36,7 @@ describe('Deck', () => {
         expect(deck.comparison.effects).not.toEqual(deck.effects, 'Comparison changes along with effects');
 
         deck.clearComparisons();
-        expect(deck.comparison).toBeUndefined('Comparison doesn\'t start as null');
+        expect(deck.comparison).toBeUndefined('Clearing comparisons doesn\'t make them undefined');
     });
 
 
@@ -122,9 +130,9 @@ describe('Deck', () => {
         }
     ];
 
+    // Test that we can properly calculate effect probability
     Object.values(effectsProbabilityTests).forEach(test => {
         const testName = `should properly calculate probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.output)}`;
-        console.log(`RUNNING - ${testName}`);
         it(testName, () => {
             const deck = new Deck();
             deck.effects = Object.assign({}, deck.effects, test.input);
