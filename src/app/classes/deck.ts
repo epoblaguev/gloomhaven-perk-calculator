@@ -171,16 +171,37 @@ export class Deck {
     }
 
     public getEffectsProbability(effects = this.effects): object {
-        const probability = {};
+        const probabilities = {};
         const nonRollingSum = this.nonRollingSum(effects);
+        const sum = this.sum(effects);
+        console.log(`SUM: ${sum}`);
 
-        Object.keys(effects).forEach(key => {
-            if (effects[key] > 0) {
-                probability[key] = effects[key] / nonRollingSum;
+        for (const key in effects) {
+            if (effects[key] === 0) { continue; }
+            const label = key.replace('Rolling ', '').trim();
+
+            if (key.startsWith('Rolling')) {
+                const newEffects = Utils.clone(effects);
+                newEffects['None'] = 0;
+                newEffects[key] = 0;
+                const newProbabilities = this.getEffectsProbability(newEffects);
+                console.log(`NEW PROBABILITY - ${key}, ${sum}: ${JSON.stringify(newProbabilities)}`);
+
+                if (Object.keys(newProbabilities).length == 0) {
+                    probabilities[label] = (probabilities[label] || 0) + (effects[key] / sum);
+                } else {
+
+                    Object.keys(newProbabilities).forEach(prob => {
+                        probabilities[prob] = (probabilities[prob] || 0) + (effects[key] / sum) * (newProbabilities[prob] || 1);
+                    });
+                }
+                // probabilities[label] = (probabilities[label] || 0) + (effects[key] / sum) * (probabilities[label] || 1);
+            } else {
+                probabilities[label] = (probabilities[label] || 0) + effects[key] / sum;
             }
-        });
+        }
 
-        return probability;
+        return probabilities;
     }
 
     public getAverageDamage(baseDamage: number, cards = this.cards): number {
@@ -201,7 +222,6 @@ export class Deck {
                 damage += (tmpDamage) * (cards[key] / sum);
             }
         }
-
         return damage;
     }
 
