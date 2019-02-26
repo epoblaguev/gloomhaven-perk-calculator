@@ -105,6 +105,15 @@ describe('Deck', () => {
             }
         },
         {
+            input: { None: 0, 'Rolling Fire': 1, 'Rolling Frost': 1 },
+            output: {
+                Fire: (1 / 2) // Rolling fire followed by Anything
+                    + (1 / 2), // Rolling frost followed by rolling fire
+                Frost: (1 / 2) // Rolling frost followed by Anything
+                    + (1 / 2)  // Rolling fire followed by rolling frost
+            }
+        },
+        {
             input: { None: 0, 'Rolling Fire': 1, Fire: 1, 'Rolling Frost': 1 },
             output: {
                 Fire: (1 / 3) // Fire
@@ -132,17 +141,16 @@ describe('Deck', () => {
 
     // Test that we can properly calculate effect probability
     Object.values(effectsProbabilityTests).forEach(test => {
-        const testName = `should properly calculate probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.output)}`;
+        const testName = `should properly calculate EFFECT probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.output)}`;
         it(testName, () => {
             const deck = new Deck();
             deck.effects = Object.assign({}, deck.effects, test.input);
-            const effects2 = {};
-            Object.keys(deck.effects).filter(key => deck.effects[key] !== 0).forEach(key => {
-                effects2[key] = deck.effects[key];
-            });
-            effects2['None'] = deck.effects['None'];
-            const probability = deck.getEffectsProbability(effects2);
-            expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
+
+            const probability = deck.getEffectsProbability(deck.effects);
+            // expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
+            for (const key of Object.keys(probability)) {
+                expect(probability[key]).toBeCloseTo(test.output[key]);
+            }
         });
     });
 

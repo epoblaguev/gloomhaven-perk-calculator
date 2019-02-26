@@ -27,6 +27,7 @@ export class Deck {
         'Rolling Disarm': 0,
         'Rolling Earth': 0,
         'Rolling Fire': 0,
+        'Rolling Frost': 0,
         'Rolling Heal 1': 0,
         'Rolling Heal 3': 0,
         'Rolling Immobilize': 0,
@@ -117,16 +118,16 @@ export class Deck {
 
     public getCardsProbability(cards = this.cards, removeZero = false): object {
         const nonRollingSum = this.nonRollingSum(cards);
-        const cardChances = {};
+        const probabilities = {};
 
         for (const key of Object.keys(cards)) {
             const val = cards[key];
             if (val === 0 && removeZero) { continue; }
             const sum = key.startsWith('r+') || key.startsWith('Rolling') ? nonRollingSum + val : nonRollingSum;
-            cardChances[key] = Math.round((val / sum) * 100);
+            probabilities[key] = Math.round((val / sum) * 100);
         }
 
-        return cardChances;
+        return probabilities;
     }
 
     private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {
@@ -170,7 +171,7 @@ export class Deck {
         return Math.round(probability * 100);
     }
 
-    public getEffectsProbability(effects = this.effects, probabilities = {}, mult = 1, prevLabel = null): object {
+    public getEffectsProbability(effects = this.effects, probabilities = {}, mult = 1, prevLabels = []): object {
         const sum = this.sum(effects);
         console.log(`SUM: ${sum}`);
 
@@ -182,17 +183,18 @@ export class Deck {
 
         for (const key of Object.keys(effects)) {
             const label = key.replace('Rolling ', '').trim();
-            if (effects[key] === 0 || prevLabel === label) { continue; }
+            if (effects[key] === 0 || prevLabels.includes(label)) { continue; }
 
 
             if (key.startsWith('Rolling')) {
                 const newEffects = Utils.clone(effects);
+                const newMult = effects[key] / sum; // Used for other multiplications
+                const newLabels = Utils.clone(prevLabels);
                 newEffects[key] = 0;
-                // newEffects[label] = 0;
+                newLabels.push(label);
 
-                const curMult = effects[key] / sum; // Used for other multiplications
                 probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
-                probabilities = this.getEffectsProbability(newEffects, probabilities, curMult, label);
+                probabilities = this.getEffectsProbability(newEffects, probabilities, newMult, newLabels);
             } else {
                 probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
             }
