@@ -124,7 +124,7 @@ export class Deck {
             const val = cards[key];
             if (val === 0 && removeZero) { continue; }
             const sum = key.startsWith('r+') || key.startsWith('Rolling') ? nonRollingSum + val : nonRollingSum;
-            probabilities[key] = Math.round((val / sum) * 100);
+            probabilities[key] = val / sum;
         }
 
         return probabilities;
@@ -156,19 +156,19 @@ export class Deck {
     public reliabilityNegative(cards = this.cards) {
         const compareFunc = (x: number) => x < 0;
         const probability = this.getReliability(cards, 0, compareFunc);
-        return Math.round(probability * 100);
+        return probability;
     }
 
     public reliabilityZero(cards = this.cards) {
         const compareFunc = (x: number) => x === 0;
         const probability = this.getReliability(cards, 0, compareFunc);
-        return Math.round(probability * 100);
+        return probability;
     }
 
     public reliabilityPositive(cards = this.cards) {
         const compareFunc = (x: number) => x > 0;
         const probability = this.getReliability(cards, 0, compareFunc);
-        return Math.round(probability * 100);
+        return probability;
     }
 
     public getEffectsProbability(effects = this.effects, probabilities = {}, mult = 1, prevLabels = []): object {

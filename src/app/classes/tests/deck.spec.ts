@@ -154,4 +154,80 @@ describe('Deck', () => {
         });
     });
 
+    const cardsProbabilityTests = [
+        {
+            input: { '+0': 1 },
+            probability: { '+0': 1 / 1 },
+            reliability: { positive: 0, negative: 0, neutral: 1 }
+        },
+        {
+            input: { '-1': 1, '+0': 5, '+1': 1 },
+            probability: { '-1': 1 / 7, '+0': 5 / 7, '+1': 1 / 7 },
+            reliability: { negative: 1 / 7, neutral: 5 / 7, positive: 1 / 7 }
+        },
+        {
+            input: { '-2': 1, '-1': 1, '+0': 5, '+1': 1 },
+            probability: { '-2': 1 / 8, '-1': 1 / 8, '+0': 5 / 8, '+1': 1 / 8 },
+            reliability: { negative: 2 / 8, neutral: 5 / 8, positive: 1 / 8 }
+        },
+        {
+            input: { '-1': 1, '+0': 5, '+1': 1, 'r+1': 1 },
+            probability: { '-1': 1 / 7, '+0': 5 / 7, '+1': 1 / 7, 'r+1': 1 / 8 },
+            reliability: {
+                negative: (1 / 8),
+                neutral: (5 / 8) + (1 / 8) * (1 / 7),
+                positive: (1 / 8) + (1 / 8) * (6 / 7)
+            }
+        },
+        {
+            input: { '-1': 1, '+0': 5, '+1': 1, 'r+1': 2 },
+            probability: { '-1': 1 / 7, '+0': 5 / 7, '+1': 1 / 7, 'r+1': 2 / 9 },
+            reliability: {
+                negative: (1 / 9),
+                neutral: (5 / 9) + (2 / 9) * (1 / 8),
+                positive: (1 / 9) // +1
+                    + (2 / 9) * (6 / 8) // r+1 then anything except r+1 or -1
+                    + (2 / 9) * (1 / 8) // r+1 then r+1 then anything
+            }
+        },
+        {
+            input: { '-1': 1, '+0': 5, '+1': 1, 'r+1': 2, 'r+2': 1 },
+            probability: { '-1': 1 / 7, '+0': 5 / 7, '+1': 1 / 7, 'r+1': 2 / 9, 'r+2': 1 / 8 },
+            reliability: {
+                negative: (1 / 10),
+                neutral: (5 / 10) // +0
+                    + (2 / 10) * (1 / 8), // r+1 then -1
+                positive: (1 / 10) // +1
+                    + (2 / 10) * (7 / 9) // r+1 then anything except r+1 or -1
+                    + (2 / 10) * (1 / 9) // r+1 then r+1 then anything
+                    + (1 / 10) // r+2 then anything
+            }
+        },
+    ];
+
+    Object.values(cardsProbabilityTests).forEach(test => {
+        const deck = new Deck();
+        Object.keys(deck.cards).forEach(key => deck.cards[key] = 0); // Set all cards to 0;
+        deck.cards = Object.assign({}, deck.cards, test.input);
+
+        it(`should properly calculate CARD probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.probability)}`, () => {
+            expect(deck.getCardsProbability()).toEqual(Object.assign({}, deck.cards, test.probability));
+        });
+
+        // tslint:disable-next-line:max-line-length
+        it(`should properly calculate POSITIVE reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.positive)}`, () => {
+            expect(deck.reliabilityPositive()).toBeCloseTo(test.reliability.positive);
+        });
+
+        // tslint:disable-next-line:max-line-length
+        it(`should properly calculate NEGATIVE reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.negative)}`, () => {
+            expect(deck.reliabilityNegative()).toBeCloseTo(test.reliability.negative);
+        });
+
+        // tslint:disable-next-line:max-line-length
+        it(`should properly calculate NEUTRAL reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.neutral)}`, () => {
+            expect(deck.reliabilityZero()).toBeCloseTo(test.reliability.neutral);
+        });
+    });
+
 });
