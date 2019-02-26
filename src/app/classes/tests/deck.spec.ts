@@ -80,42 +80,60 @@ describe('Deck', () => {
             input: { None: 2, 'Rolling Fire': 1, Fire: 1, Frost: 1 },
             output: {
                 None: (2 / 5),
-                Fire: (1 / 5) + (1 / 5) * (1 / 2),
-                Frost: (1 / 5) + (1 / 5) * (1 / 2)
+                Fire: (1 / 5) // Rolling Fire followed by Anything
+                    + (1 / 5), // Fire
+                Frost: (1 / 5) // Frost
+                    + (1 / 5) * (1 / 2) // Rolling Fire followed by Frost
             }
         },
         {
             input: { None: 2, 'Rolling Fire': 1, Fire: 2, Frost: 1 },
             output: {
                 None: (2 / 6),
-                Fire: (2 / 6) + (1 / 6) * (2 / 3),
-                Frost: (1 / 6) + (1 / 6) * (1 / 3)
+                Fire: (2 / 6) // Fire
+                    + (1 / 6), // Rolling fire followed by Anything
+                Frost: (1 / 6) // Frost
+                    + (1 / 6) * (1 / 3) // Rolling fire followed by Frost
             }
         },
         {
             input: { None: 0, 'Rolling Fire': 1, Fire: 1, 'Rolling Frost': 1 },
             output: {
-                Fire: (1 / 3) + (1 / 3) * 1 + (1 / 3) * ((1 / 2) + (1 / 2) * 1),
-                Frost: (1 / 3) + (1 / 3) * (1 / 2)
+                Fire: (1 / 3) // Fire
+                    + (1 / 3) // Rolling fire followed by Anything
+                    + (1 / 3), // Rolling frost followed by Anything
+                Frost: (1 / 3) // Rolling frost followed by Anything
+                    + (1 / 3) * (1 / 2) // Rolling fire followed by rolling frost
             }
         },
         {
             input: { None: 1, 'Rolling Fire': 1, 'Rolling Frost': 1, Fire: 1, Frost: 1 },
             output: {
                 None: (1 / 5),
-                Fire: (1 / 5) + (1 / 5) * 1 + (1 / 5) * ((1 / 4) + (1 / 4)),
-                Frost: (1 / 5) + (1 / 5) * 1 + (1 / 5) * ((1 / 4) + (1 / 4))
+                Fire: (1 / 5) // Rolling fire followed by Anything
+                    + (1 / 5) // Fire
+                    + (1 / 5) * (1 / 3) // Rolling frost followed by Rolling Fire followed by Anything
+                    + (1 / 5) * (1 / 3), // Rolling frost followed by Fire
+                Frost: (1 / 5) // Frost
+                    + (1 / 5) // Rolling Frost followed by anything
+                    + (1 / 5) * (1 / 3) // Rolling Fire followed by Rolling Frost followed by Anything
+                    + (1 / 5) * (1 / 3) // Rolling Fire followed by Frost
             }
         }
     ];
 
     Object.values(nonRollingTests).forEach(test => {
-        const testName = `should properly calculate probability for ${JSON.stringify(test.input)}`;
+        const testName = `should properly calculate probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.output)}`;
         console.log(`RUNNING - ${testName}`);
         it(testName, () => {
             const deck = new Deck();
             deck.effects = Object.assign({}, deck.effects, test.input);
-            const probability = deck.getEffectsProbability();
+            const effects2 = {};
+            Object.keys(deck.effects).filter(key => deck.effects[key] !== 0).forEach(key => {
+                effects2[key] = deck.effects[key];
+            });
+            effects2['None'] = deck.effects['None'];
+            const probability = deck.getEffectsProbability(effects2);
             expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
         });
     });

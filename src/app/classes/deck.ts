@@ -170,24 +170,44 @@ export class Deck {
         return Math.round(probability * 100);
     }
 
-    public getEffectsProbability(effects = this.effects): object {
-        const probabilities = {};
+    public getEffectsProbability(effects = this.effects, probabilities = {}, mult = 1, prevLabel = null): object {
         const nonRollingSum = this.nonRollingSum(effects);
         const sum = this.sum(effects);
         console.log(`SUM: ${sum}`);
 
-        for (const key in effects) {
-            if (effects[key] === 0) { continue; }
+        if (effects['None'] !== 0) {
+            probabilities['None'] = effects['None'] / sum;
+            effects['None'] = 0;
+        }
+
+
+        for (const key of Object.keys(effects)) {
             const label = key.replace('Rolling ', '').trim();
+            if (effects[key] === 0 || prevLabel === label) { continue; }
+
 
             if (key.startsWith('Rolling')) {
                 const newEffects = Utils.clone(effects);
-                newEffects['None'] = 0;
+                // newEffects['None'] = 0;
                 newEffects[key] = 0;
-                const newProbabilities = this.getEffectsProbability(newEffects);
-                console.log(`NEW PROBABILITY - ${key}, ${sum}: ${JSON.stringify(newProbabilities)}`);
+                // newEffects[label] = 0;
 
-                if (Object.keys(newProbabilities).length == 0) {
+                const curMult = effects[key] / sum; // Used for other multiplications
+                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
+                probabilities = this.getEffectsProbability(newEffects, probabilities, curMult, label);
+
+
+                // console.log(`NEW EFFECTS: ${JSON.stringify(newEffects)}`);
+                // console.log(`NEW PROBABILITY - ${key}, ${sum}: ${JSON.stringify(newProbabilities)}`);
+                // probabilities = newProbabilities;
+
+                // probabilities[label] = (probabilities[label] || 0) + effects[key] / sum;
+                /*
+                Object.keys(newProbabilities).forEach(prob => {
+                    probabilities[prob] = (probabilities[prob] || 0) + (effects[key] / sum) * (newProbabilities[prob] || 1);
+                });
+                /*
+                if (Object.keys(newProbabilities).length === 0) {
                     probabilities[label] = (probabilities[label] || 0) + (effects[key] / sum);
                 } else {
 
@@ -195,9 +215,10 @@ export class Deck {
                         probabilities[prob] = (probabilities[prob] || 0) + (effects[key] / sum) * (newProbabilities[prob] || 1);
                     });
                 }
+                */
                 // probabilities[label] = (probabilities[label] || 0) + (effects[key] / sum) * (probabilities[label] || 1);
             } else {
-                probabilities[label] = (probabilities[label] || 0) + effects[key] / sum;
+                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
             }
         }
 
