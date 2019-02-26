@@ -32,7 +32,7 @@ describe('Deck', () => {
     });
 
 
-    const nonRollingTests = [
+    const effectsProbabilityTests = [
         {
             input: { None: 20, Fire: 1 },
             output: {
@@ -122,7 +122,7 @@ describe('Deck', () => {
         }
     ];
 
-    Object.values(nonRollingTests).forEach(test => {
+    Object.values(effectsProbabilityTests).forEach(test => {
         const testName = `should properly calculate probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.output)}`;
         console.log(`RUNNING - ${testName}`);
         it(testName, () => {
@@ -138,50 +138,4 @@ describe('Deck', () => {
         });
     });
 
-    /*
-    it('effect probability should be calculated correctly (rolling)', () => {
-        const deck = new Deck();
-        let probability = {};
-
-        // None = 1, Rolling Fire = 1
-        deck.effects['None'] = 1;
-        deck.effects['Rolling Fire'] = 1;
-        probability = deck.getEffectsProbability();
-        expect(probability).toEqual({ None: 1 / 2, Fire: 1 / 2 });
-
-        // None = 1, Rolling Fire = 1, Fire = 1
-        deck.effects['Fire'] = 1;
-        probability = deck.getEffectsProbability();
-        expect(probability).toEqual({
-            None: 1 / 3,
-            Fire: (1 / 3) + (1 / 3) * 1
-        }, 'FAILED 2');
-
-        // None = 2, Rolling Fire = 1, Fire = 1
-        deck.effects['None'] = 2;
-        probability = deck.getEffectsProbability();
-        expect(probability).toEqual({
-            None: (2 / 4),
-            Fire: (1 / 4) + (1 / 4) * 1
-        });
-
-        // None = 2, Rolling Fire = 1, Fire = 1, Frost = 1
-        deck.effects['Frost'] += 1;
-        probability = deck.getEffectsProbability();
-        expect(probability).toEqual({
-            None: (2 / 5),
-            Fire: (1 / 5) + (1 / 5) * (1 / 2),
-            Frost: (1 / 5) + (1 / 5) * (1 / 2)
-        });
-
-        // None = 2, Rolling Fire = 1, Fire = 2, Frost = 1
-        probability = deck.getEffectsProbability();
-        expect(probability).toEqual({
-            None: (2 / 6),
-            Fire: (2 / 6) + (1 / 5) * (2 / 3),
-            Frost: (1 / 6) + (1 / 5) * (1 / 3)
-        });
-
-    });
-    */
 });
