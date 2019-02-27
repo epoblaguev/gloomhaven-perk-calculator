@@ -42,7 +42,7 @@ describe('Deck', () => {
 
 
     const effectsProbabilityTests = [
-        /*{
+        {
             input: { None: 20, Fire: 1 },
             output: {
                 None: 20 / 21,
@@ -124,18 +124,26 @@ describe('Deck', () => {
                     + (1 / 2)  // Rolling fire followed by rolling frost
             }
         },
-        */
+        {
+            input: { None: 0, 'Rolling Fire': 2, 'Rolling Frost': 1 },
+            output: {
+                Fire: 1,
+                Frost: 1
+            }
+        },
         {
             input: { None: 0, 'Rolling Fire': 1, Fire: 1, 'Rolling Frost': 1 },
             output: {
                 Fire: (1 / 3) // Fire
-                    + (1 / 3) // Rolling fire followed by Anything
-                    + (1 / 3), // Rolling frost followed by Anything
-                Frost: (1 / 3) // Rolling frost followed by Anything
-                    + (1 / 3) * (1 / 2) // Rolling fire followed by rolling frost
+                    + (1 / 3) * (1 / 2) // Rolling fire, Fire
+                    + (1 / 3) * (1 / 2) * (1) // Rolling fire, rolling frost, fire
+                    + (1 / 3) * (1 / 2) // Rolling frost, fire
+                    + (1 / 3) * (1 / 2) * (1), // Rolling frost, rolling fire, fire
+                Frost: (1 / 3) * (1 / 2) // Rolling frost, fire
+                    + (1 / 3) * (1 / 2) * 1 // Rolling frost, rolling fire, fire
+                    + (1 / 3) * (1 / 2) * 1// Rolling fire, rolling frost, fire
             }
         },
-        /*
         {
             input: { None: 1, 'Rolling Fire': 1, 'Rolling Frost': 1, Fire: 1, Frost: 1 },
             output: {
@@ -194,8 +202,26 @@ describe('Deck', () => {
                     + (2 / 26) * (1 / 25) * (2 / 24), // Both Rolling Earths, then Muddle
                 Earth: (2 / 26)
             }
+        },
+        {
+            // This test runs slowly
+            input: {
+                None: 20,
+                'Rolling Pull 1': 3,
+                'Rolling Muddle': 4,
+                'Rolling Immobilize': 2,
+                'Rolling Stun': 1,
+                'Rolling Disarm': 1
+            },
+            output: {
+                None: 0.6451612903225806,
+                'Pull 1': 0.13043478260869565,
+                Muddle: 0.16666666666666663,
+                Immobilize: 0.09090909090909091,
+                Stun: 0.04761904761904762,
+                Disarm: 0.047619047619047616
+            }
         }
-        */
     ];
 
     // Test that we can properly calculate effect probability
@@ -207,12 +233,12 @@ describe('Deck', () => {
             deck.effects = Utils.clone(test.input);
 
             const probability = deck.getEffectsProbability(deck.effects);
-            expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
-            /*
+            // expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
+
             for (const key of Object.keys(probability)) {
                 expect(probability[key]).toBeCloseTo(test.output[key], 10, key);
             }
-            */
+
         });
     });
 

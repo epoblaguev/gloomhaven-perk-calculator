@@ -176,8 +176,8 @@ export class Deck {
         const sum = this.sum(effects);
 
         for (const key of Object.keys(effects)) {
-            const label = key.replace('Rolling ', '').trim();
             if (effects[key] === 0) { continue; }
+            const label = key.replace('Rolling ', '').trim();
 
             if (key.startsWith('Rolling')) {
                 const newEffects = Utils.clone(effects);
@@ -185,11 +185,9 @@ export class Deck {
                 newEffects[key] -= 1;
 
                 const newProbabilities = this.getEffectsProbability(newEffects);
-                if (Utils.equals(newProbabilities, {})) {
-                    probabilities[label] = (probabilities[label] || 0) + mult;
-                }
+                probabilities[label] = (probabilities[label] || 0) + mult;
+
                 for (const newLabel of Object.keys(newProbabilities)) {
-                    probabilities[label] = (probabilities[label] || 0) + mult * newProbabilities[newLabel];
                     if (newLabel !== label && newLabel !== 'None') {
                         probabilities[newLabel] = (probabilities[newLabel] || 0) + mult * newProbabilities[newLabel];
                     }
@@ -199,71 +197,6 @@ export class Deck {
             }
 
         }
-        return probabilities;
-    }
-
-    public getEffectsProbability_old2(effects = this.effects, probabilities = {}, mult = 1, prevLabels = []): object {
-        const sum = this.sum(effects);
-
-        if (effects['None'] !== 0 && !('None' in probabilities)) {
-            probabilities['None'] = effects['None'] / sum;
-            // effects['None'] = 0;
-        }
-
-
-        for (const key of Object.keys(effects)) {
-            const label = key.replace('Rolling ', '').trim();
-            if (effects[key] === 0 || prevLabels.includes(label)) { continue; }
-
-
-            if (key.startsWith('Rolling')) {
-                const newEffects = Utils.clone(effects);
-                const newMult = effects[key] / sum; // Used for other multiplications
-                const newLabels = Utils.clone(prevLabels);
-                newEffects[key] -= 1;
-                newLabels.push(label);
-
-                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
-                const newProbabilities = this.getEffectsProbability_old2(newEffects, {}, newMult, newLabels);
-                console.log(newProbabilities);
-            } else if (key !== 'None') {
-                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
-            }
-        }
-
-        return probabilities;
-    }
-
-    public getEffectsProbability_old(effects = this.effects, probabilities = {}, mult = 1, prevLabels = []): object {
-        effects = Utils.clone(effects);
-        const sum = this.sum(effects);
-        console.log(`SUM: ${sum}`);
-
-        if (effects['None'] !== 0 && !('None' in probabilities)) {
-            probabilities['None'] = effects['None'] / sum;
-            // effects['None'] = 0;
-        }
-
-
-        for (const key of Object.keys(effects)) {
-            const label = key.replace('Rolling ', '').trim();
-            if (effects[key] === 0 || prevLabels.includes(label)) { continue; }
-
-
-            if (key.startsWith('Rolling')) {
-                const newEffects = Utils.clone(effects);
-                const newMult = effects[key] / sum; // Used for other multiplications
-                const newLabels = Utils.clone(prevLabels);
-                newEffects[key] -= 1;
-                newLabels.push(label);
-
-                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
-                probabilities = this.getEffectsProbability_old(newEffects, probabilities, newMult, newLabels);
-            } else if (key !== 'None') {
-                probabilities[label] = (probabilities[label] || 0) + mult * (effects[key] / sum);
-            }
-        }
-
         return probabilities;
     }
 
