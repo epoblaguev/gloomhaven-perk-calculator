@@ -17,6 +17,7 @@ export class CardEffectsComponent extends GraphModule {
   public getChartData() {
     const probs = this.deck.getEffectsProbability(this.deck.effects);
     let compareProbs: object;
+    compareProbs = null;
     this.setChartLabels(probs, compareProbs);
     console.log('PROBS:');
     console.log(probs);
@@ -28,6 +29,7 @@ export class CardEffectsComponent extends GraphModule {
       }
     ];
 
+    /*
     if (this.deck.comparison != null) {
       compareProbs = this.deck.getEffectsProbability(this.deck.comparison.effects);
       Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
@@ -36,6 +38,7 @@ export class CardEffectsComponent extends GraphModule {
         data: this.fitToChart(compareProbs)
       });
     }
+    */
 
     return probData;
   }
