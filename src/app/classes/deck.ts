@@ -178,21 +178,22 @@ export class Deck {
         return probability;
     }
 
-    public getEffectsProbability(effects = this.effects) {
+    public getEffectsProbability(effects = this.effects, sum?: number) {
         const probabilities = {};
-        const sum = this.sum(effects);
+        sum = (sum || this.sum(effects)); // Faster than calculating sum each time
 
         for (const key in effects) {
             if (effects[key] === 0) { continue; }
             const label = key.replace('Rolling ', '').trim();
 
             if (key.startsWith('Rolling')) {
-                const newEffects = Utils.clone(effects);
+                const newEffects = {}; // Utils.clone(effects);
+                Object.keys(effects).forEach(k => newEffects[k] = effects[k]); // Faster than clone
                 const mult = effects[key] / sum;
                 newEffects[key] -= 1;
 
                 probabilities[label] = (probabilities[label] || 0) + mult;
-                const newProbabilities = this.getEffectsProbability(newEffects);
+                const newProbabilities = this.getEffectsProbability(newEffects, sum - 1);
 
                 for (const newLabel in newProbabilities) {
                     if (newLabel !== label && newLabel !== 'None') {
