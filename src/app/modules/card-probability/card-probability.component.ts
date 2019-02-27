@@ -16,17 +16,22 @@ export class CardProbabilityComponent extends GraphModule {
 
   public getChartData() {
     this.setChartLabels();
+
+    let probs = this.deck.getCardsProbability(this.deck.cards, this.removeZeroColumns);
+    Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
         label: 'Current',
-        data: this.fitToChart(this.deck.getCardsProbability(this.deck.cards, this.removeZeroColumns))
+        data: this.fitToChart(probs)
       }
     ];
 
     if (this.deck.comparison != null) {
+      probs = this.deck.getCardsProbability(this.deck.comparison.cards, this.removeZeroColumns);
+      Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',
-        data: this.fitToChart(this.deck.getCardsProbability(this.deck.comparison.cards, this.removeZeroColumns))
+        data: this.fitToChart(probs)
       });
     }
 

@@ -8,15 +8,16 @@ import { GraphModule } from 'src/app/classes/graphModule';
 })
 export class DeckReliabilityComponent extends GraphModule {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
+
     constructor() { super(); }
 
     public getChartData() {
         const chartData = [
             {
                 label: 'Current', data: [
-                    this.deck.reliabilityNegative(),
-                    this.deck.reliabilityZero(),
-                    this.deck.reliabilityPositive()
+                    Math.round(this.deck.reliabilityNegative() * 100),
+                    Math.round(this.deck.reliabilityZero() * 100),
+                    Math.round(this.deck.reliabilityPositive() * 100)
                 ]
             }
         ];
@@ -25,9 +26,9 @@ export class DeckReliabilityComponent extends GraphModule {
             chartData.push({
                 label: 'Comparison',
                 data: [
-                    this.deck.reliabilityNegative(this.deck.comparison.cards),
-                    this.deck.reliabilityZero(this.deck.comparison.cards),
-                    this.deck.reliabilityPositive(this.deck.comparison.cards)
+                    Math.round(this.deck.reliabilityNegative(this.deck.comparison.cards) * 100),
+                    Math.round(this.deck.reliabilityZero(this.deck.comparison.cards) * 100),
+                    Math.round(this.deck.reliabilityPositive(this.deck.comparison.cards) * 100)
                 ]
             });
         }

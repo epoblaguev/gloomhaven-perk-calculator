@@ -15,25 +15,41 @@ export class CardEffectsComponent extends GraphModule {
   }
 
   public getChartData() {
-    this.setChartLabels();
+    const probs = this.deck.getEffectsProbability(this.deck.effects);
+    let compareProbs: object;
+    this.setChartLabels(probs, compareProbs);
+    console.log('PROBS:');
+    console.log(probs);
+    Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
         label: 'Current',
-        data: this.fitToChart(this.deck.getCardsProbability(this.deck.effects, this.removeZeroColumns))
+        data: this.fitToChart(probs)
       }
     ];
 
     if (this.deck.comparison != null) {
+      compareProbs = this.deck.getEffectsProbability(this.deck.comparison.effects);
+      Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
       probData.push({
         label: 'Comparison',
-        data: this.fitToChart(this.deck.getCardsProbability(this.deck.comparison.effects, this.removeZeroColumns))
+        data: this.fitToChart(compareProbs)
       });
     }
 
     return probData;
   }
 
-  private setChartLabels() {
+  private setChartLabels(probs: object, compareProbs: object) {
+    const labels = Object.keys(probs);
+
+    if (this.barChartLabels.toString() !== labels.toString()) {
+      console.log(`${this.barChartLabels} !== ${labels}`);
+      this.barChartLabels = labels;
+      this.needRedraw = true;
+    }
+
+    /*
     if (!this.removeZeroColumns) {
       this.barChartLabels = Object.keys(this.deck.effects);
     } else {
@@ -51,6 +67,7 @@ export class CardEffectsComponent extends GraphModule {
         this.needRedraw = true;
       }
     }
+    */
   }
 }
 

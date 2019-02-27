@@ -1,4 +1,5 @@
 import { Deck } from '../deck';
+import Utils from '../utils';
 
 describe('Deck', () => {
     it('should create an instance', () => {
@@ -41,7 +42,7 @@ describe('Deck', () => {
 
 
     const effectsProbabilityTests = [
-        {
+        /*{
             input: { None: 20, Fire: 1 },
             output: {
                 None: 20 / 21,
@@ -78,6 +79,16 @@ describe('Deck', () => {
             }
         },
         {
+            input: { None: 1, 'Rolling Fire': 1, Frost: 1 },
+            output: {
+                None: 1 / 3,
+                Fire: (1 / 3) * (1 / 2) // Rolling Fire then nothing
+                    + (1 / 3) * (1 / 2), // Rolling Fire then Frost
+                Frost: (1 / 3) // Frost
+                    + (1 / 3) * (1 / 2) // Rolling Fire then Frost
+            }
+        },
+        {
             input: { None: 2, 'Rolling Fire': 1, Fire: 1 },
             output: {
                 None: (2 / 4),
@@ -91,7 +102,7 @@ describe('Deck', () => {
                 Fire: (1 / 5) // Rolling Fire followed by Anything
                     + (1 / 5), // Fire
                 Frost: (1 / 5) // Frost
-                    + (1 / 5) * (1 / 2) // Rolling Fire followed by Frost
+                    + (1 / 5) * (1 / 4) // Rolling Fire followed by Frost
             }
         },
         {
@@ -101,7 +112,7 @@ describe('Deck', () => {
                 Fire: (2 / 6) // Fire
                     + (1 / 6), // Rolling fire followed by Anything
                 Frost: (1 / 6) // Frost
-                    + (1 / 6) * (1 / 3) // Rolling fire followed by Frost
+                    + (1 / 6) * (1 / 5) // Rolling fire followed by Frost
             }
         },
         {
@@ -113,6 +124,7 @@ describe('Deck', () => {
                     + (1 / 2)  // Rolling fire followed by rolling frost
             }
         },
+        */
         {
             input: { None: 0, 'Rolling Fire': 1, Fire: 1, 'Rolling Frost': 1 },
             output: {
@@ -123,20 +135,67 @@ describe('Deck', () => {
                     + (1 / 3) * (1 / 2) // Rolling fire followed by rolling frost
             }
         },
+        /*
         {
             input: { None: 1, 'Rolling Fire': 1, 'Rolling Frost': 1, Fire: 1, Frost: 1 },
             output: {
                 None: (1 / 5),
                 Fire: (1 / 5) // Rolling fire followed by Anything
                     + (1 / 5) // Fire
-                    + (1 / 5) * (1 / 3) // Rolling frost followed by Rolling Fire followed by Anything
-                    + (1 / 5) * (1 / 3), // Rolling frost followed by Fire
+                    + (1 / 5) * (1 / 4) // Rolling frost followed by Rolling Fire followed by Anything
+                    + (1 / 5) * (1 / 4), // Rolling frost followed by Fire
                 Frost: (1 / 5) // Frost
                     + (1 / 5) // Rolling Frost followed by anything
-                    + (1 / 5) * (1 / 3) // Rolling Fire followed by Rolling Frost followed by Anything
-                    + (1 / 5) * (1 / 3) // Rolling Fire followed by Frost
+                    + (1 / 5) * (1 / 4) // Rolling Fire followed by Rolling Frost followed by Anything
+                    + (1 / 5) * (1 / 4) // Rolling Fire followed by Frost
+            }
+        },
+        {
+            input: { None: 20, Immobilize: 2, Muddle: 2 },
+            output: {
+                None: 20 / 24,
+                Immobilize: 2 / 24,
+                Muddle: 2 / 24
+            }
+        },
+        {
+            input: { None: 1, 'Rolling Fire': 2, Frost: 1 },
+            output: {
+                None: (1 / 4),
+                Fire: (2 / 4) * (1 / 3) // Rolling Fire followed by None
+                    + (2 / 4) * (1 / 3) // Rolling Fire followed by Frost
+                    + (2 / 4) * (1 / 3) * (1 / 2) // Two rolling fires, None
+                    + (2 / 4) * (1 / 3) * (1 / 2), // Two rolling fires, Frost
+                Frost: (1 / 4) // Frost
+                    + (2 / 4) * (1 / 3) // Rolling Fire followed by Frost
+                    + (2 / 4) * (1 / 3) * (1 / 2)
+            }
+        },
+        {
+            input: { None: 2, 'Rolling Fire': 2, Fire: 1, Frost: 1 },
+            output: {
+                None: (2 / 6),
+                Fire: (2 / 6) // Rolling Fire followed by Anything
+                    + (1 / 6), // Fire
+                Frost: (1 / 6) // Frost
+                    + (2 / 6) * (1 / 5) // Rolling Fire followed by Frost
+                    + (2 / 6) * (1 / 5) * (1 / 4)
+            }
+        },
+        {
+            input: { None: 20, Immobilize: 2, Muddle: 2, 'Rolling Earth': 2 },
+            output: {
+                None: 20 / 26,
+                Immobilize: (2 / 26) // Immobilize
+                    + (2 / 26) * (2 / 25) // Rolling Earth then Immobilize
+                    + (2 / 26) * (1 / 25) * (2 / 24), // Both Rolling Earths, then Immobilize
+                Muddle: (2 / 26) // Muddle
+                    + (2 / 26) * (2 / 25) // Rolling Earth then Muddle
+                    + (2 / 26) * (1 / 25) * (2 / 24), // Both Rolling Earths, then Muddle
+                Earth: (2 / 26)
             }
         }
+        */
     ];
 
     // Test that we can properly calculate effect probability
@@ -145,13 +204,24 @@ describe('Deck', () => {
         it(testName, () => {
             const deck = new Deck();
             deck.effects = Object.assign({}, deck.effects, test.input);
+            deck.effects = Utils.clone(test.input);
 
             const probability = deck.getEffectsProbability(deck.effects);
-            // expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
+            expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
+            /*
             for (const key of Object.keys(probability)) {
-                expect(probability[key]).toBeCloseTo(test.output[key]);
+                expect(probability[key]).toBeCloseTo(test.output[key], 10, key);
             }
+            */
         });
+    });
+
+    it('shouldn\'t change deck when calculating card probabilities', () => {
+        const deck = new Deck();
+        const originalEffects = Utils.clone(deck.effects);
+        deck.getEffectsProbability();
+
+        expect(deck.effects).toEqual(originalEffects);
     });
 
     const cardsProbabilityTests = [
