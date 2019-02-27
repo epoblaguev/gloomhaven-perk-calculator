@@ -97,7 +97,14 @@ export class Deck {
     }
 
     public sum(cards = this.cards): number {
-        return Object.values(cards).reduce((prev, cur) => prev + cur);
+        // Ugly but fast(ish)
+        let sum = 0;
+        for (const key in cards) {
+            if (cards.hasOwnProperty(key)) {
+                sum += cards[key];
+            }
+        }
+        return sum;
     }
 
     public rollingSum(cards = this.cards): number {
@@ -175,7 +182,7 @@ export class Deck {
         const probabilities = {};
         const sum = this.sum(effects);
 
-        for (const key of Object.keys(effects)) {
+        for (const key in effects) {
             if (effects[key] === 0) { continue; }
             const label = key.replace('Rolling ', '').trim();
 
@@ -184,10 +191,10 @@ export class Deck {
                 const mult = effects[key] / sum;
                 newEffects[key] -= 1;
 
-                const newProbabilities = this.getEffectsProbability(newEffects);
                 probabilities[label] = (probabilities[label] || 0) + mult;
+                const newProbabilities = this.getEffectsProbability(newEffects);
 
-                for (const newLabel of Object.keys(newProbabilities)) {
+                for (const newLabel in newProbabilities) {
                     if (newLabel !== label && newLabel !== 'None') {
                         probabilities[newLabel] = (probabilities[newLabel] || 0) + mult * newProbabilities[newLabel];
                     }
