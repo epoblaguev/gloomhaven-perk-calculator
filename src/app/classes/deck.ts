@@ -178,26 +178,28 @@ export class Deck {
         return probability;
     }
 
-    public getEffectsProbability(effects = this.effects, sum?: number) {
+    public getEffectsProbability(effects = this.effects, probHistory = {}) {
         const probabilities = {};
-        sum = (sum || this.sum(effects)); // Faster than calculating sum each time
+        const sum = this.sum(effects);
 
         for (const key in effects) {
             if (effects[key] === 0) { continue; }
             const label = key.replace('Rolling ', '').trim();
 
             if (key.startsWith('Rolling')) {
-                const newEffects = {}; // Utils.clone(effects);
-                Object.keys(effects).forEach(k => newEffects[k] = effects[k]); // Faster than clone
+                const newEffects = Utils.clone(effects);
                 const mult = effects[key] / sum;
                 newEffects[key] -= 1;
 
-                probabilities[label] = (probabilities[label] || 0) + mult;
-                const newProbabilities = this.getEffectsProbability(newEffects, sum - 1);
+                const effectsStr = JSON.stringify(newEffects);
+                if (!probHistory.hasOwnProperty(effectsStr)) {
+                    probHistory[effectsStr] = this.getEffectsProbability(newEffects, probHistory);
+                }
 
-                for (const newLabel in newProbabilities) {
+                probabilities[label] = (probabilities[label] || 0) + mult;
+                for (const newLabel in probHistory[effectsStr]) {
                     if (newLabel !== label && newLabel !== 'None') {
-                        probabilities[newLabel] = (probabilities[newLabel] || 0) + mult * newProbabilities[newLabel];
+                        probabilities[newLabel] = (probabilities[newLabel] || 0) + mult * probHistory[effectsStr][newLabel];
                     }
                 }
             } else {
