@@ -192,8 +192,8 @@ export const PERK_LIST = {
         unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+1', 'Disarm', -1); }
     },
     'Replace one (+0) card with one rolling (+2) card': {
-        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('r+2', 'None', 1); },
-        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('r+2', 'None', -1); }
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.cards['r+2'] += 1; },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.cards['r+2'] -= 1; }
     },
     'Replace one (-1) card with one (+1) card': {
         set: (deck: Deck) => { deck.addCard('-1', 'None', -1); deck.addCard('+1', 'None', 1); },
