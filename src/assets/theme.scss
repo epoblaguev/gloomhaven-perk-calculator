@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@import './palettes.scss';
+@include mat-core();
+
+$my-app-primary: mat-palette($md-gloomprimary);
+$my-app-accent:  mat-palette($md-gloomaccent, 500, 900, A100);
+$my-app-warn:    mat-palette($md-gloomwarn);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);

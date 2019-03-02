@@ -33,6 +33,18 @@ export abstract class GraphModule implements DoCheck, OnInit {
             onComplete() { GraphModule.drawDatapointLabels(this.data, this.chart); }
         }
     };
+
+    public barChartColors: any = [
+        { // blue
+            backgroundColor: '#93a8c7',
+            borderColor: '#718eb5',
+        },
+        { // red
+            backgroundColor: '#f55a4e',
+            borderColor: '#f32c1e',
+        }
+    ];
+
     public abstract barChartLabels: string[];
     public barChartType: string;
     public barChartLegend: boolean;

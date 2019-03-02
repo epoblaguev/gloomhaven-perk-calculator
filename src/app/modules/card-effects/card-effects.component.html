@@ -1,7 +1,8 @@
 <mat-card>
-  <mat-card-subtitle><i class="fas fa-fire fa-lg fa-fw valign-middle"></i> Card Effect Probability</mat-card-subtitle>
+  <mat-card-subtitle><i class="fas fa-fire fa-lg fa-fw valign-middle color-red"></i> Card Effect Probability</mat-card-subtitle>
   <mat-card-content>
     <canvas baseChart #baseChart="base-chart" [datasets]="barChartData" [labels]="barChartLabels"
-      [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+      [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType"
+      [colors]="barChartColors"></canvas>
   </mat-card-content>
 </mat-card>

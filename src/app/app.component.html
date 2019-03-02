@@ -1,5 +1,5 @@
 <div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
-  <mat-toolbar class="toolbar">
+  <mat-toolbar color="primary"> <!--</mat-toolbar>class="toolbar">-->
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
