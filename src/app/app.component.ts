@@ -13,10 +13,10 @@ export class AppComponent implements OnInit {
   deck = new Deck();
 
   menuItems = {
-    showCardProbability: { text: 'Card Probability', show: true },
-    showCardReliability: { text: 'Card Reliability', show: true },
-    showAverageDamage: { text: 'Average Damage', show: true },
-    showEffectProbability: { text: 'Effect Probability', show: true },
+    showCardProbability: { text: 'Card Probability', icon: 'fa-dice', show: true },
+    showCardReliability: { text: 'Deck Reliability', icon: 'fa-shield-alt', show: true },
+    showAverageDamage: { text: 'Average Damage', icon: 'fa-fist-raised', show: true },
+    showEffectProbability: { text: 'Effect Probability', icon: 'fa-fire', show: true },
   };
 
 
