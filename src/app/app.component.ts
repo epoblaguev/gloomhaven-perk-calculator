@@ -21,9 +21,11 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
+    /*
     setInterval(() => {
       this.title = Math.random() < 0.25 ? 'Gloomhaven Pork Calculator' : 'Gloomhaven Perk Calculator';
     }, 1000);
+    */
   }
 
   updateDeck(cards) {

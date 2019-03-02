@@ -3,8 +3,8 @@
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="item.value.show">Show {{ item.value.text }}
-        </mat-checkbox>
+        <i class="fas {{item.value.icon}} fa-lg fa-fw valign-middle icon-color"></i>
+        {{ item.value.show ? 'Hide' : 'Show'}} {{item.value.text}}
       </button>
     </mat-menu>
 
