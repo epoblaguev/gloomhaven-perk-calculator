@@ -1,16 +1,39 @@
-<div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
-  <mat-toolbar>
+<div class="mat-typography bg-color" fxLayout="column" fxLayoutGap="10px">
+  <mat-toolbar class="toolbar">
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
+        (click)="$event.stopPropagation(); item.value.show = !item.value.show">
+        <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="item.value.show">Show {{ item.value.text }}
+        </mat-checkbox>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <i class="fas fa-bars fa-2x"></i>
+    </button>
+
     <span>{{ title }}</span>
+
+    <span style="flex: 1 1 auto;"></span>
+
+    <a href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank" class="github-logo">
+      <i class="fab fa-github fa-2x"></i>
+    </a>
+
   </mat-toolbar>
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-card-probability [deck]="deck" fxFlex="100" fxFlex.xs="100"></app-card-probability>
-        <app-card-effects [deck]="deck" fxFlex="100" fxFlex.xs="100"></app-card-effects>
-        <app-average-damage [deck]="deck" fxFlex="100" fxFlex.xs="100"></app-average-damage>
+        <app-card-probability *ngIf="menuItems.showCardProbability.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        </app-card-probability>
+        <app-card-effects *ngIf="menuItems.showEffectProbability.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        </app-card-effects>
+        <app-average-damage *ngIf="menuItems.showAverageDamage.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        </app-average-damage>
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-deck-reliability [deck]="deck" fxFlex="100"></app-deck-reliability>
+        <app-deck-reliability *ngIf="menuItems.showCardReliability.show" [deck]="deck" fxFlex="100">
+        </app-deck-reliability>
         <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)' fxFlex="100"></app-perk-chooser>
       </div>
     </div>
