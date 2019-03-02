@@ -3,8 +3,14 @@
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <i class="fas {{item.value.icon}} fa-lg fa-fw valign-middle icon-color"></i>
-        {{ item.value.show ? 'Hide' : 'Show'}} {{item.value.text}}
+        <!--<span class="fa-layers fa-lg fa-fw">
+          <i class="fas {{item.value.icon}} valign-middle icon-color"></i>
+          <span *ngIf="!item.value.show"><i class="fas fa-ban valign-middle" style="color: tomato"></i></span>
+        </span>
+        -->
+        <i class="fas {{item.value.icon}} fa-lg fa-fw valign-middle" 
+        [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
+        Toggle {{item.value.text}}
       </button>
     </mat-menu>
 
