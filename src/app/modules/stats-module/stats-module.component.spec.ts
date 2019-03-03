@@ -1,27 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardProbabilityComponent } from './card-probability.component';
+import { StatsModuleComponent } from './stats-module.component';
 
-describe('CardProbabilityComponent', () => {
-  let component: CardProbabilityComponent;
-  let fixture: ComponentFixture<CardProbabilityComponent>;
+describe('StatsModuleComponent', () => {
+  let component: StatsModuleComponent;
+  let fixture: ComponentFixture<StatsModuleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardProbabilityComponent ]
+      declarations: [ StatsModuleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CardProbabilityComponent);
+    fixture = TestBed.createComponent(StatsModuleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  */
 });

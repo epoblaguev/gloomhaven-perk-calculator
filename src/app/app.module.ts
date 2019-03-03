@@ -7,12 +7,13 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
+import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
 import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
-import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
-import { AverageDamageComponent } from './modules/average-damage/average-damage.component';
-import { CardEffectsComponent } from './modules/card-effects/card-effects.component';
+import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
+import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
+import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { InfoPageComponent } from './modules/info-page/info-page.component';
     CardProbabilityComponent,
     AverageDamageComponent,
     CardEffectsComponent,
-    InfoPageComponent
+    InfoPageComponent,
   ],
   imports: [
     BrowserModule,

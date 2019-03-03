@@ -4,8 +4,8 @@ import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'app-average-damage',
-  templateUrl: './average-damage.component.html',
-  styleUrls: ['./average-damage.component.scss']
+  templateUrl: './stats-module.component.html',
+  styleUrls: ['./stats-module.component.scss']
 })
 export class AverageDamageComponent extends GraphModule {
   private baseDamage = [0, 1, 2, 3, 4, 5, 6];
@@ -35,9 +35,7 @@ export class AverageDamageComponent extends GraphModule {
     }
   };
 
-  constructor(public bottomSheet: MatBottomSheet) {
-    super(bottomSheet);
-  }
+  constructor(public bottomSheet: MatBottomSheet) {super(bottomSheet);  }
 
   public getChartData() {
 

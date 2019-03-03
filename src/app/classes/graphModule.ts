@@ -5,9 +5,16 @@ import Utils from './utils';
 import { MatBottomSheet } from '@angular/material';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 
+interface Properties {
+    text: string;
+    icon: string;
+    iconClasses: string[];
+}
+
 export abstract class GraphModule implements DoCheck, OnInit {
-    @Input()
-    deck: Deck = new Deck();
+    @Input() deck: Deck = new Deck();
+    @Input() properties: Properties;
+
 
     @ViewChild('baseChart')
     chart: BaseChartDirective;

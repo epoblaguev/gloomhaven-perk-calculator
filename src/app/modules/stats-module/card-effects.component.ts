@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'app-card-effects',
-  templateUrl: './card-effects.component.html',
-  styleUrls: ['./card-effects.component.scss']
+  templateUrl: './stats-module.component.html',
+  styleUrls: ['./stats-module.component.scss']
 })
 export class CardEffectsComponent extends GraphModule {
   public barChartLabels = Object.keys(this.deck.effects);
   public removeZeroColumns = true;
 
-  constructor() {
-    super();
-  }
+  constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
+
 
   public getChartData() {
     const probs = this.deck.getEffectsProbability(this.deck.effects);

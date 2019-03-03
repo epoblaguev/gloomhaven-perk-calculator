@@ -14,11 +14,11 @@ export class AppComponent implements OnInit {
   title = 'Gloomhaven Perk Calculator';
   deck = new Deck();
 
-  menuItems = {
-    showCardProbability: { text: 'Card Probability', icon: 'fa-dice', show: true },
-    showCardReliability: { text: 'Deck Reliability', icon: 'fa-shield-alt', show: true },
-    showAverageDamage: { text: 'Average Damage', icon: 'fa-fist-raised', show: true },
-    showEffectProbability: { text: 'Effect Probability', icon: 'fa-fire', show: true },
+  statsModules = {
+    cardProbability: { text: 'Card Probability', icon: 'fa-dice', iconClasses: ['color-blue'], show: true },
+    cardReliability: { text: 'Deck Reliability', icon: 'fa-shield-alt', iconClasses: ['color-yellow'], show: true },
+    averageDamage: { text: 'Average Damage', icon: 'fa-fist-raised', iconClasses: ['color-green'], show: true },
+    effectProbability: { text: 'Effect Probability', icon: 'fa-fire', iconClasses: ['color-red'], show: true },
   };
 
   constructor(public bottomSheet: MatBottomSheet) { }

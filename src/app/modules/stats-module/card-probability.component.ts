@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'app-card-probability',
-  templateUrl: './card-probability.component.html',
-  styleUrls: ['./card-probability.component.scss']
+  templateUrl: './stats-module.component.html',
+  styleUrls: ['./stats-module.component.scss']
 })
 export class CardProbabilityComponent extends GraphModule {
   public barChartLabels = Object.keys(this.deck.cards);
   public removeZeroColumns = false;
 
-  constructor() {
-    super();
-  }
+  constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
+
 
   public getChartData() {
     this.setChartLabels();

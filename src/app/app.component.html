@@ -1,7 +1,7 @@
 <div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
   <mat-toolbar color="primary">
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
+      <button mat-menu-item *ngFor="let item of statsModules | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
         <i class="fas {{item.value.icon}} fa-lg fa-fw"
           [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
@@ -32,15 +32,16 @@
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-card-probability *ngIf="menuItems.showCardProbability.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        <app-card-probability *ngIf="statsModules.cardProbability.show" [deck]="deck" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-probability>
-        <app-card-effects *ngIf="menuItems.showEffectProbability.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        <app-card-effects *ngIf="statsModules.effectProbability.show" [deck]="deck" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-effects>
-        <app-average-damage *ngIf="menuItems.showAverageDamage.show" [deck]="deck" fxFlex="100" fxFlex.xs="100">
+        <app-average-damage *ngIf="statsModules.averageDamage.show" [deck]="deck" [properties]="statsModules.averageDamage"
+          fxFlex="100" fxFlex.xs="100">
         </app-average-damage>
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-deck-reliability *ngIf="menuItems.showCardReliability.show" [deck]="deck" fxFlex="100">
+        <app-deck-reliability *ngIf="statsModules.cardReliability.show" [deck]="deck" [properties]="statsModules.cardReliability" fxFlex="100">
         </app-deck-reliability>
         <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)' fxFlex="100"></app-perk-chooser>
       </div>

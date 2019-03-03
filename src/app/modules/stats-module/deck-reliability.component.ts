@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
     selector: 'app-deck-reliability',
-    templateUrl: './deck-reliability.component.html',
-    styleUrls: ['./deck-reliability.component.scss']
+    templateUrl: './stats-module.component.html',
+    styleUrls: ['./stats-module.component.scss']
 })
 export class DeckReliabilityComponent extends GraphModule {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
 
-    constructor() { super(); }
+    constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
     public getChartData() {
         const chartData = [
