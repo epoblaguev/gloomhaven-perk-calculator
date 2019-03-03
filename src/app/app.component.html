@@ -1,17 +1,17 @@
 <div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
-  <mat-toolbar color="primary"> <!--</mat-toolbar>class="toolbar">-->
+  <mat-toolbar color="primary">
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let item of menuItems | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <!--<span class="fa-layers fa-lg fa-fw">
-          <i class="fas {{item.value.icon}} valign-middle icon-color"></i>
-          <span *ngIf="!item.value.show"><i class="fas fa-ban valign-middle" style="color: tomato"></i></span>
-        </span>
-        -->
-        <i class="fas {{item.value.icon}} fa-lg fa-fw valign-middle" 
-        [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
+        <i class="fas {{item.value.icon}} fa-lg fa-fw"
+          [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
         Toggle {{item.value.text}}
       </button>
+      <mat-divider></mat-divider>
+      <a mat-menu-item href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank">
+        <i class="fab fa-github fa-lg fa-fw color-gray"></i> Fork me on Github
+      </a>
+      <button mat-menu-item><i class="fas fa-info-circle fa-lg fa-fw color-gray"></i> About</button>
     </mat-menu>
 
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
@@ -22,11 +22,12 @@
 
     <span style="flex: 1 1 auto;"></span>
 
-    <a href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank" class="github-logo">
+    <a fxHide.xs href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank" class="github-logo">
       <i class="fab fa-github fa-2x"></i>
     </a>
 
   </mat-toolbar>
+
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
