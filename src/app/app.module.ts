@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIModule } from './modules/ui-modules/ui.module';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.compon
 import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
 import { AverageDamageComponent } from './modules/average-damage/average-damage.component';
 import { CardEffectsComponent } from './modules/card-effects/card-effects.component';
+import { InfoPageComponent } from './modules/info-page/info-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CardEffectsComponent } from './modules/card-effects/card-effects.compon
     PerkChooserComponent,
     CardProbabilityComponent,
     AverageDamageComponent,
-    CardEffectsComponent
+    CardEffectsComponent,
+    InfoPageComponent
   ],
   imports: [
     BrowserModule,
