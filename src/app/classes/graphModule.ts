@@ -2,6 +2,8 @@ import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { Deck } from './deck';
 import Utils from './utils';
+import { MatBottomSheet } from '@angular/material';
+import { InfoPageComponent } from '../modules/info-page/info-page.component';
 
 export abstract class GraphModule implements DoCheck, OnInit {
     @Input()
@@ -12,6 +14,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
     protected prevDeckValue: Deck = new Deck();
     protected needRedraw = false;
+    protected infoPageName = 'average damage';
 
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -64,6 +67,8 @@ export abstract class GraphModule implements DoCheck, OnInit {
         });
     }
 
+    constructor(public bottomSheet: MatBottomSheet) { }
+
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
@@ -106,6 +111,10 @@ export abstract class GraphModule implements DoCheck, OnInit {
         });
 
         return values;
+    }
+
+    public openInfoPage() {
+        this.bottomSheet.open(InfoPageComponent, { data: { infoType: this.infoPageName } });
     }
 
     // events

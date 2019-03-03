@@ -1,24 +1,33 @@
-<h2><i class="fas fa-info-circle fa-fw color-gray"></i> Gloomhaven Perk Calculator Info</h2>
-<p>
-  This project is intended to help build your Gloomhaven character by showing you how various perks affect the
-  statistics of your modifier deck.
-</p>
-<p>
-  It was inspired by the <b>Perk Calculator</b> on <a
-    href="http://www.boardgamemath.com/boardgames/gloomhaven/gloomhavenPerkCalculator.html"
-    target="_blank">BoardGameMath</a>, and the <b>Perk Analysis</b> writeup on <a
-    href="https://boardgamegeek.com/thread/2058091/perk-analysis" target="_blank">Board Game Geek</a>.
-</p>
+<!-- ABOUT PAGE -->
+<div *ngIf="data.infoType === 'about'">
+  <h2><i class="fas fa-info-circle fa-fw color-gray"></i> Gloomhaven Perk Calculator Info</h2>
+  <p>
+    This project is intended to help build your Gloomhaven character by showing you how various perks affect the
+    statistics of your modifier deck
+  </p>
+  <p>
+    It was inspired by the <b>Perk Calculator</b> on <a
+      href="http://www.boardgamemath.com/boardgames/gloomhaven/gloomhavenPerkCalculator.html"
+      target="_blank">BoardGameMath</a>, and the <b>Perk Analysis</b> writeup on <a
+      href="https://boardgamegeek.com/thread/2058091/perk-analysis" target="_blank">Board Game Geek</a>
+  </p>
 
-<div>
-  Currently the following stats are calculated:
-  <ul>
-    <li><b>Card Probability</b> - The chance that a given number card will be drawn</li>
-    <li><b>Deck Reliability</b> - The chance that your attack damage will be affected positively, negatively, or not at
-      all
-    </li>
-    <li><b>Card Effect Probability</b> - The chance that a given effect comes into play during your action</li>
-    <li><b>Average Damage</b> - The average damage of an attack given a starting base damage</li>
-  </ul>
-Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it.
+  <div>
+    Currently the following stats are calculated:
+    <ul>
+      <li><b>Card Probability</b> - The chance that a given number card will be drawn</li>
+      <li><b>Deck Reliability</b> - The chance that your attack damage will be affected positively, negatively, or not
+        at
+        all
+      </li>
+      <li><b>Card Effect Probability</b> - The chance that a given effect comes into play during your action</li>
+      <li><b>Average Damage</b> - The average damage of an attack given a starting base damage</li>
+    </ul>
+    Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
+  </div>
+</div>
+
+<!-- AVERAGE DAMAGE INFO -->
+<div *ngIf="data.infoType === 'average damage'">
+  Average Damage
 </div>

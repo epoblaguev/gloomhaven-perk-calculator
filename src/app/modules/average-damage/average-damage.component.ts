@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'app-average-damage',
@@ -19,7 +20,6 @@ export class AverageDamageComponent extends GraphModule {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-          // max: this.deck.getAverageDamage(this.baseDamage[this.baseDamage.length - 1]) + 2,
         },
       }],
       xAxes: [{
@@ -35,8 +35,8 @@ export class AverageDamageComponent extends GraphModule {
     }
   };
 
-  constructor() {
-    super();
+  constructor(public bottomSheet: MatBottomSheet) {
+    super(bottomSheet);
   }
 
   public getChartData() {

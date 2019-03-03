@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-info-page',
@@ -8,7 +8,8 @@ import { MatBottomSheetRef } from '@angular/material';
 })
 export class InfoPageComponent implements OnInit {
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>) { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>,
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
   ngOnInit() {
   }

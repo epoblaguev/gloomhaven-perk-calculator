@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-subtitle><i class="fas fa-fist-raised fa-lg fa-fw color-green"></i> Average Damage
-    <i class="far fa-question-circle fa-lg fa-fw color-gray float-right"></i>
+    <i (click)="openInfoPage()" class="far fa-question-circle fa-lg fa-fw color-gray float-right"></i>
   </mat-card-subtitle>
   <mat-card-content>
     <canvas baseChart #baseChart="base-chart" [datasets]="barChartData" [labels]="barChartLabels"

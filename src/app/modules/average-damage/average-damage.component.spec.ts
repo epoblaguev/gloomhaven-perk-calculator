@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AverageDamageComponent } from './average-damage.component';
 import { MatCardSubtitle } from '@angular/material';
-import { BaseChartDirective } from 'ng2-charts';
 
 describe('AverageDamageComponent', () => {
   let component: AverageDamageComponent;
