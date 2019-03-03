@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatsModuleComponent } from './stats-module.component';
+// import { StatsModuleComponent } from './stats-module.component';
 
+/*
 describe('StatsModuleComponent', () => {
   let component: StatsModuleComponent;
   let fixture: ComponentFixture<StatsModuleComponent>;
@@ -23,3 +24,5 @@ describe('StatsModuleComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+*/

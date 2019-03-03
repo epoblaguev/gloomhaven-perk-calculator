@@ -3,6 +3,7 @@ import { Deck } from './classes/deck';
 import Utils from './classes/utils';
 import { MatBottomSheet } from '@angular/material';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
+import { StatsTypes, StatsModules } from './classes/consts';
 
 
 @Component({
@@ -14,12 +15,7 @@ export class AppComponent implements OnInit {
   title = 'Gloomhaven Perk Calculator';
   deck = new Deck();
 
-  statsModules = {
-    cardProbability: { text: 'Card Probability', icon: 'fa-dice', iconClasses: ['color-blue'], show: true },
-    cardReliability: { text: 'Deck Reliability', icon: 'fa-shield-alt', iconClasses: ['color-yellow'], show: true },
-    averageDamage: { text: 'Average Damage', icon: 'fa-fist-raised', iconClasses: ['color-green'], show: true },
-    effectProbability: { text: 'Effect Probability', icon: 'fa-fire', iconClasses: ['color-red'], show: true },
-  };
+  statsModules = StatsModules;
 
   constructor(public bottomSheet: MatBottomSheet) { }
 

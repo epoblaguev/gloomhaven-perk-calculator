@@ -27,7 +27,45 @@
   </div>
 </div>
 
-<!-- AVERAGE DAMAGE INFO -->
-<div *ngIf="data.infoType === 'average damage'">
-  Average Damage
+<!-- AVERAGE DAMAGE -->
+<div *ngIf="data.infoType === statsTypes.AVERAGE_DAMAGE">
+  <h2><i class="fas {{statsModules.averageDamage.icon}} fa-fw" [ngClass]="statsModules.averageDamage.iconClasses"></i>
+    {{statsModules.averageDamage.text}}</h2>
+
+  <p>
+    This chart shows the Average Damage given a starting Base Damage.
+  </p>
+</div>
+
+<!-- EFFECTS PROBABILITY -->
+<div *ngIf="data.infoType === statsTypes.EFFECT_PROBABILITY">
+  <h2><i class="fas {{statsModules.effectProbability.icon}} fa-fw"
+      [ngClass]="statsModules.effectProbability.iconClasses"></i>
+    {{statsModules.effectProbability.text}}</h2>
+
+  <p>
+    This chart shows the probability that a card with an Effect comes up during an action.
+  </p>
+</div>
+
+<!-- DECK RELIABILITY -->
+<div *ngIf="data.infoType === statsTypes.DECK_RELIABILITY">
+  <h2><i class="fas {{statsModules.deckReliability.icon}} fa-fw"
+      [ngClass]="statsModules.deckReliability.iconClasses"></i>
+    {{statsModules.deckReliability.text}}</h2>
+
+  <p>
+    This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
+  </p>
+</div>
+
+<!-- CARD PROBABILITY -->
+<div *ngIf="data.infoType === statsTypes.CARD_PROBABILITY">
+  <h2><i class="fas {{statsModules.cardProbability.icon}} fa-fw"
+      [ngClass]="statsModules.cardProbability.iconClasses"></i>
+    {{statsModules.cardProbability.text}}</h2>
+
+  <p>
+    This chart shows the probability of specific damage modifier cards being drawn.
+  </p>
 </div>

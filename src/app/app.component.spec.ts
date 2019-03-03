@@ -2,11 +2,11 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MatToolbar, MatCardSubtitle } from '@angular/material';
-import { CardProbabilityComponent } from './modules/card-probability/card-probability.component';
+import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
 import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
-import { DeckReliabilityComponent } from './modules/deck-reliability/deck-reliability.component';
-import { CardEffectsComponent } from './modules/card-effects/card-effects.component';
-import { AverageDamageComponent } from './modules/average-damage/average-damage.component';
+import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
+import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
+import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
 
 
 describe('AppComponent', () => {

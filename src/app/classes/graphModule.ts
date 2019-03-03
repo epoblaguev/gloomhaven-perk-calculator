@@ -4,11 +4,13 @@ import { Deck } from './deck';
 import Utils from './utils';
 import { MatBottomSheet } from '@angular/material';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
+import { StatsTypes } from './consts';
 
 interface Properties {
     text: string;
     icon: string;
     iconClasses: string[];
+    infoPage: StatsTypes;
 }
 
 export abstract class GraphModule implements DoCheck, OnInit {
@@ -21,7 +23,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
     protected prevDeckValue: Deck = new Deck();
     protected needRedraw = false;
-    protected infoPageName = 'average damage';
+    protected infoPageName: StatsTypes;
 
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -80,6 +82,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
         this.barChartLegend = this.deck.comparison != null;
+        this.infoPageName = this.properties.infoPage;
     }
 
     ngDoCheck() {
