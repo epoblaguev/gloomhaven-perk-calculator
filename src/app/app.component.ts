@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
 import Utils from './classes/utils';
+import { MatDialog, MatBottomSheet } from '@angular/material';
+import { InfoPageComponent } from './modules/info-page/info-page.component';
 
 
 @Component({
@@ -19,6 +21,11 @@ export class AppComponent implements OnInit {
     showEffectProbability: { text: 'Effect Probability', icon: 'fa-fire', show: true },
   };
 
+  constructor(public bottomSheet: MatBottomSheet) { }
+
+  openBottomSheet(): void {
+    this.bottomSheet.open(InfoPageComponent);
+  }
 
   ngOnInit() {
     /*

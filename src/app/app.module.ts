@@ -32,6 +32,7 @@ import { InfoPageComponent } from './modules/info-page/info-page.component';
     ChartsModule,
     MatMenuModule,
   ],
+  entryComponents: [InfoPageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

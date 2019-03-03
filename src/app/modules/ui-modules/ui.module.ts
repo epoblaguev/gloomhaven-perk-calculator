@@ -5,12 +5,9 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatDividerModule,
-    MatGridListModule,
-    MatProgressBarModule,
     MatSelectModule,
-    MatSliderModule,
-    MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatBottomSheetModule,
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -25,12 +22,9 @@ Include all UI Components here
         MatCardModule,
         MatCheckboxModule,
         MatDividerModule,
-        MatGridListModule,
-        MatProgressBarModule,
         MatSelectModule,
-        MatSliderModule,
-        MatTableModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatBottomSheetModule,
     ],
     exports: [
         BrowserAnimationsModule,
@@ -39,12 +33,9 @@ Include all UI Components here
         MatCardModule,
         MatCheckboxModule,
         MatDividerModule,
-        MatGridListModule,
-        MatProgressBarModule,
         MatSelectModule,
-        MatSliderModule,
-        MatTableModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatBottomSheetModule,
     ],
 })
 export class UIModule { }

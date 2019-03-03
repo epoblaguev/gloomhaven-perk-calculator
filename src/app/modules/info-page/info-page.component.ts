@@ -8,7 +8,7 @@ import { MatBottomSheetRef } from '@angular/material';
 })
 export class InfoPageComponent implements OnInit {
 
-  constructor(public bottomSheetRef: MatBottomSheetRef<InfoPageComponent>) { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>) { }
 
   ngOnInit() {
   }
