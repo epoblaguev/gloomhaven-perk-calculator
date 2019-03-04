@@ -109,6 +109,10 @@ export abstract class GraphModule implements DoCheck, OnInit {
         this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
     }
 
+    /**
+     * Fits result set to barChartLabels. Padding missing values with zeroes.
+     * @param cardValues - map of labels to values
+     */
     protected fitToChart(cardValues: object): number[] {
         const values: number[] = [];
 
