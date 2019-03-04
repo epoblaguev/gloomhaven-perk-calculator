@@ -12,6 +12,7 @@ export const StatsModules = {
         icon: 'fa-dice',
         iconClasses: ['color-blue'],
         infoPage: StatsTypes.CARD_PROBABILITY,
+        shortDescription: 'The chance that a given number card will be drawn',
         show: true
     },
     deckReliability: {
@@ -19,6 +20,7 @@ export const StatsModules = {
         icon: 'fa-shield-alt',
         iconClasses: ['color-yellow'],
         infoPage: StatsTypes.DECK_RELIABILITY,
+        shortDescription: 'The chance that your attack damage will be affected positively, negatively, or not at all',
         show: true
     },
     averageDamage: {
@@ -26,6 +28,7 @@ export const StatsModules = {
         icon: 'fa-fist-raised',
         iconClasses: ['color-green'],
         infoPage: StatsTypes.AVERAGE_DAMAGE,
+        shortDescription: 'The average damage of an attack given a starting base damage',
         show: true
     },
     effectProbability: {
@@ -33,6 +36,7 @@ export const StatsModules = {
         icon: 'fa-fire',
         iconClasses: ['color-red'],
         infoPage: StatsTypes.EFFECT_PROBABILITY,
+        shortDescription: 'The chance that a given effect comes into play during your action',
         show: true
     },
-}
+};

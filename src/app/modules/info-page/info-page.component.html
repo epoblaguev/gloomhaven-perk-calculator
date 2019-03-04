@@ -14,14 +14,12 @@
 
   <div>
     Currently the following stats are calculated:
-    <ul>
-      <li><b>Card Probability</b> - The chance that a given number card will be drawn</li>
-      <li><b>Deck Reliability</b> - The chance that your attack damage will be affected positively, negatively, or not
-        at
-        all
+    <ul class="ul-no-bullets">
+      <li *ngFor="let stat of statsModules | keyvalue">
+        <i class="fas {{stat.value.icon}} fa-fw" [ngClass]="stat.value.iconClasses"></i>&nbsp;
+        <b>{{ stat.value.text }}</b> -
+        {{stat.value.shortDescription}}
       </li>
-      <li><b>Card Effect Probability</b> - The chance that a given effect comes into play during your action</li>
-      <li><b>Average Damage</b> - The average damage of an attack given a starting base damage</li>
     </ul>
     Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
   </div>
