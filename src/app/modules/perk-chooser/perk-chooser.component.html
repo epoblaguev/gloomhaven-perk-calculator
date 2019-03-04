@@ -22,8 +22,8 @@
 		</div>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-stroked-button (click)="reset()">Reset</button>
-		<button mat-stroked-button (click)="toggleComparison()">
+		<button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">Reset</button>
+		<button mat-flat-button color="primary" (click)="toggleComparison()">
 			{{ deck.comparison == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
 	</mat-card-actions>
 </mat-card>

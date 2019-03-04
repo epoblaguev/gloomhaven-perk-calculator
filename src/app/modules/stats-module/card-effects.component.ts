@@ -18,9 +18,15 @@ export class CardEffectsComponent extends GraphModule {
     const probs = this.deck.getEffectsProbability(this.deck.effects);
     const compareProbs = this.deck.comparison == null ? null : this.deck.getEffectsProbability(this.deck.comparison.effects);
 
+    // Rename 'None' to 'No Effect'
+    probs['No Effect'] = probs['None'];
+    delete probs['None'];
+    if (compareProbs != null) {
+      compareProbs['No Effect'] = compareProbs['None'];
+      delete compareProbs['None'];
+    }
+
     this.setChartLabels(probs, compareProbs);
-    console.log('PROBS:');
-    console.log(probs);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -46,6 +52,11 @@ export class CardEffectsComponent extends GraphModule {
     if (compareProbs != null) {
       labels = Array.from(new Set(labels.concat(Object.keys(compareProbs))));
     }
+
+    // Sort the array but place 'No Effect' first
+    labels = labels.filter(key => key !== 'No Effect');
+    labels.sort();
+    labels.unshift('No Effect');
 
     if (this.barChartLabels.toString() !== labels.toString()) {
       console.log(`${this.barChartLabels} !== ${labels}`);
