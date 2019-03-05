@@ -33,6 +33,12 @@
   <p>
     This chart shows the Average Damage given a starting Base Damage.
   </p>
+  <p>
+    Since damage in Gloomhaven cannot be negative <i>(1 - 2 = 0)</i>, Base Damage of 0 and 1 have a higher change in Average Damage than other Base values.
+  </p>
+  <p>
+    Note that Average Damage suffers from the flaw of averages
+  </p>
 </div>
 
 <!-- EFFECTS PROBABILITY -->
@@ -42,7 +48,19 @@
     {{statsModules.effectProbability.text}}</h2>
 
   <p>
-    This chart shows the probability that a card with an Effect comes up during an action.
+    This chart shows the probability that a card with an Effect comes up at least during an entire action
+  </p>
+  <p>
+    The <b>No Effect</b> bar is the probability that not a single Effect card is drawn during an action. That is, it's
+    simply the number of cards with no Effect, divided by the total number of cards (rolling cards with no Effects
+    excluded)
+  </p>
+  <p>
+    Since you can draw multiple rolling Effect cards in one action, the sum of all Effects and of No Effects can total
+    more than 100
+  </p>
+  <p>
+    Rolling modifier cards with no Effects have no impact on these statistics, and are excluded from all calculations
   </p>
 </div>
 
@@ -55,6 +73,14 @@
   <p>
     This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
   </p>
+  <p>
+    This may be the most important graph to pay attention to. You should strive to increase the predictability of your
+    deck by reducing the probability of getting a negative overall modifier
+  </p>
+  <p>
+    Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on
+    this graph
+  </p>
 </div>
 
 <!-- CARD PROBABILITY -->
@@ -64,6 +90,22 @@
     {{statsModules.cardProbability.text}}</h2>
 
   <p>
-    This chart shows the probability of specific damage modifier cards being drawn.
+    This chart shows the probability of specific damage modifier cards being drawn
+  </p>
+
+  <p>
+    Adding or removing rolling damage cards affects the probability of only that card type, but adding or
+    removing non-rolling cards affects the probability of all cards
+  </p>
+
+  <p>
+    The percent is the probability of a card comming up during the entire action.
+    As such, stats for all non-rolling cards should add up to 100% (rounding errors aside), while rolling cards can make
+    the absolute total appear to be over 100%
+  </p>
+
+  <p>
+    Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on
+    this graph
   </p>
 </div>

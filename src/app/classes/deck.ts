@@ -149,7 +149,7 @@ export class Deck {
             if (!cardType.startsWith('r') && compareFunc(rollingValue + this.cardValue[cardType])) {
                 probability += cards[cardType] / this.sum(cards);
             } else if (cardType.startsWith('r')) {
-                const newCards = Object.assign({}, cards);
+                const newCards = Utils.clone(cards);
                 newCards[cardType] -= 1;
 
                 probability += (cards[cardType] / this.sum(cards))

@@ -17,7 +17,7 @@ export const StatsModules = {
     },
     deckReliability: {
         text: 'Deck Reliability',
-        icon: 'fa-shield-alt',
+        icon: 'fa-crosshairs',
         iconClasses: ['color-yellow'],
         infoPage: StatsTypes.DECK_RELIABILITY,
         shortDescription: 'The chance that your attack damage will be affected positively, negatively, or not at all',
