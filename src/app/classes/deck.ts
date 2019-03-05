@@ -13,6 +13,13 @@ export class Deck {
         x2: 1,
         'r+1': 0,
         'r+2': 0,
+        Bless: 0,
+        Curse: 0,
+    };
+
+    readonly defaultScenarioEffects = {
+        Bless: 0,
+        Curse: 0,
     };
 
     readonly defaultEffects = {
@@ -59,7 +66,7 @@ export class Deck {
         Wound: 0,
     };
 
-    private cardValue = {
+    private readonly cardValue = {
         x0: -1000,
         '-2': -2,
         '-1': -1,
@@ -71,21 +78,27 @@ export class Deck {
         x2: 1000,
         'r+1': 1,
         'r+2': 2,
+        Curse: -1000,
+        Bless: 1000,
     };
 
     public effects: object;
-
-    public cards: object;
-
-    public comparison: { cards: object, effects: object };
+    public cards = Utils.clone(this.defaultCards);
+    public scenarioEffects = Utils.clone(this.defaultScenarioEffects);
+    public comparison: { cards: object, effects: object, scenarioEffects: object };
 
     constructor() {
         this.cards = Utils.clone(this.defaultCards);
         this.effects = Utils.clone(this.defaultEffects);
+        this.scenarioEffects = Utils.clone(this.defaultScenarioEffects);
     }
 
     public saveComparison(cards = this.cards, effects = this.effects) {
-        this.comparison = { cards: Utils.clone(this.cards), effects: Utils.clone(this.effects) };
+        this.comparison = {
+            cards: Utils.clone(this.cards),
+            effects: Utils.clone(this.effects),
+            scenarioEffects: Utils.clone(this.scenarioEffects)
+        };
     }
 
     public clearComparisons() {
@@ -215,12 +228,12 @@ export class Deck {
         const sum = this.sum(cards);
 
         for (const key of Object.keys(cards)) {
-            if (cards[key] === 0 || key === 'x0') { continue; }
+            if (cards[key] === 0 || key === 'x0' || key === 'Curse') { continue; }
             if (key.startsWith('r')) {
                 const newCards = Object.assign({}, cards);
                 newCards[key] -= 1;
                 damage += (this.cardValue[key] + this.getAverageDamage(baseDamage, newCards)) * (cards[key] / sum);
-            } else if (key === 'x2') {
+            } else if (key === 'x2' || key === 'Bless') {
                 damage += (baseDamage * 2) * (cards[key] / sum);
             } else {
                 let tmpDamage = (baseDamage + this.cardValue[key]);

@@ -13,6 +13,7 @@ import { CardProbabilityComponent } from './modules/stats-module/card-probabilit
 import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
+import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AverageDamageComponent } from './modules/stats-module/average-damage.co
     AverageDamageComponent,
     CardEffectsComponent,
     InfoPageComponent,
+    DeckModifiersComponent,
   ],
   imports: [
     BrowserModule,

@@ -43,7 +43,8 @@
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
         <app-deck-reliability *ngIf="statsModules.deckReliability.show" [deck]="deck" [properties]="statsModules.deckReliability" fxFlex="100">
         </app-deck-reliability>
-        <app-perk-chooser [deck]="deck" (deckChange)='updateDeck($event)' fxFlex="100"></app-perk-chooser>
+        <app-perk-chooser [deck]="deck" fxFlex="100"></app-perk-chooser>
+        <app-deck-modifiers [deck]="deck" fxFlex="100"></app-deck-modifiers>
       </div>
     </div>
   </div>
