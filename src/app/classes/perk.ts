@@ -180,8 +180,8 @@ export const PERK_LIST = {
         unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Curse', -1); }
     },
     'Replace one (+0) card with one (+3) MUDDLE card': {
-        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+2', 'Muddle', 1); },
-        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+2', 'Muddle', -1); }
+        set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+3', 'Muddle', 1); },
+        unset: (deck: Deck) => { deck.addCard('+0', 'None', 1); deck.addCard('+3', 'Muddle', -1); }
     },
     'Replace one (+0) card with one (+1) IMMOBILIZE card': {
         set: (deck: Deck) => { deck.addCard('+0', 'None', -1); deck.addCard('+1', 'Immobilize', 1); },

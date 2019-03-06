@@ -1,69 +1,71 @@
 import Utils from './utils';
 
+const DefaultCards = {
+    x0: 1,
+    '-2': 1,
+    '-1': 5,
+    '+0': 6,
+    '+1': 5,
+    '+2': 1,
+    '+3': 0,
+    '+4': 0,
+    x2: 1,
+    'r+1': 0,
+    'r+2': 0,
+    /*
+     Bless: 0,
+     Curse: 0,
+     */
+};
+
+const DefaultEffects = {
+    None: 20,
+    'Add Target': 0,
+    'Heal 2': 0,
+    'Push 1': 0,
+    'Refresh an item': 0,
+    'Rolling Add Target': 0,
+    'Rolling Curse': 0,
+    'Rolling Dark': 0,
+    'Rolling Disarm': 0,
+    'Rolling Earth': 0,
+    'Rolling Fire': 0,
+    'Rolling Frost': 0,
+    'Rolling Heal 1': 0,
+    'Rolling Heal 3': 0,
+    'Rolling Immobilize': 0,
+    'Rolling Invisible': 0,
+    'Rolling Muddle': 0,
+    'Rolling Pierce 3': 0,
+    'Rolling Poison': 0,
+    'Rolling Pull 1': 0,
+    'Rolling Push 1': 0,
+    'Rolling Push 2': 0,
+    'Rolling Shield 1, Self': 0,
+    'Rolling Stun': 0,
+    'Rolling Sun': 0,
+    'Rolling Wind': 0,
+    'Rolling Wound': 0,
+    'Shield 1, Self': 0,
+    Curse: 0,
+    Dark: 0,
+    Disarm: 0,
+    Earth: 0,
+    Fire: 0,
+    Frost: 0,
+    Immobilize: 0,
+    Invisible: 0,
+    Muddle: 0,
+    Poison: 0,
+    Stun: 0,
+    Wind: 0,
+    Wound: 0,
+};
+
 export class Deck {
-    readonly defaultCards = {
-        x0: 1,
-        '-2': 1,
-        '-1': 5,
-        '+0': 6,
-        '+1': 5,
-        '+2': 1,
-        '+3': 0,
-        '+4': 0,
-        x2: 1,
-        'r+1': 0,
-        'r+2': 0,
+    private readonly defaultScenarioEffects = {
         Bless: 0,
         Curse: 0,
-    };
-
-    readonly defaultScenarioEffects = {
-        Bless: 0,
-        Curse: 0,
-    };
-
-    readonly defaultEffects = {
-        None: 20,
-        'Add Target': 0,
-        'Heal 2': 0,
-        'Push 1': 0,
-        'Refresh an item': 0,
-        'Rolling Add Target': 0,
-        'Rolling Curse': 0,
-        'Rolling Dark': 0,
-        'Rolling Disarm': 0,
-        'Rolling Earth': 0,
-        'Rolling Fire': 0,
-        'Rolling Frost': 0,
-        'Rolling Heal 1': 0,
-        'Rolling Heal 3': 0,
-        'Rolling Immobilize': 0,
-        'Rolling Invisible': 0,
-        'Rolling Muddle': 0,
-        'Rolling Pierce 3': 0,
-        'Rolling Poison': 0,
-        'Rolling Pull 1': 0,
-        'Rolling Push 1': 0,
-        'Rolling Push 2': 0,
-        'Rolling Shield 1, Self': 0,
-        'Rolling Stun': 0,
-        'Rolling Sun': 0,
-        'Rolling Wind': 0,
-        'Rolling Wound': 0,
-        'Shield 1, Self': 0,
-        Curse: 0,
-        Dark: 0,
-        Disarm: 0,
-        Earth: 0,
-        Fire: 0,
-        Frost: 0,
-        Immobilize: 0,
-        Invisible: 0,
-        Muddle: 0,
-        Poison: 0,
-        Stun: 0,
-        Wind: 0,
-        Wound: 0,
     };
 
     private readonly cardValue = {
@@ -82,14 +84,14 @@ export class Deck {
         Bless: 1000,
     };
 
-    public effects: object;
-    public cards = Utils.clone(this.defaultCards);
+    public effects: typeof DefaultEffects;
+    public cards: typeof DefaultCards;
     public scenarioEffects = Utils.clone(this.defaultScenarioEffects);
-    public comparison: { cards: object, effects: object, scenarioEffects: object };
+    public comparison: { cards: typeof DefaultCards, effects: typeof DefaultEffects, scenarioEffects: object };
 
     constructor() {
-        this.cards = Utils.clone(this.defaultCards);
-        this.effects = Utils.clone(this.defaultEffects);
+        this.cards = Utils.clone(DefaultCards);
+        this.effects = Utils.clone(DefaultEffects);
         this.scenarioEffects = Utils.clone(this.defaultScenarioEffects);
     }
 
@@ -109,12 +111,12 @@ export class Deck {
         return Object.keys(this.cards);
     }
 
-    public sum(cards = this.cards): number {
+    public sum(obj: object): number {
         // Ugly but fast(ish)
         let sum = 0;
-        for (const key in cards) {
-            if (cards.hasOwnProperty(key)) {
-                sum += cards[key];
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                sum += obj[key];
             }
         }
         return sum;
@@ -255,7 +257,7 @@ export class Deck {
     }
 
     public reset() {
-        this.cards = Utils.clone(this.defaultCards);
-        this.effects = Utils.clone(this.defaultEffects);
+        this.cards = Utils.clone(DefaultCards);
+        this.effects = Utils.clone(DefaultEffects);
     }
 }

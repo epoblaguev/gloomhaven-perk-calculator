@@ -9,7 +9,7 @@ import { MatBottomSheet } from '@angular/material';
 })
 export class CardProbabilityComponent extends GraphModule {
   public barChartLabels = Object.keys(this.deck.cards);
-  public removeZeroColumns = true;
+  public removeZeroColumns = false;
 
   constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
