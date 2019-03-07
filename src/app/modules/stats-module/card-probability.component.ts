@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
+import { Deck } from 'src/app/classes/deck';
 
 @Component({
   selector: 'app-card-probability',
@@ -16,8 +17,8 @@ export class CardProbabilityComponent extends GraphModule {
 
   public getChartData() {
     this.setChartLabels();
-    let cards = this.deck.applyModifiersToCards(this.deck.cards);
-    let probs = this.deck.getCardsProbability(cards, this.removeZeroColumns);
+    let cards = Deck.applyModifiersToCards(this.deck.cards, this.deck.deckModifiers);
+    let probs = Deck.getCardsProbability(cards, this.removeZeroColumns);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -27,8 +28,8 @@ export class CardProbabilityComponent extends GraphModule {
     ];
 
     if (this.deck.comparison != null) {
-      cards = this.deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
-      probs = this.deck.getCardsProbability(cards, this.removeZeroColumns);
+      cards = Deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      probs = Deck.getCardsProbability(cards, this.removeZeroColumns);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',

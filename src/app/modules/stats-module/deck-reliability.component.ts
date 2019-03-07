@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
+import { Deck } from 'src/app/classes/deck';
 
 @Component({
     selector: 'app-deck-reliability',
@@ -14,25 +15,25 @@ export class DeckReliabilityComponent extends GraphModule {
     constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
     public getChartData() {
-        let cards = this.deck.applyModifiersToCards(this.deck.cards);
+        let cards = Deck.applyModifiersToCards(this.deck.cards, this.deck.deckModifiers);
         const chartData = [
             {
                 label: 'Current', data: [
-                    Math.round(this.deck.reliabilityNegative(cards) * 100),
-                    Math.round(this.deck.reliabilityZero(cards) * 100),
-                    Math.round(this.deck.reliabilityPositive(cards) * 100)
+                    Math.round(Deck.reliabilityNegative(cards) * 100),
+                    Math.round(Deck.reliabilityZero(cards) * 100),
+                    Math.round(Deck.reliabilityPositive(cards) * 100)
                 ]
             }
         ];
 
         if (this.deck.comparison != null) {
-            cards = this.deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+            cards = Deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: [
-                    Math.round(this.deck.reliabilityNegative(cards) * 100),
-                    Math.round(this.deck.reliabilityZero(cards) * 100),
-                    Math.round(this.deck.reliabilityPositive(cards) * 100)
+                    Math.round(Deck.reliabilityNegative(cards) * 100),
+                    Math.round(Deck.reliabilityZero(cards) * 100),
+                    Math.round(Deck.reliabilityPositive(cards) * 100)
                 ]
             });
         }

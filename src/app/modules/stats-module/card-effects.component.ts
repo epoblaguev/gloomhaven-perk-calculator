@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
+import { Deck } from 'src/app/classes/deck';
 
 @Component({
   selector: 'app-card-effects',
@@ -15,13 +16,13 @@ export class CardEffectsComponent extends GraphModule {
 
 
   public getChartData() {
-    const effects = this.deck.applyModifiersToEffects(this.deck.effects);
+    const effects = Deck.applyModifiersToEffects(this.deck.effects, this.deck.deckModifiers);
 
-    const probs = this.deck.getEffectsProbability(effects);
+    const probs = Deck.getEffectsProbability(effects);
     let compareProbs = null;
     if (this.deck.comparison != null) {
-      const compareEffects = this.deck.applyModifiersToEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
-      compareProbs = this.deck.getEffectsProbability(compareEffects);
+      const compareEffects = Deck.applyModifiersToEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
+      compareProbs = Deck.getEffectsProbability(compareEffects);
     }
 
     // Rename 'None' to 'No Effect'

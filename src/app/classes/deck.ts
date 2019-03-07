@@ -67,7 +67,7 @@ const DefaultDeckModifiers = {
 };
 
 export class Deck {
-    private readonly cardValue = {
+    private static readonly cardValue = {
         x0: -1000,
         '-2': -2,
         '-1': -1,
@@ -85,7 +85,7 @@ export class Deck {
 
     public effects: typeof DefaultEffects;
     public cards: typeof DefaultCards;
-    public deckModifiers = Utils.clone(DefaultDeckModifiers);
+    public deckModifiers: typeof DefaultDeckModifiers;
     public comparison: { cards: typeof DefaultCards, effects: typeof DefaultEffects, deckModifiers: typeof DefaultDeckModifiers };
 
     constructor() {
@@ -94,35 +94,19 @@ export class Deck {
         this.deckModifiers = Utils.clone(DefaultDeckModifiers);
     }
 
-    public saveComparison(cards = this.cards, effects = this.effects) {
-        this.comparison = {
-            cards: Utils.clone(this.cards),
-            effects: Utils.clone(this.effects),
-            deckModifiers: Utils.clone(this.deckModifiers)
-        };
-    }
-
-    public applyModifiersToCards(cards = this.cards, deckModifiers = this.deckModifiers): typeof DefaultCards {
+    public static applyModifiersToCards(cards: typeof DefaultCards, modifiers: typeof DefaultDeckModifiers): typeof DefaultCards {
         const newCards = Utils.clone(cards);
-        Object.keys(deckModifiers).forEach(key => newCards[key] += deckModifiers[key]);
+        Object.keys(modifiers).forEach(key => newCards[key] += modifiers[key]);
         return newCards;
     }
 
-    public applyModifiersToEffects(effects = this.effects, deckModifiers = this.deckModifiers): typeof DefaultEffects {
+    public static applyModifiersToEffects(effects: typeof DefaultEffects, modifiers: typeof DefaultDeckModifiers): typeof DefaultEffects {
         const newEffects = Utils.clone(effects);
-        newEffects['None'] += this.sum(deckModifiers);
+        newEffects['None'] += this.sum(modifiers);
         return newEffects;
     }
 
-    public clearComparisons() {
-        this.comparison = undefined;
-    }
-
-    public getCardTypes(): Array<string> {
-        return Object.keys(this.cards);
-    }
-
-    public sum(obj: object): number {
+    public static sum(obj: object): number {
         // Ugly but fast(ish)
         let sum = 0;
         for (const key in obj) {
@@ -133,7 +117,7 @@ export class Deck {
         return sum;
     }
 
-    public rollingSum(cards = this.cards): number {
+    public static rollingSum(cards: typeof DefaultCards): number {
         let sum = 0;
         for (const key of Object.keys(cards)) {
             sum += key.startsWith('r+') || key.startsWith('Rolling') ? cards[key] : 0;
@@ -141,7 +125,7 @@ export class Deck {
         return sum;
     }
 
-    public nonRollingSum(cards = this.cards): number {
+    public static nonRollingSum(cards: typeof DefaultCards): number {
         let sum = 0;
         for (const key of Object.keys(cards)) {
             sum += !key.startsWith('r+') && !key.startsWith('Rolling') ? cards[key] : 0;
@@ -149,8 +133,8 @@ export class Deck {
         return sum;
     }
 
-    public getCardsProbability(cards = this.cards, removeZero = false): object {
-        const nonRollingSum = this.nonRollingSum(cards);
+    public static getCardsProbability(cards: typeof DefaultCards, removeZero = false): object {
+        const nonRollingSum = Deck.nonRollingSum(cards);
         const probabilities = {};
 
         for (const key of Object.keys(cards)) {
@@ -163,7 +147,7 @@ export class Deck {
         return probabilities;
     }
 
-    private getReliability(cards = this.cards, rollingValue = 0, compareFunc: (x: number) => boolean) {
+    private static getReliability(cards: typeof DefaultCards, rollingValue = 0, compareFunc: (x: number) => boolean) {
         let probability = 0;
 
         for (const cardType of Object.keys(cards)) {
@@ -172,41 +156,41 @@ export class Deck {
                 continue;
             }
 
-            if (!cardType.startsWith('r') && compareFunc(rollingValue + this.cardValue[cardType])) {
-                probability += cards[cardType] / this.sum(cards);
+            if (!cardType.startsWith('r') && compareFunc(rollingValue + Deck.cardValue[cardType])) {
+                probability += cards[cardType] / Deck.sum(cards);
             } else if (cardType.startsWith('r')) {
                 const newCards = Utils.clone(cards);
                 newCards[cardType] -= 1;
 
-                probability += (cards[cardType] / this.sum(cards))
-                    * this.getReliability(newCards, rollingValue + this.cardValue[cardType], compareFunc);
+                probability += (cards[cardType] / Deck.sum(cards))
+                    * this.getReliability(newCards, rollingValue + Deck.cardValue[cardType], compareFunc);
             }
         }
 
         return probability;
     }
 
-    public reliabilityNegative(cards = this.cards) {
+    public static reliabilityNegative(cards: typeof DefaultCards) {
         const compareFunc = (x: number) => x < 0;
-        const probability = this.getReliability(cards, 0, compareFunc);
+        const probability = Deck.getReliability(cards, 0, compareFunc);
         return probability;
     }
 
-    public reliabilityZero(cards = this.cards) {
+    public static reliabilityZero(cards: typeof DefaultCards) {
         const compareFunc = (x: number) => x === 0;
-        const probability = this.getReliability(cards, 0, compareFunc);
+        const probability = Deck.getReliability(cards, 0, compareFunc);
         return probability;
     }
 
-    public reliabilityPositive(cards = this.cards) {
+    public static reliabilityPositive(cards: typeof DefaultCards) {
         const compareFunc = (x: number) => x > 0;
-        const probability = this.getReliability(cards, 0, compareFunc);
+        const probability = Deck.getReliability(cards, 0, compareFunc);
         return probability;
     }
 
-    public getEffectsProbability(effects = this.effects, probHistory = {}) {
+    public static getEffectsProbability(effects: typeof DefaultEffects, probHistory = {}) {
         const probabilities = {};
-        const sum = this.sum(effects);
+        const sum = Deck.sum(effects);
 
         for (const key in effects) {
             if (effects[key] === 0) { continue; }
@@ -219,7 +203,7 @@ export class Deck {
 
                 const effectsStr = JSON.stringify(newEffects);
                 if (!probHistory.hasOwnProperty(effectsStr)) {
-                    probHistory[effectsStr] = this.getEffectsProbability(newEffects, probHistory);
+                    probHistory[effectsStr] = Deck.getEffectsProbability(newEffects, probHistory);
                 }
 
                 probabilities[label] = (probabilities[label] || 0) + mult;
@@ -236,25 +220,37 @@ export class Deck {
         return probabilities;
     }
 
-    public getAverageDamage(baseDamage: number, cards = this.cards): number {
+    public static getAverageDamage(baseDamage: number, cards: typeof DefaultCards): number {
         let damage = 0;
-        const sum = this.sum(cards);
+        const sum = Deck.sum(cards);
 
         for (const key of Object.keys(cards)) {
             if (cards[key] === 0 || key === 'x0' || key === 'Curse') { continue; }
             if (key.startsWith('r')) {
                 const newCards = Object.assign({}, cards);
                 newCards[key] -= 1;
-                damage += (this.cardValue[key] + this.getAverageDamage(baseDamage, newCards)) * (cards[key] / sum);
+                damage += (Deck.cardValue[key] + Deck.getAverageDamage(baseDamage, newCards)) * (cards[key] / sum);
             } else if (key === 'x2' || key === 'Bless') {
                 damage += (baseDamage * 2) * (cards[key] / sum);
             } else {
-                let tmpDamage = (baseDamage + this.cardValue[key]);
+                let tmpDamage = (baseDamage + Deck.cardValue[key]);
                 tmpDamage = tmpDamage > 0 ? tmpDamage : 0;
                 damage += (tmpDamage) * (cards[key] / sum);
             }
         }
         return damage;
+    }
+
+    public saveComparison() {
+        this.comparison = {
+            cards: Utils.clone(this.cards),
+            effects: Utils.clone(this.effects),
+            deckModifiers: Utils.clone(this.deckModifiers)
+        };
+    }
+
+    public clearComparisons() {
+        this.comparison = undefined;
     }
 
     public addCard(cardType: string, cardEffect: string, count = 1) {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
+import { Deck } from 'src/app/classes/deck';
 
 @Component({
   selector: 'app-average-damage',
@@ -38,17 +39,17 @@ export class AverageDamageComponent extends GraphModule {
   constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
   public getChartData() {
-    const cards = this.deck.applyModifiersToCards(this.deck.cards);
+    const cards = Deck.applyModifiersToCards(this.deck.cards, this.deck.deckModifiers);
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => this.deck.getAverageDamage(val, cards))
+      data: this.baseDamage.map(val => Deck.getAverageDamage(val, cards))
     }];
 
     if (this.deck.comparison != null) {
-      const compareCards = this.deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      const compareCards = Deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => this.deck.getAverageDamage(val, compareCards))
+        data: this.baseDamage.map(val => Deck.getAverageDamage(val, compareCards))
       });
     }
     return probData;

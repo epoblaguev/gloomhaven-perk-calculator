@@ -232,7 +232,7 @@ describe('Deck', () => {
             deck.effects = Object.assign({}, deck.effects, test.input);
             deck.effects = Utils.clone(test.input);
 
-            const probability = deck.getEffectsProbability(deck.effects);
+            const probability = Deck.getEffectsProbability(deck.effects);
             // expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
 
             for (const key of Object.keys(probability)) {
@@ -245,7 +245,7 @@ describe('Deck', () => {
     it('shouldn\'t change deck when calculating card probabilities', () => {
         const deck = new Deck();
         const originalEffects = Utils.clone(deck.effects);
-        deck.getEffectsProbability();
+        Deck.getEffectsProbability(deck.effects);
 
         expect(deck.effects).toEqual(originalEffects);
     });
@@ -307,22 +307,22 @@ describe('Deck', () => {
         deck.cards = Object.assign({}, deck.cards, test.input);
 
         it(`should properly calculate CARD probability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.probability)}`, () => {
-            expect(deck.getCardsProbability()).toEqual(Object.assign({}, deck.cards, test.probability));
+            expect(Deck.getCardsProbability(deck.cards)).toEqual(Object.assign({}, deck.cards, test.probability));
         });
 
         // tslint:disable-next-line:max-line-length
         it(`should properly calculate POSITIVE reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.positive)}`, () => {
-            expect(deck.reliabilityPositive()).toBeCloseTo(test.reliability.positive);
+            expect(Deck.reliabilityPositive(deck.cards)).toBeCloseTo(test.reliability.positive);
         });
 
         // tslint:disable-next-line:max-line-length
         it(`should properly calculate NEGATIVE reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.negative)}`, () => {
-            expect(deck.reliabilityNegative()).toBeCloseTo(test.reliability.negative);
+            expect(Deck.reliabilityNegative(deck.cards)).toBeCloseTo(test.reliability.negative);
         });
 
         // tslint:disable-next-line:max-line-length
         it(`should properly calculate NEUTRAL reliability for ${JSON.stringify(test.input)} as ${JSON.stringify(test.reliability.neutral)}`, () => {
-            expect(deck.reliabilityZero()).toBeCloseTo(test.reliability.neutral);
+            expect(Deck.reliabilityZero(deck.cards)).toBeCloseTo(test.reliability.neutral);
         });
     });
 
@@ -342,8 +342,8 @@ describe('Deck', () => {
             clonedEffects['None'] += 1;
         });
 
-        expect(deck.applyModifiersToCards()).toEqual(clonedCards);
-        expect(deck.applyModifiersToEffects()).toEqual(clonedEffects);
+        expect(Deck.applyModifiersToCards(deck.cards, deck.deckModifiers)).toEqual(clonedCards);
+        expect(Deck.applyModifiersToEffects(deck.effects, deck.deckModifiers)).toEqual(clonedEffects);
 
     });
 
