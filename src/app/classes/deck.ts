@@ -12,10 +12,8 @@ const DefaultCards = {
     x2: 1,
     'r+1': 0,
     'r+2': 0,
-    /*
-     Bless: 0,
-     Curse: 0,
-     */
+    Bless: 0,
+    Curse: 0,
 };
 
 const DefaultEffects = {
@@ -62,12 +60,13 @@ const DefaultEffects = {
     Wound: 0,
 };
 
-export class Deck {
-    private readonly defaultScenarioEffects = {
-        Bless: 0,
-        Curse: 0,
-    };
+const DefaultDeckModifiers = {
+    Bless: 0,
+    Curse: 0,
+    '-1': 0,
+};
 
+export class Deck {
     private readonly cardValue = {
         x0: -1000,
         '-2': -2,
@@ -86,21 +85,33 @@ export class Deck {
 
     public effects: typeof DefaultEffects;
     public cards: typeof DefaultCards;
-    public scenarioEffects = Utils.clone(this.defaultScenarioEffects);
-    public comparison: { cards: typeof DefaultCards, effects: typeof DefaultEffects, scenarioEffects: object };
+    public deckModifiers = Utils.clone(DefaultDeckModifiers);
+    public comparison: { cards: typeof DefaultCards, effects: typeof DefaultEffects, deckModifiers: typeof DefaultDeckModifiers };
 
     constructor() {
         this.cards = Utils.clone(DefaultCards);
         this.effects = Utils.clone(DefaultEffects);
-        this.scenarioEffects = Utils.clone(this.defaultScenarioEffects);
+        this.deckModifiers = Utils.clone(DefaultDeckModifiers);
     }
 
     public saveComparison(cards = this.cards, effects = this.effects) {
         this.comparison = {
             cards: Utils.clone(this.cards),
             effects: Utils.clone(this.effects),
-            scenarioEffects: Utils.clone(this.scenarioEffects)
+            deckModifiers: Utils.clone(this.deckModifiers)
         };
+    }
+
+    public applyModifiersToCards(cards = this.cards, deckModifiers = this.deckModifiers): typeof DefaultCards {
+        const newCards = Utils.clone(cards);
+        Object.keys(deckModifiers).forEach(key => newCards[key] += deckModifiers[key]);
+        return newCards;
+    }
+
+    public applyModifiersToEffects(effects = this.effects, deckModifiers = this.deckModifiers): typeof DefaultEffects {
+        const newEffects = Utils.clone(effects);
+        newEffects['None'] += this.sum(deckModifiers);
+        return newEffects;
     }
 
     public clearComparisons() {

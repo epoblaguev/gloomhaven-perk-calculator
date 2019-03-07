@@ -15,8 +15,14 @@ export class CardEffectsComponent extends GraphModule {
 
 
   public getChartData() {
-    const probs = this.deck.getEffectsProbability(this.deck.effects);
-    const compareProbs = this.deck.comparison == null ? null : this.deck.getEffectsProbability(this.deck.comparison.effects);
+    const effects = this.deck.applyModifiersToEffects(this.deck.effects);
+
+    const probs = this.deck.getEffectsProbability(effects);
+    let compareProbs = null;
+    if (this.deck.comparison != null) {
+      const compareEffects = this.deck.applyModifiersToEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
+      compareProbs = this.deck.getEffectsProbability(compareEffects);
+    }
 
     // Rename 'None' to 'No Effect'
     probs['No Effect'] = probs['None'];

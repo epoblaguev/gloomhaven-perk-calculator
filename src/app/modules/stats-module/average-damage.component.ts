@@ -8,7 +8,7 @@ import { MatBottomSheet } from '@angular/material';
   styleUrls: ['./stats-module.component.scss']
 })
 export class AverageDamageComponent extends GraphModule {
-  private baseDamage = [0, 1, 2, 3, 4, 5, 6];
+  private baseDamage = [0, 1, 2, 3, 4, 5];
   public barChartLabels: string[] = this.baseDamage.map(val => val.toString());
 
   public barChartOptions: any = {
@@ -35,14 +35,21 @@ export class AverageDamageComponent extends GraphModule {
     }
   };
 
-  constructor(public bottomSheet: MatBottomSheet) {super(bottomSheet);  }
+  constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
   public getChartData() {
-
-    const probData = [{ label: 'Current', data: this.baseDamage.map(val => this.deck.getAverageDamage(val)) }];
+    const cards = this.deck.applyModifiersToCards(this.deck.cards);
+    const probData = [{
+      label: 'Current',
+      data: this.baseDamage.map(val => this.deck.getAverageDamage(val, cards))
+    }];
 
     if (this.deck.comparison != null) {
-      probData.push({ label: 'Comparison', data: this.baseDamage.map(val => this.deck.getAverageDamage(val, this.deck.comparison.cards)) });
+      const compareCards = this.deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      probData.push({
+        label: 'Comparison',
+        data: this.baseDamage.map(val => this.deck.getAverageDamage(val, compareCards))
+      });
     }
     return probData;
   }

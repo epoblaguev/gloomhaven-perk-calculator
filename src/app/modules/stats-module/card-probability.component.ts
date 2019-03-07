@@ -16,8 +16,8 @@ export class CardProbabilityComponent extends GraphModule {
 
   public getChartData() {
     this.setChartLabels();
-
-    let probs = this.deck.getCardsProbability(this.deck.cards, this.removeZeroColumns);
+    let cards = this.deck.applyModifiersToCards(this.deck.cards);
+    let probs = this.deck.getCardsProbability(cards, this.removeZeroColumns);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -27,7 +27,8 @@ export class CardProbabilityComponent extends GraphModule {
     ];
 
     if (this.deck.comparison != null) {
-      probs = this.deck.getCardsProbability(this.deck.comparison.cards, this.removeZeroColumns);
+      cards = this.deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      probs = this.deck.getCardsProbability(cards, this.removeZeroColumns);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',

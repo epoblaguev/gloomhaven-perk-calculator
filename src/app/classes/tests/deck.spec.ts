@@ -326,4 +326,25 @@ describe('Deck', () => {
         });
     });
 
+    it('deck modifiers should start at 0', () => {
+        const deck = new Deck();
+        expect(Object.values(deck.deckModifiers).every(val => val === 0)).toBeTruthy();
+    });
+
+    it('should be able to apply deckModifiers', () => {
+        const deck = new Deck();
+        const clonedCards = Utils.clone(deck.cards);
+        const clonedEffects = Utils.clone(deck.effects);
+
+        Object.keys(deck.deckModifiers).forEach(key => {
+            deck.deckModifiers[key] = 1;
+            clonedCards[key] += 1;
+            clonedEffects['None'] += 1;
+        });
+
+        expect(deck.applyModifiersToCards()).toEqual(clonedCards);
+        expect(deck.applyModifiersToEffects()).toEqual(clonedEffects);
+
+    });
+
 });

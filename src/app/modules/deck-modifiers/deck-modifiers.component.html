@@ -1,19 +1,26 @@
 <mat-card fxLayout="column">
-  <mat-card-subtitle><i class="fas fa-book fa-fw fa-lg"></i> Scenario Effects (Beta)</mat-card-subtitle>
-  <mat-card-content>
-    <mat-form-field fxLayout="row" fxLayout.xs="column wrap">
-      <mat-select placeholder="Blessings" [(value)]="deck.scenarioEffects.Bless">
+  <mat-card-subtitle><i class="fas fa-money-bill fa-fw fa-lg"></i> Misc. Deck Modifiers</mat-card-subtitle>
+  <mat-card-content fxLayout="row wrap" fxLayout.xs="column wrap">
+    <mat-form-field class="margin-right-1em width-percent-30">
+      <mat-select placeholder="Blessings" [(value)]="deck.deckModifiers.Bless">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
           {{ i }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field fxLayout="row" fxLayout.xs="column wrap">
-      <mat-select placeholder="Curses" [(value)]="deck.scenarioEffects.Curse">
+    <mat-form-field class="margin-right-1em width-percent-30">
+      <mat-select placeholder="Curses" [(value)]="deck.deckModifiers.Curse">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
           {{ i }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field class="width-percent-30">
+        <mat-select placeholder="-1 Cards" [(value)]="deck.deckModifiers['-1']">
+          <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
+            {{ i }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
   </mat-card-content>
 </mat-card>
