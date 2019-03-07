@@ -15,7 +15,7 @@ export class DeckReliabilityComponent extends GraphModule {
     constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
     public getChartData() {
-        let cards = Deck.applyModifiersToCards(this.deck.cards, this.deck.deckModifiers);
+        let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
         const chartData = [
             {
                 label: 'Current', data: [
@@ -27,7 +27,7 @@ export class DeckReliabilityComponent extends GraphModule {
         ];
 
         if (this.deck.comparison != null) {
-            cards = Deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+            cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: [

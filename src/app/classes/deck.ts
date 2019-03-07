@@ -94,13 +94,13 @@ export class Deck {
         this.deckModifiers = Utils.clone(DefaultDeckModifiers);
     }
 
-    public static applyModifiersToCards(cards: typeof DefaultCards, modifiers: typeof DefaultDeckModifiers): typeof DefaultCards {
+    public static modifyCards(cards: typeof DefaultCards, modifiers: typeof DefaultDeckModifiers): typeof DefaultCards {
         const newCards = Utils.clone(cards);
         Object.keys(modifiers).forEach(key => newCards[key] += modifiers[key]);
         return newCards;
     }
 
-    public static applyModifiersToEffects(effects: typeof DefaultEffects, modifiers: typeof DefaultDeckModifiers): typeof DefaultEffects {
+    public static modifyEffects(effects: typeof DefaultEffects, modifiers: typeof DefaultDeckModifiers): typeof DefaultEffects {
         const newEffects = Utils.clone(effects);
         newEffects['None'] += this.sum(modifiers);
         return newEffects;

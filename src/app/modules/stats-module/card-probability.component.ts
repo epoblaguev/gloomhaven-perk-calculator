@@ -17,7 +17,7 @@ export class CardProbabilityComponent extends GraphModule {
 
   public getChartData() {
     this.setChartLabels();
-    let cards = Deck.applyModifiersToCards(this.deck.cards, this.deck.deckModifiers);
+    let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
     let probs = Deck.getCardsProbability(cards, this.removeZeroColumns);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
@@ -28,7 +28,7 @@ export class CardProbabilityComponent extends GraphModule {
     ];
 
     if (this.deck.comparison != null) {
-      cards = Deck.applyModifiersToCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probs = Deck.getCardsProbability(cards, this.removeZeroColumns);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
@@ -41,22 +41,26 @@ export class CardProbabilityComponent extends GraphModule {
   }
 
   private setChartLabels() {
+    let labels: string[];
     if (!this.removeZeroColumns) {
-      this.barChartLabels = Object.keys(this.deck.cards);
+      const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
+      labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key) || cards[key] !== 0);
     } else {
-      const labels = new Array<string>();
+      labels = new Array<string>();
+      const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
+      const compareCards = this.deck.comparison && Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
 
-      for (const key of Object.keys(this.deck.cards)) {
-        if (this.deck.cards[key] > 0 || (this.deck.comparison != null && this.deck.comparison.cards[key] > 0)) {
+      for (const key in cards) {
+        if (cards[key] > 0 || (compareCards && compareCards[key] > 0)) {
           labels.push(key);
         }
       }
+    }
 
-      if (this.barChartLabels.toString() !== labels.toString()) {
-        console.log(`${this.barChartLabels} !== ${labels}`);
-        this.barChartLabels = labels;
-        this.needRedraw = true;
-      }
+    if (this.barChartLabels.toString() !== labels.toString()) {
+      console.log(`${this.barChartLabels} !== ${labels}`);
+      this.barChartLabels = labels;
+      this.needRedraw = true;
     }
   }
 }

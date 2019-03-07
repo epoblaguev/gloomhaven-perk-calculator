@@ -16,12 +16,12 @@ export class CardEffectsComponent extends GraphModule {
 
 
   public getChartData() {
-    const effects = Deck.applyModifiersToEffects(this.deck.effects, this.deck.deckModifiers);
+    const effects = Deck.modifyEffects(this.deck.effects, this.deck.deckModifiers);
 
     const probs = Deck.getEffectsProbability(effects);
     let compareProbs = null;
     if (this.deck.comparison != null) {
-      const compareEffects = Deck.applyModifiersToEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
+      const compareEffects = Deck.modifyEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
       compareProbs = Deck.getEffectsProbability(compareEffects);
     }
 

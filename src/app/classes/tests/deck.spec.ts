@@ -342,8 +342,8 @@ describe('Deck', () => {
             clonedEffects['None'] += 1;
         });
 
-        expect(Deck.applyModifiersToCards(deck.cards, deck.deckModifiers)).toEqual(clonedCards);
-        expect(Deck.applyModifiersToEffects(deck.effects, deck.deckModifiers)).toEqual(clonedEffects);
+        expect(Deck.modifyCards(deck.cards, deck.deckModifiers)).toEqual(clonedCards);
+        expect(Deck.modifyEffects(deck.effects, deck.deckModifiers)).toEqual(clonedEffects);
 
     });
 
