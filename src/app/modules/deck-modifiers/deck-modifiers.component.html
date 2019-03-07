@@ -17,6 +17,7 @@
     </mat-form-field>
     <mat-form-field fxFlex="30%">
         <mat-select placeholder="-1 Cards" [(value)]="deck.deckModifiers['-1']">
+          <mat-option [value]="-2">-2</mat-option>
           <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
             {{ i }}
           </mat-option>
