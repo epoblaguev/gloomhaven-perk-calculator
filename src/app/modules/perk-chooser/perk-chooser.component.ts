@@ -1,44 +1,28 @@
-import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
-import { MatCheckbox } from '@angular/material';
-import settings from '../../settings/settings.json';
-import { Character } from '../../classes/character';
-import { Deck } from '../../classes/deck';
-import Utils from 'src/app/classes/utils.js';
-
+import { Component } from '@angular/core';
+import { CharacterService } from 'src/app/character.service.js';
 
 @Component({
     selector: 'app-perk-chooser',
     templateUrl: './perk-chooser.component.html',
-    styleUrls: ['./perk-chooser.component.scss']
+    styleUrls: ['./perk-chooser.component.scss'],
 })
 export class PerkChooserComponent {
-    @Input() characters: Character[];
-
-    @Output() deckChange = new EventEmitter();
-
-    // @ViewChildren('checkboxes') checkboxes: QueryList<MatCheckbox>;
-
-    /*
-    public characters = settings.characters.map(char => new Character(char));
-    public selectedCharacter = 0;
-    */
     public selectedCharacter = 0;
 
-    public perkCount = 0;
     public hideRealNames = true;
 
-    constructor() { }
+    constructor(public characterService: CharacterService) {}
 
     getPerkCount() {
         let sum = 0;
-        this.characters[this.selectedCharacter].perkList.forEach(perk => {
+        this.characterService.getCharacter().perkList.forEach(perk => {
             sum += perk.uses.filter(val => val.used).length;
         });
         return sum;
     }
 
     perkChanged() {
-        const character = this.characters[this.selectedCharacter];
+        const character = this.characterService.getCharacter();
         character.deck.applyPerks(character.perkList);
     }
 
@@ -48,7 +32,7 @@ export class PerkChooserComponent {
     }
 
     toggleComparison() {
-        const character = this.characters[this.selectedCharacter];
+        const character = this.characterService.getCharacter();
         if (character.compareDeck == null) {
             character.compareDeck = character.deck.cloneDeck();
         } else {
@@ -57,10 +41,10 @@ export class PerkChooserComponent {
     }
 
     resetPerkCheckboxes() {
-        this.characters[this.selectedCharacter].perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
+        this.characterService.getCharacter().perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
     }
 
     resetDeck() {
-        this.characters[this.selectedCharacter].deck.reset();
+        this.characterService.getCharacter().deck.reset();
     }
 }

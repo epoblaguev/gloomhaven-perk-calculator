@@ -5,7 +5,6 @@ import { UIModule } from './modules/ui-modules/ui.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChartsModule } from 'ng2-charts';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
 import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
@@ -14,6 +13,7 @@ import { CardEffectsComponent } from './modules/stats-module/card-effects.compon
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
 import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.component';
+import { CharacterService } from './character.service';
 
 
 @NgModule({
@@ -29,14 +29,13 @@ import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     UIModule,
     ChartsModule,
     MatMenuModule,
   ],
   entryComponents: [InfoPageComponent],
-  providers: [],
+  providers: [CharacterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

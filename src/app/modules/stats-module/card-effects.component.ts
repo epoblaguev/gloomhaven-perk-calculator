@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
 import { Deck } from 'src/app/classes/deck';
+import { CharacterService } from 'src/app/character.service';
 
 @Component({
   selector: 'app-card-effects',
@@ -9,17 +10,18 @@ import { Deck } from 'src/app/classes/deck';
   styleUrls: ['./stats-module.component.scss']
 })
 export class CardEffectsComponent extends GraphModule {
-  public barChartLabels = Object.keys(this.character.deck.cards);
+  public barChartLabels: string[];
   public removeZeroColumns = true;
 
-  constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
+  constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
+    super(bottomSheet, charSer);
+    this.barChartLabels = Object.keys(this.charSer.getCharacter().deck.cards);
+  }
 
 
   public getChartData() {
-    // const effects = Deck.modifyEffects(this.deck.effects, this.deck.deckModifiers);
-
-    const probs = this.character.deck.getEffectsProbability();
-    const compareProbs = this.character.compareDeck && this.character.compareDeck.getEffectsProbability();
+    const probs = this.charSer.getCharacter().deck.getEffectsProbability();
+    const compareProbs = this.charSer.getCharacter().compareDeck && this.charSer.getCharacter().compareDeck.getEffectsProbability();
 
     // Rename 'None' to 'No Effect'
     probs['No Effect'] = probs['None'];
@@ -38,7 +40,7 @@ export class CardEffectsComponent extends GraphModule {
       }
     ];
 
-    if (this.character.compareDeck != null) {
+    if (this.charSer.getCharacter().compareDeck != null) {
       Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
       probData.push({
         label: 'Comparison',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
+import { CharacterService } from 'src/app/character.service';
 
 
 @Component({
@@ -12,16 +13,15 @@ export class CardProbabilityComponent extends GraphModule {
   public barChartLabels; // = Object.keys(this.character.deck.cards);
   public removeZeroColumns = false;
 
-  constructor(public bottomSheet: MatBottomSheet) {
-    super(bottomSheet);
-    this.barChartLabels = Object.keys(this.character.deck.cards);
+  constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
+    super(bottomSheet, charSer);
+    this.barChartLabels = Object.keys(this.charSer.getCharacter().deck.cards);
   }
 
 
   public getChartData() {
     this.setChartLabels();
-    // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-    let probs = this.character.deck.getCardsProbability(this.removeZeroColumns); // Deck.getCardsProbability(cards, this.removeZeroColumns);
+    let probs = this.charSer.getCharacter().deck.getCardsProbability(this.removeZeroColumns);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -30,10 +30,8 @@ export class CardProbabilityComponent extends GraphModule {
       }
     ];
 
-    if (this.character.compareDeck != null) {
-      // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
-      // tslint:disable-next-line:max-line-length
-      probs = this.character.compareDeck.getCardsProbability(this.removeZeroColumns); // Deck.getCardsProbability(cards, this.removeZeroColumns);
+    if (this.charSer.getCharacter().compareDeck != null) {
+      probs = this.charSer.getCharacter().compareDeck.getCardsProbability(this.removeZeroColumns);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',
@@ -48,13 +46,13 @@ export class CardProbabilityComponent extends GraphModule {
     let labels: string[];
     if (!this.removeZeroColumns) {
       // const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-      const cards = this.character.deck.cards;
+      const cards = this.charSer.getCharacter().deck.cards;
       labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key) || cards[key] !== 0);
     } else {
       labels = new Array<string>();
-      const cards = this.character.deck.cards; // Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-      //      const compareCards = this.deck.comparison && Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
-      const compareCards = this.character.compareDeck && this.character.compareDeck.cards;
+      const cards = this.charSer.getCharacter().deck.cards;
+
+      const compareCards = this.charSer.getCharacter().compareDeck && this.charSer.getCharacter().compareDeck.cards;
 
       for (const key in cards) {
         if (cards[key] > 0 || (compareCards && compareCards[key] > 0)) {
