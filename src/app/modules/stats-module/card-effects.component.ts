@@ -16,15 +16,10 @@ export class CardEffectsComponent extends GraphModule {
 
 
   public getChartData() {
-    /*
-    const effects = Deck.modifyEffects(this.deck.effects, this.deck.deckModifiers);
+    // const effects = Deck.modifyEffects(this.deck.effects, this.deck.deckModifiers);
 
-    const probs = Deck.getEffectsProbability(effects);
-    let compareProbs = null;
-    if (this.deck.comparison != null) {
-      const compareEffects = Deck.modifyEffects(this.deck.comparison.effects, this.deck.comparison.deckModifiers);
-      compareProbs = Deck.getEffectsProbability(compareEffects);
-    }
+    const probs = this.character.deck.getEffectsProbability();
+    const compareProbs = this.character.compareDeck && this.character.compareDeck.getEffectsProbability();
 
     // Rename 'None' to 'No Effect'
     probs['No Effect'] = probs['None'];
@@ -43,7 +38,7 @@ export class CardEffectsComponent extends GraphModule {
       }
     ];
 
-    if (this.deck.comparison != null) {
+    if (this.character.compareDeck != null) {
       Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
       probData.push({
         label: 'Comparison',
@@ -51,8 +46,6 @@ export class CardEffectsComponent extends GraphModule {
       });
     }
     return probData;
-    */
-   return null;
   }
 
   private setChartLabels(probs: object, compareProbs: object) {

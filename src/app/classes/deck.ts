@@ -248,12 +248,24 @@ export class Deck {
         this.effects[cardEffect] -= count;
     }
 
-    public applyPerks(perks: Perk[]) {
-        Object.values(perks).forEach(perk => perk.set(this));
+    public applyPerks(perks: Perk[], reset = true) {
+        if (reset) { this.reset(); }
+        Object.values(perks).forEach(perk => {
+            Object.values(perk.uses).filter(use => use.used).forEach(use => {
+                perk.set(this);
+            });
+        });
     }
 
     public reset() {
         this.cards = Utils.clone(DefaultCards);
         this.effects = Utils.clone(DefaultEffects);
+    }
+
+    public cloneDeck() {
+        const newDeck = new Deck();
+        newDeck.cards = Utils.clone(this.cards);
+        newDeck.effects = Utils.clone(this.effects);
+        return newDeck;
     }
 }

@@ -2,15 +2,15 @@ import { Deck } from './deck';
 
 export class Perk {
     name: string;
-    uses: Array<{ checked: boolean }>;
+    uses: Array<{ used: boolean }>;
     set: (deck: Deck) => void;
 
     constructor(name: string, uses: number, set: (deck: Deck) => void) {
         this.name = name;
-        this.uses = Array<{ checked: boolean }>();
+        this.uses = Array<{ used: boolean }>();
 
         for (let i = 0; i < uses; i++) {
-            this.uses.push({ checked: false });
+            this.uses.push({ used: false });
         }
         this.set = set;
     }

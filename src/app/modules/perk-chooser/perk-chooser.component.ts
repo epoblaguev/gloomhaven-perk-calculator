@@ -3,6 +3,7 @@ import { MatCheckbox } from '@angular/material';
 import settings from '../../settings/settings.json';
 import { Character } from '../../classes/character';
 import { Deck } from '../../classes/deck';
+import Utils from 'src/app/classes/utils.js';
 
 
 @Component({
@@ -13,8 +14,7 @@ import { Deck } from '../../classes/deck';
 export class PerkChooserComponent {
     @Input() characters: Character[];
 
-    @Output()
-    deckChange = new EventEmitter();
+    @Output() deckChange = new EventEmitter();
 
     // @ViewChildren('checkboxes') checkboxes: QueryList<MatCheckbox>;
 
@@ -32,28 +32,14 @@ export class PerkChooserComponent {
     getPerkCount() {
         let sum = 0;
         this.characters[this.selectedCharacter].perkList.forEach(perk => {
-            sum += perk.uses.filter(val => val.checked).length;
+            sum += perk.uses.filter(val => val.used).length;
         });
         return sum;
     }
 
-    characterChanged() {
-        /*
-        this.deck.clearComparisons();
-        this.resetDeck();
-        */
-    }
-
-    selectPerk(event, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
-        /*
-         if (event.checked) {
-             set(this.deck);
-             this.perkCount += 1;
-         } else {
-             unset(this.deck);
-             this.perkCount -= 1;
-         }
-         */
+    perkChanged() {
+        const character = this.characters[this.selectedCharacter];
+        character.deck.applyPerks(character.perkList);
     }
 
     reset() {
@@ -62,17 +48,16 @@ export class PerkChooserComponent {
     }
 
     toggleComparison() {
-        /*
-        if (this.deck.comparison == null) {
-            this.deck.saveComparison();
+        const character = this.characters[this.selectedCharacter];
+        if (character.compareDeck == null) {
+            character.compareDeck = character.deck.cloneDeck();
         } else {
-            this.deck.clearComparisons();
+            character.compareDeck = null;
         }
-        */
     }
 
     resetPerkCheckboxes() {
-        this.characters[this.selectedCharacter].perkList.forEach(perk => perk.uses.forEach(use => use.checked = false));
+        this.characters[this.selectedCharacter].perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
     }
 
     resetDeck() {

@@ -14,10 +14,10 @@
 			<span>Perks Chosen: {{ getPerkCount() }}</span>
 			<div *ngFor="let perk of characters[selectedCharacter].perkList" fxLayoutGap="5px">
 				<span *ngFor="let use of perk.uses, let use_i = index">
-					<mat-checkbox [(ngModel)]="perk.uses[use_i].checked">
+					<mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
 					</mat-checkbox>
 				</span>
-				<b>{{perk.name}} <span *ngFor="let use of perk.uses">{{use.checked}} </span></b>
+				<b>{{perk.name}} <span *ngFor="let use of perk.uses">{{use.used}} </span></b>
 			</div>
 		</div>
 	</mat-card-content>
