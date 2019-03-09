@@ -11,19 +11,19 @@
 			</mat-select>
 		</mat-form-field>
 		<div>
-			<span>Perks Chosen: {{ perkCount }}</span>
+			<span>Perks Chosen: {{ getPerkCount() }}</span>
 			<div *ngFor="let perk of characters[selectedCharacter].perkList" fxLayoutGap="5px">
-				<span *ngFor="let use of ' '.repeat(perk.uses).split(''), let use_i = index">
-					<mat-checkbox #checkboxes (change)="selectPerk($event, perk.set, perk.unset)">
+				<span *ngFor="let use of perk.uses, let use_i = index">
+					<mat-checkbox [(ngModel)]="perk.uses[use_i].checked">
 					</mat-checkbox>
 				</span>
-				<b>{{perk.name}}</b>
+				<b>{{perk.name}} <span *ngFor="let use of perk.uses">{{use.checked}} </span></b>
 			</div>
 		</div>
 	</mat-card-content>
 	<mat-card-actions>
 		<button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">Reset</button>
 		<button mat-flat-button color="primary" (click)="toggleComparison()">
-			{{ deck.comparison == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
+			{{ characters[selectedCharacter].compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
 	</mat-card-actions>
 </mat-card>

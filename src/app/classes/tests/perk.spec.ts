@@ -5,7 +5,7 @@ import Utils from '../utils';
 describe('Perk', () => {
     Object.keys(PERK_LIST).forEach(key => {
         it(`should create an instance of '${key}'`, () => {
-            expect(new Perk(key, 1, PERK_LIST[key].set, PERK_LIST[key].unset)).toBeTruthy(`'[${key}] is not truthy`);
+            expect(new Perk(key, 1, PERK_LIST[key].set)).toBeTruthy(`'[${key}] is not truthy`);
         });
     });
 

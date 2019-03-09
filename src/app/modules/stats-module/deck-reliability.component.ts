@@ -15,25 +15,25 @@ export class DeckReliabilityComponent extends GraphModule {
     constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
     public getChartData() {
-        let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
+        // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
         const chartData = [
             {
                 label: 'Current', data: [
-                    Math.round(Deck.reliabilityNegative(cards) * 100),
-                    Math.round(Deck.reliabilityZero(cards) * 100),
-                    Math.round(Deck.reliabilityPositive(cards) * 100)
+                    Math.round(this.character.deck.reliabilityNegative() * 100),
+                    Math.round(this.character.deck.reliabilityZero() * 100),
+                    Math.round(this.character.deck.reliabilityPositive() * 100)
                 ]
             }
         ];
 
-        if (this.deck.comparison != null) {
-            cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+        if (this.character.compareDeck != null) {
+            // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: [
-                    Math.round(Deck.reliabilityNegative(cards) * 100),
-                    Math.round(Deck.reliabilityZero(cards) * 100),
-                    Math.round(Deck.reliabilityPositive(cards) * 100)
+                    Math.round(this.character.compareDeck.reliabilityNegative() * 100),
+                    Math.round(this.character.compareDeck.reliabilityZero() * 100),
+                    Math.round(this.character.compareDeck.reliabilityPositive() * 100)
                 ]
             });
         }

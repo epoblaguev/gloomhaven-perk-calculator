@@ -5,6 +5,9 @@ import Utils from './utils';
 import { MatBottomSheet } from '@angular/material';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
+import { Character } from './character';
+import settings from '../settings/settings.json';
+
 
 interface Properties {
     text: string;
@@ -14,14 +17,15 @@ interface Properties {
 }
 
 export abstract class GraphModule implements DoCheck, OnInit {
-    @Input() deck: Deck = new Deck();
+    // @Input() deck: Deck = new Deck();
     @Input() properties: Properties;
+    @Input() character: Character = new Character(settings.characters[0]); // Character;
 
 
     @ViewChild('baseChart')
     chart: BaseChartDirective;
 
-    protected prevDeckValue: Deck = new Deck();
+    protected prevCharacter: Character = this.character;
     protected needRedraw = false;
     protected infoPageName: StatsTypes;
 
@@ -81,18 +85,18 @@ export abstract class GraphModule implements DoCheck, OnInit {
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
-        this.barChartLegend = this.deck.comparison != null;
+        this.barChartLegend = this.character.compareDeck != null;
         this.infoPageName = this.properties.infoPage;
     }
 
     ngDoCheck() {
-        if (!Utils.equals(this.deck, this.prevDeckValue)) {
-            this.needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
-            console.log(`${this.deck.comparison} == ${this.prevDeckValue.comparison}`);
+        if (!Utils.equals(this.character, this.prevCharacter)) {
+            this.needRedraw = !Utils.equals(this.character.compareDeck, this.prevCharacter.compareDeck);
+            console.log(`${this.character.compareDeck} == ${this.prevCharacter.compareDeck}`);
 
-            this.prevDeckValue = Utils.clone(this.deck);
+            this.prevCharacter = Utils.clone(this.character);
             this.barChartData = this.getChartData();
-            this.barChartLegend = this.deck.comparison != null;
+            this.barChartLegend = this.character.compareDeck != null;
 
             if (this.needRedraw) {
                 console.log('Redrawing chart');

@@ -2,15 +2,17 @@ import { Deck } from './deck';
 
 export class Perk {
     name: string;
-    uses: number;
+    uses: Array<{ checked: boolean }>;
     set: (deck: Deck) => void;
-    unset: (deck: Deck) => void;
 
-    constructor(name: string, uses: number, set: (deck: Deck) => void, unset: (deck: Deck) => void) {
+    constructor(name: string, uses: number, set: (deck: Deck) => void) {
         this.name = name;
-        this.uses = uses;
+        this.uses = Array<{ checked: boolean }>();
+
+        for (let i = 0; i < uses; i++) {
+            this.uses.push({ checked: false });
+        }
         this.set = set;
-        this.unset = unset;
     }
 }
 

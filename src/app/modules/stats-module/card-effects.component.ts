@@ -9,13 +9,14 @@ import { Deck } from 'src/app/classes/deck';
   styleUrls: ['./stats-module.component.scss']
 })
 export class CardEffectsComponent extends GraphModule {
-  public barChartLabels = Object.keys(this.deck.effects);
+  public barChartLabels = Object.keys(this.character.deck.cards);
   public removeZeroColumns = true;
 
   constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
 
 
   public getChartData() {
+    /*
     const effects = Deck.modifyEffects(this.deck.effects, this.deck.deckModifiers);
 
     const probs = Deck.getEffectsProbability(effects);
@@ -49,8 +50,9 @@ export class CardEffectsComponent extends GraphModule {
         data: this.fitToChart(compareProbs)
       });
     }
-
     return probData;
+    */
+   return null;
   }
 
   private setChartLabels(probs: object, compareProbs: object) {

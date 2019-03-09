@@ -32,18 +32,18 @@
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-card-probability *ngIf="statsModules.cardProbability.show" [deck]="deck" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
+        <app-card-probability *ngIf="statsModules.cardProbability.show && character != null" [character]="character" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-probability>
-        <app-card-effects *ngIf="statsModules.effectProbability.show" [deck]="deck" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
+        <app-card-effects *ngIf="statsModules.effectProbability.show && character != null" [character]="character" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-effects>
-        <app-average-damage *ngIf="statsModules.averageDamage.show" [deck]="deck" [properties]="statsModules.averageDamage"
-          fxFlex="100" fxFlex.xs="100">
+        <app-average-damage *ngIf="statsModules.averageDamage.show && character != null" [character]="character" [properties]="statsModules.averageDamage"
+          fxFlex="100" fxFlex.xs="100"> 
         </app-average-damage>
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-deck-reliability *ngIf="statsModules.deckReliability.show" [deck]="deck" [properties]="statsModules.deckReliability" fxFlex="100">
+        <app-deck-reliability *ngIf="statsModules.deckReliability.show && character != null" [character]="character" [properties]="statsModules.deckReliability" fxFlex="100">
         </app-deck-reliability>
-        <app-perk-chooser [deck]="deck" fxFlex="100"></app-perk-chooser>
+        <app-perk-chooser [characters]="characters" fxFlex="100"></app-perk-chooser>
         <app-deck-modifiers [deck]="deck" fxFlex="100"></app-deck-modifiers>
       </div>
     </div>
