@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   deck = new Deck();
 
   statsModules = StatsModules;
+  showDeckModifiers = true;
 
   constructor(public bottomSheet: MatBottomSheet) {
   }

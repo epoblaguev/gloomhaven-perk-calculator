@@ -1,6 +1,5 @@
 <mat-card fxLayout="column">
-  <mat-card-subtitle><i class="fas fa-money-bill fa-fw fa-lg color-purple"></i> Misc. Deck Modifiers
-    {{charServ.getCharacter().name}} </mat-card-subtitle>
+  <mat-card-subtitle><i class="fas fa-money-bill fa-fw fa-lg color-purple"></i> Misc. Deck Modifiers</mat-card-subtitle>
   <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
     <mat-form-field fxFlex="45%">
       <mat-select placeholder="Scenario Curses" [(value)]="modifiers.curse" (selectionChange)="selectionChange()">
@@ -10,7 +9,8 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field fxFlex="45%">
-      <mat-select placeholder="Scenario -1 Cards" [(value)]="modifiers['scenario-1']" (selectionChange)="selectionChange()">
+      <mat-select placeholder="Scenario -1 Cards" [(value)]="modifiers['scenario-1']"
+        (selectionChange)="selectionChange()">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
           {{ i }}
         </mat-option>
@@ -18,12 +18,12 @@
     </mat-form-field>
 
     <mat-form-field fxFlex="45%">
-        <mat-select placeholder="Item -1 Cards" [(value)]="modifiers['item-1']" (selectionChange)="selectionChange()">
-          <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
-            {{ i }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-select placeholder="Item -1 Cards" [(value)]="modifiers['item-1']" (selectionChange)="selectionChange()">
+        <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
+          {{ i }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field fxFlex="45%">
       <mat-select placeholder="Blessings" [(value)]="modifiers.bless" (selectionChange)="selectionChange()">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">

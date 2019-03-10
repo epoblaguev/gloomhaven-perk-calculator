@@ -7,6 +7,11 @@
           [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
         Toggle {{item.value.text}}
       </button>
+      <button mat-menu-item (click)="$event.stopPropagation(); showDeckModifiers = !showDeckModifiers">
+        <i class="fas fa-money-bill fa-fw fa-lg"
+          [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}"></i>
+        Toggle Deck Modifiers
+      </button>
       <mat-divider></mat-divider>
       <a mat-menu-item href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank">
         <i class="fab fa-github fa-lg fa-fw color-gray"></i> Fork me on Github
@@ -32,20 +37,23 @@
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-card-probability *ngIf="statsModules.cardProbability.show" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
+        <app-card-probability *ngIf="statsModules.cardProbability.show" [properties]="statsModules.cardProbability"
+          fxFlex="100" fxFlex.xs="100">
         </app-card-probability>
-        <app-card-effects *ngIf="statsModules.effectProbability.show" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
+        <app-card-effects *ngIf="statsModules.effectProbability.show" [properties]="statsModules.effectProbability"
+          fxFlex="100" fxFlex.xs="100">
         </app-card-effects>
         <app-average-damage *ngIf="statsModules.averageDamage.show" [properties]="statsModules.averageDamage"
           fxFlex="100" fxFlex.xs="100">
         </app-average-damage>
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-        <app-deck-reliability *ngIf="statsModules.deckReliability.show"  [properties]="statsModules.deckReliability" fxFlex="100">
+        <app-deck-reliability *ngIf="statsModules.deckReliability.show" [properties]="statsModules.deckReliability"
+          fxFlex="100">
         </app-deck-reliability>
         <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
         <app-perk-selector fxFlex="100"></app-perk-selector>
-        <app-deck-modifiers fxFlex="100"></app-deck-modifiers>
+        <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
       </div>
     </div>
   </div>
