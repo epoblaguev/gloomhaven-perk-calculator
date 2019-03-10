@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Deck } from 'src/app/classes/deck';
+import { CharacterService } from 'src/app/character.service';
 
 @Component({
   selector: 'app-deck-modifiers',
@@ -10,7 +11,7 @@ export class DeckModifiersComponent implements OnInit {
   @Input()
   deck = new Deck();
 
-  constructor() { }
+  constructor(public charServ: CharacterService) { }
 
   ngOnInit() {
   }

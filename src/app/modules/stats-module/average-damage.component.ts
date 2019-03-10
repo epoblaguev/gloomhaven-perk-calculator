@@ -38,9 +38,6 @@ export class AverageDamageComponent extends GraphModule {
 
   constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
     super(bottomSheet, charSer);
-    setInterval(() => {
-      charSer.selectCharacter(3);
-    }, 5000);
   }
 
   public getChartData() {

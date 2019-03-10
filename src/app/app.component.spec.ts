@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MatToolbar, MatCardSubtitle } from '@angular/material';
 import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
-import { PerkChooserComponent } from './modules/perk-chooser/perk-chooser.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
 import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
@@ -20,7 +19,6 @@ describe('AppComponent', () => {
         MatToolbar,
         MatCardSubtitle,
         CardProbabilityComponent,
-        PerkChooserComponent,
         DeckReliabilityComponent,
         CardEffectsComponent,
         AverageDamageComponent
