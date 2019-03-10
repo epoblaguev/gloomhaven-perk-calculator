@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CharacterService } from 'src/app/character.service';
 
 @Component({
-  selector: 'app-perk-selector',
-  templateUrl: './perk-selector.component.html',
-  styleUrls: ['./perk-selector.component.scss']
+    selector: 'app-perk-selector',
+    templateUrl: './perk-selector.component.html',
+    styleUrls: ['./perk-selector.component.scss']
 })
 export class PerkSelectorComponent implements OnInit {
     public selectedCharacter = 0;
 
     public hideRealNames = true;
 
-    constructor(public charServ: CharacterService) {}
+    constructor(public charServ: CharacterService) { }
 
     ngOnInit(): void {
         // throw new Error("Method not implemented.");
@@ -32,6 +32,7 @@ export class PerkSelectorComponent implements OnInit {
     reset() {
         this.resetPerkCheckboxes();
         this.resetDeck();
+        this.resetDeckModifiers();
     }
 
     toggleComparison() {
@@ -43,11 +44,17 @@ export class PerkSelectorComponent implements OnInit {
         }
     }
 
-    resetPerkCheckboxes() {
+    private resetPerkCheckboxes() {
         this.charServ.getCharacter().perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
     }
 
-    resetDeck() {
+    private resetDeck() {
         this.charServ.getCharacter().deck.reset();
+    }
+
+    private resetDeckModifiers() {
+        this.charServ.getCharacter().negItemEffects.length = 0;
+        this.charServ.getCharacter().negScenarioEffects.length = 0;
+        this.charServ.getCharacter().miscModifiers.length = 0;
     }
 }

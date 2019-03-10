@@ -249,15 +249,6 @@ export class Deck {
         this.effects[cardEffect] -= count;
     }
 
-    public applyPerks(perks: DeckModifier[], reset = true) {
-        if (reset) { this.reset(); }
-        Object.values(perks).forEach(perk => {
-            Object.values(perk.uses).filter(use => use.used).forEach(use => {
-                perk.set(this);
-            });
-        });
-    }
-
     public reset() {
         this.cards = Utils.clone(DefaultCards);
         this.effects = Utils.clone(DefaultEffects);

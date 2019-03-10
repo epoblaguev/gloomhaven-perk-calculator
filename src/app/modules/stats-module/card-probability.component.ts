@@ -44,16 +44,16 @@ export class CardProbabilityComponent extends GraphModule {
 
   private setChartLabels() {
     let labels: string[];
+    const cards = this.charServ.getCharacter().deck.cards;
+    const compareCards = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.cards;
+
     if (!this.removeZeroColumns) {
-      // const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-      const cards = this.charServ.getCharacter().deck.cards;
-      labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key) || cards[key] !== 0);
+      labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key)
+        || cards[key] !== 0 || (compareCards && compareCards[key] !== 0));
+
+
     } else {
       labels = new Array<string>();
-      const cards = this.charServ.getCharacter().deck.cards;
-
-      const compareCards = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.cards;
-
       for (const key in cards) {
         if (cards[key] > 0 || (compareCards && compareCards[key] > 0)) {
           labels.push(key);

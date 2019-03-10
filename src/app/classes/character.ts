@@ -10,16 +10,19 @@ export class Character {
     public miscModifiers: DeckModifier[];
     public deck: Deck;
     public compareDeck: Deck;
+    public ignoreNegItemEffects: boolean;
+    public ignoreNegScenarioEffects: boolean;
 
     constructor(characterJson) {
         this.name = characterJson.name;
         this.hiddenName = characterJson.hidden_name;
         this.deck = new Deck();
+        this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
 
         this.perkList = new Array<DeckModifier>();
         for (const perk of characterJson.perks) {
             const perkFuncs = PERK_LIST[perk.name];
-            this.perkList.push(new DeckModifier(perk.name, perk.uses, perkFuncs.set));
+            this.perkList.push(new DeckModifier(perk.name, perk.uses, perkFuncs));
         }
 
         this.negScenarioEffects = new Array<DeckModifier>();
@@ -28,9 +31,20 @@ export class Character {
     }
 
     public applyModifiers() {
-        this.deck.applyPerks(this.perkList);
-        this.deck.applyPerks(this.negScenarioEffects, false);
-        this.deck.applyPerks(this.negItemEffects, false);
-        this.deck.applyPerks(this.miscModifiers, false);
+        this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
+
+        this.deck.reset();
+        this.applyModifierList(this.perkList);
+        this.applyModifierList(this.miscModifiers);
+        if (!this.ignoreNegScenarioEffects) { this.applyModifierList(this.negScenarioEffects); }
+        if (!this.ignoreNegItemEffects) { this.applyModifierList(this.negItemEffects); }
+    }
+
+    private applyModifierList(modList: DeckModifier[]): void {
+        Object.values(modList).forEach(perk => {
+            Object.values(perk.uses).forEach(use => {
+                if (use.used) { perk.set(this); }
+            });
+        });
     }
 }
