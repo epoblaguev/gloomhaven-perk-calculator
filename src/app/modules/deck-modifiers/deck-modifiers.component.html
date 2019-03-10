@@ -2,21 +2,21 @@
   <mat-card-subtitle><i class="fas fa-money-bill fa-fw fa-lg color-purple"></i> Misc. Deck Modifiers {{charServ.getCharacter().name}} </mat-card-subtitle>
   <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
     <mat-form-field fxFlex="30%">
-      <mat-select placeholder="Blessings" [(value)]="deck.deckModifiers.Bless">
+      <mat-select placeholder="Blessings" [(value)]="modifiers.bless" (selectionChange)="selectionChange()">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
           {{ i }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field fxFlex="30%">
-      <mat-select placeholder="Curses" [(value)]="deck.deckModifiers.Curse">
+      <mat-select placeholder="Curses" [(value)]="modifiers.curse" (selectionChange)="selectionChange()">
         <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
           {{ i }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field fxFlex="30%">
-        <mat-select placeholder="-1 Cards" [(value)]="deck.deckModifiers['-1']">
+        <mat-select placeholder="-1 Cards" [(value)]="modifiers['-1']" (selectionChange)="selectionChange()">
           <mat-option *ngFor="let character of ' '.repeat(11).split(''), let i = index" [value]="i">
             {{ i }}
           </mat-option>

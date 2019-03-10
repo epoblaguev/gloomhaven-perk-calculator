@@ -1,5 +1,5 @@
 import Utils from './utils';
-import { Perk } from './perk';
+import { DeckModifier } from './deckModifier';
 
 const DefaultCards = {
     x0: 1,
@@ -249,7 +249,7 @@ export class Deck {
         this.effects[cardEffect] -= count;
     }
 
-    public applyPerks(perks: Perk[], reset = true) {
+    public applyPerks(perks: DeckModifier[], reset = true) {
         if (reset) { this.reset(); }
         Object.values(perks).forEach(perk => {
             Object.values(perk.uses).filter(use => use.used).forEach(use => {

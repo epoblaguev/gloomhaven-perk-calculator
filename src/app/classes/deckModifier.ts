@@ -1,20 +1,34 @@
 import { Deck } from './deck';
 
-export class Perk {
+export class DeckModifier {
     name: string;
     uses: Array<{ used: boolean }>;
     set: (deck: Deck) => void;
 
-    constructor(name: string, uses: number, set: (deck: Deck) => void) {
+    constructor(name: string, uses: number, set: (deck: Deck) => void, useValue = false) {
         this.name = name;
         this.uses = Array<{ used: boolean }>();
 
         for (let i = 0; i < uses; i++) {
-            this.uses.push({ used: false });
+            this.uses.push({ used: useValue });
         }
         this.set = set;
     }
 }
+
+export const NEG_SCENARIO_EFFECTS_LIST = {
+    '-1': (deck: Deck) => deck.addCard('-1', 'None', 1),
+    Curse: (deck: Deck) => deck.addCard('Curse', 'None', 1)
+};
+
+export const NEG_ITEM_EFFECTS_LIST = {
+    '-1': (deck: Deck) => deck.addCard('-1', 'None', 1)
+};
+
+export const MISC_MODIFIERS_LIST = {
+    '+1': (deck: Deck) => deck.addCard('+1', 'None', 1),
+    Bless: (deck: Deck) => deck.addCard('Bless', 'None', 1)
+};
 
 export const PERK_LIST = {
     'Add one (-1) DARK card': {

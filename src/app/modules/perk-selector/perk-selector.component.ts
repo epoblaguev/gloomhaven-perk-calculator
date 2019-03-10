@@ -26,8 +26,7 @@ export class PerkSelectorComponent implements OnInit {
     }
 
     perkChanged() {
-        const character = this.charServ.getCharacter();
-        character.deck.applyPerks(character.perkList);
+        this.charServ.getCharacter().applyModifiers();
     }
 
     reset() {
