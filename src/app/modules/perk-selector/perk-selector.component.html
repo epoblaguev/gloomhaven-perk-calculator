@@ -1,0 +1,28 @@
+<mat-card fxLayout="column">
+  <mat-card-subtitle><i class="fas fa-user-check fa-fw fa-lg"></i> Perks</mat-card-subtitle>
+  <mat-card-content>
+    <mat-form-field fxLayout="row" fxLayout.xs="column wrap">
+      <mat-select placeholder="Select Character" [(value)]="selectedCharacter"
+        (selectionChange)="charServ.selectCharacter(selectedCharacter)">
+        <mat-option *ngFor="let character of charServ.getCharacters(), let char_i = index" [value]="char_i">
+          {{ hideRealNames ? character.hiddenName : character.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <span>Perks Chosen: {{ getPerkCount() }}</span>
+      <div *ngFor="let perk of charServ.getCharacter().perkList" fxLayoutGap="5px">
+        <span *ngFor="let use of perk.uses, let use_i = index">
+          <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
+          </mat-checkbox>
+        </span>
+        <b>{{perk.name}}</b>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">Reset</button>
+    <button mat-flat-button color="primary" (click)="toggleComparison()">
+      {{ charServ.getCharacter().compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
+  </mat-card-actions>
+</mat-card>

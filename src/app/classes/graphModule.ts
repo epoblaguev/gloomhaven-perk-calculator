@@ -1,10 +1,12 @@
 import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { Deck } from './deck';
 import Utils from './utils';
 import { MatBottomSheet } from '@angular/material';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
+import { Character } from './character';
+import { CharacterService } from '../character.service';
+
 
 interface Properties {
     text: string;
@@ -14,14 +16,12 @@ interface Properties {
 }
 
 export abstract class GraphModule implements DoCheck, OnInit {
-    @Input() deck: Deck = new Deck();
     @Input() properties: Properties;
-
 
     @ViewChild('baseChart')
     chart: BaseChartDirective;
 
-    protected prevDeckValue: Deck = new Deck();
+    protected prevCharacter: Character;
     protected needRedraw = false;
     protected infoPageName: StatsTypes;
 
@@ -76,23 +76,24 @@ export abstract class GraphModule implements DoCheck, OnInit {
         });
     }
 
-    constructor(public bottomSheet: MatBottomSheet) { }
+    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+        this.prevCharacter = Utils.clone(charServ.getCharacter());
+    }
 
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
-        this.barChartLegend = this.deck.comparison != null;
+        this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
         this.infoPageName = this.properties.infoPage;
     }
 
     ngDoCheck() {
-        if (!Utils.equals(this.deck, this.prevDeckValue)) {
-            this.needRedraw = !Utils.equals(this.deck.comparison, this.prevDeckValue.comparison);
-            console.log(`${this.deck.comparison} == ${this.prevDeckValue.comparison}`);
+        if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
+            this.needRedraw = !Utils.equals(this.charServ.getCharacter().compareDeck, this.prevCharacter.compareDeck);
 
-            this.prevDeckValue = Utils.clone(this.deck);
+            this.prevCharacter = Utils.clone(this.charServ.getCharacter());
             this.barChartData = this.getChartData();
-            this.barChartLegend = this.deck.comparison != null;
+            this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
 
             if (this.needRedraw) {
                 console.log('Redrawing chart');

@@ -1,27 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerkChooserComponent } from './perk-chooser.component';
+import { PerkSelectorComponent } from './perk-selector.component';
 
-describe('PerkChooserComponent', () => {
-  let component: PerkChooserComponent;
-  let fixture: ComponentFixture<PerkChooserComponent>;
+describe('PerkSelectorComponent', () => {
+  let component: PerkSelectorComponent;
+  let fixture: ComponentFixture<PerkSelectorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerkChooserComponent ]
+      declarations: [ PerkSelectorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PerkChooserComponent);
+    fixture = TestBed.createComponent(PerkSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  /*
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  */
 });

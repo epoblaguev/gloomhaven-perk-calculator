@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
 import { Deck } from 'src/app/classes/deck';
+import { CharacterService } from 'src/app/character.service';
 
 @Component({
     selector: 'app-deck-reliability',
@@ -12,28 +13,30 @@ import { Deck } from 'src/app/classes/deck';
 export class DeckReliabilityComponent extends GraphModule {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
 
-    constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
+    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+        super(bottomSheet, charServ);
+    }
 
     public getChartData() {
-        let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
+        // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
         const chartData = [
             {
                 label: 'Current', data: [
-                    Math.round(Deck.reliabilityNegative(cards) * 100),
-                    Math.round(Deck.reliabilityZero(cards) * 100),
-                    Math.round(Deck.reliabilityPositive(cards) * 100)
+                    Math.round(this.charServ.getCharacter().deck.reliabilityNegative() * 100),
+                    Math.round(this.charServ.getCharacter().deck.reliabilityZero() * 100),
+                    Math.round(this.charServ.getCharacter().deck.reliabilityPositive() * 100)
                 ]
             }
         ];
 
-        if (this.deck.comparison != null) {
-            cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+        if (this.charServ.getCharacter().compareDeck != null) {
+            // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: [
-                    Math.round(Deck.reliabilityNegative(cards) * 100),
-                    Math.round(Deck.reliabilityZero(cards) * 100),
-                    Math.round(Deck.reliabilityPositive(cards) * 100)
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityNegative() * 100),
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityZero() * 100),
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityPositive() * 100)
                 ]
             });
         }

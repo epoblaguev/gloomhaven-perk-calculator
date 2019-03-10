@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
-import { Deck } from 'src/app/classes/deck';
+import { CharacterService } from 'src/app/character.service';
 
 @Component({
   selector: 'app-average-damage',
   templateUrl: './stats-module.component.html',
-  styleUrls: ['./stats-module.component.scss']
+  styleUrls: ['./stats-module.component.scss'],
 })
 export class AverageDamageComponent extends GraphModule {
   private baseDamage = [0, 1, 2, 3, 4, 5];
@@ -36,20 +36,21 @@ export class AverageDamageComponent extends GraphModule {
     }
   };
 
-  constructor(public bottomSheet: MatBottomSheet) { super(bottomSheet); }
+  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+    super(bottomSheet, charServ);
+  }
 
   public getChartData() {
-    const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => Deck.getAverageDamage(val, cards))
+      data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val))
     }];
 
-    if (this.deck.comparison != null) {
-      const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+    if (this.charServ.getCharacter().compareDeck != null) {
+      // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => Deck.getAverageDamage(val, compareCards))
+        data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val))
       });
     }
     return probData;
