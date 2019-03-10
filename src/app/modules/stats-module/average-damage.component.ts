@@ -36,21 +36,21 @@ export class AverageDamageComponent extends GraphModule {
     }
   };
 
-  constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
-    super(bottomSheet, charSer);
+  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+    super(bottomSheet, charServ);
   }
 
   public getChartData() {
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => this.charSer.getCharacter().deck.getAverageDamage(val))
+      data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val))
     }];
 
-    if (this.charSer.getCharacter().compareDeck != null) {
+    if (this.charServ.getCharacter().compareDeck != null) {
       // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => this.charSer.getCharacter().compareDeck.getAverageDamage(val))
+        data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val))
       });
     }
     return probData;

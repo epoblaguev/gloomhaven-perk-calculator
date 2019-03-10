@@ -76,25 +76,24 @@ export abstract class GraphModule implements DoCheck, OnInit {
         });
     }
 
-    constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
-        this.prevCharacter = charSer.getCharacter();
+    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+        this.prevCharacter = Utils.clone(charServ.getCharacter());
     }
 
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
-        this.barChartLegend = this.charSer.getCharacter().compareDeck != null;
+        this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
         this.infoPageName = this.properties.infoPage;
     }
 
     ngDoCheck() {
-        if (!Utils.equals(this.charSer.getCharacter(), this.prevCharacter)) {
-            this.needRedraw = !Utils.equals(this.charSer.getCharacter().compareDeck, this.prevCharacter.compareDeck);
-            console.log(`${this.charSer.getCharacter().compareDeck} == ${this.prevCharacter.compareDeck}`);
+        if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
+            this.needRedraw = !Utils.equals(this.charServ.getCharacter().compareDeck, this.prevCharacter.compareDeck);
 
-            this.prevCharacter = Utils.clone(this.charSer.getCharacter());
+            this.prevCharacter = Utils.clone(this.charServ.getCharacter());
             this.barChartData = this.getChartData();
-            this.barChartLegend = this.charSer.getCharacter().compareDeck != null;
+            this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
 
             if (this.needRedraw) {
                 console.log('Redrawing chart');

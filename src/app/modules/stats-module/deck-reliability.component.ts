@@ -13,8 +13,8 @@ import { CharacterService } from 'src/app/character.service';
 export class DeckReliabilityComponent extends GraphModule {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
 
-    constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
-        super(bottomSheet, charSer);
+    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+        super(bottomSheet, charServ);
     }
 
     public getChartData() {
@@ -22,21 +22,21 @@ export class DeckReliabilityComponent extends GraphModule {
         const chartData = [
             {
                 label: 'Current', data: [
-                    Math.round(this.charSer.getCharacter().deck.reliabilityNegative() * 100),
-                    Math.round(this.charSer.getCharacter().deck.reliabilityZero() * 100),
-                    Math.round(this.charSer.getCharacter().deck.reliabilityPositive() * 100)
+                    Math.round(this.charServ.getCharacter().deck.reliabilityNegative() * 100),
+                    Math.round(this.charServ.getCharacter().deck.reliabilityZero() * 100),
+                    Math.round(this.charServ.getCharacter().deck.reliabilityPositive() * 100)
                 ]
             }
         ];
 
-        if (this.charSer.getCharacter().compareDeck != null) {
+        if (this.charServ.getCharacter().compareDeck != null) {
             // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: [
-                    Math.round(this.charSer.getCharacter().compareDeck.reliabilityNegative() * 100),
-                    Math.round(this.charSer.getCharacter().compareDeck.reliabilityZero() * 100),
-                    Math.round(this.charSer.getCharacter().compareDeck.reliabilityPositive() * 100)
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityNegative() * 100),
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityZero() * 100),
+                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityPositive() * 100)
                 ]
             });
         }

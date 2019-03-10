@@ -13,15 +13,15 @@ export class CardProbabilityComponent extends GraphModule {
   public barChartLabels; // = Object.keys(this.character.deck.cards);
   public removeZeroColumns = false;
 
-  constructor(public bottomSheet: MatBottomSheet, public charSer: CharacterService) {
-    super(bottomSheet, charSer);
-    this.barChartLabels = Object.keys(this.charSer.getCharacter().deck.cards);
+  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+    super(bottomSheet, charServ);
+    this.barChartLabels = Object.keys(this.charServ.getCharacter().deck.cards);
   }
 
 
   public getChartData() {
     this.setChartLabels();
-    let probs = this.charSer.getCharacter().deck.getCardsProbability(this.removeZeroColumns);
+    let probs = this.charServ.getCharacter().deck.getCardsProbability(this.removeZeroColumns);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -30,8 +30,8 @@ export class CardProbabilityComponent extends GraphModule {
       }
     ];
 
-    if (this.charSer.getCharacter().compareDeck != null) {
-      probs = this.charSer.getCharacter().compareDeck.getCardsProbability(this.removeZeroColumns);
+    if (this.charServ.getCharacter().compareDeck != null) {
+      probs = this.charServ.getCharacter().compareDeck.getCardsProbability(this.removeZeroColumns);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',
@@ -46,13 +46,13 @@ export class CardProbabilityComponent extends GraphModule {
     let labels: string[];
     if (!this.removeZeroColumns) {
       // const cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-      const cards = this.charSer.getCharacter().deck.cards;
+      const cards = this.charServ.getCharacter().deck.cards;
       labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key) || cards[key] !== 0);
     } else {
       labels = new Array<string>();
-      const cards = this.charSer.getCharacter().deck.cards;
+      const cards = this.charServ.getCharacter().deck.cards;
 
-      const compareCards = this.charSer.getCharacter().compareDeck && this.charSer.getCharacter().compareDeck.cards;
+      const compareCards = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.cards;
 
       for (const key in cards) {
         if (cards[key] > 0 || (compareCards && compareCards[key] > 0)) {
