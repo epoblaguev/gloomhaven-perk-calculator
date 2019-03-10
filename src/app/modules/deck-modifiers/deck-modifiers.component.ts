@@ -30,10 +30,18 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
       this.prevCharacter = Utils.clone(this.charServ.getCharacter());
       const char = this.charServ.getCharacter();
-      this.modifiers.bless = char.miscModifiers.filter(mod => mod.name === 'Bless').reduce((p, c) => p.uses.length + c.uses.length);
-      this.modifiers.curse = char.negScenarioEffects.filter(mod => mod.name === 'Curse').reduce((p, c) => p.uses.length + c.uses.length);
-      this.modifiers['-1'] = char.negItemEffects.filter(mod => mod.name === '-1').reduce((p, c) => p.uses.length + c.uses.length);
+      this.modifiers.bless = this.getModUses(char.miscModifiers.filter(mod => mod.name === 'Bless'));
+      this.modifiers.curse = this.getModUses(char.negScenarioEffects.filter(mod => mod.name === 'Curse'));
+      this.modifiers['-1'] = this.getModUses(char.negItemEffects.filter(mod => mod.name === '-1'));
     }
+  }
+
+  private getModUses(modifiers: DeckModifier[]): number {
+    let sum = 0;
+    modifiers.forEach(mod => {
+      sum += mod.uses.length;
+    });
+    return sum;
   }
 
   selectionChange() {
