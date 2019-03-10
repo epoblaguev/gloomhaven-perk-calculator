@@ -224,7 +224,8 @@ export class Deck {
             if (this.cards[key] === 0 || key === 'x0' || key === 'Curse') { continue; }
 
             if (key.startsWith('r')) {
-                const newDeck = Utils.clone(this);
+                const newDeck = new Deck();
+                newDeck.cards = Utils.clone(this.cards);
                 newDeck.cards[key] -= 1;
                 damage += (Deck.cardValue[key] + newDeck.getAverageDamage(baseDamage)) * (this.cards[key] / sum);
             } else if (key === 'x2' || key === 'Bless') {
