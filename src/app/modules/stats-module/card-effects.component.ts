@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material';
-import { Deck } from 'src/app/classes/deck';
 import { CharacterService } from 'src/app/character.service';
 
 @Component({

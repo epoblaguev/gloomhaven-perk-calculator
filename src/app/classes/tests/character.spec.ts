@@ -1,7 +1,5 @@
 import { Character } from '../character';
 import settings from '../../settings/settings.json';
-import { Deck } from '../deck';
-import Utils from '../utils';
 
 
 describe('Character', () => {

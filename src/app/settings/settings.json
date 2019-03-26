@@ -180,7 +180,7 @@
                 {"name": "Add two rolling CURSE cards", "uses": 1},
                 {"name": "Add two rolling IMMOBILIZE cards", "uses": 1},
                 {"name": "Add one rolling STUN card", "uses": 2},
-                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
+                {"name": "Ignore negative scenario effects and add one (+1) card", "uses": 1}
             ]
         },
         {

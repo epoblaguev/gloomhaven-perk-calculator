@@ -1,4 +1,3 @@
-import { Deck } from './deck';
 import { Character } from './character';
 
 export class DeckModifier {
@@ -64,6 +63,10 @@ export const PERK_LIST = {
     'Add three (+0) WIND cards': (char: Character) => { char.deck.addCard('+0', 'Wind', 3); },
     'Add three (+0) EARTH cards': (char: Character) => { char.deck.addCard('+0', 'Earth', 3); },
     'Ignore negative scenario effects': (char: Character) => { char.ignoreNegScenarioEffects = true; },
+    'Ignore negative scenario effects and add one (+1) card': (char: Character) => {
+        char.ignoreNegScenarioEffects = true;
+        char.deck.addCard('+1', 'None', 2);
+    },
     'Ignore negative item effects': (char: Character) => { char.ignoreNegItemEffects = true; },
     'Ignore negative item effects and add one (+1) card': (char: Character) => {
         char.ignoreNegItemEffects = true;

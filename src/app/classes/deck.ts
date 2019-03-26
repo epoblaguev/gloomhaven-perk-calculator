@@ -1,5 +1,4 @@
 import Utils from './utils';
-import { DeckModifier } from './deckModifier';
 
 const DefaultCards = {
     x0: 1,
