@@ -11,6 +11,7 @@ export class CharacterService {
 
   constructor() {
     this.characters = settings.characters.map(char => new Character(char));
+    this.characters.sort(this.charSort);
     this.selectedCharacter = 0;
   }
 
@@ -24,5 +25,18 @@ export class CharacterService {
 
   selectCharacter(i: number) {
     this.selectedCharacter = i;
+  }
+
+  private charSort(char1: Character, char2: Character): number {
+    const char1Name = char1.name === char1.hiddenName ? `1_${char1.hiddenName}` : `2_${char1.hiddenName}`;
+    const char2Name = char2.name === char2.hiddenName ? `1_${char2.hiddenName}` : `2_${char2.hiddenName}`;
+
+    if (char1Name < char2Name) {
+      return -1;
+    } else if (char1Name > char2Name) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 }
