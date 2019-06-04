@@ -103,6 +103,25 @@
             ]
         },
         {
+            "name": "Aesther Diviner",
+            "hidden_name": "Aesther Diviner",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove one (-2) card", "uses": 1},
+                {"name": "Replace two (+1) cards with one (+3) Shield 1, Self card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) Shield 1, Affect any ally card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) DARK card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) SUN card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+3) MUDDLE card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) CURSE card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) REGENERATE, Self card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) HEAL 2, Affect any ally card", "uses": 1},
+                {"name": "Add two rolling HEAL 1, Self cards", "uses": 1},
+                {"name": "Add two rolling CURSE cards", "uses": 1},
+                {"name": "Ignore negative scenario effects and add two (+1) cards", "uses": 1}
+            ]
+        },
+        {
             "name": "Sunkeeper",
             "hidden_name": "Sun",
             "perks": [

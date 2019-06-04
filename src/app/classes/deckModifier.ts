@@ -65,6 +65,10 @@ export const PERK_LIST = {
     'Ignore negative scenario effects': (char: Character) => { char.ignoreNegScenarioEffects = true; },
     'Ignore negative scenario effects and add one (+1) card': (char: Character) => {
         char.ignoreNegScenarioEffects = true;
+        char.deck.addCard('+1', 'None', 1);
+    },
+    'Ignore negative scenario effects and add two (+1) cards': (char: Character) => {
+        char.ignoreNegScenarioEffects = true;
         char.deck.addCard('+1', 'None', 2);
     },
     'Ignore negative item effects': (char: Character) => { char.ignoreNegItemEffects = true; },
@@ -86,6 +90,10 @@ export const PERK_LIST = {
     'Replace one (-1) card with one (+0) STUN card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
         char.deck.addCard('+0', 'Stun', 1);
+    },
+    'Replace one (-1) card with one (+1) HEAL 2, Affect any ally card': (char: Character) => {
+        char.deck.addCard('-1', 'None', -1);
+        char.deck.addCard('+1', 'Heal 2, Affect any ally', 1);
     },
     'Replace one (+0) card with one (+2) card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
@@ -119,6 +127,22 @@ export const PERK_LIST = {
         char.deck.addCard('+0', 'None', -1);
         char.deck.cards['r+2'] += 1;
     },
+    'Replace one (+0) card with one (+1) Shield 1, Affect any ally card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Shield 1, Affect any ally', 1);
+    },
+    'Replace one (+0) card with one (+2) DARK card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+2', 'Dark', 1);
+    },
+    'Replace one (+0) card with one (+2) SUN card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+2', 'Sun', 1);
+    },
+    'Replace one (+0) card with one (+2) REGENERATE, Self card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+2', 'Regenerate, Self', 1);
+    },
     'Replace one (-1) card with one (+1) card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
         char.deck.addCard('+1', 'None', 1);
@@ -134,6 +158,10 @@ export const PERK_LIST = {
     'Replace two (+0) cards with two (+1) cards': (char: Character) => {
         char.deck.addCard('+0', 'None', -2);
         char.deck.addCard('+1', 'None', 2);
+    },
+    'Replace two (+1) cards with one (+3) Shield 1, Self card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -2);
+        char.deck.addCard('+3', 'Shield 1, Self', 1);
     },
     'Replace two (+1) cards with one (+4) card': (char: Character) => {
         char.deck.addCard('+1', 'None', -2);
@@ -159,6 +187,7 @@ export const PERK_LIST = {
     'Add two rolling MUDDLE cards': (char: Character) => { char.deck.effects['Rolling Muddle'] += 2; },
     'Add two rolling IMMOBILIZE cards': (char: Character) => { char.deck.effects['Rolling Immobilize'] += 2; },
     'Add two rolling HEAL 1 cards': (char: Character) => { char.deck.effects['Rolling Heal 1'] += 2; },
+    'Add two rolling HEAL 1, Self cards': (char: Character) => { char.deck.effects['Rolling Heal 1, Self'] += 2; },
     'Add one rolling HEAL 3 card': (char: Character) => { char.deck.effects['Rolling Heal 3'] += 1; },
     'Add two rolling STUN cards': (char: Character) => { char.deck.effects['Rolling Stun'] += 2; },
     'Add two rolling WOUND cards': (char: Character) => { char.deck.effects['Rolling Wound'] += 2; },
