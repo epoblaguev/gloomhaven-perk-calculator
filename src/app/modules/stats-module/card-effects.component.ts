@@ -20,6 +20,8 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
 
   public getChartData() {
     const probs = this.charServ.getCharacter().deck.getEffectsProbability();
+    console.log(this.charServ.getCharacter().deck);
+    console.log(probs);
     const compareProbs = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.getEffectsProbability();
 
     // Rename 'None' to 'No Effect'
@@ -46,6 +48,8 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
         data: this.fitToChart(compareProbs)
       });
     }
+
+    console.log(probs);
     return probData;
   }
 

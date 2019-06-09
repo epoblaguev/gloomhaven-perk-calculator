@@ -18,46 +18,6 @@ const DefaultCards = {
 
 const DefaultEffects = {
     None: 20,
-    'Add Target': 0,
-    'Heal 2': 0,
-    'Push 1': 0,
-    'Refresh an item': 0,
-    'Rolling Add Target': 0,
-    'Rolling Curse': 0,
-    'Rolling Dark': 0,
-    'Rolling Disarm': 0,
-    'Rolling Earth': 0,
-    'Rolling Fire': 0,
-    'Rolling Frost': 0,
-    'Rolling Heal 1': 0,
-    'Rolling Heal 3': 0,
-    'Rolling Immobilize': 0,
-    'Rolling Invisible': 0,
-    'Rolling Muddle': 0,
-    'Rolling Pierce 3': 0,
-    'Rolling Poison': 0,
-    'Rolling Pull 1': 0,
-    'Rolling Push 1': 0,
-    'Rolling Push 2': 0,
-    'Rolling Shield 1, Self': 0,
-    'Rolling Stun': 0,
-    'Rolling Sun': 0,
-    'Rolling Wind': 0,
-    'Rolling Wound': 0,
-    'Shield 1, Self': 0,
-    Curse: 0,
-    Dark: 0,
-    Disarm: 0,
-    Earth: 0,
-    Fire: 0,
-    Frost: 0,
-    Immobilize: 0,
-    Invisible: 0,
-    Muddle: 0,
-    Poison: 0,
-    Stun: 0,
-    Wind: 0,
-    Wound: 0,
 };
 
 const DefaultDeckModifiers = {
@@ -240,12 +200,8 @@ export class Deck {
 
     public addCard(cardType: string, cardEffect: string, count = 1) {
         this.cards[cardType] += count;
-        this.effects[cardEffect] += count;
-    }
-
-    public removeCard(cardType: string, cardEffect: string, count = 1) {
-        this.cards[cardType] -= count;
-        this.effects[cardEffect] -= count;
+        // this.effects[cardEffect] += count;
+        this.addEffect(cardEffect, count);
     }
 
     public reset() {
@@ -258,5 +214,13 @@ export class Deck {
         newDeck.cards = Utils.clone(this.cards);
         newDeck.effects = Utils.clone(this.effects);
         return newDeck;
+    }
+
+    public addEffect(cardEffect: string, count) {
+        if (!(cardEffect in this.effects)) {
+            this.effects[cardEffect] = count;
+        } else {
+            this.effects[cardEffect] += count;
+        }
     }
 }

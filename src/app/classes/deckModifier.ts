@@ -178,47 +178,47 @@ export const PERK_LIST = {
         char.deck.addCard('+0', 'Wind', 1);
     },
     // Effect only perks
-    'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.effects['Rolling Push 2'] += 2; },
-    'Add two rolling EARTH cards': (char: Character) => { char.deck.effects['Rolling Earth'] += 2; },
-    'Add two rolling WIND cards': (char: Character) => { char.deck.effects['Rolling Wind'] += 2; },
-    'Add two rolling FIRE cards': (char: Character) => { char.deck.effects['Rolling Fire'] += 2; },
-    'Add two rolling PIERCE 3 cards': (char: Character) => { char.deck.effects['Rolling Pierce 3'] += 2; },
-    'Add two rolling POISON cards': (char: Character) => { char.deck.effects['Rolling Poison'] += 2; },
-    'Add two rolling MUDDLE cards': (char: Character) => { char.deck.effects['Rolling Muddle'] += 2; },
-    'Add two rolling IMMOBILIZE cards': (char: Character) => { char.deck.effects['Rolling Immobilize'] += 2; },
-    'Add two rolling HEAL 1 cards': (char: Character) => { char.deck.effects['Rolling Heal 1'] += 2; },
-    'Add two rolling HEAL 1, Self cards': (char: Character) => { char.deck.effects['Rolling Heal 1, Self'] += 2; },
-    'Add one rolling HEAL 3 card': (char: Character) => { char.deck.effects['Rolling Heal 3'] += 1; },
-    'Add two rolling STUN cards': (char: Character) => { char.deck.effects['Rolling Stun'] += 2; },
-    'Add two rolling WOUND cards': (char: Character) => { char.deck.effects['Rolling Wound'] += 2; },
-    'Add two rolling SUN cards': (char: Character) => { char.deck.effects['Rolling Sun'] += 2; },
-    'Add two rolling CURSE cards': (char: Character) => { char.deck.effects['Rolling Curse'] += 2; },
-    'Add two rolling SHIELD 1, Self cards': (char: Character) => { char.deck.effects['Rolling Shield 1, Self'] += 2; },
-    'Add one rolling INVISIBLE card': (char: Character) => { char.deck.effects['Rolling Invisible'] += 1; },
-    'Add one rolling STUN card': (char: Character) => { char.deck.effects['Rolling Stun'] += 1; },
+    'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.addEffect('Rolling Push 2', 2); },
+    'Add two rolling EARTH cards': (char: Character) => { char.deck.addEffect('Rolling Earth', 2); },
+    'Add two rolling WIND cards': (char: Character) => { char.deck.addEffect('Rolling Wind', 2); },
+    'Add two rolling FIRE cards': (char: Character) => { char.deck.addEffect('Rolling Fire', 2); },
+    'Add two rolling PIERCE 3 cards': (char: Character) => { char.deck.addEffect('Rolling Pierce 3', 2); },
+    'Add two rolling POISON cards': (char: Character) => { char.deck.addEffect('Rolling Poison', 2); },
+    'Add two rolling MUDDLE cards': (char: Character) => { char.deck.addEffect('Rolling Muddle', 2); },
+    'Add two rolling IMMOBILIZE cards': (char: Character) => { char.deck.addEffect('Rolling Immobilize', 2); },
+    'Add two rolling HEAL 1 cards': (char: Character) => { char.deck.addEffect('Rolling Heal 1', 2); },
+    'Add two rolling HEAL 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Heal 1, Self', 2); },
+    'Add one rolling HEAL 3 card': (char: Character) => { char.deck.addEffect('Rolling Heal 3', 1); },
+    'Add two rolling STUN cards': (char: Character) => { char.deck.addEffect('Rolling Stun', 2); },
+    'Add two rolling WOUND cards': (char: Character) => { char.deck.addEffect('Rolling Wound', 2); },
+    'Add two rolling SUN cards': (char: Character) => { char.deck.addEffect('Rolling Sun', 2); },
+    'Add two rolling CURSE cards': (char: Character) => { char.deck.addEffect('Rolling Curse', 2); },
+    'Add two rolling SHIELD 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
+    'Add one rolling INVISIBLE card': (char: Character) => { char.deck.addEffect('Rolling Invisible', 1); },
+    'Add one rolling STUN card': (char: Character) => { char.deck.addEffect('Rolling Stun', 1); },
     'Add one rolling DISARM and one rolling MUDDLE card': (char: Character) => {
-        char.deck.effects['Rolling Disarm'] += 1;
-        char.deck.effects['Rolling Muddle'] += 1;
+        char.deck.addEffect('Rolling Disarm', 1);
+        char.deck.addEffect('Rolling Muddle', 1);
     },
     'Add one rolling EARTH and one rolling WIND card': (char: Character) => {
-        char.deck.effects['Rolling Earth'] += 1;
-        char.deck.effects['Rolling Wind'] += 1;
+        char.deck.addEffect('Rolling Earth', 1);
+        char.deck.addEffect('Rolling Wind', 1);
     },
     'Add one rolling SUN and one rolling DARK card': (char: Character) => {
-        char.deck.effects['Rolling Sun'] += 1;
-        char.deck.effects['Rolling Dark'] += 1;
+        char.deck.addEffect('Rolling Sun', 1);
+        char.deck.addEffect('Rolling Dark', 1);
     },
     'Add one rolling FIRE and one rolling WIND card': (char: Character) => {
-        char.deck.effects['Rolling Fire'] += 1;
-        char.deck.effects['Rolling Wind'] += 1;
+        char.deck.addEffect('Rolling Fire', 1);
+        char.deck.addEffect('Rolling Wind', 1);
     },
     'Add one rolling DARK and one rolling EARTH card': (char: Character) => {
-        char.deck.effects['Rolling Dark'] += 1;
-        char.deck.effects['Rolling Earth'] += 1;
+        char.deck.addEffect('Rolling Dark', 1);
+        char.deck.addEffect('Rolling Earth', 1);
     },
-    'Add one rolling ADD TARGET card': (char: Character) => { char.deck.effects['Rolling Add Target'] += 1; },
-    'Add three rolling PUSH 1 cards': (char: Character) => { char.deck.effects['Rolling Push 1'] += 3; },
-    'Add three rolling PULL 1 cards': (char: Character) => { char.deck.effects['Rolling Pull 1'] += 3; },
-    'Add three rolling MUDDLE cards': (char: Character) => { char.deck.effects['Rolling Muddle'] += 3; },
-    'Add three rolling POISON cards': (char: Character) => { char.deck.effects['Rolling Poison'] += 3; }
+    'Add one rolling ADD TARGET card': (char: Character) => { char.deck.addEffect('Rolling Add Target', 1); },
+    'Add three rolling PUSH 1 cards': (char: Character) => { char.deck.addEffect('Rolling Push 1', 3); },
+    'Add three rolling PULL 1 cards': (char: Character) => { char.deck.addEffect('Rolling Pull 1', 3); },
+    'Add three rolling MUDDLE cards': (char: Character) => { char.deck.addEffect('Rolling Muddle', 3); },
+    'Add three rolling POISON cards': (char: Character) => { char.deck.addEffect('Rolling Poison', 3); }
 };

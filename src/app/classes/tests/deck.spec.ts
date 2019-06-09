@@ -169,6 +169,13 @@ describe('Deck', () => {
             }
         },
         {
+            input: { None: 1, Sun: 1},
+            output: {
+                None: (1 / 2),
+                Sun: (1 / 2)
+            }
+        },
+        {
             input: { None: 1, 'Rolling Fire': 2, Frost: 1 },
             output: {
                 None: (1 / 4),
