@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { MatToolbar, MatCardSubtitle } from '@angular/material';
+import { MatCardSubtitle } from '@angular/material/card';
+import { MatToolbar } from '@angular/material/toolbar';
 import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
 import { CardEffectsComponent } from './modules/stats-module/card-effects.component';

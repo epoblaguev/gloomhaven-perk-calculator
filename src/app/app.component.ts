@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
 import Utils from './classes/utils';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { StatsModules } from './classes/consts';
 

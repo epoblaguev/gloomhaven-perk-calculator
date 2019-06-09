@@ -1,7 +1,7 @@
 import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import Utils from './utils';
-import { MatBottomSheet } from '@angular/material';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
@@ -18,7 +18,7 @@ interface Properties {
 export abstract class GraphModule implements DoCheck, OnInit {
     @Input() properties: Properties;
 
-    @ViewChild('baseChart')
+    @ViewChild('baseChart', {static: false})
     chart: BaseChartDirective;
 
     protected prevCharacter: Character;
@@ -106,8 +106,8 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public abstract getChartData(): Array<{ label: string, data: number[] }>;
 
     public redrawChart() {
-        this.chart.ngOnDestroy();
-        this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
+        // this.chart.ngOnDestroy();
+        // this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
     }
 
     /**

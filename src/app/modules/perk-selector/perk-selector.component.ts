@@ -11,7 +11,7 @@ export class PerkSelectorComponent implements OnInit {
 
     public hideRealNames = true;
 
-    constructor(public charServ: CharacterService) { }
+    constructor(public charService: CharacterService) { }
 
     ngOnInit(): void {
         // throw new Error("Method not implemented.");
@@ -19,14 +19,14 @@ export class PerkSelectorComponent implements OnInit {
 
     getPerkCount() {
         let sum = 0;
-        this.charServ.getCharacter().perkList.forEach(perk => {
+        this.charService.getCharacter().perkList.forEach(perk => {
             sum += perk.uses.filter(val => val.used).length;
         });
         return sum;
     }
 
     perkChanged() {
-        this.charServ.getCharacter().applyModifiers();
+        this.charService.getCharacter().applyModifiers();
     }
 
     reset() {
@@ -36,7 +36,7 @@ export class PerkSelectorComponent implements OnInit {
     }
 
     toggleComparison() {
-        const character = this.charServ.getCharacter();
+        const character = this.charService.getCharacter();
         if (character.compareDeck == null) {
             character.compareDeck = character.deck.cloneDeck();
         } else {
@@ -45,16 +45,16 @@ export class PerkSelectorComponent implements OnInit {
     }
 
     private resetPerkCheckboxes() {
-        this.charServ.getCharacter().perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
+        this.charService.getCharacter().perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
     }
 
     private resetDeck() {
-        this.charServ.getCharacter().deck.reset();
+        this.charService.getCharacter().deck.reset();
     }
 
     private resetDeckModifiers() {
-        this.charServ.getCharacter().negItemEffects.length = 0;
-        this.charServ.getCharacter().negScenarioEffects.length = 0;
-        this.charServ.getCharacter().miscModifiers.length = 0;
+        this.charService.getCharacter().negItemEffects.length = 0;
+        this.charService.getCharacter().negScenarioEffects.length = 0;
+        this.charService.getCharacter().miscModifiers.length = 0;
     }
 }
