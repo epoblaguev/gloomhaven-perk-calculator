@@ -106,8 +106,8 @@ export abstract class GraphModule implements DoCheck, OnInit {
     public abstract getChartData(): Array<{ label: string, data: number[] }>;
 
     public redrawChart() {
-        // this.chart.ngOnDestroy();
-        // this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
+        this.chart.ngOnDestroy();
+        this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
     }
 
     /**
