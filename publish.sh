@@ -1,2 +1,2 @@
 ng build --prod
-ngh --cname="egor.pw"
+ngh --cname="gloomhaven.org"
