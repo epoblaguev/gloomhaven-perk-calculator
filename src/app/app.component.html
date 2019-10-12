@@ -3,17 +3,15 @@
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngFor="let item of statsModules | keyvalue"
         (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <i class="fas {{item.value.icon}} fa-lg fa-fw"
-          [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"></i>
+        <span [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"> <i class="fas {{item.value.icon}} fa-lg fa-fw"></i></span>
         Toggle {{item.value.text}}
       </button>
       <button mat-menu-item (click)="$event.stopPropagation(); showDeckModifiers = !showDeckModifiers">
-        <i class="fas fa-money-bill fa-fw fa-lg"
-          [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}"></i>
+        <span [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}"><i class="fas fa-money-bill fa-fw fa-lg"></i></span>
         Toggle Deck Modifiers
       </button>
       <mat-divider></mat-divider>
-      <a mat-menu-item href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank">
+      <a mat-menu-item href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank">
         <i class="fab fa-github fa-lg fa-fw color-gray"></i> Fork me on Github
       </a>
       <button mat-menu-item (click)="openBottomSheet()"><i class="fas fa-info-circle fa-lg fa-fw color-gray"></i>
@@ -28,7 +26,7 @@
 
     <span style="flex: 1 1 auto;"></span>
 
-    <a fxHide.xs href="https://github.com/epoblaguev/Gloomhaven-Calculator" target="_blank" class="github-logo">
+    <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="github-logo">
       <i class="fab fa-github fa-2x"></i>
     </a>
 
