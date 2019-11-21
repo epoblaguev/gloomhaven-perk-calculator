@@ -5,7 +5,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
-import { CharacterService } from '../character.service';
+import { CharacterService } from '../services/character.service';
 
 
 interface Properties {

@@ -1,9 +1,9 @@
 import { Character } from './character';
 
 export class DeckModifier {
-    name: string;
-    uses: Array<{ used: boolean }>;
-    set: (char: Character) => void;
+    name: string; // Name of the perk
+    uses: Array<{ used: boolean }>; // Array to track number of uses
+    applyToCharacter: (char: Character) => void; // Action taken when perk is selected, anonymous function from the constants below
 
     constructor(name: string, uses: number, set: (char: Character) => void, useValue = false) {
         this.name = name;
@@ -12,7 +12,7 @@ export class DeckModifier {
         for (let i = 0; i < uses; i++) {
             this.uses.push({ used: useValue });
         }
-        this.set = set;
+        this.applyToCharacter = set;
     }
 }
 

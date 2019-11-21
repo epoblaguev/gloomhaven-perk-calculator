@@ -43,7 +43,7 @@ export class Character {
     private applyModifierList(modList: DeckModifier[]): void {
         Object.values(modList).forEach(perk => {
             Object.values(perk.uses).forEach(use => {
-                if (use.used) { perk.set(this); }
+                if (use.used) { perk.applyToCharacter(this); }
             });
         });
     }

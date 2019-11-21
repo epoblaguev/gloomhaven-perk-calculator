@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { GraphModule } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CharacterService } from 'src/app/character.service';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-average-damage',

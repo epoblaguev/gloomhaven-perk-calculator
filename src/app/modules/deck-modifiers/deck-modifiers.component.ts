@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import { CharacterService } from 'src/app/character.service';
+import { CharacterService } from 'src/app/services/character.service';
 import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MODIFIERS_LIST } from 'src/app/classes/deckModifier';
 import Utils from 'src/app/classes/utils';
 import { Character } from 'src/app/classes/character';

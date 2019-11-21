@@ -1,38 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { CharacterService } from 'src/app/character.service';
+import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
+import { CharacterService } from 'src/app/services/character.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-perk-selector',
     templateUrl: './perk-selector.component.html',
     styleUrls: ['./perk-selector.component.scss']
 })
-export class PerkSelectorComponent implements OnInit {
+export class PerkSelectorComponent implements OnInit, AfterContentInit {
     public selectedCharacter = 0;
 
     public hideRealNames = true;
 
-    constructor(public charService: CharacterService) { }
+    constructor(public charService: CharacterService, public storageService: StorageService) { }
 
-    ngOnInit(): void {
-        // throw new Error("Method not implemented.");
+    ngOnInit(): void {}
+
+    ngAfterContentInit(): void {
+        // Fill character perks with stored info
+        this.charService.getCharacters().forEach(char => {
+            char.perkList.forEach(perk => {
+                const storedUses = this.storageService.getPerkUsage(char.name, perk.name);
+                perk.uses.forEach((use, index) => {
+                    if (index < storedUses.length) { use.used = storedUses[index]; }
+                });
+            });
+        });
     }
 
     getPerkCount() {
-        let sum = 0;
-        this.charService.getCharacter().perkList.forEach(perk => {
-            sum += perk.uses.filter(val => val.used).length;
-        });
-        return sum;
+        return this.charService.getCharacter()
+            .perkList.map(perk => perk.uses.filter(val => val.used).length)
+            .reduce((a, b) => a + b);
     }
 
     perkChanged() {
         this.charService.getCharacter().applyModifiers();
+        this.storageService.saveAllPerks(this.charService.getCharacter());
     }
 
     reset() {
         this.resetPerkCheckboxes();
         this.resetDeck();
         this.resetDeckModifiers();
+        this.storageService.clearCharacterPerks(this.charService.getCharacter().name);
     }
 
     toggleComparison() {

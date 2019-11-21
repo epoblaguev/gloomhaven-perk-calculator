@@ -12,7 +12,7 @@ import { CardEffectsComponent } from './modules/stats-module/card-effects.compon
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
 import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.component';
-import { CharacterService } from './character.service';
+import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
 
 
