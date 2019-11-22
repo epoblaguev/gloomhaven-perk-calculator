@@ -14,6 +14,7 @@ import { AverageDamageComponent } from './modules/stats-module/average-damage.co
 import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.component';
 import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
+import { StorageService } from './services/storage.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.com
     MatMenuModule,
   ],
   entryComponents: [InfoPageComponent],
-  providers: [CharacterService],
+  providers: [CharacterService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

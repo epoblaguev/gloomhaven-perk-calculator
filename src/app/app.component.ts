@@ -4,6 +4,8 @@ import Utils from './classes/utils';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { StatsModules } from './classes/consts';
+import { CharacterService } from './services/character.service';
+import { StorageService } from './services/storage.service';
 
 
 
@@ -19,7 +21,13 @@ export class AppComponent implements OnInit {
   statsModules = StatsModules;
   showDeckModifiers = true;
 
-  constructor(public bottomSheet: MatBottomSheet) {
+  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
+    // Fill character perks with stored info
+    this.charService.getCharacters().forEach(char => {
+      storageService.loadAllMods(char);
+      char.applyModifiers();
+      console.log(char);
+  });
   }
 
   openBottomSheet(): void {
@@ -27,7 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   updateDeck(cards) {

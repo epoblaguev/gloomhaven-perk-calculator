@@ -1,4 +1,4 @@
-import { DeckModifier, PERK_LIST } from './deckModifier';
+import { DeckModifier, PERK_LIST, MISC_MODIFIERS_LIST, NEG_SCENARIO_EFFECTS_LIST, NEG_ITEM_EFFECTS_LIST } from './deckModifier';
 import { Deck } from './deck';
 
 export class Character {
@@ -25,9 +25,9 @@ export class Character {
             this.perkList.push(new DeckModifier(perk.name, perk.uses, perkFuncs));
         }
 
-        this.negScenarioEffects = new Array<DeckModifier>();
-        this.negItemEffects = new Array<DeckModifier>();
-        this.miscModifiers = new Array<DeckModifier>();
+        this.negScenarioEffects = Object.entries(NEG_SCENARIO_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
+        this.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
+        this.miscModifiers = Object.entries(MISC_MODIFIERS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
     }
 
     public applyModifiers() {

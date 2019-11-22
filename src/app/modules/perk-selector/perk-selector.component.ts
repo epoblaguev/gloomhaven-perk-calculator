@@ -7,7 +7,7 @@ import { StorageService } from 'src/app/services/storage.service';
     templateUrl: './perk-selector.component.html',
     styleUrls: ['./perk-selector.component.scss']
 })
-export class PerkSelectorComponent implements OnInit, AfterContentInit {
+export class PerkSelectorComponent implements OnInit {
     public selectedCharacter = 0;
 
     public hideRealNames = true;
@@ -15,18 +15,6 @@ export class PerkSelectorComponent implements OnInit, AfterContentInit {
     constructor(public charService: CharacterService, public storageService: StorageService) { }
 
     ngOnInit(): void {}
-
-    ngAfterContentInit(): void {
-        // Fill character perks with stored info
-        this.charService.getCharacters().forEach(char => {
-            char.perkList.forEach(perk => {
-                const storedUses = this.storageService.getPerkUsage(char.name, perk.name);
-                perk.uses.forEach((use, index) => {
-                    if (index < storedUses.length) { use.used = storedUses[index]; }
-                });
-            });
-        });
-    }
 
     getPerkCount() {
         return this.charService.getCharacter()
@@ -36,7 +24,7 @@ export class PerkSelectorComponent implements OnInit, AfterContentInit {
 
     perkChanged() {
         this.charService.getCharacter().applyModifiers();
-        this.storageService.saveAllPerks(this.charService.getCharacter());
+        this.storageService.saveAllMods(this.charService.getCharacter());
     }
 
     reset() {
@@ -64,8 +52,8 @@ export class PerkSelectorComponent implements OnInit, AfterContentInit {
     }
 
     private resetDeckModifiers() {
-        this.charService.getCharacter().negItemEffects.length = 0;
-        this.charService.getCharacter().negScenarioEffects.length = 0;
-        this.charService.getCharacter().miscModifiers.length = 0;
+        this.charService.getCharacter().negItemEffects.forEach(mod => mod.uses.forEach(use => use.used = false));
+        this.charService.getCharacter().negScenarioEffects.forEach(mod => mod.uses.forEach(use => use.used = false));
+        this.charService.getCharacter().miscModifiers.forEach(mod => mod.uses.forEach(use => use.used = false));
     }
 }
