@@ -9,8 +9,13 @@ export class StorageService {
 
   constructor() { }
 
-  setPerk(charName: string, perk: string, use: number, applied: boolean) {
-    window.localStorage.setItem(`${charName}_${perk}_${use}`, String(applied));
+  setSelectedChar(i: number) {
+    window.localStorage.setItem('selectedChar', String(i));
+  }
+
+  getSelectedChar(): number {
+    // Using + to cast string to number, returns 0 if null
+    return +window.localStorage.getItem('selectedChar') || 0;
   }
 
   saveAllMods(char: Character) {
@@ -19,10 +24,6 @@ export class StorageService {
     this.saveModList(char.name, 'negScenarioEffects', char.negScenarioEffects);
     this.saveModList(char.name, 'negItemEffects', char.negItemEffects);
     this.saveModList(char.name, 'miscModifiers', char.miscModifiers);
-
-    // char.perkList.forEach(perk => {
-    //   perk.uses.forEach((use, index) => window.localStorage.setItem(`${char.name}_${perk.name}_${index}`, String(use.used)));
-    // });
   }
 
   private saveModList(charName: string, listName: string, modList: DeckModifier[]) {

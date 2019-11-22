@@ -27,7 +27,9 @@ export class AppComponent implements OnInit {
       storageService.loadAllMods(char);
       char.applyModifiers();
       console.log(char);
-  });
+    });
+
+    this.charService.selectCharacter(storageService.getSelectedChar());
   }
 
   openBottomSheet(): void {

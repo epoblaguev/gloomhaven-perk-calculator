@@ -12,7 +12,9 @@ export class PerkSelectorComponent implements OnInit {
 
     public hideRealNames = true;
 
-    constructor(public charService: CharacterService, public storageService: StorageService) { }
+    constructor(public charService: CharacterService, public storageService: StorageService) {
+        this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
+    }
 
     ngOnInit(): void {}
 
@@ -20,6 +22,11 @@ export class PerkSelectorComponent implements OnInit {
         return this.charService.getCharacter()
             .perkList.map(perk => perk.uses.filter(val => val.used).length)
             .reduce((a, b) => a + b);
+    }
+
+    selectedCharacterChanged() {
+        this.charService.selectCharacter(this.selectedCharacter);
+        this.storageService.setSelectedChar(this.selectedCharacter);
     }
 
     perkChanged() {
