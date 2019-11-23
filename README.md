@@ -11,5 +11,5 @@ Currently the following stats are calculated:
 If you found this project useful, consider supporting its development by downloading the [Android App](https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile)
 
 ### Link
-[Gloomhaven Perk Calculator](https://gloomhaven.org)
+[Gloomhaven Perk Calculator](https://gloomhaven.org) <br/>
 [Android App](https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile)
