@@ -1,115 +1,99 @@
 <!-- ABOUT PAGE -->
 <div *ngIf="data.infoType === 'about'">
-  <h2><i class="fas fa-info-circle fa-fw color-gray"></i> Gloomhaven Perk Calculator Info</h2>
-  <p>
-    This project is intended to help build your Gloomhaven character by showing you how various perks affect the
-    statistics of your modifier deck
-  </p>
-  <p>
-    It was inspired by the <b>Perk Calculator</b> on <a
-      href="http://www.boardgamemath.com/boardgames/gloomhaven/gloomhavenPerkCalculator.html"
-      target="_blank">BoardGameMath</a>, and the <b>Perk Analysis</b> writeup on <a
-      href="https://boardgamegeek.com/thread/2058091/perk-analysis" target="_blank">Board Game Geek</a>
-  </p>
+    <h2><i class="fas fa-info-circle fa-fw color-gray"></i> Gloomhaven Perk Calculator Info</h2>
+    <p>
+        This project is intended to help build your Gloomhaven character by showing you how various perks affect the statistics of your modifier deck
+    </p>
+    <p>
+        It was inspired by the <b>Perk Calculator</b> on <a href="http://www.boardgamemath.com/boardgames/gloomhaven/gloomhavenPerkCalculator.html" target="_blank">BoardGameMath</a>, and the <b>Perk Analysis</b> writeup on <a href="https://boardgamegeek.com/thread/2058091/perk-analysis"
+            target="_blank">Board Game Geek</a>
+    </p>
 
-  <div>
-    Currently the following stats are calculated:
-    <ul class="ul-no-bullets">
-      <li *ngFor="let stat of statsModules | keyvalue">
-        <i class="fas {{stat.value.icon}} fa-fw" [ngClass]="stat.value.iconClasses"></i>&nbsp;
-        <b>{{ stat.value.text }}</b> -
-        {{stat.value.shortDescription}}
-      </li>
-    </ul>
-    Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
-  </div>
-  <p>
-    If you found this project useful, consider supporting its development by downloading the 
-    <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" target="_blank">Android App</a> <i class="fab fa-android fa-fw fa-2x color-gray"></i>
-  </p>
+    <div>
+        Currently the following stats are calculated:
+        <ul class="ul-no-bullets">
+            <li *ngFor="let stat of statsModules | keyvalue">
+                <i class="fas {{stat.value.icon}} fa-fw" [ngClass]="stat.value.iconClasses"></i>&nbsp;
+                <b>{{ stat.value.text }}</b> - {{stat.value.shortDescription}}
+            </li>
+        </ul>
+        Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
+    </div>
+    <p *ngIf="!isMobile">
+        If you found this project useful, consider supporting its development by downloading the
+        <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" target="_blank">Android App</a> <i class="fab fa-android fa-fw fa-2x color-gray"></i>
+    </p>
 </div>
 
 <!-- AVERAGE DAMAGE -->
 <div *ngIf="data.infoType === statsTypes.AVERAGE_DAMAGE">
-  <h2><i class="fas {{statsModules.averageDamage.icon}} fa-fw" [ngClass]="statsModules.averageDamage.iconClasses"></i>
-    {{statsModules.averageDamage.text}}</h2>
+    <h2><i class="fas {{statsModules.averageDamage.icon}} fa-fw" [ngClass]="statsModules.averageDamage.iconClasses"></i> {{statsModules.averageDamage.text}}
+    </h2>
 
-  <p>
-    This chart shows the Average Damage given a starting Base Damage.
-  </p>
-  <p>
-    Since damage in Gloomhaven cannot be negative <i>(1 - 2 = 0)</i>, Base Damage of 0 and 1 have a higher change in Average Damage than other Base values.
-  </p>
-  <p>
-    Note that Average Damage suffers from the flaw of averages
-  </p>
+    <p>
+        This chart shows the Average Damage given a starting Base Damage.
+    </p>
+    <p>
+        Since damage in Gloomhaven cannot be negative <i>(1 - 2 = 0)</i>, Base Damage of 0 and 1 have a higher change in Average Damage than other Base values.
+    </p>
+    <p>
+        Note that Average Damage suffers from the flaw of averages
+    </p>
 </div>
 
 <!-- EFFECTS PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.EFFECT_PROBABILITY">
-  <h2><i class="fas {{statsModules.effectProbability.icon}} fa-fw"
-      [ngClass]="statsModules.effectProbability.iconClasses"></i>
-    {{statsModules.effectProbability.text}}</h2>
+    <h2><i class="fas {{statsModules.effectProbability.icon}} fa-fw" [ngClass]="statsModules.effectProbability.iconClasses"></i> {{statsModules.effectProbability.text}}
+    </h2>
 
-  <p>
-    This chart shows the probability that a card with an Effect comes up at least during an entire action
-  </p>
-  <p>
-    The <b>No Effect</b> bar is the probability that not a single Effect card is drawn during an action. That is, it's
-    simply the number of cards with no Effect, divided by the total number of cards (rolling cards with no Effects
-    excluded)
-  </p>
-  <p>
-    Since you can draw multiple rolling Effect cards in one action, the sum of all Effects and of No Effects can total
-    more than 100
-  </p>
-  <p>
-    Rolling modifier cards with no Effects have no impact on these statistics, and are excluded from all calculations
-  </p>
+    <p>
+        This chart shows the probability that a card with an Effect comes up at least during an entire action
+    </p>
+    <p>
+        The <b>No Effect</b> bar is the probability that not a single Effect card is drawn during an action. That is, it's simply the number of cards with no Effect, divided by the total number of cards (rolling cards with no Effects excluded)
+    </p>
+    <p>
+        Since you can draw multiple rolling Effect cards in one action, the sum of all Effects and of No Effects can total more than 100
+    </p>
+    <p>
+        Rolling modifier cards with no Effects have no impact on these statistics, and are excluded from all calculations
+    </p>
 </div>
 
 <!-- DECK RELIABILITY -->
 <div *ngIf="data.infoType === statsTypes.DECK_RELIABILITY">
-  <h2><i class="fas {{statsModules.deckReliability.icon}} fa-fw"
-      [ngClass]="statsModules.deckReliability.iconClasses"></i>
-    {{statsModules.deckReliability.text}}</h2>
+    <h2><i class="fas {{statsModules.deckReliability.icon}} fa-fw" [ngClass]="statsModules.deckReliability.iconClasses"></i> {{statsModules.deckReliability.text}}
+    </h2>
 
-  <p>
-    This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
-  </p>
-  <p>
-    This may be the most important graph to pay attention to. You should strive to increase the predictability of your
-    deck by reducing the probability of getting a negative overall modifier
-  </p>
-  <p>
-    Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on
-    this graph
-  </p>
+    <p>
+        This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
+    </p>
+    <p>
+        This may be the most important graph to pay attention to. You should strive to increase the predictability of your deck by reducing the probability of getting a negative overall modifier
+    </p>
+    <p>
+        Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on this graph
+    </p>
 </div>
 
 <!-- CARD PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.CARD_PROBABILITY">
-  <h2><i class="fas {{statsModules.cardProbability.icon}} fa-fw"
-      [ngClass]="statsModules.cardProbability.iconClasses"></i>
-    {{statsModules.cardProbability.text}}</h2>
+    <h2><i class="fas {{statsModules.cardProbability.icon}} fa-fw" [ngClass]="statsModules.cardProbability.iconClasses"></i> {{statsModules.cardProbability.text}}
+    </h2>
 
-  <p>
-    This chart shows the probability of specific damage modifier cards being drawn
-  </p>
+    <p>
+        This chart shows the probability of specific damage modifier cards being drawn
+    </p>
 
-  <p>
-    Adding or removing rolling damage cards affects the probability of only that card type, but adding or
-    removing non-rolling cards affects the probability of all cards
-  </p>
+    <p>
+        Adding or removing rolling damage cards affects the probability of only that card type, but adding or removing non-rolling cards affects the probability of all cards
+    </p>
 
-  <p>
-    The percent is the probability of a card comming up during the entire action.
-    As such, stats for all non-rolling cards should add up to 100% (rounding errors aside), while rolling cards can make
-    the absolute total appear to be over 100%
-  </p>
+    <p>
+        The percent is the probability of a card comming up during the entire action. As such, stats for all non-rolling cards should add up to 100% (rounding errors aside), while rolling cards can make the absolute total appear to be over 100%
+    </p>
 
-  <p>
-    Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on
-    this graph
-  </p>
+    <p>
+        Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on this graph
+    </p>
 </div>
