@@ -20,9 +20,27 @@
         Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
     </div>
     <p *ngIf="!isMobile">
-        If you found this project useful, consider supporting its development by downloading the
-        <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" target="_blank">Android App</a> <i class="fab fa-android fa-fw fa-2x color-gray"></i>
+        If you found this project useful, consider supporting its development by
+        <a href="#" (click)="data.infoType = 'app'; false">Downloading the Mobile App <i class="fab fa-android fa-lg fa-fw color-gray"></i></a>
     </p>
+</div>
+
+<!-- Download App -->
+<div *ngIf="data.infoType === 'app'">
+    <h2><i class="fab fa-android fa-fw color-gray"></i> Download Mobile App</h2>
+    <p>If you found this project useful, consider supporting its development by downloading the mobile app</p>
+    <mat-list>
+        <mat-list-item>
+            <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" class="text-no-line" target="_blank">
+                <i class="fab fa-google-play fa-lg fa-fw color-gray"></i> Google Play Store
+            </a>
+        </mat-list-item>
+        <mat-list-item>
+            <a href="https://www.amazon.com/gp/product/B08271L4T1" class="text-no-line" target="_blank">
+                <i class="fab fa-amazon fa-lg fa-fw color-gray"></i> Amazon Appstore
+            </a>
+        </mat-list-item>
+    </mat-list>
 </div>
 
 <!-- AVERAGE DAMAGE -->

@@ -8,6 +8,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatListModule} from '@angular/material/list';
+
 
 /*
 Include all UI Components here
@@ -23,6 +25,7 @@ Include all UI Components here
         MatSelectModule,
         MatToolbarModule,
         MatBottomSheetModule,
+        MatListModule,
     ],
     exports: [
         BrowserAnimationsModule,
@@ -34,6 +37,7 @@ Include all UI Components here
         MatSelectModule,
         MatToolbarModule,
         MatBottomSheetModule,
+        MatListModule,
     ],
 })
 export class UIModule { }
