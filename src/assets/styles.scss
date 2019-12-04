@@ -110,3 +110,8 @@ a:not([href]) {
     -moz-user-select: none;
     user-select: none
 }
+
+.bottom-sheet-close {
+    margin-block-start: 0.83em;
+    font-size: 1.5em;
+}
