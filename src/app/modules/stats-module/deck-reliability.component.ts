@@ -24,7 +24,9 @@ export class DeckReliabilityComponent extends GraphModule {
                     Math.round(this.charServ.getCharacter().deck.reliabilityNegative() * 100),
                     Math.round(this.charServ.getCharacter().deck.reliabilityZero() * 100),
                     Math.round(this.charServ.getCharacter().deck.reliabilityPositive() * 100)
-                ]
+                ],
+                backgroundColor: GraphModule.Colors.blue.backgroundColor,
+                borderColor: GraphModule.Colors.blue.borderColor,
             }
         ];
 
@@ -36,7 +38,9 @@ export class DeckReliabilityComponent extends GraphModule {
                     Math.round(this.charServ.getCharacter().compareDeck.reliabilityNegative() * 100),
                     Math.round(this.charServ.getCharacter().compareDeck.reliabilityZero() * 100),
                     Math.round(this.charServ.getCharacter().compareDeck.reliabilityPositive() * 100)
-                ]
+                ],
+                backgroundColor: GraphModule.Colors.red.backgroundColor,
+                borderColor: GraphModule.Colors.red.borderColor,
             });
         }
         return chartData;

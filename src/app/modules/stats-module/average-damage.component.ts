@@ -43,14 +43,18 @@ export class AverageDamageComponent extends GraphModule {
   public getChartData() {
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val))
+      data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val)),
+      backgroundColor: GraphModule.Colors.blue.backgroundColor,
+      borderColor: GraphModule.Colors.blue.borderColor,
     }];
 
     if (this.charServ.getCharacter().compareDeck != null) {
       // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val))
+        data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val)),
+        backgroundColor: GraphModule.Colors.red.backgroundColor,
+        borderColor: GraphModule.Colors.red.borderColor,
       });
     }
     return probData;

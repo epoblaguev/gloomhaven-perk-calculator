@@ -16,9 +16,25 @@ interface Properties {
 }
 
 export abstract class GraphModule implements DoCheck, OnInit {
+
+    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
+        this.prevCharacter = Utils.clone(charServ.getCharacter());
+    }
+
+    public static Colors = {
+        blue: { // blue
+            backgroundColor: '#93a8c7',
+            borderColor: '#718eb5',
+        },
+        red: { // red
+            backgroundColor: '#f55a4e',
+            borderColor: '#f32c1e',
+        }
+    };
+
     @Input() properties: Properties;
 
-    @ViewChild('baseChart', {static: false})
+    @ViewChild('baseChart', { static: false })
     chart: BaseChartDirective;
 
     protected prevCharacter: Character;
@@ -33,10 +49,9 @@ export abstract class GraphModule implements DoCheck, OnInit {
         scales: {
             yAxes: [{
                 ticks: {
-                    steps: 10,
-                    stepValue: 10,
-                    beginAtZero: true,
+                    min: 0,
                     max: 100,
+                    stepSize: 20,
                 }
             }]
         },
@@ -46,21 +61,10 @@ export abstract class GraphModule implements DoCheck, OnInit {
         }
     };
 
-    public barChartColors: any = [
-        { // blue
-            backgroundColor: '#93a8c7',
-            borderColor: '#718eb5',
-        },
-        { // red
-            backgroundColor: '#f55a4e',
-            borderColor: '#f32c1e',
-        }
-    ];
-
     public abstract barChartLabels: string[];
     public barChartType: string;
     public barChartLegend: boolean;
-    public barChartData: any[];
+    public barChartData: Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
 
     static drawDatapointLabels(data, chart, numberFormat = (n: number) => `${n}%`) {
         const chartInstance = chart;
@@ -76,10 +80,6 @@ export abstract class GraphModule implements DoCheck, OnInit {
         });
     }
 
-    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-        this.prevCharacter = Utils.clone(charServ.getCharacter());
-    }
-
     ngOnInit(): void {
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
@@ -89,26 +89,40 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
     ngDoCheck() {
         if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
-            this.needRedraw = !Utils.equals(this.charServ.getCharacter().compareDeck, this.prevCharacter.compareDeck);
+            // this.needRedraw = !Utils.equals(this.charServ.getCharacter().compareDeck, this.prevCharacter.compareDeck);
 
             this.prevCharacter = Utils.clone(this.charServ.getCharacter());
-            this.barChartData = this.getChartData();
-            this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
 
-            if (this.needRedraw) {
-                console.log('Redrawing chart');
-                setTimeout(() => { this.redrawChart(); }, 50);
-                this.needRedraw = false;
-            }
+            const newChartData = this.getChartData();
+            const newLabels = new Set(newChartData.map(x => x.label));
+
+            const currentLabels = new Set(this.barChartData.map(x => x.label));
+
+            this.barChartData.forEach((item, index) => {
+                if (!newLabels.has(item.label)) {
+                    this.barChartData.splice(index, 1);
+                } else {
+                    item.data = newChartData.find(x => x.label === item.label).data;
+                }
+            });
+
+            newChartData.forEach(item => {
+                if (!currentLabels.has(item.label)) {
+                    this.barChartData.push(item);
+                }
+            });
+
+            this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
         }
     }
 
-    public abstract getChartData(): Array<{ label: string, data: number[] }>;
+    public abstract getChartData(): Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
 
     public redrawChart() {
         this.chart.ngOnDestroy();
         this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
     }
+
 
     /**
      * Fits result set to barChartLabels. Padding missing values with zeroes.

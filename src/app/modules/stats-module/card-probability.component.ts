@@ -26,7 +26,9 @@ export class CardProbabilityComponent extends GraphModule {
     const probData = [
       {
         label: 'Current',
-        data: this.fitToChart(probs)
+        data: this.fitToChart(probs),
+        backgroundColor: GraphModule.Colors.blue.backgroundColor,
+        borderColor: GraphModule.Colors.blue.borderColor,
       }
     ];
 
@@ -35,7 +37,9 @@ export class CardProbabilityComponent extends GraphModule {
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',
-        data: this.fitToChart(probs)
+        data: this.fitToChart(probs),
+        backgroundColor: GraphModule.Colors.red.backgroundColor,
+        borderColor: GraphModule.Colors.red.borderColor,
       });
     }
 

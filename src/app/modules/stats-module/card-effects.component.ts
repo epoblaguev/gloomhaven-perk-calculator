@@ -37,7 +37,9 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
     const probData = [
       {
         label: 'Current',
-        data: this.fitToChart(probs)
+        data: this.fitToChart(probs),
+        backgroundColor: GraphModule.Colors.blue.backgroundColor,
+        borderColor: GraphModule.Colors.blue.borderColor,
       }
     ];
 
@@ -45,7 +47,9 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
       Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
       probData.push({
         label: 'Comparison',
-        data: this.fitToChart(compareProbs)
+        data: this.fitToChart(compareProbs),
+        backgroundColor: GraphModule.Colors.red.backgroundColor,
+        borderColor: GraphModule.Colors.red.borderColor,
       });
     }
 
