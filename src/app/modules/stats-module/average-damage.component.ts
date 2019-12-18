@@ -12,33 +12,26 @@ export class AverageDamageComponent extends GraphModule {
   private baseDamage = [0, 1, 2, 3, 4, 5];
   public barChartLabels: string[] = this.baseDamage.map(val => val.toString());
 
-  public barChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    tooltips: false,
-    label: 'asdf',
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          stepSize: 1,
-        },
-      }],
-      xAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'Base Damage'
-        }
-      }]
-    },
-    animation: {
-      onProgress() { GraphModule.drawDatapointLabels(this.data, this.chart, (n: number) => `${n.toFixed(2)}`); },
-      onComplete() { GraphModule.drawDatapointLabels(this.data, this.chart, (n: number) => `${n.toFixed(2)}`); }
-    }
-  };
-
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
     super(bottomSheet, charServ);
+    this.barChartOptions.scales.xAxes = [{
+      scaleLabel: {
+        display: true,
+        labelString: 'Base Damage'
+      }
+    }];
+
+    this.barChartOptions.scales.yAxes = [{
+      ticks: {
+        beginAtZero: true,
+        stepSize: 1,
+      },
+    }];
+
+    this.barChartOptions.plugins.datalabels.formatter = (x => x.toFixed(2));
+
+    // TODO: Change this later
+    this.barChartOptions.maintainAspectRatio = true;
   }
 
   public getChartData() {

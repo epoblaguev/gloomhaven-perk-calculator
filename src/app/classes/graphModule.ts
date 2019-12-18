@@ -6,6 +6,8 @@ import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
 import { CharacterService } from '../services/character.service';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
 interface Properties {
@@ -38,14 +40,11 @@ export abstract class GraphModule implements DoCheck, OnInit {
     chart: BaseChartDirective;
 
     protected prevCharacter: Character;
-    protected needRedraw = false;
     protected infoPageName: StatsTypes;
 
-    public barChartOptions: any = {
-        scaleShowVerticalLines: false,
+    public barChartOptions: ChartOptions = {
         responsive: true,
         maintainAspectRatio: false,
-        tooltips: false,
         scales: {
             yAxes: [{
                 ticks: {
@@ -55,30 +54,21 @@ export abstract class GraphModule implements DoCheck, OnInit {
                 }
             }]
         },
-        animation: {
-            onProgress() { GraphModule.drawDatapointLabels(this.data, this.chart); },
-            onComplete() { GraphModule.drawDatapointLabels(this.data, this.chart); }
-        }
+        tooltips: {enabled: false},
+        plugins: {
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              formatter: (x => `${x}%`)
+            }
+          }
     };
 
     public abstract barChartLabels: string[];
     public barChartType: string;
     public barChartLegend: boolean;
     public barChartData: Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
-
-    static drawDatapointLabels(data, chart, numberFormat = (n: number) => `${n}%`) {
-        const chartInstance = chart;
-        const ctx = chartInstance.ctx;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        data.datasets.forEach((dataset, i) => {
-            const meta = chartInstance.controller.getDatasetMeta(i);
-            meta.data.forEach((bar, index) => {
-                const text = numberFormat(dataset.data[index]);
-                ctx.fillText(text, bar._model.x, bar._model.y - 5);
-            });
-        });
-    }
+    public barChartPlugins = [pluginDataLabels];
 
     ngOnInit(): void {
         this.barChartType = 'bar';
