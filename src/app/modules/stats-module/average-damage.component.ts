@@ -21,6 +21,7 @@ export class AverageDamageComponent extends GraphModule {
       yAxes: [{
         ticks: {
           beginAtZero: true,
+          stepSize: 1,
         },
       }],
       xAxes: [{
