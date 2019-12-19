@@ -31,7 +31,7 @@ export class AverageDamageComponent extends GraphModule {
     this.barChartOptions.plugins.datalabels.formatter = (x => x.toFixed(2));
 
     // TODO: Change this later
-    this.barChartOptions.maintainAspectRatio = true;
+    // this.barChartOptions.maintainAspectRatio = true;
   }
 
   public getChartData() {

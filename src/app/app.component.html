@@ -43,17 +43,17 @@
 
     <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
         <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
-            <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
+            <div fxLayout="column" fxLayoutGap="6px" fxFlex="60" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
                 <app-card-probability *ngIf="statsModules.cardProbability.show" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
                 </app-card-probability>
                 <app-card-effects *ngIf="statsModules.effectProbability.show" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
                 </app-card-effects>
+                <app-deck-reliability *ngIf="statsModules.deckReliability.show" [properties]="statsModules.deckReliability" fxFlex="100">
+                </app-deck-reliability>
                 <app-average-damage *ngIf="statsModules.averageDamage.show" [properties]="statsModules.averageDamage" fxFlex="100" fxFlex.xs="100">
                 </app-average-damage>
             </div>
-            <div fxLayout="column" fxLayoutGap="6px" fxFlex="50" fxFlex.xs="100" style="height: 100%;">
-                <app-deck-reliability *ngIf="statsModules.deckReliability.show" [properties]="statsModules.deckReliability" fxFlex="100">
-                </app-deck-reliability>
+            <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
                 <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
                 <app-perk-selector fxFlex="100"></app-perk-selector>
                 <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
