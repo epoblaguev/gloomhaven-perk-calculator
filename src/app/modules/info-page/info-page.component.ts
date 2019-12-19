@@ -16,7 +16,7 @@ export class InfoPageComponent implements OnInit {
   public bottomSheet: MatBottomSheetRef;
 
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { 
+  constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
     this.bottomSheet = bottomSheetRef;
   }
 

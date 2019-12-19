@@ -39,6 +39,10 @@ body {
     color: rgb(117, 117, 117);
 }
 
+.color-toolbar {
+    color: #4d5256;
+}
+
 .float-right {
     float: right;
 }
@@ -117,6 +121,6 @@ a:not([href]) {
 }
 
 .mat-checkbox-inner-container {
-    padding: 4px;
+    padding: 6px;
     margin-bottom: 5px !important;
 }

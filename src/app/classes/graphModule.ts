@@ -55,6 +55,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
             }]
         },
         tooltips: {enabled: false},
+        events: [],
         plugins: {
             datalabels: {
               anchor: 'end',

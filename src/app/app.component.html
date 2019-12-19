@@ -13,7 +13,7 @@
             <a mat-menu-item href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank">
                 <i class="fab fa-github fa-lg fa-fw color-gray"></i> Fork me on Github
             </a>
-            <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')"><i class="fab fa-android fa-lg fa-fw color-gray"></i>Download Mobile App</button>
+            <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')"><i class="fas fa-download fa-lg fa-fw color-gray"></i>Download Mobile App</button>
             <button mat-menu-item (click)="openBottomSheet('about')"><i class="fas fa-info-circle fa-lg fa-fw color-gray"></i>About</button>
         </mat-menu>
 
@@ -26,7 +26,13 @@
         <span style="flex: 1 1 auto;"></span>
 
         <a *ngIf="!isMobile" fxHide.xs (click)="openBottomSheet('app')" class="top-right-logo">
-            <i class="fab fa-android fa-fw fa-2x"></i>
+            <span class="fa-layers fa-fw fa-2x">
+                <i class="fas fa-play" data-fa-transform="rotate--90 grow-1.5"></i>
+                <i class="fab fa-apple fa-inverse color-toolbar" data-fa-transform="shrink-9 up-3"></i>
+                <i class="fab fa-amazon fa-inverse color-toolbar" data-fa-transform="shrink-10 down-4.2 left-4.5"></i>
+                <i class="fab fa-google-play fa-inverse color-toolbar" data-fa-transform="shrink-10 down-4.2 right-4.5"></i>
+              </span>
+            <!-- <i class="fas fa-mobile-alt fa-fw fa-2x"></i> -->
         </a>
 
         <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="top-right-logo">

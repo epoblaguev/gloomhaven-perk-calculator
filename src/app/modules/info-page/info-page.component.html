@@ -29,9 +29,16 @@
 
 <!-- Download App -->
 <div *ngIf="data.infoType === 'app'">
-    <h2><i class="fab fa-android fa-fw color-gray"></i> Download Mobile App</h2>
+    <h2>
+        <i class="fas fa-download fa-fw color-gray"></i> Download Mobile App
+    </h2>
     <p>If you found this project useful, consider supporting its development by downloading the mobile app</p>
     <mat-list>
+        <mat-list-item>
+            <a href="https://apps.apple.com/us/app/gloomhaven-perk-calculator/id1491796181" class="text-no-line" target="_blank">
+                <i class="fab fa-apple fa-lg fa-fw color-gray"></i> Apple App Store
+            </a>
+        </mat-list-item>
         <mat-list-item>
             <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" class="text-no-line" target="_blank">
                 <i class="fab fa-google-play fa-lg fa-fw color-gray"></i> Google Play Store
@@ -84,7 +91,6 @@
 <div *ngIf="data.infoType === statsTypes.DECK_RELIABILITY">
     <h2><i class="fas {{statsModules.deckReliability.icon}} fa-fw" [ngClass]="statsModules.deckReliability.iconClasses"></i> {{statsModules.deckReliability.text}}
     </h2>
-
     <p>
         This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
     </p>
@@ -100,19 +106,15 @@
 <div *ngIf="data.infoType === statsTypes.CARD_PROBABILITY">
     <h2><i class="fas {{statsModules.cardProbability.icon}} fa-fw" [ngClass]="statsModules.cardProbability.iconClasses"></i> {{statsModules.cardProbability.text}}
     </h2>
-
     <p>
         This chart shows the probability of specific damage modifier cards being drawn
     </p>
-
     <p>
         Adding or removing rolling damage cards affects the probability of only that card type, but adding or removing non-rolling cards affects the probability of all cards
     </p>
-
     <p>
         The percent is the probability of a card comming up during the entire action. As such, stats for all non-rolling cards should add up to 100% (rounding errors aside), while rolling cards can make the absolute total appear to be over 100%
     </p>
-
     <p>
         Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on this graph
     </p>
