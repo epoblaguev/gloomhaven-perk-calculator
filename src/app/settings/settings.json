@@ -167,7 +167,7 @@
                 {"name": "Add two rolling HEAL 1 cards", "uses": 3},
                 {"name": "Add one rolling FIRE and one rolling WIND card", "uses": 1},
                 {"name": "Add one rolling DARK and one rolling EARTH card", "uses": 1},
-                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+                {"name": "Ignore negative scenario effects and add two (+1) cards", "uses": 1}
             ]
         },
         {
@@ -183,7 +183,7 @@
                 {"name": "Add two rolling HEAL 1 cards", "uses": 1},
                 {"name": "Add two rolling CURSE cards", "uses": 1},
                 {"name": "Add one rolling ADD TARGET card", "uses": 1},
-                {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1}
+                {"name": "Ignore negative scenario effects and add two (+1) cards", "uses": 1}
             ]
         },
         {
