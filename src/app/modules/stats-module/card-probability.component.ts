@@ -10,7 +10,7 @@ import { CharacterService } from 'src/app/services/character.service';
   styleUrls: ['./stats-module.component.scss']
 })
 export class CardProbabilityComponent extends GraphModule {
-  public barChartLabels; // = Object.keys(this.character.deck.cards);
+  public barChartLabels: string[]; // = Object.keys(this.character.deck.cards);
   public removeZeroColumns = false;
 
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {

@@ -62,7 +62,8 @@ export abstract class GraphModule implements DoCheck, OnInit {
               align: 'end',
               formatter: (x => `${x}%`)
             }
-          }
+          },
+          // animation: {duration: 10}
     };
 
     public abstract barChartLabels: string[];

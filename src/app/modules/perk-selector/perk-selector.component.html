@@ -15,7 +15,7 @@
           <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
           </mat-checkbox>
         </span>
-                <b>{{perk.name}}</b>
+                <b [innerHTML]="perkNameToHTML(perk.name)"></b>
             </div>
         </div>
     </mat-card-content>
