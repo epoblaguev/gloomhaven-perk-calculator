@@ -1,6 +1,9 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { PerkIconsComponent} from 'src/app/modules/perk-icons/perk-icons.component';
+
 
 @Component({
     selector: 'app-perk-selector',
@@ -8,11 +11,13 @@ import { StorageService } from 'src/app/services/storage.service';
     styleUrls: ['./perk-selector.component.scss']
 })
 export class PerkSelectorComponent implements OnInit {
+    public iconWords = PerkIconsComponent.supportedWords;
+    public showIcons = true;
     public selectedCharacter = 0;
 
     public hideRealNames = true;
 
-    constructor(public charService: CharacterService, public storageService: StorageService) {
+    constructor(public charService: CharacterService, public storageService: StorageService, private sanitizer: DomSanitizer) {
         this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
     }
 

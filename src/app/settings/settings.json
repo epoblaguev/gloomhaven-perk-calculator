@@ -114,7 +114,7 @@
                 {"name": "Replace one (+0) card with one (+2) SUN card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+3) MUDDLE card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) CURSE card", "uses": 1},
-                {"name": "Replace one (+0) card with one (+2) REGENERATE, Self card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) REGENERATE , Self card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) HEAL 2, Affect any ally card", "uses": 1},
                 {"name": "Add two rolling HEAL 1, Self cards", "uses": 1},
                 {"name": "Add two rolling CURSE cards", "uses": 1},
@@ -133,7 +133,7 @@
                 {"name": "Add two rolling HEAL 1 cards", "uses": 2},
                 {"name": "Add one rolling STUN card", "uses": 1},
                 {"name": "Add two rolling SUN cards", "uses": 2},
-                {"name": "Add two rolling SHIELD 1, Self cards", "uses": 1},
+                {"name": "Add two rolling Shield 1, Self cards", "uses": 1},
                 {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1},
                 {"name": "Ignore negative scenario effects", "uses": 1}
             ]

@@ -139,7 +139,7 @@ export const PERK_LIST = {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+2', 'Sun', 1);
     },
-    'Replace one (+0) card with one (+2) REGENERATE, Self card': (char: Character) => {
+    'Replace one (+0) card with one (+2) REGENERATE , Self card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+2', 'Regenerate, Self', 1);
     },
@@ -193,7 +193,7 @@ export const PERK_LIST = {
     'Add two rolling WOUND cards': (char: Character) => { char.deck.addEffect('Rolling Wound', 2); },
     'Add two rolling SUN cards': (char: Character) => { char.deck.addEffect('Rolling Sun', 2); },
     'Add two rolling CURSE cards': (char: Character) => { char.deck.addEffect('Rolling Curse', 2); },
-    'Add two rolling SHIELD 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
+    'Add two rolling Shield 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
     'Add one rolling INVISIBLE card': (char: Character) => { char.deck.addEffect('Rolling Invisible', 1); },
     'Add one rolling STUN card': (char: Character) => { char.deck.addEffect('Rolling Stun', 1); },
     'Add one rolling DISARM and one rolling MUDDLE card': (char: Character) => {
