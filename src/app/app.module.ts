@@ -16,6 +16,7 @@ import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
 import { StorageService } from './services/storage.service';
 import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -37,6 +38,7 @@ import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
     UIModule,
     ChartsModule,
     MatMenuModule,
+    MatSlideToggleModule
   ],
   entryComponents: [InfoPageComponent],
   providers: [CharacterService, StorageService],

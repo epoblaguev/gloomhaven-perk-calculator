@@ -12,6 +12,7 @@ import { PerkIconsComponent} from 'src/app/modules/perk-icons/perk-icons.compone
 })
 export class PerkSelectorComponent implements OnInit {
     public iconWords = PerkIconsComponent.supportedWords;
+    public showIcons = true;
     public selectedCharacter = 0;
 
     public hideRealNames = true;
