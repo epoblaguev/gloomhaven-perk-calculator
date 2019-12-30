@@ -20,12 +20,6 @@ const DefaultEffects = {
     None: 20,
 };
 
-const DefaultDeckModifiers = {
-    Bless: 0,
-    Curse: 0,
-    '-1': 0,
-};
-
 export class Deck {
     private static readonly cardValue = {
         x0: -1000,
@@ -45,27 +39,11 @@ export class Deck {
 
     public effects: typeof DefaultEffects;
     public cards: typeof DefaultCards;
-    public deckModifiers: typeof DefaultDeckModifiers;
 
     constructor() {
         this.cards = Utils.clone(DefaultCards);
         this.effects = Utils.clone(DefaultEffects);
-        this.deckModifiers = Utils.clone(DefaultDeckModifiers);
     }
-
-    /*
-    public static modifyCards(cards: typeof DefaultCards, modifiers: typeof DefaultDeckModifiers): typeof DefaultCards {
-        const newCards = Utils.clone(cards);
-        Object.keys(modifiers).forEach(key => newCards[key] += modifiers[key]);
-        return newCards;
-    }
-
-    public static modifyEffects(effects: typeof DefaultEffects, modifiers: typeof DefaultDeckModifiers): typeof DefaultEffects {
-        const newEffects = Utils.clone(effects);
-        newEffects['None'] += this.sum();
-        return newEffects;
-    }
-    */
 
     private sum(obj: object): number {
         return Object.values(obj).reduce((p, c) => p + c);

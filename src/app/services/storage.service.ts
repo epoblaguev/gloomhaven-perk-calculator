@@ -49,7 +49,6 @@ export class StorageService {
 
     const subdecks = {
       cards: char.compareDeck.cards,
-      deckModifiers: char.compareDeck.deckModifiers,
       effects: char.compareDeck.effects
     };
 
@@ -72,7 +71,6 @@ export class StorageService {
 
     const subdecks = {
       cards: char.compareDeck.cards,
-      deckModifiers: char.compareDeck.deckModifiers,
       effects: char.compareDeck.effects
     };
 

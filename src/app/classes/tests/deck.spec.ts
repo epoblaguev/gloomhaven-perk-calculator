@@ -18,31 +18,6 @@ describe('Deck', () => {
         expect(effectCount).toEqual(20, `Deck starts with ${effectCount} effects instead of 20`);
     });
 
-    /*
-    it('should have undefined comparison by default', () => {
-        const deck = new Deck();
-        expect(deck.comparison).toBeUndefined('Comparison doesn\'t start as null');
-    });
-
-    it('comparison should create clone of cards and effects', () => {
-        const deck = new Deck();
-
-        deck.saveComparison();
-        expect(deck.comparison.cards).toEqual(deck.cards, 'Comparison isn\'t exact copy of cards');
-        expect(deck.comparison.effects).toEqual(deck.effects, 'Comparison isn\'t exact copy of effects');
-
-        deck.cards['+0'] += 1;
-        deck.effects['None'] += 1;
-
-        expect(deck.comparison.cards).not.toEqual(deck.cards, 'Comparison changes along with cards');
-        expect(deck.comparison.effects).not.toEqual(deck.effects, 'Comparison changes along with effects');
-
-        deck.clearComparisons();
-        expect(deck.comparison).toBeUndefined('Clearing comparisons doesn\'t make them undefined');
-    });
-    */
-
-
     const effectsProbabilityTests = [
         {
             input: { None: 20, Fire: 1 },
@@ -334,28 +309,5 @@ describe('Deck', () => {
             expect(deck.reliabilityZero()).toBeCloseTo(test.reliability.neutral);
         });
     });
-
-    it('deck modifiers should start at 0', () => {
-        const deck = new Deck();
-        expect(Object.values(deck.deckModifiers).every(val => val === 0)).toBeTruthy();
-    });
-
-    /*
-    it('should be able to apply deckModifiers', () => {
-        const deck = new Deck();
-        const clonedCards = Utils.clone(deck.cards);
-        const clonedEffects = Utils.clone(deck.effects);
-
-        Object.keys(deck.deckModifiers).forEach(key => {
-            deck.deckModifiers[key] = 1;
-            clonedCards[key] += 1;
-            clonedEffects['None'] += 1;
-        });
-
-        expect(deck.modifyCards(deck.cards, deck.deckModifiers)).toEqual(clonedCards);
-        expect(deck.modifyEffects(deck.effects, deck.deckModifiers)).toEqual(clonedEffects);
-
-    });
-    */
 
 });
