@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../classes/character';
 import { DeckModifier } from '../classes/deckModifier';
+import Utils from '../classes/utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
+  readonly compareDeckPrefix = 'CompareDeck';
 
   constructor() { }
 
@@ -30,6 +32,71 @@ export class StorageService {
     modList.forEach(mod => {
       mod.uses.forEach((use, index) => window.localStorage.setItem(`${charName}_${listName}_${mod.name}_${index}`, String(use.used)));
     });
+  }
+
+  savePerkIconToggle(state: boolean) {
+    window.localStorage.setItem('perkIconToggle', String(state));
+  }
+
+  saveComparisonDeck(char: Character) {
+    this.clearComparisonDeck(char.name);
+    console.log(`Saving comparison deck for ${char.name}`);
+    if (char.compareDeck == null) {
+      return;
+    }
+
+    window.localStorage.setItem(`${this.compareDeckPrefix}_${char.name}_enabled`, String(true));
+
+    const subdecks = {
+      cards: char.compareDeck.cards,
+      deckModifiers: char.compareDeck.deckModifiers,
+      effects: char.compareDeck.effects
+    };
+
+    Object.keys(subdecks).forEach(subdeckKey => {
+      Object.keys(subdecks[subdeckKey]).forEach(key => {
+        window.localStorage.setItem(`${this.compareDeckPrefix}_${char.name}_${subdeckKey}_${key}`, String(subdecks[subdeckKey][key]));
+      });
+    });
+  }
+
+  loadComparisonDeck(char: Character) {
+    console.log(`Loading comparison deck for ${char.name}`);
+    if (window.localStorage.getItem(`${this.compareDeckPrefix}_${char.name}_enabled`) !== String(true)) {
+      return;
+    }
+
+    if (char.compareDeck == null) {
+      char.compareDeck = char.deck.cloneDeck();
+    }
+
+    const subdecks = {
+      cards: char.compareDeck.cards,
+      deckModifiers: char.compareDeck.deckModifiers,
+      effects: char.compareDeck.effects
+    };
+
+    Object.keys(subdecks).forEach(subdeckKey => {
+      Object.keys(subdecks[subdeckKey]).forEach(key => {
+        const savedValue = window.localStorage[`${this.compareDeckPrefix}_${char.name}_${subdeckKey}_${key}`];
+        if (savedValue != null) { subdecks[subdeckKey][key] = Number(savedValue); }
+      });
+    });
+  }
+
+  clearComparisonDeck(charName: string) {
+    console.log(`Clearing comparison deck for ${charName}`);
+    Object.keys(window.localStorage).forEach(key => {
+      if (key.startsWith(`${this.compareDeckPrefix}_${charName}`)) {
+        window.localStorage.removeItem(key);
+      }
+    });
+
+    window.localStorage.setItem(`${this.compareDeckPrefix}_${charName}_enabled`, String(false));
+  }
+
+  loadPerkIconToggle(): boolean {
+    return (window.localStorage['perkIconToggle'] || 'true') === 'true';
   }
 
   loadAllMods(char: Character) {

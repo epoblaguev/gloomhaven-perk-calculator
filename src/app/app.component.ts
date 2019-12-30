@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     // Fill character perks with stored info
     this.charService.getCharacters().forEach(char => {
       storageService.loadAllMods(char);
+      storageService.loadComparisonDeck(char);
       char.applyModifiers();
       console.log(char);
     });

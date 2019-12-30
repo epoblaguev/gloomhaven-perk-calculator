@@ -1,6 +1,6 @@
 <mat-card fxLayout="column">
     <mat-card-subtitle><i class="fas fa-user-check fa-fw fa-lg"></i> Perks
-        <mat-slide-toggle [(ngModel)]="showIcons" class="float-right">
+        <mat-slide-toggle (toggleChange)="togglePerkIcons()" [checked]="showIcons" class="float-right">
             Toggle Icons
         </mat-slide-toggle>
     </mat-card-subtitle>

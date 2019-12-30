@@ -19,6 +19,7 @@ export class PerkSelectorComponent implements OnInit {
 
     constructor(public charService: CharacterService, public storageService: StorageService, private sanitizer: DomSanitizer) {
         this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
+        this.showIcons = storageService.loadPerkIconToggle();
     }
 
     ngOnInit(): void {}
@@ -46,12 +47,19 @@ export class PerkSelectorComponent implements OnInit {
         this.storageService.clearCharacterPerks(this.charService.getCharacter().name);
     }
 
+    togglePerkIcons() {
+        this.showIcons = !this.showIcons;
+        this.storageService.savePerkIconToggle(this.showIcons);
+    }
+
     toggleComparison() {
         const character = this.charService.getCharacter();
         if (character.compareDeck == null) {
             character.compareDeck = character.deck.cloneDeck();
+            this.storageService.saveComparisonDeck(character);
         } else {
             character.compareDeck = null;
+            this.storageService.clearComparisonDeck(character.name);
         }
     }
 
