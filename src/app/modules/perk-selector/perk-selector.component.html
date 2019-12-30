@@ -12,10 +12,19 @@
             <span>Perks Chosen: {{ getPerkCount() }}</span>
             <div *ngFor="let perk of charService.getCharacter().perkList" fxLayoutGap="5px">
                 <span *ngFor="let use of perk.uses, let use_i = index">
-          <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
-          </mat-checkbox>
-        </span>
-                <b [innerHTML]="perkNameToHTML(perk.name)"></b>
+                    <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
+                    </mat-checkbox>
+                </span>
+                <b>
+                    <ng-container *ngFor="let word of perk.name.split(' ')">
+                        <ng-container *ngIf="iconWords.has(word); else elseTemplate">
+                            <app-perk-icons [icon]="word"></app-perk-icons>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            {{word}}
+                        </ng-template>
+                    </ng-container>
+                </b>
             </div>
         </div>
     </mat-card-content>

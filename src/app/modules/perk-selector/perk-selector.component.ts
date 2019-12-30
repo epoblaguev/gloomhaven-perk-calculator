@@ -1,8 +1,9 @@
 import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { Icons } from 'src/app/classes/consts';
 import { DomSanitizer } from '@angular/platform-browser';
+import { PerkIconsComponent} from 'src/app/modules/perk-icons/perk-icons.component';
+
 
 @Component({
     selector: 'app-perk-selector',
@@ -10,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     styleUrls: ['./perk-selector.component.scss']
 })
 export class PerkSelectorComponent implements OnInit {
+    public iconWords = PerkIconsComponent.supportedWords;
     public selectedCharacter = 0;
 
     public hideRealNames = true;
@@ -50,19 +52,6 @@ export class PerkSelectorComponent implements OnInit {
         } else {
             character.compareDeck = null;
         }
-    }
-
-    perkNameToHTML(perkName: string) {
-        const perkHTML = perkName
-        .replace(/DARK/g, Icons.dark)
-        .replace(/INVISIBLE/g, `INVISIBLE ${Icons.invisible}`)
-        .replace(/rolling/g, Icons.rolling)
-        .replace(/HEAL/g, `Heal${Icons.heal}`)
-        .replace('(-1)', Icons['-1'])
-        .replace('(+0)', Icons['+0'])
-        .replace('(+1)', Icons['+1']);
-
-        return this.sanitizer.bypassSecurityTrustHtml(perkHTML);
     }
 
     private resetPerkCheckboxes() {

@@ -15,6 +15,8 @@ import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.
 import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
 import { StorageService } from './services/storage.service';
+import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { StorageService } from './services/storage.service';
     InfoPageComponent,
     DeckModifiersComponent,
     PerkSelectorComponent,
+    PerkIconsComponent,
   ],
   imports: [
     BrowserModule,
