@@ -5,6 +5,7 @@ import { MatCardSubtitle } from '@angular/material/card';
 import { MatToolbar } from '@angular/material/toolbar';
 import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
+import { ShuffleProbabilityComponent } from './modules/stats-module/shuffle-probability.component';
 import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
 
@@ -21,6 +22,7 @@ describe('AppComponent', () => {
         MatCardSubtitle,
         CardProbabilityComponent,
         DeckReliabilityComponent,
+        ShuffleProbabilityComponent,
         CardEffectsComponent,
         AverageDamageComponent
       ],

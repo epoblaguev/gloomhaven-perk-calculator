@@ -16,6 +16,7 @@ export class CardProbabilityComponent extends GraphModule {
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
     super(bottomSheet, charServ);
     this.barChartLabels = Object.keys(this.charServ.getCharacter().deck.cards);
+    this.barChartOptions.layout.padding['top'] = 0;
   }
 
 

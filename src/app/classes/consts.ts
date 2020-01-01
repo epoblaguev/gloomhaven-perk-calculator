@@ -3,6 +3,7 @@ export enum StatsTypes {
     DECK_RELIABILITY,
     EFFECT_PROBABILITY,
     AVERAGE_DAMAGE,
+    SHUFFLE_PROBABILITY,
 }
 
 
@@ -39,4 +40,12 @@ export const StatsModules = {
         shortDescription: 'The chance that a given effect comes into play during your action',
         show: true
     },
+    shuffleProbability: {
+        text: 'Shuffle Probability',
+        icon: 'fa-sync-alt',
+        iconClasses: ['color-dark-purple'],
+        infoPage: StatsTypes.SHUFFLE_PROBABILITY,
+        shortDescription: 'The chance that the deck will be shuffled on a given action',
+        show: true
+    }
 };

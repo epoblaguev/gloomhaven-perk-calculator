@@ -4,28 +4,30 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
-    selector: 'app-deck-reliability',
+    selector: 'app-shuffle-probability',
     templateUrl: './stats-module.component.html',
     styleUrls: ['./stats-module.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class DeckReliabilityComponent extends GraphModule {
-    public barChartLabels: string[] = ['≤1', '=0', '≥1'];
+export class ShuffleProbabilityComponent extends GraphModule {
+    public barChartLabels: string[] = ['1', '3', '5', '7', '9', '11'];
 
     constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
         super(bottomSheet, charServ);
-        this.barChartOptions.layout.padding['top'] = 0;
+
+        this.barChartOptions.scales.xAxes = [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Action'
+            }
+          }];
     }
 
     public getChartData() {
-        // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
         const chartData = [
             {
-                label: 'Current', data: [
-                    Math.round(this.charServ.getCharacter().deck.reliabilityNegative() * 100),
-                    Math.round(this.charServ.getCharacter().deck.reliabilityZero() * 100),
-                    Math.round(this.charServ.getCharacter().deck.reliabilityPositive() * 100)
-                ],
+                label: 'Current', data: this.barChartLabels
+                    .map((val, index) => Math.round(this.charServ.getCharacter().deck.getShuffleChance(Number(val)) * 100)),
                 backgroundColor: GraphModule.Colors.blue.backgroundColor,
                 borderColor: GraphModule.Colors.blue.borderColor,
             }
@@ -35,11 +37,8 @@ export class DeckReliabilityComponent extends GraphModule {
             // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
-                data: [
-                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityNegative() * 100),
-                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityZero() * 100),
-                    Math.round(this.charServ.getCharacter().compareDeck.reliabilityPositive() * 100)
-                ],
+                data: this.barChartLabels
+                    .map((val, index) => Math.round(this.charServ.getCharacter().compareDeck.getShuffleChance(Number(val)) * 100)),
                 backgroundColor: GraphModule.Colors.red.backgroundColor,
                 borderColor: GraphModule.Colors.red.borderColor,
             });

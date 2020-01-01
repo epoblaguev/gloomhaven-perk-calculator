@@ -176,6 +176,15 @@ export class Deck {
         return damage;
     }
 
+    public getShuffleChance(actionNumber: number) {
+        const shuffleCards = this.cards.x0 + this.cards.x2;
+        const nonRollingCards: number = Object.keys(this.cards)
+            .map(x => x.startsWith('r+') ? 0 : this.cards[x])
+            .reduce((a, b) => a + b);
+
+        return shuffleCards / (nonRollingCards - (actionNumber - 1));
+    }
+
     public addCard(cardType: string, cardEffect: string, count = 1) {
         this.cards[cardType] += count;
         // this.effects[cardEffect] += count;

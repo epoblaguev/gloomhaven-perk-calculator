@@ -119,3 +119,12 @@
         Non-damage rolling Effect cards (effectively r+0) have absolutelly no imact on these statistics and aren't shown on this graph
     </p>
 </div>
+
+<!-- SHUFFLE PROBABILITY -->
+<div *ngIf="data.infoType === statsTypes.SHUFFLE_PROBABILITY">
+    <h2><i class="fas {{statsModules.shuffleProbability.icon}} fa-fw" [ngClass]="statsModules.shuffleProbability.iconClasses"></i> {{statsModules.shuffleProbability.text}}
+    </h2>
+    <p>
+        This chart shows the probability that the deck will be shuffled on the n<sup>th</sup> action.
+    </p>
+</div>

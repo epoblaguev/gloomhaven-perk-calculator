@@ -310,4 +310,33 @@ describe('Deck', () => {
         });
     });
 
+    const deckShuffleTests = [
+        {
+            input: {x0: 1, x2: 1},
+            action: 1,
+            probability: 2 / 2,
+        },
+        {
+            input: {x0: 1, x2: 1, '+1': 1},
+            action: 1,
+            probability: 2 / 3,
+        },
+        {
+            input: {x0: 1, x2: 1, '+1': 1},
+            action: 2,
+            probability: 2 / 2,
+        },
+    ];
+
+    Object.values(deckShuffleTests).forEach(test => {
+        const deck = new Deck();
+        Object.keys(deck.cards).forEach(key => deck.cards[key] = 0); // Set all cards to 0;
+        deck.cards = Object.assign({}, deck.cards, test.input);
+
+        // tslint:disable-next-line:max-line-length
+        it(`should properly calculate SHUFFLE probability for ${JSON.stringify(test.input)} on action ${test.action} as ${test.probability}`, () => {
+            expect(deck.getShuffleChance(test.action)).toEqual(test.probability);
+        });
+    });
+
 });

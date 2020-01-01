@@ -6,7 +6,7 @@ import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
 import { CharacterService } from '../services/character.service';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { ChartOptions } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -54,12 +54,19 @@ export abstract class GraphModule implements DoCheck, OnInit {
                 }
             }]
         },
+        layout: {
+            padding: {
+                top: 15,
+            }
+        },
         tooltips: {enabled: false},
         events: [],
         plugins: {
             datalabels: {
               anchor: 'end',
               align: 'end',
+              clamp: true,
+              offset: -5,
               formatter: (x => `${x}%`)
             }
           },

@@ -7,6 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
+import { ShuffleProbabilityComponent } from './modules/stats-module/shuffle-probability.component';
 import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
 import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
@@ -24,6 +25,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   declarations: [
     AppComponent,
     DeckReliabilityComponent,
+    ShuffleProbabilityComponent,
     CardProbabilityComponent,
     AverageDamageComponent,
     CardEffectsComponent,
