@@ -326,6 +326,11 @@ describe('Deck', () => {
             action: 2,
             probability: 2 / 2,
         },
+        {
+            input: {x0: 1, x2: 1, '+1': 1, 'r+1': 5},
+            action: 1,
+            probability: 2 / 3,
+        },
     ];
 
     Object.values(deckShuffleTests).forEach(test => {

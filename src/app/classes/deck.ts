@@ -22,19 +22,19 @@ const DefaultEffects = {
 
 export class Deck {
     private static readonly cardValue = {
-        x0: -1000,
-        '-2': -2,
-        '-1': -1,
-        '+0': 0,
-        '+1': 1,
-        '+2': 2,
-        '+3': 3,
-        '+4': 4,
-        x2: 1000,
-        'r+1': 1,
-        'r+2': 2,
-        Curse: -1000,
-        Bless: 1000,
+        x0: (x: number) => x * 0,
+        '-2': (x: number) => x - 2,
+        '-1': (x: number) => x - 1,
+        '+0': (x: number) => x + 0,
+        '+1': (x: number) => x + 1,
+        '+2': (x: number) => x + 2,
+        '+3': (x: number) => x + 3,
+        '+4': (x: number) => x + 4,
+        x2: (x: number) => x * 2,
+        'r+1': (x: number) => x + 1,
+        'r+2': (x: number) => x + 2,
+        Curse: (x: number) => x * 0,
+        Bless: (x: number) => x * 2,
     };
 
     public effects: typeof DefaultEffects;
@@ -49,29 +49,18 @@ export class Deck {
         return Object.values(obj).reduce((p, c) => p + c);
     }
 
-    private rollingSum(obj: object): number {
-        let sum = 0;
-        for (const key of Object.keys(obj)) {
-            sum += key.startsWith('r+') || key.startsWith('Rolling') ? obj[key] : 0;
-        }
-        return sum;
-    }
-
     private nonRollingSum(obj: object): number {
-        let sum = 0;
-        for (const key of Object.keys(obj)) {
-            sum += !key.startsWith('r+') && !key.startsWith('Rolling') ? obj[key] : 0;
-        }
-        return sum;
+        return Object.keys(obj)
+        .map(key => key.startsWith('r+') || key.startsWith('Rolling') ? 0 : this.cards[key])
+        .reduce((a, b) => a + b);
     }
 
-    public getCardsProbability(removeZero = false): object {
+    public getCardsProbability(): object {
         const nonRollingSum = this.nonRollingSum(this.cards);
         const probabilities = {};
 
         for (const key of Object.keys(this.cards)) {
             const val = this.cards[key];
-            if (val === 0 && removeZero) { continue; }
             const sum = key.startsWith('r+') || key.startsWith('Rolling') ? nonRollingSum + val : nonRollingSum;
             probabilities[key] = val / sum;
         }
@@ -80,6 +69,10 @@ export class Deck {
     }
 
     private getReliability(cards: typeof DefaultCards, rollingValue = 0, compareFunc: (x: number) => boolean) {
+        // The base damage from which to start calculating.
+        // If ending value is less, reliability is negative, if same, neutral, and if more positive.
+        const baseValue = 10;
+
         let probability = 0;
 
         for (const cardType in cards) {
@@ -88,14 +81,14 @@ export class Deck {
                 continue;
             }
 
-            if (!cardType.startsWith('r') && compareFunc(rollingValue + Deck.cardValue[cardType])) {
+            if (!cardType.startsWith('r') && compareFunc(Deck.cardValue[cardType](baseValue + rollingValue) - baseValue)) {
                 probability += cards[cardType] / this.sum(cards);
             } else if (cardType.startsWith('r')) {
                 const newCards = Utils.clone(cards);
                 newCards[cardType] -= 1;
 
                 probability += (cards[cardType] / this.sum(cards))
-                    * this.getReliability(newCards, rollingValue + Deck.cardValue[cardType], compareFunc);
+                    * this.getReliability(newCards, Deck.cardValue[cardType](baseValue + rollingValue) - baseValue, compareFunc);
             }
         }
 
@@ -158,17 +151,15 @@ export class Deck {
         const sum = this.sum(this.cards);
 
         for (const key in this.cards) {
-            if (this.cards[key] === 0 || key === 'x0' || key === 'Curse') { continue; }
+            if (this.cards[key] === 0 || ['x0', 'Curse'].includes(key)) { continue; }
 
             if (key.startsWith('r')) {
                 const newDeck = new Deck();
                 newDeck.cards = Utils.clone(this.cards);
                 newDeck.cards[key] -= 1;
-                damage += (Deck.cardValue[key] + newDeck.getAverageDamage(baseDamage)) * (this.cards[key] / sum);
-            } else if (key === 'x2' || key === 'Bless') {
-                damage += (baseDamage * 2) * (this.cards[key] / sum);
+                damage += Deck.cardValue[key](newDeck.getAverageDamage(baseDamage)) * (this.cards[key] / sum);
             } else {
-                let tmpDamage = (baseDamage + Deck.cardValue[key]);
+                let tmpDamage = Deck.cardValue[key](baseDamage);
                 tmpDamage = tmpDamage > 0 ? tmpDamage : 0;
                 damage += (tmpDamage) * (this.cards[key] / sum);
             }
@@ -178,9 +169,7 @@ export class Deck {
 
     public getShuffleChance(actionNumber: number) {
         const shuffleCards = this.cards.x0 + this.cards.x2;
-        const nonRollingCards: number = Object.keys(this.cards)
-            .map(x => x.startsWith('r+') ? 0 : this.cards[x])
-            .reduce((a, b) => a + b);
+        const nonRollingCards: number = this.nonRollingSum(this.cards);
 
         return shuffleCards / (nonRollingCards - (actionNumber - 1));
     }
