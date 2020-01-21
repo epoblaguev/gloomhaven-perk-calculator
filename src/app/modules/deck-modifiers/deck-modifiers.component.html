@@ -9,7 +9,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Scenario -1 Cards" [(value)]="modifiers['scenario-1']" (selectionChange)="selectionChange()">
+            <mat-select placeholder="Scenario (-1) Cards" [(value)]="modifiers['scenario-1']" (selectionChange)="selectionChange()">
                 <mat-option *ngFor="let character of ' '.repeat(counts['scenario-1'] + 1).split(''), let i = index" [value]="i">
                     {{ i }}
                 </mat-option>
@@ -17,9 +17,9 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Item -1 Cards" [(value)]="modifiers['item-1']" (selectionChange)="selectionChange()">
-                <mat-option *ngFor="let character of ' '.repeat(counts['item-1'] + 1).split(''), let i = index" [value]="i">
-                    {{ i }}
+            <mat-select placeholder="Item (-1) Cards" [(value)]="modifiers['item-1']" (selectionChange)="selectionChange()">
+                <mat-option *ngFor="let character of ' '.repeat(counts['item-1'] + counts['item-1_remove'] + 1).split(''), let i = index" [value]="i - counts['item-1_remove']">
+                    {{ dropdownValue(i - counts['item-1_remove'], '(-1)') }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

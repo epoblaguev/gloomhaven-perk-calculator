@@ -21,17 +21,20 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     bless: 0,
     curse: 0,
     'scenario-1': 0,
-    'item-1': 0
+    'item-1': 0,
+    'item-1_remove': 0,
   };
 
   private prevCharacter: Character;
 
   constructor(public charServ: CharacterService, public storageService: StorageService) {
-    this.prevCharacter = Utils.clone(this.charServ.getCharacter());
-    this.counts.bless = charServ.getCharacter().miscModifiers.find(mod => mod.name === 'Bless').uses.length;
-    this.counts.curse = charServ.getCharacter().negScenarioEffects.find(mod => mod.name === 'Curse').uses.length;
-    this.counts['scenario-1'] = charServ.getCharacter().negScenarioEffects.find(mod => mod.name === '-1').uses.length;
-    this.counts['item-1'] = charServ.getCharacter().negItemEffects.find(mod => mod.name === '-1').uses.length;
+    const char = charServ.getCharacter();
+    this.prevCharacter = Utils.clone(char);
+    this.counts.bless = char.miscModifiers.find(mod => mod.name === 'Bless').uses.length;
+    this.counts.curse = char.negScenarioEffects.find(mod => mod.name === 'Curse').uses.length;
+    this.counts['scenario-1'] = char.negScenarioEffects.find(mod => mod.name === '-1').uses.length;
+    this.counts['item-1'] = char.negItemEffects.find(mod => mod.name === '-1').uses.length;
+    this.counts['item-1_remove'] = char.negItemEffects.find(mod => mod.name === '-1_remove').uses.length;
     console.log(this.counts);
     console.log('Constructed Deck Modifiers');
   }
@@ -67,11 +70,22 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
 
     char.negScenarioEffects.push(new DeckModifier('Curse', this.modifiers.curse, NEG_SCENARIO_EFFECTS_LIST.Curse, true));
     char.negScenarioEffects.push(new DeckModifier('-1', this.modifiers['scenario-1'], NEG_SCENARIO_EFFECTS_LIST['-1'], true));
-    char.negItemEffects.push(new DeckModifier('-1', this.modifiers['item-1'], NEG_ITEM_EFFECTS_LIST['-1'], true));
+    // tslint:disable-next-line:max-line-length
+    char.negItemEffects.push(new DeckModifier('-1', Math.abs(this.modifiers['item-1']), this.modifiers['item-1'] > 0 ? NEG_ITEM_EFFECTS_LIST['-1'] : NEG_ITEM_EFFECTS_LIST['-1_remove'], true));
     char.miscModifiers.push(new DeckModifier('Bless', this.modifiers.bless, MISC_MODIFIERS_LIST.Bless, true));
     char.applyModifiers();
     this.prevCharacter = Utils.clone(this.charServ.getCharacter());
     this.storageService.saveAllMods(char);
+  }
+
+  public dropdownValue(num: number, cardName: string): string {
+    if (num === 0) {
+      return 'None';
+    } else if (num < 0) {
+      return `Remove ${Math.abs(num)} ${cardName} cards`;
+    } else {
+      return `Add ${num} ${cardName} cards`;
+    }
   }
 
 }

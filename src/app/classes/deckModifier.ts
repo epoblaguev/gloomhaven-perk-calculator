@@ -22,7 +22,8 @@ export const NEG_SCENARIO_EFFECTS_LIST = {
 };
 
 export const NEG_ITEM_EFFECTS_LIST = {
-    '-1': (char: Character) => char.deck.addCard('-1', 'None', 1)
+    '-1': (char: Character) => char.deck.addCard('-1', 'None', 1),
+    '-1_remove': (char: Character) => char.deck.addCard('-1', 'None', -1)
 };
 
 export const MISC_MODIFIERS_LIST = {
