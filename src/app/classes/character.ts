@@ -1,4 +1,4 @@
-import { DeckModifier, PERK_LIST, MISC_MODIFIERS_LIST, NEG_SCENARIO_EFFECTS_LIST, NEG_ITEM_EFFECTS_LIST, } from './deckModifier';
+import { DeckModifier, PERK_LIST, MISC_MODIFIERS_LIST, NEG_SCENARIO_EFFECTS_LIST, NEG_ITEM_EFFECTS_LIST, POS_ITEM_EFFECTS_LIST, } from './deckModifier';
 import { Deck } from './deck';
 
 export class Character {
@@ -7,6 +7,7 @@ export class Character {
     public perkList: DeckModifier[];
     public negScenarioEffects: DeckModifier[];
     public negItemEffects: DeckModifier[];
+    public posItemEffects: DeckModifier[];
     public miscModifiers: DeckModifier[];
     public deck: Deck;
     public compareDeck: Deck;
@@ -27,6 +28,7 @@ export class Character {
 
         this.negScenarioEffects = Object.entries(NEG_SCENARIO_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
         this.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
+        this.posItemEffects = Object.entries(POS_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
         this.miscModifiers = Object.entries(MISC_MODIFIERS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
     }
 
@@ -36,6 +38,7 @@ export class Character {
         this.deck.reset();
         this.applyModifierList(this.perkList);
         this.applyModifierList(this.miscModifiers);
+        this.applyModifierList(this.posItemEffects);
         if (!this.ignoreNegScenarioEffects) { this.applyModifierList(this.negScenarioEffects); }
         if (!this.ignoreNegItemEffects) { this.applyModifierList(this.negItemEffects); }
     }
