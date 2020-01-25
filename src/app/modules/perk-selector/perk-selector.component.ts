@@ -72,8 +72,8 @@ export class PerkSelectorComponent implements OnInit {
     }
 
     private resetDeckModifiers() {
-        this.charService.getCharacter().negItemEffects.forEach(mod => mod.uses.forEach(use => use.used = false));
-        this.charService.getCharacter().negScenarioEffects.forEach(mod => mod.uses.forEach(use => use.used = false));
-        this.charService.getCharacter().miscModifiers.forEach(mod => mod.uses.forEach(use => use.used = false));
+        const char = this.charService.getCharacter();
+        const modifiers = [char.negItemEffects, char.posItemEffects, char.negScenarioEffects, char.miscModifiers];
+        modifiers.forEach(modList => modList.forEach(mod => mod.uses.forEach(use => use.used = false)));
     }
 }

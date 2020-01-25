@@ -27,7 +27,7 @@ export class Character {
         }
 
         this.negScenarioEffects = Object.entries(NEG_SCENARIO_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
-        this.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
+        this.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
         this.posItemEffects = Object.entries(POS_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
         this.miscModifiers = Object.entries(MISC_MODIFIERS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
     }
@@ -41,6 +41,11 @@ export class Character {
         this.applyModifierList(this.posItemEffects);
         if (!this.ignoreNegScenarioEffects) { this.applyModifierList(this.negScenarioEffects); }
         if (!this.ignoreNegItemEffects) { this.applyModifierList(this.negItemEffects); }
+        Object.keys(this.deck.cards).forEach(key => {
+            if (this.deck.cards[key] < 0) {
+                this.deck.cards[key] = 0;
+            }
+        });
     }
 
     private applyModifierList(modList: DeckModifier[]): void {
