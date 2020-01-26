@@ -59,6 +59,12 @@
                 <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
                 <app-perk-selector fxFlex="100"></app-perk-selector>
                 <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
+                <mat-card fxLayout="column">
+                    <mat-card-subtitle><i class="fas fa-download fa-lg fa-fw color-gra"></i> Download Mobile App</mat-card-subtitle>
+                    <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
+                        If you found this project useful, consider supporting its development by <a href="#" (click)="openBottomSheet('app')">Downloading the Mobile App</a>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>
