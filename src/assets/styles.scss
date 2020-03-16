@@ -124,7 +124,15 @@ a:not([href]) {
     font-size: 1.5em;
 }
 
-.mat-checkbox-inner-container {
+.large-checkbox .mat-checkbox-inner-container {
     padding: 6px;
     margin-bottom: 5px !important;
+}
+
+.large-checkbox-no-margin .mat-checkbox-inner-container {
+    padding: 6px;
+}
+
+.large-checkbox-no-margin label.mat-checkbox-layout {
+    align-items: center;
 }

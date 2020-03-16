@@ -1,8 +1,10 @@
 <mat-card fxLayout="column">
-    <mat-card-subtitle><i class="fas fa-user-check fa-fw fa-lg"></i> Perks
-        <mat-slide-toggle (toggleChange)="togglePerkIcons()" [checked]="showIcons" class="float-right">
-            Toggle Icons
-        </mat-slide-toggle>
+    <mat-card-subtitle><span><i class="fas fa-user-check fa-fw fa-lg"></i> Perks</span>
+        <div [matMenuTriggerFor]="menu" class="float-right cursor-pointer">Options <i class="fas fa-tasks fa-fw"></i></div>
+        <mat-menu #menu="matMenu">
+            <mat-checkbox (click)="$event.stopPropagation();" (change)="togglePerkIcons()" [checked]="showIcons" class="mat-menu-item large-checkbox-no-margin">Show Perk Icons</mat-checkbox>
+            <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="hideRealNames" class="mat-menu-item large-checkbox-no-margin"><span>Mask Unlockable Names</span></mat-checkbox>
+        </mat-menu>
     </mat-card-subtitle>
     <mat-card-content>
         <mat-form-field fxLayout="row" fxLayout.xs="column wrap">
@@ -16,7 +18,7 @@
             <span>Perks Chosen: {{ getPerkCount() }}</span>
             <div *ngFor="let perk of charService.getCharacter().perkList" fxLayoutGap="5px">
                 <span *ngFor="let use of perk.uses, let use_i = index">
-                    <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()">
+                    <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()" class="large-checkbox">
                     </mat-checkbox>
                 </span>
                 <b>
