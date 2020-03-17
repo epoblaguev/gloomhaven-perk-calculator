@@ -24,7 +24,7 @@
                 <b>
                     <ng-container *ngFor="let word of perk.name.split(' ')">
                         <ng-container *ngIf="iconWords.has(word) && showIcons; else elseTemplate">
-                            <app-perk-icons [icon]="word"></app-perk-icons>
+                            <app-perk-icons [icon]="word" class="valign-middle"></app-perk-icons>
                         </ng-container>
                         <ng-template #elseTemplate>
                             {{word}}

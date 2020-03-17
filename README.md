@@ -9,7 +9,7 @@ Currently the following stats are calculated:
 - **Average Damage** - The average damage of an attack given a starting base damage
 - **Shuffle Probability** - The chance that the deck will be shuffled on a given action
 
-If you found this project useful, consider supporting its development by downloading the iOS app on the [Apple App Store](https://itunes.apple.com/us/app/gloomhaven-perk-calculator/id1491796181), or the Android App on [Google Play](https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile) or [Amazon Appstore](https://www.amazon.com/gp/product/B08271L4T1)
+If you found this project useful, consider supporting its development by downloading the iOS app on the [Apple App Store](https://itunes.apple.com/us/app/gloomhaven-perk-calculator/id1491796181), or the Android App on [Google Play](https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile).
 
 ### Website
 [Gloomhaven Perk Calculator](https://gloomhaven.org) <br/>
