@@ -26,7 +26,21 @@ describe('Character', () => {
         expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" not a valid perk`);
       });
     });
+
+    it(`${character.name} Modifiers should have effect on character`, () => {
+      const char = new Character(character);
+      const baseChar = new Character(character);
+      const modLists = [char.perkList, char.negScenarioEffects, char.negItemEffects, char.posItemEffects, char.miscModifiers];
+      modLists.forEach(modList => modList.forEach(mod => {
+        mod.uses.forEach((use, idx) => {
+          use.used = true;
+          char.applyModifiers();
+          use.used = false; // Reverting to false to make sure this isn't the cause of the change.
+          expect(char).not.toEqual(baseChar, `"${mod.name}" use ${idx + 1} has no effect on deck`);
+        });
+      }));
   });
+});
 
 
   /*
