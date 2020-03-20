@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModule';
+import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -9,7 +9,7 @@ import { CharacterService } from 'src/app/services/character.service';
     styleUrls: ['./stats-module.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class DeckReliabilityComponent extends GraphModule {
+export class DeckReliabilityComponent extends GraphModuleDirective {
     public barChartLabels: string[] = ['≤1', '=0', '≥1'];
 
     constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
@@ -26,8 +26,8 @@ export class DeckReliabilityComponent extends GraphModule {
                     Math.round(this.charServ.getCharacter().deck.reliabilityZero() * 100),
                     Math.round(this.charServ.getCharacter().deck.reliabilityPositive() * 100)
                 ],
-                backgroundColor: GraphModule.Colors.blue.backgroundColor,
-                borderColor: GraphModule.Colors.blue.borderColor,
+                backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
+                borderColor: GraphModuleDirective.Colors.blue.borderColor,
             }
         ];
 
@@ -40,8 +40,8 @@ export class DeckReliabilityComponent extends GraphModule {
                     Math.round(this.charServ.getCharacter().compareDeck.reliabilityZero() * 100),
                     Math.round(this.charServ.getCharacter().compareDeck.reliabilityPositive() * 100)
                 ],
-                backgroundColor: GraphModule.Colors.red.backgroundColor,
-                borderColor: GraphModule.Colors.red.borderColor,
+                backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
+                borderColor: GraphModuleDirective.Colors.red.borderColor,
             });
         }
         return chartData;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModule';
+import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -8,7 +8,7 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './stats-module.component.html',
   styleUrls: ['./stats-module.component.scss'],
 })
-export class AverageDamageComponent extends GraphModule {
+export class AverageDamageComponent extends GraphModuleDirective {
   private baseDamage = [0, 1, 2, 3, 4, 5];
   public barChartLabels: string[] = this.baseDamage.map(val => val.toString());
 
@@ -38,8 +38,8 @@ export class AverageDamageComponent extends GraphModule {
     const probData = [{
       label: 'Current',
       data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val)),
-      backgroundColor: GraphModule.Colors.blue.backgroundColor,
-      borderColor: GraphModule.Colors.blue.borderColor,
+      backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
+      borderColor: GraphModuleDirective.Colors.blue.borderColor,
     }];
 
     if (this.charServ.getCharacter().compareDeck != null) {
@@ -47,8 +47,8 @@ export class AverageDamageComponent extends GraphModule {
       probData.push({
         label: 'Comparison',
         data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val)),
-        backgroundColor: GraphModule.Colors.red.backgroundColor,
-        borderColor: GraphModule.Colors.red.borderColor,
+        backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
+        borderColor: GraphModuleDirective.Colors.red.borderColor,
       });
     }
     return probData;

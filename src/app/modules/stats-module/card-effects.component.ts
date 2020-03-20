@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModule';
+import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -8,7 +8,7 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './stats-module.component.html',
   styleUrls: ['./stats-module.component.scss']
 })
-export class CardEffectsComponent extends GraphModule implements OnInit {
+export class CardEffectsComponent extends GraphModuleDirective implements OnInit {
   public barChartLabels: string[];
   public removeZeroColumns = true;
 
@@ -38,8 +38,8 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
       {
         label: 'Current',
         data: this.fitToChart(probs),
-        backgroundColor: GraphModule.Colors.blue.backgroundColor,
-        borderColor: GraphModule.Colors.blue.borderColor,
+        backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
+        borderColor: GraphModuleDirective.Colors.blue.borderColor,
       }
     ];
 
@@ -48,8 +48,8 @@ export class CardEffectsComponent extends GraphModule implements OnInit {
       probData.push({
         label: 'Comparison',
         data: this.fitToChart(compareProbs),
-        backgroundColor: GraphModule.Colors.red.backgroundColor,
-        borderColor: GraphModule.Colors.red.borderColor,
+        backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
+        borderColor: GraphModuleDirective.Colors.red.borderColor,
       });
     }
 

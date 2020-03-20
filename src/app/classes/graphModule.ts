@@ -1,4 +1,4 @@
-import { Input, ViewChild, DoCheck, OnInit } from '@angular/core';
+import { Input, ViewChild, DoCheck, OnInit, Directive } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import Utils from './utils';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -17,7 +17,8 @@ interface Properties {
     infoPage: StatsTypes;
 }
 
-export abstract class GraphModule implements DoCheck, OnInit {
+@Directive()
+export abstract class GraphModuleDirective implements DoCheck, OnInit {
 
     constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
         this.prevCharacter = Utils.clone(charServ.getCharacter());
@@ -36,7 +37,7 @@ export abstract class GraphModule implements DoCheck, OnInit {
 
     @Input() properties: Properties;
 
-    @ViewChild('baseChart', { static: false })
+    @ViewChild('baseChart')
     chart: BaseChartDirective;
 
     protected prevCharacter: Character;

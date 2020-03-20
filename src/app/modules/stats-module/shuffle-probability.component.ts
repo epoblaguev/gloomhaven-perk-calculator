@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { GraphModule } from 'src/app/classes/graphModule';
+import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -9,7 +9,7 @@ import { CharacterService } from 'src/app/services/character.service';
     styleUrls: ['./stats-module.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ShuffleProbabilityComponent extends GraphModule {
+export class ShuffleProbabilityComponent extends GraphModuleDirective {
     public barChartLabels: string[] = ['1', '3', '5', '7', '9', '11'];
 
     constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
@@ -28,8 +28,8 @@ export class ShuffleProbabilityComponent extends GraphModule {
             {
                 label: 'Current', data: this.barChartLabels
                     .map((val, index) => Math.round(this.charServ.getCharacter().deck.getShuffleChance(Number(val)) * 100)),
-                backgroundColor: GraphModule.Colors.blue.backgroundColor,
-                borderColor: GraphModule.Colors.blue.borderColor,
+                backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
+                borderColor: GraphModuleDirective.Colors.blue.borderColor,
             }
         ];
 
@@ -39,8 +39,8 @@ export class ShuffleProbabilityComponent extends GraphModule {
                 label: 'Comparison',
                 data: this.barChartLabels
                     .map((val, index) => Math.round(this.charServ.getCharacter().compareDeck.getShuffleChance(Number(val)) * 100)),
-                backgroundColor: GraphModule.Colors.red.backgroundColor,
-                borderColor: GraphModule.Colors.red.borderColor,
+                backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
+                borderColor: GraphModuleDirective.Colors.red.borderColor,
             });
         }
         return chartData;
