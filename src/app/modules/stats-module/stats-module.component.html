@@ -1,12 +1,11 @@
 <mat-card>
-  <mat-card-subtitle>
-    <i class="fas {{properties.icon}} fa-lg fa-fw" [ngClass]="properties.iconClasses"></i>
-    {{properties.text}}
-    <span (click)="openInfoPage()"> <i
-        class="far fa-question-circle fa-lg fa-fw color-gray float-right cursor-pointer"></i></span>
-  </mat-card-subtitle>
-  <mat-card-content>
-    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-      [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins"></canvas>
-  </mat-card-content>
+    <mat-card-subtitle>
+        <fa-icon [icon]="properties.icon" size="lg" [fixedWidth]="true" [ngClass]="properties.iconClasses"></fa-icon> {{properties.text}}
+        <span (click)="openInfoPage()"> 
+         <fa-icon [icon]="faIcons.far.faQuestionCircle" size="lg" [fixedWidth]="true" class="color-gray float-right cursor-pointer"></fa-icon>
+        </span>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins"></canvas>
+    </mat-card-content>
 </mat-card>

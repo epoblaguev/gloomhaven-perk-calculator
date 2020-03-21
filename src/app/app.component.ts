@@ -3,11 +3,10 @@ import { Deck } from './classes/deck';
 import Utils from './classes/utils';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
-import { StatsModules } from './classes/consts';
+import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
-
 
 
 @Component({
@@ -19,6 +18,7 @@ export class AppComponent implements OnInit {
   title = 'Gloomhaven Perk Calculator';
   deck = new Deck();
   isMobile = environment.mobile;
+  faIcons = FaIcons;
 
   statsModules = StatsModules;
   showDeckModifiers = true;

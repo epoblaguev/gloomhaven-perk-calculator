@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
+import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
   selector: 'app-average-damage',
@@ -11,6 +12,7 @@ import { CharacterService } from 'src/app/services/character.service';
 export class AverageDamageComponent extends GraphModuleDirective {
   private baseDamage = [0, 1, 2, 3, 4, 5];
   public barChartLabels: string[] = this.baseDamage.map(val => val.toString());
+  public faIcons = FaIcons;
 
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
     super(bottomSheet, charServ);

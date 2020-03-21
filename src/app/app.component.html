@@ -2,40 +2,46 @@
     <mat-toolbar color="primary">
         <mat-menu #appMenu="matMenu">
             <button mat-menu-item *ngFor="let item of statsModules | keyvalue" (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <span [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"> <i class="fas {{item.value.icon}} fa-lg fa-fw"></i></span>
-        Toggle {{item.value.text}}
+        <span [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"> 
+            <fa-icon [icon]="item.value.icon" size="lg" [fixedWidth]="true"></fa-icon>
+       </span> Toggle {{item.value.text}}
       </button>
             <button mat-menu-item (click)="$event.stopPropagation(); showDeckModifiers = !showDeckModifiers">
-        <span [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}"><i class="fas fa-money-bill fa-fw fa-lg"></i></span>
-        Toggle Deck Modifiers
+        <span [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}">
+            <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true" size="lg"></fa-icon>
+       </span> Toggle Deck Modifiers
       </button>
             <mat-divider></mat-divider>
             <a mat-menu-item href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank">
-                <i class="fab fa-github fa-lg fa-fw color-gray"></i> Fork me on Github
+                <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" size="lg" class="color-gray"></fa-icon>
+                Fork me on Github
             </a>
-            <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')"><i class="fas fa-download fa-lg fa-fw color-gray"></i>Download Mobile App</button>
-            <button mat-menu-item (click)="openBottomSheet('about')"><i class="fas fa-info-circle fa-lg fa-fw color-gray"></i>About</button>
+            <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')">
+                <fa-icon [icon]="faIcons.fas.faDownload" size="lg" [fixedWidth]="true" class="color-gray"></fa-icon> Download Mobile App
+            </button>
+            <button mat-menu-item (click)="openBottomSheet('about')">
+                <fa-icon [icon]="faIcons.fas.faInfoCircle" size="lg" [fixedWidth]="true" class="color-gray"></fa-icon> About
+            </button>
         </mat-menu>
 
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-      <i class="fas fa-bars fa-2x"></i>
-    </button>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu" class="hamburger-fix">
+            <fa-icon [icon]="faIcons.fas.faBars" size="2x" class="hamburger-fix"></fa-icon>
+        </button>
 
         <span>{{ title }}</span>
 
         <span style="flex: 1 1 auto;"></span>
 
         <a *ngIf="!isMobile" fxHide.xs (click)="openBottomSheet('app')" class="top-right-logo">
-            <span class="fa-layers fa-fw fa-2x">
-                <i class="fas fa-mobile-alt" data-fa-transform="grow-1.5"></i>
-                <i class="fab fa-apple" data-fa-transform="shrink-10 up-3.5"></i>
-                <i class="fab fa-android" data-fa-transform="shrink-10 down-2"></i>
-              </span>
-            <!-- <i class="fas fa-mobile-alt fa-fw fa-2x"></i> -->
+            <fa-layers [fixedWidth]="true" size="2x">
+                <fa-icon [icon]="faIcons.fas.faMobileAlt" transform="grow-1.5"></fa-icon>
+                <fa-icon [icon]="faIcons.fab.faApple" transform="shrink-10 up-3.5"></fa-icon>
+                <fa-icon [icon]="faIcons.fab.faAndroid" transform="shrink-10 down-2"></fa-icon>
+            </fa-layers>
         </a>
 
         <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="top-right-logo">
-            <i class="fab fa-github fa-fw fa-2x"></i>
+            <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" size="2x"></fa-icon>
         </a>
 
     </mat-toolbar>
@@ -59,7 +65,9 @@
                 <app-perk-selector fxFlex="100"></app-perk-selector>
                 <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
                 <mat-card fxLayout="column" *ngIf="!isMobile">
-                    <mat-card-subtitle><i class="fas fa-download fa-lg fa-fw color-gra"></i> Download Mobile App</mat-card-subtitle>
+                    <mat-card-subtitle>
+                        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" size="lg" class="color-gray"></fa-icon>
+                        Download Mobile App</mat-card-subtitle>
                     <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
                         If you found this project useful, consider supporting its development by <a href="#" (click)="openBottomSheet('app')">Downloading the Mobile App</a>
                     </mat-card-content>

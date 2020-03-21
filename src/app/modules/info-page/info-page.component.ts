@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { StatsTypes, StatsModules } from 'src/app/classes/consts';
+import { StatsTypes, StatsModules, FaIcons } from 'src/app/classes/consts';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,6 +14,7 @@ export class InfoPageComponent implements OnInit {
   public statsModules = StatsModules;
   public isMobile = environment.mobile;
   public bottomSheet: MatBottomSheetRef;
+  public faIcons = FaIcons;
 
 
   constructor(private bottomSheetRef: MatBottomSheetRef<InfoPageComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {

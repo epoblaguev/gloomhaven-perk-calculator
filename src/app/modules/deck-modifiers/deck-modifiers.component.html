@@ -1,5 +1,7 @@
 <mat-card fxLayout="column">
-    <mat-card-subtitle><i class="fas fa-money-bill fa-fw fa-lg color-purple"></i> Misc. Deck Modifiers</mat-card-subtitle>
+    <mat-card-subtitle>
+        <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true" size="lg" class="color-purple"></fa-icon>
+        Misc. Deck Modifiers</mat-card-subtitle>
     <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
         <mat-form-field fxFlex="45%">
             <mat-select placeholder="Scenario Curses" [(value)]="modifiers.curse" (selectionChange)="selectionChange()">

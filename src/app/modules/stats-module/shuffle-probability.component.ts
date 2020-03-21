@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
+import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
     selector: 'app-shuffle-probability',
@@ -11,6 +12,7 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class ShuffleProbabilityComponent extends GraphModuleDirective {
     public barChartLabels: string[] = ['1', '3', '5', '7', '9', '11'];
+    public faIcons = FaIcons;
 
     constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
         super(bottomSheet, charServ);

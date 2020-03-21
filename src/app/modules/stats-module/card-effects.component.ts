@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
+import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
   selector: 'app-card-effects',
@@ -11,6 +12,7 @@ import { CharacterService } from 'src/app/services/character.service';
 export class CardEffectsComponent extends GraphModuleDirective implements OnInit {
   public barChartLabels: string[];
   public removeZeroColumns = true;
+  public faIcons = FaIcons;
 
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
     super(bottomSheet, charServ);

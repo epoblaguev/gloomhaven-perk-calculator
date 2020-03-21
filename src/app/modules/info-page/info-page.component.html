@@ -1,7 +1,11 @@
-<span (click)="bottomSheet.dismiss()"> <i class="fas fa-times fa-lg fa-fw color-gray float-right cursor-pointer bottom-sheet-close"></i></span>
+<span (click)="bottomSheet.dismiss()">
+    <fa-icon [icon]="faIcons.fas.faTimes" [fixedWidth]="true" size="fa-lg" class="float-right cursor-pointer bottom-sheet-close"></fa-icon>
+</span>
 <!-- ABOUT PAGE -->
 <div *ngIf="data.infoType === 'about'">
-    <h2><i class="fas fa-info-circle fa-fw color-gray"></i> About</h2>
+    <h2>
+        <fa-icon [icon]="faIcons.fas.faInfoCircle" [fixedWidth]="true" class="color-gray"></fa-icon> About
+    </h2>
 
     <p>
         This {{isMobile ? 'app' : 'project'}} is intended to help build your Gloomhaven character by showing you how various perks affect the statistics of your modifier deck
@@ -15,33 +19,38 @@
         Currently the following stats are calculated:
         <ul class="ul-no-bullets">
             <li *ngFor="let stat of statsModules | keyvalue">
-                <i class="fas {{stat.value.icon}} fa-fw" [ngClass]="stat.value.iconClasses"></i>&nbsp;
+                <fa-icon [icon]="stat.value.icon" [fixedWidth]="true" [ngClass]="stat.value.iconClasses"></fa-icon>
+                &nbsp;
                 <b>{{ stat.value.text }}</b> - {{stat.value.shortDescription}}
             </li>
         </ul>
-        Click the <i class="far fa-question-circle fa-lg color-gray"></i> near each stats card to learn more about it
+        Click the
+        <fa-icon [icon]="faIcons.far.faQuestionCircle" size="lg" class="color-gray"></fa-icon>
+        near each stats card to learn more about it
     </div>
     <p *ngIf="!isMobile">
         If you found this project useful, consider supporting its development by
-        <a href="#" (click)="data.infoType = 'app'; false">Downloading the Mobile App <i class="fas fa-download fa-lg fa-fw color-gray"></i></a>
+        <a href="#" (click)="data.infoType = 'app'; false">Downloading the Mobile App 
+            <fa-icon [icon]="faIcons.fas.faDownload" size="lg" [fixedWidth]="true" class="color-gray"></fa-icon>
+        </a>
     </p>
 </div>
 
 <!-- Download App -->
 <div *ngIf="data.infoType === 'app'">
     <h2>
-        <i class="fas fa-download fa-fw color-gray"></i> Download Mobile App
+        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon> Download Mobile App
     </h2>
     <p>If you found this project useful, consider supporting its development by downloading the mobile app</p>
     <mat-list>
         <mat-list-item>
             <a href="https://itunes.apple.com/us/app/gloomhaven-perk-calculator/id1491796181" class="text-no-line" target="_blank">
-                <i class="fab fa-apple fa-lg fa-fw color-gray"></i> Apple App Store
+                <fa-icon [icon]="faIcons.fab.faApple" size="lg" [fixedWidth]="true" class="color-gray"></fa-icon> Apple App Store
             </a>
         </mat-list-item>
         <mat-list-item>
             <a href="https://play.google.com/store/apps/details?id=com.troitsksoft.gloomhaven_calculator_mobile" class="text-no-line" target="_blank">
-                <i class="fab fa-google-play fa-lg fa-fw color-gray"></i> Google Play Store
+                <fa-icon [icon]="faIcons.fab.faGooglePlay" size="lg" [fixedWidth]="true" class="color-gray"></fa-icon> Google Play Store
             </a>
         </mat-list-item>
     </mat-list>
@@ -49,7 +58,8 @@
 
 <!-- AVERAGE DAMAGE -->
 <div *ngIf="data.infoType === statsTypes.AVERAGE_DAMAGE">
-    <h2><i class="fas {{statsModules.averageDamage.icon}} fa-fw" [ngClass]="statsModules.averageDamage.iconClasses"></i> {{statsModules.averageDamage.text}}
+    <h2>
+        <fa-icon [icon]="statsModules.averageDamage.icon" [fixedWidth]="true" [ngClass]="statsModules.averageDamage.iconClasses"></fa-icon> {{statsModules.averageDamage.text}}
     </h2>
 
     <p>
@@ -65,7 +75,8 @@
 
 <!-- EFFECTS PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.EFFECT_PROBABILITY">
-    <h2><i class="fas {{statsModules.effectProbability.icon}} fa-fw" [ngClass]="statsModules.effectProbability.iconClasses"></i> {{statsModules.effectProbability.text}}
+    <h2>
+        <fa-icon [icon]="statsModules.effectProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.effectProbability.iconClasses"></fa-icon> {{statsModules.effectProbability.text}}
     </h2>
 
     <p>
@@ -84,7 +95,8 @@
 
 <!-- DECK RELIABILITY -->
 <div *ngIf="data.infoType === statsTypes.DECK_RELIABILITY">
-    <h2><i class="fas {{statsModules.deckReliability.icon}} fa-fw" [ngClass]="statsModules.deckReliability.iconClasses"></i> {{statsModules.deckReliability.text}}
+    <h2>
+        <fa-icon [icon]="statsModules.deckReliability.icon" [fixedWidth]="true" [ngClass]="statsModules.deckReliability.iconClasses"></fa-icon> {{statsModules.deckReliability.text}}
     </h2>
     <p>
         This chart shows the probability of a positive, negative, or neutral outcome for the cards drawn during an action.
@@ -99,7 +111,8 @@
 
 <!-- CARD PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.CARD_PROBABILITY">
-    <h2><i class="fas {{statsModules.cardProbability.icon}} fa-fw" [ngClass]="statsModules.cardProbability.iconClasses"></i> {{statsModules.cardProbability.text}}
+    <h2>
+        <fa-icon [icon]="statsModules.cardProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.cardProbability.iconClasses"></fa-icon> {{statsModules.cardProbability.text}}
     </h2>
     <p>
         This chart shows the probability of specific damage modifier cards being drawn
@@ -117,7 +130,8 @@
 
 <!-- SHUFFLE PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.SHUFFLE_PROBABILITY">
-    <h2><i class="fas {{statsModules.shuffleProbability.icon}} fa-fw" [ngClass]="statsModules.shuffleProbability.iconClasses"></i> {{statsModules.shuffleProbability.text}}
+    <h2>
+        <fa-icon [icon]="statsModules.shuffleProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.shuffleProbability.iconClasses"></fa-icon> {{statsModules.shuffleProbability.text}}
     </h2>
     <p>
         This chart shows the probability that the deck will be shuffled on the n<sup>th</sup> action.

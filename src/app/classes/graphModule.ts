@@ -8,11 +8,12 @@ import { Character } from './character';
 import { CharacterService } from '../services/character.service';
 import { ChartOptions } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 
 interface Properties {
     text: string;
-    icon: string;
+    icon: IconDefinition;
     iconClasses: string[];
     infoPage: StatsTypes;
 }

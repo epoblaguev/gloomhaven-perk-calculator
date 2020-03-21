@@ -4,6 +4,8 @@ import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MO
 import Utils from 'src/app/classes/utils';
 import { Character } from 'src/app/classes/character';
 import { StorageService } from 'src/app/services/storage.service';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
   selector: 'app-deck-modifiers',
@@ -26,10 +28,11 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     'item-1': 0,
     'item-1_remove': 0,
   };
+  faIcons = FaIcons;
 
   private prevCharacter: Character;
 
-  constructor(public charServ: CharacterService, public storageService: StorageService) {
+  constructor(public charServ: CharacterService, public storageService: StorageService, library: FaIconLibrary) {
     const char = charServ.getCharacter();
     this.prevCharacter = Utils.clone(char);
     this.counts.bless = char.miscModifiers.find(mod => mod.name === 'Bless').uses.length;

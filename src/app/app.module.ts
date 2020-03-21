@@ -18,8 +18,7 @@ import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.com
 import { StorageService } from './services/storage.service';
 import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -40,10 +39,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     UIModule,
     ChartsModule,
     MatMenuModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FontAwesomeModule
   ],
   entryComponents: [InfoPageComponent],
   providers: [CharacterService, StorageService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }

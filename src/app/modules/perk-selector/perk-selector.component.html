@@ -1,6 +1,9 @@
 <mat-card fxLayout="column">
-    <mat-card-subtitle><span><i class="fas fa-user-check fa-fw fa-lg"></i> Perks</span>
-        <div [matMenuTriggerFor]="menu" class="float-right cursor-pointer">Options <i class="fas fa-tasks fa-fw"></i></div>
+    <mat-card-subtitle><span>
+        <fa-icon [icon]="faIcons.fas.faUserCheck" [fixedWidth]="true" size="lg"></fa-icon> Perks</span>
+        <div [matMenuTriggerFor]="menu" class="float-right cursor-pointer">Options
+            <fa-icon [icon]="faIcons.fas.faTasks" [fixedWidth]="true"></fa-icon>
+        </div>
         <mat-menu #menu="matMenu">
             <mat-checkbox (click)="$event.stopPropagation();" (change)="togglePerkIcons()" [checked]="showIcons" class="mat-menu-item large-checkbox-no-margin">Show Perk Icons</mat-checkbox>
             <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="hideRealNames" class="mat-menu-item large-checkbox-no-margin"><span>Mask Unlockable Names</span></mat-checkbox>
@@ -24,7 +27,7 @@
                 <b>
                     <ng-container *ngFor="let word of perk.name.split(' ')">
                         <ng-container *ngIf="iconWords.has(word) && showIcons; else elseTemplate">
-                            <app-perk-icons [icon]="word" class="valign-middle"></app-perk-icons>
+                            <app-perk-icons [icon]="word"></app-perk-icons>
                         </ng-container>
                         <ng-template #elseTemplate>
                             {{word}}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
+import { FaIcons } from 'src/app/classes/consts';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { CharacterService } from 'src/app/services/character.service';
 export class CardProbabilityComponent extends GraphModuleDirective {
   public barChartLabels: string[]; // = Object.keys(this.character.deck.cards);
   public removeZeroColumns = false;
+  public faIcons = FaIcons;
 
   constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
     super(bottomSheet, charServ);
