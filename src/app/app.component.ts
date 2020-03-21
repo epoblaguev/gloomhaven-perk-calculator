@@ -35,9 +35,10 @@ export class AppComponent implements OnInit {
     this.charService.selectCharacter(storageService.getSelectedChar());
   }
 
-  openBottomSheet(infoType: string): void {
+  openBottomSheet(infoType: string): boolean {
     // tslint:disable-next-line:object-literal-shorthand
     this.bottomSheet.open(InfoPageComponent, { data: { infoType: infoType } });
+    return false;
   }
 
   ngOnInit() {
