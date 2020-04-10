@@ -33,28 +33,24 @@
     <fa-layers-text content="+4" transform="shrink-7 up-0.25"></fa-layers-text>
 </fa-layers>
 
-<fa-layers *ngIf="icon == 'DARK'" size="lg">
-    <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
-    <fa-icon [icon]="faIcons.fas.faCircle" transform="shrink-7 right-1.5"></fa-icon>
-    <fa-icon [icon]="faIcons.fas.faCircle" transform="shrink-7 left-1.5"></fa-icon>
-    <fa-icon [icon]="faIcons.fas.faCircle" style="color: white" transform="shrink-9 left-1.5"></fa-icon>
-</fa-layers>
-
 <span *ngIf="icon == 'INVISIBLE'">
     INVISIBLE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faExclamation" transform="rotate-180 shrink-5"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faExclamation" style="color: white" transform="rotate-180 shrink-8"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_invisible.svg">
+
 </span>
 
 <span *ngIf="icon == 'MUDDLE'">
     MUDDLE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faQuestion" transform="shrink-5"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_muddle.svg">
 </span>
 
 <span *ngIf="icon == 'STUN'">
@@ -169,12 +165,19 @@
     </fa-layers>
 </span>
 
-<fa-layers *ngIf="icon == 'EARTH'" size="lg">
+<!-- <fa-layers *ngIf="icon == 'DARK'" size="lg">
+    <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
+    <fa-icon [icon]="faIcons.fas.faCircle" transform="shrink-7 right-1.5"></fa-icon>
+    <fa-icon [icon]="faIcons.fas.faCircle" transform="shrink-7 left-1.5"></fa-icon>
+    <fa-icon [icon]="faIcons.fas.faCircle" style="color: white" transform="shrink-9 left-1.5"></fa-icon>
+</fa-layers> -->
+
+<!-- <fa-layers *ngIf="icon == 'EARTH'" size="lg">
     <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
     <fa-icon [icon]="faIcons.fas.faLeaf" transform="shrink-8 rotate--20 left-1"></fa-icon>
-</fa-layers>
+</fa-layers> -->
 
-<fa-layers *ngIf="icon == 'WIND'" size="lg">
+<!-- <fa-layers *ngIf="icon == 'WIND'" size="lg">
     <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
     <fa-icon [icon]="faIcons.fas.faWind" transform="shrink-7"></fa-icon>
 </fa-layers>
@@ -192,9 +195,18 @@
 <fa-layers *ngIf="icon == 'SUN'" size="lg">
     <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
     <fa-icon [icon]="faIcons.fas.faSun" transform="shrink-6"></fa-icon>
-</fa-layers>
-
+</fa-layers> -->
+<!-- 
 <fa-layers *ngIf="icon == 'rolling'" [fixedWidth]="true" size="lg">
     <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
     <fa-icon [icon]="faIcons.fas.faShare" transform="rotate-30 right-.5 shrink-6"></fa-icon>
-</fa-layers>
+</fa-layers> -->
+
+<img *ngIf="icon == 'rolling'" class="icon" src="../../../assets/icons/status_rolling.svg">
+
+<img *ngIf="icon == 'DARK'" class="icon" src="../../../assets/icons/element_dark.svg">
+<img *ngIf="icon == 'EARTH'" class="icon" src="../../../assets/icons/element_earth.svg">
+<img *ngIf="icon == 'WIND'" class="icon" src="../../../assets/icons/element_wind.svg">
+<img *ngIf="icon == 'FROST'" class="icon" src="../../../assets/icons/element_frost.svg">
+<img *ngIf="icon == 'FIRE'" class="icon" src="../../../assets/icons/element_fire.svg">
+<img *ngIf="icon == 'SUN'" class="icon" src="../../../assets/icons/element_sun.svg">
