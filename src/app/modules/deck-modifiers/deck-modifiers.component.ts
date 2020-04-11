@@ -29,6 +29,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     'item-1_remove': 0,
   };
   faIcons = FaIcons;
+  math = Math;
 
   private prevCharacter: Character;
 

@@ -16,6 +16,7 @@ export class PerkIconsComponent implements OnInit {
     HEAL: {text: 'Heal', icon: 'heal.svg'},
     Shield: {text: 'Shield', icon: 'shield.svg'},
     CURSE: {text: 'CURSE', icon: 'curse.svg'},
+    BLESS: {text: 'BLESS', icon: 'bless.svg'},
     MUDDLE: {text: 'MUDDLE', icon: 'muddle.svg'},
     TARGET: {text: 'TARGET', icon: 'add_target.svg'},
     PUSH: {text: 'PUSH', icon: 'push.svg'},
