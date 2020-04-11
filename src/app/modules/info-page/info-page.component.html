@@ -3,7 +3,7 @@
 </span>
 <!-- ABOUT PAGE -->
 <div *ngIf="data.infoType === 'about'">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="faIcons.fas.faInfoCircle" [fixedWidth]="true" class="color-gray"></fa-icon> About
     </h2>
 
@@ -38,7 +38,7 @@
 
 <!-- Download App -->
 <div *ngIf="data.infoType === 'app'">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon> Download Mobile App
     </h2>
     <p>If you found this project useful, consider supporting its development by downloading the mobile app</p>
@@ -58,7 +58,7 @@
 
 <!-- AVERAGE DAMAGE -->
 <div *ngIf="data.infoType === statsTypes.AVERAGE_DAMAGE">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="statsModules.averageDamage.icon" [fixedWidth]="true" [ngClass]="statsModules.averageDamage.iconClasses"></fa-icon> {{statsModules.averageDamage.text}}
     </h2>
 
@@ -75,7 +75,7 @@
 
 <!-- EFFECTS PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.EFFECT_PROBABILITY">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="statsModules.effectProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.effectProbability.iconClasses"></fa-icon> {{statsModules.effectProbability.text}}
     </h2>
 
@@ -95,7 +95,7 @@
 
 <!-- DECK RELIABILITY -->
 <div *ngIf="data.infoType === statsTypes.DECK_RELIABILITY">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="statsModules.deckReliability.icon" [fixedWidth]="true" [ngClass]="statsModules.deckReliability.iconClasses"></fa-icon> {{statsModules.deckReliability.text}}
     </h2>
     <p>
@@ -111,7 +111,7 @@
 
 <!-- CARD PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.CARD_PROBABILITY">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="statsModules.cardProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.cardProbability.iconClasses"></fa-icon> {{statsModules.cardProbability.text}}
     </h2>
     <p>
@@ -130,7 +130,7 @@
 
 <!-- SHUFFLE PROBABILITY -->
 <div *ngIf="data.infoType === statsTypes.SHUFFLE_PROBABILITY">
-    <h2>
+    <h2 class="header">
         <fa-icon [icon]="statsModules.shuffleProbability.icon" [fixedWidth]="true" [ngClass]="statsModules.shuffleProbability.iconClasses"></fa-icon> {{statsModules.shuffleProbability.text}}
     </h2>
     <p>

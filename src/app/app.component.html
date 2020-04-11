@@ -28,7 +28,7 @@
             <fa-icon [icon]="faIcons.fas.faBars" size="2x" class="hamburger-fix"></fa-icon>
         </button>
 
-        <span>{{ title }}</span>
+        <span class="header">{{ title }}</span>
 
         <span style="flex: 1 1 auto;"></span>
 
@@ -65,8 +65,8 @@
                 <app-perk-selector fxFlex="100"></app-perk-selector>
                 <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
                 <mat-card fxLayout="column" *ngIf="!isMobile">
-                    <mat-card-subtitle>
-                        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" size="lg" class="color-gray"></fa-icon>
+                    <mat-card-subtitle class="header">
+                        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon>
                         Download Mobile App</mat-card-subtitle>
                     <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
                         If you found this project useful, consider supporting its development by <a href (click)="openBottomSheet('app')">Downloading the Mobile App</a>

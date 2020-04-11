@@ -2,13 +2,61 @@
 
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./theme.scss";
+@font-face {
+    font-family: 'Pirata One';
+    src: url('fonts/PirataOne.ttf') format('ttf');
+    src: url('fonts/PirataOne.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'High Tower';
+    src: url('fonts/HighTower.ttf') format('ttf');
+    src: url('fonts/HighTower.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sakkal Majalla';
+    src: url('fonts/majalla.ttf') format('ttf');
+    src: url('fonts/majalla.woff') format('woff');
+}
+
+.font-pirata-one {
+    font-family: 'Pirata One';
+}
+
+.font-high-tower {
+    font-family: 'High Tower';
+}
+
+.font-sakkal-majalla {
+    font-family: 'Sakkal Majalla';
+}
+
 body {
     margin: 0;
     background-color: rgb(224, 218, 218); // #d4dbe4;
 }
 
+.header {
+    font-family: 'Pirata One';
+    font-size: 1.5em;
+}
+
+// mat-option div,
+// mat-select-trigger {
+//     font-family: 'Sakkal Majalla';
+//     font-size: 1.5em;
+// }
+// mat-checkbox {
+//     font-family: 'Sakkal Majalla';
+//     font-size: 1.25em;
+// }
 .valign-middle {
     vertical-align: middle;
+}
+
+.vertical-sub {
+    vertical-align: sub;
 }
 
 .icon-color {

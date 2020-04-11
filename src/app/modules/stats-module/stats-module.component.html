@@ -1,8 +1,8 @@
 <mat-card>
-    <mat-card-subtitle>
-        <fa-icon [icon]="properties.icon" size="lg" [fixedWidth]="true" [ngClass]="properties.iconClasses"></fa-icon> {{properties.text}}
+    <mat-card-subtitle class="header">
+        <fa-icon [icon]="properties.icon" [fixedWidth]="true" [ngClass]="properties.iconClasses"></fa-icon> {{properties.text}}
         <span (click)="openInfoPage()"> 
-         <fa-icon [icon]="faIcons.far.faQuestionCircle" size="lg" [fixedWidth]="true" class="color-gray float-right cursor-pointer"></fa-icon>
+         <fa-icon [icon]="faIcons.far.faQuestionCircle" [fixedWidth]="true" class="color-gray float-right cursor-pointer"></fa-icon>
         </span>
     </mat-card-subtitle>
     <mat-card-content>

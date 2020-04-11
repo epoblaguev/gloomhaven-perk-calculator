@@ -1,9 +1,24 @@
 @import '~@angular/material/theming';
 @import './palettes.scss';
 @include mat-core();
+@font-face {
+    font-family: 'Sakkal Majalla';
+    src: url('fonts/majalla.ttf') format('ttf');
+    src: url('fonts/majalla.woff') format('woff');
+}
 
+$custom-typography: mat-typography-config( $font-family: 'Sakkal Majalla',
+$body-1: mat-typography-level(20px,
+24px,
+500));
+@include mat-core($custom-typography);
 $my-app-primary: mat-palette($md-gloomprimary);
-$my-app-accent:  mat-palette($md-gloomaccent, 500, 900, A100);
-$my-app-warn:    mat-palette($md-gloomwarn);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-accent: mat-palette($md-gloomaccent,
+500,
+900,
+A100);
+$my-app-warn: mat-palette($md-gloomwarn);
+$my-app-theme: mat-light-theme($my-app-primary,
+$my-app-accent,
+$my-app-warn);
 @include angular-material-theme($my-app-theme);

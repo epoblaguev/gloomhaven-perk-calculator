@@ -3,8 +3,8 @@ fa-layers {
 }
 
 .icon {
-    height: 1.75em;
-    vertical-align: -.5em;
+    height: 1.3em;
+    vertical-align: -.4em;
 }
 
 .rotate180 {
@@ -13,4 +13,9 @@ fa-layers {
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+svg text {
+    font-family: 'Pirata One';
+    font-size: 0.7em;
 }
