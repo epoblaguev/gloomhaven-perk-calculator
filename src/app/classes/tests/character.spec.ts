@@ -1,5 +1,5 @@
 import { Character } from '../character';
-import settings from '../../settings/settings.json';
+import settings from '../../../assets/settings/settings.json';
 import { PERK_LIST } from '../deckModifier';
 
 

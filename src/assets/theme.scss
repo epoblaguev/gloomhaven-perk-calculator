@@ -2,9 +2,18 @@
 @import './palettes.scss';
 @include mat-core();
 @font-face {
+    font-family: 'Pirata One';
+    src: url('fonts/PirataOne-Regular.woff2') format('woff2'), url('fonts/PirataOne.woff') format('woff'), url('fonts/PirataOne.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'High Tower';
+    src: url('fonts/HighTowerText-Reg.woff2') format('woff2'), url('fonts/HighTower.woff') format('woff'), url('fonts/HighTower.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'Sakkal Majalla';
-    src: url('fonts/majalla.ttf') format('ttf');
-    src: url('fonts/majalla.woff') format('woff');
+    src: url('fonts/SakkalMajalla.woff2') format('woff2'), url('fonts/majalla.woff') format('woff'), url('fonts/majalla.ttf') format('truetype');
 }
 
 $custom-typography: mat-typography-config( $font-family: 'Sakkal Majalla',
