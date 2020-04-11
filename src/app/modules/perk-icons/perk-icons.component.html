@@ -1,4 +1,4 @@
-<fa-layers *ngIf="icon == '(-2)'" size="lg">
+<!-- <fa-layers *ngIf="icon == '(-2)'" size="lg">
     <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
     <fa-layers-text content="-2" transform="shrink-6 up-0.5 left-1"></fa-layers-text>
 </fa-layers>
@@ -31,7 +31,12 @@
 <fa-layers *ngIf="icon == '(+4)'" size="lg">
     <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
     <fa-layers-text content="+4" transform="shrink-7 up-0.25"></fa-layers-text>
-</fa-layers>
+</fa-layers> -->
+
+<svg *ngIf="icon.startsWith('(')" class="icon" width="20px" height="20px">
+    <circle cx="50%" cy="50%" r="40%" stroke="black" stroke-width="2" fill="white"/>
+    <text x="50%" y="65%" text-anchor="middle" fill="black" font-size="11">{{icon.replace('(','').replace(')','')}}</text>
+</svg>
 
 <span *ngIf="icon == 'INVISIBLE'">
     INVISIBLE
@@ -55,114 +60,127 @@
 
 <span *ngIf="icon == 'STUN'">
     STUN
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCertificate" transform="shrink-5"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCertificate" [inverse]="true" transform="shrink-10"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCertificate" transform="shrink-13"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_stun.svg">
 </span>
 
 <span *ngIf="icon == 'CURSE'">
     CURSE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCircle" transform="up-5.75 shrink-12"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faBolt" transform="shrink-5 up-1 right-1"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_curse.svg">
 </span>
 
 <span *ngIf="icon == 'TARGET'">
     TARGET
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faBullseye" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_add_target.svg">
 </span>
 
 <span *ngIf="icon == 'DISARM'">
     DISARM
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faAllergies" flip="horizontal" transform="shrink-7 rotate-90"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_disarm.svg">
 </span>
 
 <span *ngIf="icon == 'IMMOBILIZE'">
     IMMOBILIZE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faSocks" transform="shrink-9 right-1 down-1"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faLongArrowAltRight" transform="shrink-9 left-2 rotate-45"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_immobilize.svg">
 </span>
 
 <span *ngIf="icon == 'PIERCE'">
     PIERCE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCloud" transform="shrink-13 rotate-90 up-3 left-1.5"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faLongArrowAltRight" transform="shrink-6"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCloud" flip="vertical" transform="shrink-13 rotate-90 down-3 left-1.5"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_pierce.svg">
 </span>
 
 <span *ngIf="icon == 'PUSH'">
     PUSH
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faLongArrowAltRight" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_push.svg">
 </span>
 
 <span *ngIf="icon == 'PULL'">
     PULL
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faSquare" transform="rotate-45"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faLongArrowAltLeft" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_push.svg">
 </span>
 
 <span *ngIf="icon == 'POISON'">
     POISON
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faSkull" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_poison.svg">
 </span>
 
 <span *ngIf="icon == 'WOUND'">
     WOUND
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faBurn" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/status_wound.svg">
 </span>
 
 <span *ngIf="icon == 'REGENERATE'">
     REGENERATE
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.far.faCircle"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faHandPaper" flip="horizontal" transform="shrink-6"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/regenerate.png">
 </span>
 
 
 <span *ngIf="icon == 'HEAL'">
     Heal
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.fas.faTint"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faCircle" transform="down-2 shrink-7"></fa-icon>
         <fa-icon [icon]="faIcons.fas.faPlus" style="color: white" transform="shrink-7 down-2"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/drop.svg">
 </span>
 
 
 <span *ngIf="icon == 'Shield'">
     Shield
-    <fa-layers size="lg">
+    <!-- <fa-layers size="lg">
         <fa-icon [icon]="faIcons.fas.faShieldAlt"></fa-icon>
-    </fa-layers>
+    </fa-layers> -->
+    <img class="icon" src="../../../assets/icons/shield.svg">
 </span>
 
 <!-- <fa-layers *ngIf="icon == 'DARK'" size="lg">
@@ -203,7 +221,6 @@
 </fa-layers> -->
 
 <img *ngIf="icon == 'rolling'" class="icon" src="../../../assets/icons/status_rolling.svg">
-
 <img *ngIf="icon == 'DARK'" class="icon" src="../../../assets/icons/element_dark.svg">
 <img *ngIf="icon == 'EARTH'" class="icon" src="../../../assets/icons/element_earth.svg">
 <img *ngIf="icon == 'WIND'" class="icon" src="../../../assets/icons/element_wind.svg">

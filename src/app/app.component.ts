@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       storageService.loadAllMods(char);
       storageService.loadComparisonDeck(char);
       char.applyModifiers();
-      console.log(char);
+      // console.log(char);
     });
 
     this.charService.selectCharacter(storageService.getSelectedChar());

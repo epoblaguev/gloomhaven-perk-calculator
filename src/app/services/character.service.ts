@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../classes/character';
-import settings from '../settings/settings.json';
+import settings from '../../assets/settings/settings.json';
 
 
 @Injectable()

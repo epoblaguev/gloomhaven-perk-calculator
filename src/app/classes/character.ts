@@ -13,12 +13,14 @@ export class Character {
     public compareDeck: Deck;
     public ignoreNegItemEffects: boolean;
     public ignoreNegScenarioEffects: boolean;
+    public icon: string;
 
     constructor(characterJson) {
         this.name = characterJson.name;
         this.hiddenName = characterJson.hidden_name;
         this.deck = new Deck();
         this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
+        this.icon = characterJson.icon;
 
         this.perkList = new Array<DeckModifier>();
         for (const perk of characterJson.perks) {
