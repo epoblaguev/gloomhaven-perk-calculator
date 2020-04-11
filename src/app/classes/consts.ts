@@ -14,13 +14,10 @@ export enum StatsTypes {
 }
 
 export const FaIcons = {
-    far: {faCircle, faQuestionCircle, faSnowflake, faSquare},
+    far: {faQuestionCircle},
     fab: {faAndroid, faApple, faGithub, faGooglePlay},
-    fas: {faAllergies,faBars,faBolt,faBullseye,faBurn,faCertificate,
-        faCircle: fasCircle,
-        faCloud,faDownload, faExclamation, faFireAlt,faHandPaper,faInfoCircle,faLeaf,faLongArrowAltLeft,
-        faLongArrowAltRight,faMobileAlt,faMoneyBill,faPlus,
-        faQuestion,faShare,faShieldAlt,faSkull,faSocks,faSun,faTasks,faTimes,faTint,faUserCheck,faWind, faDice, faCrosshairs,
+    fas: {faBars,faDownload, faFireAlt,faInfoCircle,faMobileAlt,faMoneyBill,
+        faQuestion,faTasks,faTimes,faUserCheck, faDice, faCrosshairs,
         faFistRaised, faFire, faSyncAlt},
 }
 
