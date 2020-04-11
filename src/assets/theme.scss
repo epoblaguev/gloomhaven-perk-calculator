@@ -10,6 +10,9 @@
 $custom-typography: mat-typography-config( $font-family: 'Sakkal Majalla',
 $body-1: mat-typography-level(20px,
 24px,
+500),
+$button: mat-typography-level(20px,
+24px,
 500));
 @include mat-core($custom-typography);
 $my-app-primary: mat-palette($md-gloomprimary);

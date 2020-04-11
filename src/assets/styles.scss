@@ -37,9 +37,8 @@ body {
     background-color: rgb(224, 218, 218); // #d4dbe4;
 }
 
-.header {
+mat-card-subtitle {
     font-family: 'Pirata One';
-    // font-size: 1.5em;
 }
 
 // mat-option div,
@@ -55,7 +54,7 @@ body {
     vertical-align: middle;
 }
 
-.vertical-sub {
+.valign-sub {
     vertical-align: sub;
 }
 
@@ -144,6 +143,10 @@ body {
     margin-right: 1em;
 }
 
+.margin-bottom-0 {
+    margin-bottom: 0;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -169,11 +172,6 @@ a:not([href]) {
 
 a {
     text-decoration: none;
-}
-
-.bottom-sheet-close {
-    margin-block-start: 0.83em;
-    font-size: 1.5em;
 }
 
 .large-checkbox .mat-checkbox-inner-container {

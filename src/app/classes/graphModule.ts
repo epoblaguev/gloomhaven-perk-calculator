@@ -36,6 +36,11 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
         }
     };
 
+    public static Font = {
+        faimily: '"Sakkal Majalla"',
+        size: 17
+    }
+
     @Input() properties: Properties;
 
     @ViewChild('baseChart')
@@ -53,8 +58,16 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
                     min: 0,
                     max: 100,
                     stepSize: 20,
+                    // fontFamily: GraphModuleDirective.Font.faimily,
+                    // fontSize: GraphModuleDirective.Font.size
                 }
-            }]
+            }],
+            // xAxes: [{
+            //     ticks: {
+            //         fontFamily: GraphModuleDirective.Font.faimily,
+            //         fontSize: GraphModuleDirective.Font.size
+            //     }
+            // }]
         },
         layout: {
             padding: {
@@ -72,6 +85,12 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
               formatter: (x => `${x}%`)
             }
           },
+        //   legend: {
+        //       labels: {
+        //         fontFamily: GraphModuleDirective.Font.faimily,
+        //         fontSize: GraphModuleDirective.Font.size
+        //       }
+        //   },
           // animation: {duration: 10}
     };
 
