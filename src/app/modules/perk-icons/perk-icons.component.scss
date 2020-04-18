@@ -7,6 +7,10 @@ fa-layers {
     vertical-align: -.4em;
 }
 
+.circle-number {
+    margin-left: 0.15em;
+}
+
 .rotate180 {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -18,4 +22,5 @@ fa-layers {
 svg text {
     font-family: 'Pirata One';
     font-size: 0.8em;
+    font-weight: 100;
 }
