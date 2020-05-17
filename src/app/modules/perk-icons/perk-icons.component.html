@@ -1,5 +1,5 @@
 <svg *ngIf="icon.startsWith('('); else elseBlock" class="icon circle-number" width="1.3em" height="1.3em">
-    <circle cx="50%" cy="50%" r="40%" stroke="black" stroke-width="2" fill="white"/>
+    <circle cx="50%" cy="50%" r="40%" stroke="black" stroke-width="2" fill-opacity=0/>
     <text x="47%" y="73%" text-anchor="middle" fill="black">{{icon.replace('(','').replace(')','')}}</text>
 </svg>
 
