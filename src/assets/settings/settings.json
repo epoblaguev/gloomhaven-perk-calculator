@@ -4,6 +4,7 @@
             "name": "Cragheart",
             "hidden_name": "Cragheart",
             "icon": "cragheart.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove four (+0) cards", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
@@ -21,6 +22,7 @@
             "name": "Scoundrel",
             "hidden_name": "Scoundrel",
             "icon": "scoundrel.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -39,6 +41,7 @@
             "name": "Brute",
             "hidden_name": "Brute",
             "icon": "brute.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
@@ -57,6 +60,7 @@
             "name": "Spellweaver",
             "hidden_name": "Spellweaver",
             "icon": "spellweaver.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove four (+0) cards", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
@@ -75,6 +79,7 @@
             "name": "Tinkerer",
             "hidden_name": "Tinkerer",
             "icon": "tinkerer.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
@@ -93,6 +98,7 @@
             "name": "Mindthief",
             "hidden_name": "Mindthief",
             "icon": "mindthief.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -112,6 +118,7 @@
             "name": "Aesther Diviner",
             "hidden_name": "Aesther Diviner",
             "icon": "diviner.png",
+            "from_game": "Forgotten Circles",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove one (-2) card", "uses": 1},
@@ -132,6 +139,7 @@
             "name": "Sunkeeper",
             "hidden_name": "Sun",
             "icon": "sun.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -150,6 +158,7 @@
             "name": "Quartermaster",
             "hidden_name": "Three Spears",
             "icon": "three-spears.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -167,6 +176,7 @@
             "name": "Summoner",
             "hidden_name": "Circles",
             "icon": "circles.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
@@ -184,6 +194,7 @@
             "name": "Nightshroud",
             "hidden_name": "Eclipse",
             "icon": "eclipse.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -201,6 +212,7 @@
             "name": "Plagueherald",
             "hidden_name": "Cthulhu",
             "icon": "cthulhu.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
@@ -218,6 +230,7 @@
             "name": "Berserker",
             "hidden_name": "Lightning Bolt",
             "icon": "lightning-bolt.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -235,6 +248,7 @@
             "name": "Soothsinger",
             "hidden_name": "Music Note",
             "icon": "music-note.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove one (-2) card", "uses": 1},
@@ -254,6 +268,7 @@
             "name": "Doom Stalker",
             "hidden_name": "Angry Face",
             "icon": "angry-face.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Replace two (+0) cards with two (+1) cards", "uses": 3},
@@ -271,6 +286,7 @@
             "name": "Sawbones",
             "hidden_name": "Saw",
             "icon": "saw.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -287,6 +303,7 @@
             "name": "Elementalist",
             "hidden_name": "Triforce",
             "icon": "triforce.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
@@ -308,6 +325,7 @@
             "name": "Beast Tyrant",
             "hidden_name": "Two Minis",
             "icon": "two-minis.svg",
+            "from_game": "Gloomhaven Base",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 3},

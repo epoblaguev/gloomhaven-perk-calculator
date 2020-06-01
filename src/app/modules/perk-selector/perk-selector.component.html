@@ -12,22 +12,18 @@
         </mat-menu>
     </mat-card-subtitle>
     <mat-card-content>
-        <mat-form-field fxLayout="row" fxLayout.xs="column wrap">
+        <mat-form-field fxLayout="column wrap" fxLayout.xs="column wrap">
             <mat-select placeholder="Select Character" [(value)]="selectedCharacter" (selectionChange)="selectedCharacterChanged()">
-                <mat-select-trigger fxLayout="row">
+                <mat-select-trigger>
                     <img src="assets/icons/charIcons/{{charService.getCharacter().icon}}" class="char-icon">
-                    <div>
-                        <div>{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</div>
-                        <div>Gloomhaven</div>
-                    </div>
+                    <span class="char-name-label">{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</span>
+                    <span class="game-label color-gray">{{charService.getCharacter().gameName}}</span>
                 </mat-select-trigger>
                 <mat-option *ngFor="let character of charService.getCharacters(), let char_i = index" [value]="char_i">
-                    <div fxLayout="row">
-                        <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon"> 
-                        <div>
-                            <div>{{ hideRealNames ? character.hiddenName : character.name }}</div>
-                            <div>Gloomhaven</div>
-                        </div>
+                    <div>
+                        <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
+                        <span class="char-name-label">{{ hideRealNames ? character.hiddenName : character.name }}</span>
+                        <span class="game-label float-right color-gray">{{character.gameName}}</span>
                     </div>
                 </mat-option>
             </mat-select>

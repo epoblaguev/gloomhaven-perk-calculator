@@ -4,6 +4,7 @@ import { Deck } from './deck';
 export class Character {
     public name: string;
     public hiddenName: string;
+    public gameName: string;
     public perkList: DeckModifier[];
     public negScenarioEffects: DeckModifier[];
     public negItemEffects: DeckModifier[];
@@ -18,6 +19,7 @@ export class Character {
     constructor(characterJson) {
         this.name = characterJson.name;
         this.hiddenName = characterJson.hidden_name;
+        this.gameName = characterJson.from_game;
         this.deck = new Deck();
         this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
         this.icon = characterJson.icon;
