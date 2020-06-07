@@ -12,12 +12,15 @@
         </mat-menu>
     </mat-card-subtitle>
     <mat-card-content>
-        <mat-form-field fxLayout="column wrap" fxLayout.xs="column wrap">
+        <mat-form-field fxLayout="column wrap">
             <mat-select placeholder="Select Character" [(value)]="selectedCharacter" (selectionChange)="selectedCharacterChanged()">
-                <mat-select-trigger>
+                <mat-select-trigger fxLayout="row">
                     <img src="assets/icons/charIcons/{{charService.getCharacter().icon}}" class="char-icon">
-                    <span class="char-name-label">{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</span>
-                    <span class="game-label color-gray">{{charService.getCharacter().gameName}}</span>
+                    <div class="char-name-label">
+                        <div>{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</div>
+                        <div class="game-label color-gray">{{charService.getCharacter().gameName}}</div>
+                    </div>
+                    
                 </mat-select-trigger>
                 <mat-option *ngFor="let character of charService.getCharacters(), let char_i = index" [value]="char_i">
                     <div>
