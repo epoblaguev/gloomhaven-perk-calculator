@@ -16,15 +16,43 @@ export class PerkSelectorComponent implements OnInit {
     public showIcons = true;
     public selectedCharacter = 0;
     public faIcons = FaIcons;
-
+    public gameNames: object = {};
     public hideRealNames = true;
+    public getKeys = Object.keys;
 
     constructor(public charService: CharacterService, public storageService: StorageService, private sanitizer: DomSanitizer) {
         this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
         this.showIcons = storageService.loadPerkIconToggle();
+        this.gameNames = charService.getCharacters().reduce((obj,char) => {obj[char.gameName] = true; return obj}, {});
     }
 
     ngOnInit(): void {}
+
+    /**
+     * Returns 'true' if passed gameName is the only gameName with the 'true' value
+     * @param gameName 
+     */
+    disableGameNameCheckbox(gameName: string) {
+        return this.gameNames[gameName] && Object.values(this.gameNames).filter(val => val).length == 1;
+    }
+
+    /**
+     * Toggles selected game name. If this is the game name of the currently selected character, selects the first character with a non-false game name.
+     * @param gameName 
+     */
+    toggleGameName(gameName: string) {
+        this.gameNames[gameName] = !this.gameNames[gameName];
+        if(!this.gameNames[gameName] && this.charService.getCharacter().gameName == gameName) {
+            let charIdx = 0;
+            for(let char of this.charService.getCharacters()) {
+                if(this.gameNames[char.gameName]) {
+                    this.charService.selectCharacter(charIdx);
+                    return;
+                }
+                charIdx += 1;
+            }
+        }
+    }
 
     getPerkCount() {
         return this.charService.getCharacter()
