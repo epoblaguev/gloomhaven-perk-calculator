@@ -47,6 +47,7 @@ export const PERK_LIST = {
     'Add one (+1) WIND card': (char: Character) => { char.deck.addCard('+1', 'Wind', 1); },
     'Add one (+1) POISON card': (char: Character) => { char.deck.addCard('+1', 'Poison', 1); },
     'Add one (+2) FIRE card': (char: Character) => { char.deck.addCard('+2', 'Fire', 1); },
+    'Add one (+2) WIND card': (char: Character) => { char.deck.addCard('+2', 'Wind', 1); },
     'Add one (+2) FROST card': (char: Character) => { char.deck.addCard('+2', 'Frost', 1); },
     'Add one (+2) MUDDLE card': (char: Character) => { char.deck.addCard('+2', 'Muddle', 1); },
     'Add one (+2) card': (char: Character) => { char.deck.addCard('+2', 'None', 1); },
@@ -143,9 +144,25 @@ export const PERK_LIST = {
         char.deck.addCard('+0', 'None', -1);
         char.deck.cards['r+2'] += 1;
     },
+    'Replace one (+0) card with one (+0) STUN card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+0', 'Stun', 1);
+    },
     'Replace one (+0) card with one (+1) Shield 1, Affect any ally card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+1', 'Shield 1, Affect any ally', 1);
+    },
+    'Replace one (+0) card with one (+1) POISON card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Poison', 1);
+    },
+    'Replace one (+0) card with one (+1) WOUND card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Wound', 1);
+    },
+    'Replace one (+0) card with one (+1) PUSH card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Push', 1);
     },
     'Replace one (+0) card with one (+2) DARK card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
@@ -159,6 +176,10 @@ export const PERK_LIST = {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+2', 'Regenerate, Self', 1);
     },
+    'Replace one (+1) card with one (+1) STUN card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -1);
+        char.deck.addCard('+1', 'Stun', 1);
+    },
     'Replace one (+1) card with one (+2) EARTH card': (char: Character) => {
         char.deck.addCard('+1', 'None', -1);
         char.deck.addCard('+2', 'Earth', 1);
@@ -166,6 +187,10 @@ export const PERK_LIST = {
     'Replace one (+1) card with one (+2) FIRE card': (char: Character) => {
         char.deck.addCard('+1', 'None', -1);
         char.deck.addCard('+2', 'Fire', 1);
+    },
+    'Replace one (+1) with one (+3) card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -1);
+        char.deck.addCard('+3', 'None', 1);
     },
     'Replace one (-1) card with one (+1) card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
