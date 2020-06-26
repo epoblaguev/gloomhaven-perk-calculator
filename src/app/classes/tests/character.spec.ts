@@ -23,7 +23,7 @@ describe('Character', () => {
   settings.characters.forEach(character => {
     it(`${character.name} should have valid perks`, () => {
       character.perks.forEach(perk => {
-        expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" not a valid perk`);
+        expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" is not a valid perk`);
       });
     });
 

@@ -38,6 +38,7 @@ export const PERK_LIST = {
     'Add one (+0) ADD TARGET card': (char: Character) => { char.deck.addCard('+0', 'Add Target', 1); },
     'Add one (+0) STUN card': (char: Character) => { char.deck.addCard('+0', 'Stun', 1); },
     'Add one (+0) Refresh and item card': (char: Character) => { char.deck.addCard('+0', 'Refresh an item', 1); },
+    'Add one (+0) All adjacent enemies suffer 1 damage card': (char: Character) => {char.deck.addCard('+0', 'All adjacent enemies suffer 1 damage', 1);},
     'Add one (+1) CURSE card': (char: Character) => { char.deck.addCard('+1', 'Curse', 1); },
     'Add one (+1) HEAL 2 card': (char: Character) => { char.deck.addCard('+1', 'Heal 2', 1); },
     'Add one (+1) IMMOBILIZE card': (char: Character) => { char.deck.addCard('+1', 'Immobilize', 1); },
@@ -86,6 +87,10 @@ export const PERK_LIST = {
     'Remove four (+0) cards': (char: Character) => { char.deck.addCard('+0', 'None', -4); },
     'Remove two (-1) cards': (char: Character) => { char.deck.addCard('-1', 'None', -2); },
     'Remove one (-2) card': (char: Character) => { char.deck.addCard('-2', 'None', -1); },
+    'Remove one (-2) card and one (+1) card': (char: Character) => {
+        char.deck.addCard('-2', 'None', -1);
+        char.deck.addCard('+1', 'None', +1);
+    },
     'Replace one (-1) DARK card with one (+1) DARK card': (char: Character) => {
         char.deck.addCard('-1', 'Dark', -1);
         char.deck.addCard('+1', 'Dark', 1);
@@ -97,6 +102,10 @@ export const PERK_LIST = {
     'Replace one (-1) card with one (+1) HEAL 2, Affect any ally card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
         char.deck.addCard('+1', 'Heal 2, Affect any ally', 1);
+    },
+    'Replace one (-1) card with one (+0) POISON card': (char: Character) => {
+        char.deck.addCard('-1', 'None', -1);
+        char.deck.addCard('+0', 'Poison', 1);
     },
     'Replace one (+0) card with one (+2) card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
@@ -113,6 +122,10 @@ export const PERK_LIST = {
     'Replace one (+0) card with one (+2) CURSE card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+2', 'Curse', 1);
+    },
+    'Replace one (+0) card with one (+2) MUDDLE card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+2', 'Muddle', 1);
     },
     'Replace one (+0) card with one (+3) MUDDLE card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
@@ -145,6 +158,14 @@ export const PERK_LIST = {
     'Replace one (+0) card with one (+2) REGENERATE , Self card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+2', 'Regenerate, Self', 1);
+    },
+    'Replace one (+1) card with one (+2) EARTH card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -1);
+        char.deck.addCard('+2', 'Earth', 1);
+    },
+    'Replace one (+1) card with one (+2) FIRE card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -1);
+        char.deck.addCard('+2', 'Fire', 1);
     },
     'Replace one (-1) card with one (+1) card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
