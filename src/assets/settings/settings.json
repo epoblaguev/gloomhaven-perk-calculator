@@ -369,7 +369,24 @@
                 {"name": "Replace one (+0) card with one (+0) STUN card", "uses": 1},
                 {"name": "Replace one (+1) card with one (+1) STUN card", "uses": 1},
                 {"name": "Add one (+2) WIND card", "uses": 3},
-                {"name": "Replace one (+1) with one (+3) card", "uses": 3}
+                {"name": "Replace one (+1) card with one (+3) card", "uses": 3}
+            ]
+        },
+        {
+            "name": "Human Voidwarden",
+            "hidden_name": "Human Voidwarden",
+            "icon": "human-voidwarden.png",
+            "from_game": "Jaws of the Lion",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Remove one (-2) card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+1) DARK card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) FROST card", "uses": 2},
+                {"name": "Replace one (-1) card with one (+0) HEAL 1 (Ally) card", "uses": 2},
+                {"name": "Add one (+1) HEAL 1 (Ally) card", "uses": 3},
+                {"name": "Add one (+1) POISON card", "uses": 1},
+                {"name": "Add one (+3) card", "uses": 1},
+                {"name": "Add one (+1) CURSE card", "uses": 2}
             ]
         }
     ]

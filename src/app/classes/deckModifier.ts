@@ -41,6 +41,7 @@ export const PERK_LIST = {
     'Add one (+0) All adjacent enemies suffer 1 damage card': (char: Character) => {char.deck.addCard('+0', 'All adjacent enemies suffer 1 damage', 1);},
     'Add one (+1) CURSE card': (char: Character) => { char.deck.addCard('+1', 'Curse', 1); },
     'Add one (+1) HEAL 2 card': (char: Character) => { char.deck.addCard('+1', 'Heal 2', 1); },
+    'Add one (+1) HEAL 1 (Ally) card': (char: Character) => { char.deck.addCard('+1', 'Heal 1 (Ally)', 1); },
     'Add one (+1) IMMOBILIZE card': (char: Character) => { char.deck.addCard('+1', 'Immobilize', 1); },
     'Add one (+1) INVISIBLE card': (char: Character) => { char.deck.addCard('+1', 'Invisible', 1); },
     'Add one (+1) WOUND card': (char: Character) => { char.deck.addCard('+1', 'Wound', 1); },
@@ -100,6 +101,10 @@ export const PERK_LIST = {
         char.deck.addCard('-1', 'None', -1);
         char.deck.addCard('+0', 'Stun', 1);
     },
+    'Replace one (-1) card with one (+0) HEAL 1 (Ally) card': (char: Character) => {
+        char.deck.addCard('-1', 'None', -1);
+        char.deck.addCard('+0', 'Heal 1 (Ally)', 1);
+    },
     'Replace one (-1) card with one (+1) HEAL 2, Affect any ally card': (char: Character) => {
         char.deck.addCard('-1', 'None', -1);
         char.deck.addCard('+1', 'Heal 2, Affect any ally', 1);
@@ -139,6 +144,14 @@ export const PERK_LIST = {
     'Replace one (+0) card with one (+1) DISARM card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
         char.deck.addCard('+1', 'Disarm', 1);
+    },
+    'Replace one (+0) card with one (+1) DARK card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Dark', 1);
+    },
+    'Replace one (+0) card with one (+1) FROST card': (char: Character) => {
+        char.deck.addCard('+0', 'None', -1);
+        char.deck.addCard('+1', 'Frost', 1);
     },
     'Replace one (+0) card with one rolling (+2) card': (char: Character) => {
         char.deck.addCard('+0', 'None', -1);
@@ -188,7 +201,7 @@ export const PERK_LIST = {
         char.deck.addCard('+1', 'None', -1);
         char.deck.addCard('+2', 'Fire', 1);
     },
-    'Replace one (+1) with one (+3) card': (char: Character) => {
+    'Replace one (+1) card with one (+3) card': (char: Character) => {
         char.deck.addCard('+1', 'None', -1);
         char.deck.addCard('+3', 'None', 1);
     },
