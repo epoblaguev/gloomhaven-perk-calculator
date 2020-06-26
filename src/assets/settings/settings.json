@@ -388,6 +388,24 @@
                 {"name": "Add one (+3) card", "uses": 1},
                 {"name": "Add one (+1) CURSE card", "uses": 2}
             ]
+        },
+        {
+            "name": "Valrath Red Guard",
+            "hidden_name": "Valrath Red Guard",
+            "icon": "valrath-red-guard.png",
+            "from_game": "Jaws of the Lion",
+            "perks": [
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Remove one (-2) card and one (+1) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
+                {"name": "Replace one (+1) card with one (+2) FIRE card", "uses": 2},
+                {"name": "Replace one (+1) card with one (+2) SUN card", "uses": 2},
+                {"name": "Add one (+1) FIRESUN card", "uses": 2},
+                {"name": "Add one (+1) Shield 1 card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) IMMOBILIZE card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+1) WOUND card", "uses": 1}
+            ]
         }
     ]
 }

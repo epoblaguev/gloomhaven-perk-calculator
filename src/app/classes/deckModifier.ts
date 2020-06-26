@@ -47,12 +47,14 @@ export const PERK_LIST = {
     'Add one (+1) WOUND card': (char: Character) => { char.deck.addCard('+1', 'Wound', 1); },
     'Add one (+1) WIND card': (char: Character) => { char.deck.addCard('+1', 'Wind', 1); },
     'Add one (+1) POISON card': (char: Character) => { char.deck.addCard('+1', 'Poison', 1); },
+    'Add one (+1) FIRESUN card': (char: Character) => { char.deck.addCard('+1', 'Fire/Sun', 1); },
     'Add one (+2) FIRE card': (char: Character) => { char.deck.addCard('+2', 'Fire', 1); },
     'Add one (+2) WIND card': (char: Character) => { char.deck.addCard('+2', 'Wind', 1); },
     'Add one (+2) FROST card': (char: Character) => { char.deck.addCard('+2', 'Frost', 1); },
     'Add one (+2) MUDDLE card': (char: Character) => { char.deck.addCard('+2', 'Muddle', 1); },
     'Add one (+2) card': (char: Character) => { char.deck.addCard('+2', 'None', 1); },
     'Add one (+1) Shield 1, Self card': (char: Character) => { char.deck.addCard('+1', 'Shield 1, Self', 1); },
+    'Add one (+1) Shield 1 card': (char: Character) => { char.deck.addCard('+1', 'Shield 1', 1); },
     'Add one (+3) card': (char: Character) => { char.deck.addCard('+3', 'None', 1); },
     'Add one (-2) card and two (+2) cards': (char: Character) => {
         char.deck.addCard('-2', 'None', 1);
@@ -200,6 +202,10 @@ export const PERK_LIST = {
     'Replace one (+1) card with one (+2) FIRE card': (char: Character) => {
         char.deck.addCard('+1', 'None', -1);
         char.deck.addCard('+2', 'Fire', 1);
+    },
+    'Replace one (+1) card with one (+2) SUN card': (char: Character) => {
+        char.deck.addCard('+1', 'None', -1);
+        char.deck.addCard('+2', 'Sun', 1);
     },
     'Replace one (+1) card with one (+3) card': (char: Character) => {
         char.deck.addCard('+1', 'None', -1);
