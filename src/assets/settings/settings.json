@@ -117,7 +117,7 @@
         {
             "name": "Aesther Diviner",
             "hidden_name": "Aesther Diviner",
-            "icon": "diviner.png",
+            "icon": "aesther-diviner.svg",
             "from_game": "Forgotten Circles",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
@@ -340,7 +340,7 @@
         {
             "name": "Quatryl Demolitionist",
             "hidden_name": "Quatryl Demolitionist",
-            "icon": "quatryl-demolitionist.png",
+            "icon": "quatryl-demolitionist.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
                 {"name": "Remove four (+0) cards", "uses": 1},
@@ -357,7 +357,7 @@
         {
             "name": "Inox Hatchet",
             "hidden_name": "Inox Hatchet",
-            "icon": "inox-hatchet.png",
+            "icon": "inox-hatchet.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 2},
@@ -375,7 +375,7 @@
         {
             "name": "Human Voidwarden",
             "hidden_name": "Human Voidwarden",
-            "icon": "human-voidwarden.png",
+            "icon": "human-voidwarden.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
@@ -392,7 +392,7 @@
         {
             "name": "Valrath Red Guard",
             "hidden_name": "Valrath Red Guard",
-            "icon": "valrath-red-guard.png",
+            "icon": "valrath-red-guard.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
                 {"name": "Remove four (+0) cards", "uses": 1},
