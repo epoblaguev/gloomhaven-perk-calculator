@@ -115,8 +115,8 @@
             ]
         },
         {
-            "name": "Aesther Diviner",
-            "hidden_name": "Aesther Diviner",
+            "name": "Diviner",
+            "hidden_name": "Diviner",
             "icon": "aesther-diviner.svg",
             "from_game": "Forgotten Circles",
             "perks": [
@@ -338,8 +338,8 @@
             ]
         },
         {
-            "name": "Quatryl Demolitionist",
-            "hidden_name": "Quatryl Demolitionist",
+            "name": "Demolitionist",
+            "hidden_name": "Demolitionist",
             "icon": "quatryl-demolitionist.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
@@ -355,8 +355,8 @@
             ]
         },
         {
-            "name": "Inox Hatchet",
-            "hidden_name": "Inox Hatchet",
+            "name": "Hatchet",
+            "hidden_name": "Hatchet",
             "icon": "inox-hatchet.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
@@ -373,8 +373,8 @@
             ]
         },
         {
-            "name": "Human Voidwarden",
-            "hidden_name": "Human Voidwarden",
+            "name": "Voidwarden",
+            "hidden_name": "Voidwarden",
             "icon": "human-voidwarden.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
@@ -390,8 +390,8 @@
             ]
         },
         {
-            "name": "Valrath Red Guard",
-            "hidden_name": "Valrath Red Guard",
+            "name": "Red Guard",
+            "hidden_name": "Red Guard",
             "icon": "valrath-red-guard.svg",
             "from_game": "Jaws of the Lion",
             "perks": [
@@ -408,8 +408,8 @@
             ]
         },
         {
-            "name": "Human Banner Spear",
-            "hidden_name": "Human Banner Spear",
+            "name": "Banner Spear",
+            "hidden_name": "Banner Spear",
             "icon": "human-banner-spear.svg",
             "from_game": "Frosthaven (beta)",
             "perks": [
@@ -426,8 +426,8 @@
             ]
         },
         {
-            "name": "Quatryl Blinkblade",
-            "hidden_name": "Quatryl Blinkblade",
+            "name": "Blink Blade",
+            "hidden_name": "Blink Blade",
             "icon": "quatryl-blinkblade.svg",
             "from_game": "Frosthaven (beta)",
             "perks":[
@@ -444,8 +444,8 @@
             ]
         },
         {
-            "name": "Valrath Deathwalker",
-            "hidden_name": "Valrath Deathwalker",
+            "name": "Deathwalker",
+            "hidden_name": "Deathwalker",
             "icon": "valrath-deathwalker.svg",
             "from_game": "Frosthaven (beta)",
             "perks": [
@@ -461,8 +461,8 @@
             ]
         },
         {
-            "name": "Inox Drifter",
-            "hidden_name": "Inox Drifter",
+            "name": "Drifter",
+            "hidden_name": "Drifter",
             "icon": "inox-drifter.svg",
             "from_game": "Frosthaven (beta)",
             "perks": [
