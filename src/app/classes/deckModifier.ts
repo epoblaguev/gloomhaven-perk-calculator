@@ -108,7 +108,7 @@ export const PERK_LIST = {
     'Remove one (-2) card': (char: Character) => { char.deck.addCard('-2', 'None', -1); },
     'Remove one (-2) card and one (+1) card': (char: Character) => {
         char.deck.addCard('-2', 'None', -1);
-        char.deck.addCard('+1', 'None', +1);
+        char.deck.addCard('+1', 'None', -1);
     },
     'Replace one (-1) DARK card with one (+1) DARK card': (char: Character) => {
         char.deck.addCard('-1', 'Dark', -1);
