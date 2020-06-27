@@ -21,8 +21,8 @@ describe('Character', () => {
 
   // Test that all characters have havlid perks
   settings.characters.forEach(character => {
-    it(`${character.name} should have valid perks`, () => {
-      character.perks.forEach(perk => {
+    character.perks.forEach(perk => {
+      it(`${character.name} perk "${perk.name}" should be valid`, () => {
         expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" is not a valid perk`);
       });
     });

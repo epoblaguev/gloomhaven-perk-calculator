@@ -406,6 +406,59 @@
                 {"name": "Replace one (+0) card with one (+1) IMMOBILIZE card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+1) WOUND card", "uses": 1}
             ]
+        },
+        {
+            "name": "Human Banner Spear",
+            "hidden_name": "Human Banner Spear",
+            "icon": "human-banner-spear.svg",
+            "from_game": "Jaws of the Lion",
+            "perks": [
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Add two rolling PIERCE 3 cards", "uses": 2},
+                {"name": "Add two rolling (+1) cards", "uses": 2},
+                {"name": "Add two rolling HEAL 1, Self cards", "uses": 2},
+                {"name": "Add one (+1) Shield 1, Self card", "uses": 2},
+                {"name": "Add one (+1) WOUND card", "uses": 2},
+                {"name": "Ignore negative item effects and add one (-1) card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Quatryl Blinkblade",
+            "hidden_name": "Quatryl Blinkblade",
+            "icon": "quatryl-blinkblade.svg",
+            "from_game": "Jaws of the Lion",
+            "perks":[
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Replace one (+0) card with one (+2) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Add one (-1) 'Add one Counter' card", "uses": 2},
+                {"name": "Add one (+1) REGENERATE, Self card", "uses": 2},
+                {"name": "Add three rolling MUDDLE cards", "uses": 2},
+                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Ignore negative scenario effects and remove two (+0) cards", "uses": 1}
+            ]
+        },
+        {
+            "name": "Valrath Deathwalker",
+            "hidden_name": "Valrath Deathwalker",
+            "icon": "valrath-deathwalker.svg",
+            "from_game": "Jaws of the Lion",
+            "perks": [
+                {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
+                {"name": "Replace one (-2) card with one (-1) card and one (+1) card", "uses": 1},
+                {"name": "Add two (+1) cards", "uses": 2},
+                {"name": "Add three rolling PUSH 1 cards", "uses": 1},
+                {"name": "Add two rolling WOUND cards", "uses": 2},
+                {"name": "Add one rolling HEAL 2, Ally card", "uses": 2},
+                {"name": "Add one (+2) DARK card", "uses": 2},
+                {"name": "Ignore negative scenario effects and remove one (-1) card", "uses": 1}
+            ]
         }
     ]
 }
