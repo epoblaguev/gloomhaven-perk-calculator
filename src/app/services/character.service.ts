@@ -28,8 +28,8 @@ export class CharacterService {
   }
 
   private charSort(char1: Character, char2: Character): number {
-    const char1Name = char1.name === char1.hiddenName ? `1_${char1.hiddenName}` : `2_${char1.hiddenName}`;
-    const char2Name = char2.name === char2.hiddenName ? `1_${char2.hiddenName}` : `2_${char2.hiddenName}`;
+    const char1Name = char1.name === char1.hiddenName ? `1_${char1.gameName}_${char1.hiddenName}` : `2_${char1.gameName}_${char1.hiddenName}`;
+    const char2Name = char2.name === char2.hiddenName ? `1_${char2.gameName}_${char2.hiddenName}` : `2_${char2.gameName}_${char2.hiddenName}`;
 
     if (char1Name < char2Name) {
       return -1;

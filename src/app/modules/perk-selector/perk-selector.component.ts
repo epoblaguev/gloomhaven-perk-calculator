@@ -33,7 +33,7 @@ export class PerkSelectorComponent implements OnInit {
      * @param gameName 
      */
     disableGameNameCheckbox(gameName: string) {
-        return this.gameNames[gameName] && Object.values(this.gameNames).filter(val => val).length == 1;
+        return this.gameNames[gameName] && Object.values(this.gameNames).filter(val => val).length === 1;
     }
 
     /**
@@ -42,13 +42,12 @@ export class PerkSelectorComponent implements OnInit {
      */
     toggleGameName(gameName: string) {
         this.gameNames[gameName] = !this.gameNames[gameName];
-        if(!this.gameNames[gameName] && this.charService.getCharacter().gameName == gameName) {
+        if(!this.gameNames[gameName] && this.charService.getCharacter().gameName === gameName) {
             let charIdx = 0;
-            for(let char of this.charService.getCharacters()) {
+            for(const char of this.charService.getCharacters()) {
                 if(this.gameNames[char.gameName]) {
                     this.selectedCharacter = charIdx;
                     this.selectedCharacterChanged()
-                    // this.charService.selectCharacter(charIdx);
                     return;
                 }
                 charIdx += 1;
