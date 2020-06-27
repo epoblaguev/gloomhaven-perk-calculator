@@ -411,7 +411,7 @@
             "name": "Human Banner Spear",
             "hidden_name": "Human Banner Spear",
             "icon": "human-banner-spear.svg",
-            "from_game": "Jaws of the Lion",
+            "from_game": "Frosthaven (beta)",
             "perks": [
                 {"name": "Remove four (+0) cards", "uses": 1},
                 {"name": "Remove two (-1) cards", "uses": 1},
@@ -429,7 +429,7 @@
             "name": "Quatryl Blinkblade",
             "hidden_name": "Quatryl Blinkblade",
             "icon": "quatryl-blinkblade.svg",
-            "from_game": "Jaws of the Lion",
+            "from_game": "Frosthaven (beta)",
             "perks":[
                 {"name": "Remove four (+0) cards", "uses": 1},
                 {"name": "Remove two (-1) cards", "uses": 2},
@@ -447,7 +447,7 @@
             "name": "Valrath Deathwalker",
             "hidden_name": "Valrath Deathwalker",
             "icon": "valrath-deathwalker.svg",
-            "from_game": "Jaws of the Lion",
+            "from_game": "Frosthaven (beta)",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
@@ -458,6 +458,24 @@
                 {"name": "Add one rolling HEAL 2, Ally card", "uses": 2},
                 {"name": "Add one (+2) DARK card", "uses": 2},
                 {"name": "Ignore negative scenario effects and remove one (-1) card", "uses": 1}
+            ]
+        },
+        {
+            "name": "Inox Drifter",
+            "hidden_name": "Inox Drifter",
+            "icon": "inox-drifter.svg",
+            "from_game": "Frosthaven (beta)",
+            "perks": [
+                {"name": "Remove four (+0) cards", "uses": 1},
+                {"name": "Remove two (-1) cards", "uses": 2},
+                {"name": "Remove one (-2) card", "uses": 1},
+                {"name": "Add two (+1) cards", "uses": 1},
+                {"name": "Add two rolling PIERCE 3 cards", "uses": 2},
+                {"name": "Add three rolling PUSH 1 cards", "uses": 2},
+                {"name": "Add three rolling MUDDLE cards", "uses": 2},
+                {"name": "Add one rolling 'Move back one character token' card", "uses": 2},
+                {"name": "Ignore negative scenario effects and add one (+1) card", "uses": 1},
+                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1} 
             ]
         }
     ]

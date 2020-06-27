@@ -283,6 +283,8 @@ export const PERK_LIST = {
     'Add two rolling SUN cards': (char: Character) => { char.deck.addEffect('Rolling Sun', 2); },
     'Add two rolling CURSE cards': (char: Character) => { char.deck.addEffect('Rolling Curse', 2); },
     'Add two rolling Shield 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
+    // tslint:disable-next-line:max-line-length
+    'Add one rolling \'Move back one character token\' card': (char: Character) => { char.deck.addEffect('Move back one character token', 1); },
     'Add one rolling INVISIBLE card': (char: Character) => { char.deck.addEffect('Rolling Invisible', 1); },
     'Add one rolling STUN card': (char: Character) => { char.deck.addEffect('Rolling Stun', 1); },
     'Add one rolling DISARM and one rolling MUDDLE card': (char: Character) => {
