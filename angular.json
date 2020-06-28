@@ -31,8 +31,7 @@
             "styles": [
               "src/assets/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
