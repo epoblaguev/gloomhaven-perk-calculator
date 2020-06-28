@@ -4,6 +4,9 @@ import { StorageService } from 'src/app/services/storage.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PerkIconsComponent} from 'src/app/modules/perk-icons/perk-icons.component';
 import { FaIcons } from 'src/app/classes/consts';
+import { GameService } from 'src/app/services/game.service';
+import { GameVersion } from 'src/app/classes/gameVersion';
+import { KeyValue } from '@angular/common';
 
 
 @Component({
@@ -16,36 +19,42 @@ export class PerkSelectorComponent implements OnInit {
     public showIcons = true;
     public selectedCharacter = 0;
     public faIcons = FaIcons;
-    public gameNames: object = {};
     public hideRealNames = true;
     public getKeys = Object.keys;
 
-    constructor(public charService: CharacterService, public storageService: StorageService, private sanitizer: DomSanitizer) {
+    constructor(public charService: CharacterService, public gameService: GameService,
+        public storageService: StorageService, private sanitizer: DomSanitizer) {
         this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
         this.showIcons = storageService.loadPerkIconToggle();
-        this.gameNames = charService.getCharacters().reduce((obj,char) => {obj[char.gameName] = true; return obj}, {});
     }
 
     ngOnInit(): void {}
 
     /**
      * Returns 'true' if passed gameName is the only gameName with the 'true' value
-     * @param gameName 
+     * @param gameName name of game to disable
      */
     disableGameNameCheckbox(gameName: string) {
-        return this.gameNames[gameName] && Object.values(this.gameNames).filter(val => val).length === 1;
+        let numChecked = 0;
+        this.gameService.games.forEach(val => {
+            numChecked += val.enabled ? 1 : 0;
+        })
+        return this.gameService.games.get(gameName).enabled && numChecked === 1;
     }
 
     /**
-     * Toggles selected game name. If this is the game name of the currently selected character, selects the first character with a non-false game name.
-     * @param gameName 
+     * Toggles selected game name. If this is the game name of the currently selected character,
+     * selects the first character with a non-false game name.
+     * @param gameName name of game to toggle
      */
-    toggleGameName(gameName: string) {
-        this.gameNames[gameName] = !this.gameNames[gameName];
-        if(!this.gameNames[gameName] && this.charService.getCharacter().gameName === gameName) {
+    toggleGameVersion(gameVersion: GameVersion) {
+        gameVersion.enabled = !gameVersion.enabled;
+        if(!gameVersion.enabled && this.charService.getCharacter().gameName === gameVersion.name) {
             let charIdx = 0;
             for(const char of this.charService.getCharacters()) {
-                if(this.gameNames[char.gameName]) {
+                console.log(this.gameService.games);
+                console.log(char.gameName);
+                if(this.gameService.games.get(char.gameName).enabled) {
                     this.selectedCharacter = charIdx;
                     this.selectedCharacterChanged()
                     return;
@@ -53,6 +62,10 @@ export class PerkSelectorComponent implements OnInit {
                 charIdx += 1;
             }
         }
+    }
+
+    gameVersionOrder(a: KeyValue<string, GameVersion>, b: KeyValue<string, GameVersion>) {
+        return a.value.priority < b.value.priority;
     }
 
     getPerkCount() {

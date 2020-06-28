@@ -9,12 +9,12 @@
         <mat-menu #menu="matMenu">
             <mat-checkbox (click)="$event.stopPropagation();" (change)="togglePerkIcons()" [checked]="showIcons" class="mat-menu-item large-checkbox-no-margin">Show Perk Icons</mat-checkbox>
             <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="hideRealNames" class="mat-menu-item large-checkbox-no-margin">Mask Unlockable Names</mat-checkbox>
-            <button mat-menu-item [matMenuTriggerFor]="gameTypesMenu">Select Game</button>
+            <button mat-menu-item [matMenuTriggerFor]="gameTypesMenu">Select Game Versions</button>
         </mat-menu>
 
         <mat-menu #gameTypesMenu="matMenu">
-            <ng-container *ngFor="let gameName of getKeys(gameNames)">
-                <mat-checkbox (click)="$event.stopPropagation();" (change)="toggleGameName(gameName)" [checked]="gameNames[gameName]" [disabled]="disableGameNameCheckbox(gameName)" class="mat-menu-item large-checkbox-no-margin">{{gameName}}</mat-checkbox>
+            <ng-container *ngFor="let game of gameService.games | keyvalue: gameVersionOrder">
+                <mat-checkbox (click)="$event.stopPropagation();" (change)="toggleGameVersion(game.value)" [checked]="game.value.enabled" [disabled]="disableGameNameCheckbox(game.key)" class="mat-menu-item large-checkbox-no-margin">{{game.value.name}}</mat-checkbox>
             </ng-container>
         </mat-menu>
     </mat-card-subtitle>
@@ -29,7 +29,7 @@
                     </div>
                 </mat-select-trigger>
                 <ng-container  *ngFor="let character of charService.getCharacters(), let char_i = index">
-                    <mat-option *ngIf="gameNames[character.gameName]" [value]="char_i">
+                    <mat-option *ngIf="gameService.games.get(character.gameName)?.enabled" [value]="char_i">
                         <div>
                             <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
                             <span class="char-name-label">{{ hideRealNames ? character.hiddenName : character.name }}</span>

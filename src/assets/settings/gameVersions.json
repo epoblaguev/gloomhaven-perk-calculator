@@ -1,0 +1,24 @@
+{
+    "games": [
+        {
+            "name": "Gloomhaven Base",
+            "priority": 1,
+            "enabled": true
+        },
+        {
+            "name": "Forgotten Circles",
+            "priority": 2,
+            "enabled": true
+        },
+        {
+            "name": "Jaws of the Lion",
+            "priority": 3,
+            "enabled": true
+        },
+        {
+            "name": "Frosthaven (beta)",
+            "priority": 4,
+            "enabled": false
+        }
+    ]
+}
