@@ -22,8 +22,8 @@ export class CardEffectsComponent extends GraphModuleDirective implements OnInit
 
   public getChartData() {
     const probs = this.charServ.getCharacter().deck.getEffectsProbability();
-    console.log(this.charServ.getCharacter().deck);
-    console.log(probs);
+    // console.log(this.charServ.getCharacter().deck);
+    // console.log(probs);
     const compareProbs = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.getEffectsProbability();
 
     // Rename 'None' to 'No Effect'
@@ -55,7 +55,7 @@ export class CardEffectsComponent extends GraphModuleDirective implements OnInit
       });
     }
 
-    console.log(probs);
+    // console.log(probs);
     return probData;
   }
 
@@ -72,7 +72,7 @@ export class CardEffectsComponent extends GraphModuleDirective implements OnInit
     labels.unshift('No Effect');
 
     if (this.barChartLabels.toString() !== labels.toString()) {
-      console.log(`${this.barChartLabels} !== ${labels}`);
+      // console.log(`${this.barChartLabels} !== ${labels}`);
       this.barChartLabels = labels;
     }
   }

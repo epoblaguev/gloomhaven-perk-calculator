@@ -1,18 +1,18 @@
 import { Character } from '../character';
-import settings from '../../../assets/settings/settings.json';
+import charJson from '../../../assets/settings/characters.json';
 import { PERK_LIST } from '../deckModifier';
 
 
 describe('Character', () => {
   // Test that all characters can be initialized
-  settings.characters.forEach(character => {
+  charJson.characters.forEach(character => {
     it(`should create an instance of character ${character.name}`, () => {
       expect(new Character(character)).toBeTruthy();
     });
   });
 
   // Test that all characters have exactly 15 perks
-  settings.characters.forEach(character => {
+  charJson.characters.forEach(character => {
     it(`${character.name} should have 15 perks`, () => {
       const char = new Character(character);
       expect(char.perkList.map(perk => perk.uses.length).reduce((prev, cur) => prev + cur)).toBe(15, `${char.name} failed`);
@@ -20,10 +20,10 @@ describe('Character', () => {
   });
 
   // Test that all characters have havlid perks
-  settings.characters.forEach(character => {
-    it(`${character.name} should have valid perks`, () => {
-      character.perks.forEach(perk => {
-        expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" not a valid perk`);
+  charJson.characters.forEach(character => {
+    character.perks.forEach(perk => {
+      it(`${character.name} perk "${perk.name}" should be valid`, () => {
+        expect(Object.keys(PERK_LIST)).toContain(perk.name, `"${perk.name}" is not a valid perk`);
       });
     });
 

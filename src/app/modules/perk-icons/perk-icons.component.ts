@@ -9,7 +9,7 @@ import { FaIcons } from 'src/app/classes/consts';
 export class PerkIconsComponent implements OnInit {
   public static supportedWords = new Set<string>(['(-2)', '(-1)', '(+0)', '(+1)', '(+2)', '(+3)', '(+4)',
     'DARK', 'INVISIBLE', 'rolling', 'HEAL', 'Shield', 'CURSE', 'BLESS', 'MUDDLE', 'TARGET', 'PUSH', 'PULL', 'PIERCE', 'STUN', 'DISARM', 'IMMOBILIZE', 'POISON', 'WOUND', 'REGENERATE',
-    'EARTH', 'WIND', 'FROST', 'FIRE', 'SUN']);
+    'EARTH', 'WIND', 'FROST', 'FIRE', 'SUN', 'FIRESUN']);
   public iconMap = {
     INVISIBLE: {text: 'INVISIBLE', icon: 'invisible.svg'},
     rolling: {text: '', icon: 'rolling.svg'},
@@ -33,6 +33,7 @@ export class PerkIconsComponent implements OnInit {
     FROST: {text: '', icon: 'frost.svg'},
     FIRE: {text: '', icon: 'fire.svg'},
     SUN: {text: '', icon: 'sun.svg'},
+    FIRESUN: {text: '', icon: 'firesun.svg'},
     DARK: {text: '', icon: 'dark.svg'},
   }
   public faIcons = FaIcons;
