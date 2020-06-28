@@ -11,10 +11,10 @@ export class GameService {
   constructor() {
     const tempGames = new Map<string, GameVersion>();
     gamesJson.games.forEach(game => {
-      console.log(game);
+      // console.log(game);
       tempGames.set(game.name, new GameVersion(game));
     });
     this.games = tempGames;
-    console.log(this.games);
+    // console.log(this.games);
   }
 }

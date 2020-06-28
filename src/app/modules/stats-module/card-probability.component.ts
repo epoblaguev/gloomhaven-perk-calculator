@@ -69,7 +69,7 @@ export class CardProbabilityComponent extends GraphModuleDirective {
     }
 
     if (this.barChartLabels.toString() !== labels.toString()) {
-      console.log(`${this.barChartLabels} !== ${labels}`);
+      // console.log(`${this.barChartLabels} !== ${labels}`);
       this.barChartLabels = labels;
     }
   }

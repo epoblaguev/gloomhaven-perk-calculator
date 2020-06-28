@@ -41,8 +41,8 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     this.counts['scenario-1'] = char.negScenarioEffects.find(mod => mod.name === '-1').uses.length;
     this.counts['item-1'] = char.negItemEffects.find(mod => mod.name === '-1').uses.length;
     this.counts['item-1_remove'] = char.posItemEffects.find(mod => mod.name === '-1').uses.length;
-    console.log(this.counts);
-    console.log('Constructed Deck Modifiers');
+    // console.log(this.counts);
+    // console.log('Constructed Deck Modifiers');
   }
 
   ngOnInit() {
@@ -58,8 +58,8 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   private updateDropdowns() {
     this.prevCharacter = Utils.clone(this.charServ.getCharacter());
     const char = this.charServ.getCharacter();
-    console.log('updateDropdowns');
-    console.log(char);
+    // console.log('updateDropdowns');
+    // console.log(char);
     this.modifiers.bless = this.getModUses(char.miscModifiers.find(mod => mod.name === 'Bless'));
     this.modifiers.curse = this.getModUses(char.negScenarioEffects.find(mod => mod.name === 'Curse'));
     this.modifiers['scenario-1'] = this.getModUses(char.negScenarioEffects.find(mod => mod.name === '-1'));
@@ -73,7 +73,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   }
 
   private getModUses(modifier: DeckModifier): number {
-    console.log(modifier);
+    // console.log(modifier);
     return modifier.uses.filter(use => use.used).length;
   }
 
@@ -96,12 +96,12 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
       char.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
     }
 
-    console.log(this.itemEffectsCount);
+    // console.log(this.itemEffectsCount);
 
     char.applyModifiers();
     this.prevCharacter = Utils.clone(this.charServ.getCharacter());
     this.storageService.saveAllMods(char);
-    console.log(char);
+    // console.log(char);
   }
 
   public dropdownValue(num: number, cardName: string): string {

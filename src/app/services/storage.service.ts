@@ -41,7 +41,7 @@ export class StorageService {
 
   saveComparisonDeck(char: Character) {
     this.clearComparisonDeck(char.name);
-    console.log(`Saving comparison deck for ${char.name}`);
+    // console.log(`Saving comparison deck for ${char.name}`);
     if (char.compareDeck == null) {
       return;
     }
@@ -61,7 +61,7 @@ export class StorageService {
   }
 
   loadComparisonDeck(char: Character) {
-    console.log(`Loading comparison deck for ${char.name}`);
+    // console.log(`Loading comparison deck for ${char.name}`);
     if (window.localStorage.getItem(`${this.compareDeckPrefix}_${char.name}_enabled`) !== String(true)) {
       return;
     }
@@ -84,7 +84,7 @@ export class StorageService {
   }
 
   clearComparisonDeck(charName: string) {
-    console.log(`Clearing comparison deck for ${charName}`);
+    // console.log(`Clearing comparison deck for ${charName}`);
     Object.keys(window.localStorage).forEach(key => {
       if (key.startsWith(`${this.compareDeckPrefix}_${charName}`)) {
         window.localStorage.removeItem(key);

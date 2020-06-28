@@ -52,8 +52,8 @@ export class PerkSelectorComponent implements OnInit {
         if(!gameVersion.enabled && this.charService.getCharacter().gameName === gameVersion.name) {
             let charIdx = 0;
             for(const char of this.charService.getCharacters()) {
-                console.log(this.gameService.games);
-                console.log(char.gameName);
+                // console.log(this.gameService.games);
+                // console.log(char.gameName);
                 if(this.gameService.games.get(char.gameName).enabled) {
                     this.selectedCharacter = charIdx;
                     this.selectedCharacterChanged()
