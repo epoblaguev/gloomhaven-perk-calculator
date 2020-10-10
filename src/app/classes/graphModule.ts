@@ -7,8 +7,7 @@ import { Character } from './character';
 import { ChartOptions } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import equal from 'fast-deep-equal';
-import _ from 'lodash';
+import Utils from './utils';
 
 
 interface Properties {
@@ -85,7 +84,7 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
 
   ngOnInit(): void {
     console.log('ngOnInit - graphModule');
-    this.prevCharacter = _.cloneDeep(this.character);
+    this.prevCharacter = Utils.clone(this.character);
     this.barChartType = 'bar';
     this.barChartData = this.getChartData();
     this.barChartLegend = this.character.compareDeck != null;
@@ -93,10 +92,10 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if (!equal(this.character, this.prevCharacter)) {
+    if (!Utils.equals(this.character, this.prevCharacter)) {
       // console.log('Character Changes');
 
-      this.prevCharacter = _.cloneDeep(this.character);
+      this.prevCharacter = Utils.clone(this.character);
 
       const newChartData = this.getChartData();
       const newLabels = new Set(newChartData.map(x => x.label));

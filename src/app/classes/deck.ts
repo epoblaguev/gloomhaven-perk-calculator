@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import Utils from './utils';
 
 const DefaultCards = {
   x0: 1,
@@ -41,8 +41,8 @@ export class Deck {
   public cards: typeof DefaultCards;
 
   constructor() {
-    this.cards = _.cloneDeep(DefaultCards);
-    this.effects = _.cloneDeep(DefaultEffects);
+    this.cards = Utils.clone(DefaultCards);
+    this.effects = Utils.clone(DefaultEffects);
   }
 
   private sum(obj: object): number {
@@ -84,7 +84,7 @@ export class Deck {
       if (!cardType.startsWith('r') && compareFunc(Deck.cardValue[cardType](baseValue + rollingValue) - baseValue)) {
         probability += cards[cardType] / this.sum(cards);
       } else if (cardType.startsWith('r')) {
-        const newCards = _.cloneDeep(cards);
+        const newCards = Utils.clone(cards);
         newCards[cardType] -= 1;
 
         probability += (cards[cardType] / this.sum(cards))
@@ -123,7 +123,7 @@ export class Deck {
 
       if (key.startsWith('Rolling')) {
         const newDeck = new Deck();
-        newDeck.effects = _.cloneDeep(this.effects);
+        newDeck.effects = Utils.clone(this.effects);
         const mult = this.effects[key] / sum;
         newDeck.effects[key] -= 1;
 
@@ -155,7 +155,7 @@ export class Deck {
 
       if (key.startsWith('r')) {
         const newDeck = new Deck();
-        newDeck.cards = _.cloneDeep(this.cards);
+        newDeck.cards = Utils.clone(this.cards);
         newDeck.cards[key] -= 1;
         damage += Deck.cardValue[key](newDeck.getAverageDamage(baseDamage)) * (this.cards[key] / sum);
       } else {
@@ -181,14 +181,14 @@ export class Deck {
   }
 
   public reset() {
-    this.cards = _.cloneDeep(DefaultCards);
-    this.effects = _.cloneDeep(DefaultEffects);
+    this.cards = Utils.clone(DefaultCards);
+    this.effects = Utils.clone(DefaultEffects);
   }
 
   public cloneDeck() {
     const newDeck = new Deck();
-    newDeck.cards = _.cloneDeep(this.cards);
-    newDeck.effects = _.cloneDeep(this.effects);
+    newDeck.cards = Utils.clone(this.cards);
+    newDeck.effects = Utils.clone(this.effects);
     return newDeck;
   }
 

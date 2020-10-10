@@ -6,9 +6,9 @@ import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import _ from 'lodash';
+import Utils from './classes/utils';
 
 
 @Component({
@@ -58,6 +58,6 @@ export class AppComponent implements OnInit {
   }
 
   updateDeck(cards) {
-    this.deck.cards = _.cloneDeep(cards);
+    this.deck.cards = Utils.clone(cards);
   }
 }
