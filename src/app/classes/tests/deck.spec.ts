@@ -1,5 +1,5 @@
+import _ from 'lodash';
 import { Deck } from '../deck';
-import Utils from '../utils';
 
 describe('Deck', () => {
     it('should create an instance', () => {
@@ -236,7 +236,7 @@ describe('Deck', () => {
         it(testName, () => {
             const deck = new Deck();
             deck.effects = Object.assign({}, deck.effects, test.input);
-            deck.effects = Utils.clone(test.input);
+            deck.effects = _.cloneDeep(test.input);
 
             const probability = deck.getEffectsProbability();
             // expect(probability).toEqual(test.output, `Expected: ${JSON.stringify(test.output)}`);
@@ -250,7 +250,7 @@ describe('Deck', () => {
 
     it('shouldn\'t change deck when calculating card probabilities', () => {
         const deck = new Deck();
-        const originalEffects = Utils.clone(deck.effects);
+        const originalEffects = _.cloneDeep(deck.effects);
         deck.getEffectsProbability();
 
         expect(deck.effects).toEqual(originalEffects);

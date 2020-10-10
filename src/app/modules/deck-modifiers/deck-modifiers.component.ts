@@ -1,11 +1,12 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MODIFIERS_LIST, POS_ITEM_EFFECTS_LIST } from 'src/app/classes/deckModifier';
-import Utils from 'src/app/classes/utils';
 import { Character } from 'src/app/classes/character';
 import { StorageService } from 'src/app/services/storage.service';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { FaIcons } from 'src/app/classes/consts';
+import equal from 'fast-deep-equal';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-deck-modifiers',
@@ -35,7 +36,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
 
   constructor(public charServ: CharacterService, public storageService: StorageService, library: FaIconLibrary) {
     const char = charServ.getCharacter();
-    this.prevCharacter = Utils.clone(char);
+    this.prevCharacter = _.cloneDeep(char);
     this.counts.bless = char.miscModifiers.find(mod => mod.name === 'Bless').uses.length;
     this.counts.curse = char.negScenarioEffects.find(mod => mod.name === 'Curse').uses.length;
     this.counts['scenario-1'] = char.negScenarioEffects.find(mod => mod.name === '-1').uses.length;
@@ -50,13 +51,13 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
+    if(!equal(this.charServ.getCharacter(), this.prevCharacter)) {
       this.updateDropdowns();
     }
   }
 
   private updateDropdowns() {
-    this.prevCharacter = Utils.clone(this.charServ.getCharacter());
+    this.prevCharacter = _.cloneDeep(this.charServ.getCharacter());
     const char = this.charServ.getCharacter();
     // console.log('updateDropdowns');
     // console.log(char);
@@ -99,7 +100,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     // console.log(this.itemEffectsCount);
 
     char.applyModifiers();
-    this.prevCharacter = Utils.clone(this.charServ.getCharacter());
+    this.prevCharacter = _.cloneDeep(this.charServ.getCharacter());
     this.storageService.saveAllMods(char);
     // console.log(char);
   }

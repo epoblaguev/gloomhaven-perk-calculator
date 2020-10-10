@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
-import Utils from './classes/utils';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { StatsModules, FaIcons } from './classes/consts';
@@ -9,6 +8,7 @@ import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
 import { Observable, Subscription } from 'rxjs';
 import { Character } from './classes/character';
+import _ from 'lodash';
 
 
 @Component({
@@ -58,6 +58,6 @@ export class AppComponent implements OnInit {
   }
 
   updateDeck(cards) {
-    this.deck.cards = Utils.clone(cards);
+    this.deck.cards = _.cloneDeep(cards);
   }
 }

@@ -41,22 +41,4 @@ describe('Character', () => {
       }));
   });
 });
-
-
-  /*
-  // Test that all perks are reversable
-  Object.values(settings.characters).forEach(character => {
-    const char = new Character(character);
-    Object.values(char.perkList).forEach(perk => {
-      it(`${char.name} perk '${perk.name}' should be reversable`, () => {
-        const deck = new Deck();
-        const originalDeck: Deck = Utils.clone(deck);
-        perk.set(deck);
-        // perk.unset(deck);
-        expect(deck.cards).toEqual(originalDeck.cards, `"${perk.name}" cards aren't reversable`);
-        expect(deck.effects).toEqual(originalDeck.effects, `"${perk.name}" effects aren't reversable`);
-      });
-    });
-  });
-  */
 });
