@@ -1,5 +1,5 @@
 import equal from 'fast-deep-equal';
-import { clone } from 'lodash';
+import cloneDeep from 'lodash-es/cloneDeep';
 
 export default class Utils {
   static equals(obj: any, other: any) {
@@ -7,6 +7,6 @@ export default class Utils {
   }
 
   static clone(obj: any): any {
-    return clone(obj);
+    return cloneDeep(obj);
   }
 }

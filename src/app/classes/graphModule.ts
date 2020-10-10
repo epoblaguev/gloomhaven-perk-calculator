@@ -5,7 +5,7 @@ import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
 import { ChartOptions } from 'chart.js';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import Utils from './utils';
 
@@ -93,8 +93,6 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
 
   ngDoCheck() {
     if (!Utils.equals(this.character, this.prevCharacter)) {
-      // console.log('Character Changes');
-
       this.prevCharacter = Utils.clone(this.character);
 
       const newChartData = this.getChartData();

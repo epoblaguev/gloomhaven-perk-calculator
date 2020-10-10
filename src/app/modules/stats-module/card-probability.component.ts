@@ -19,7 +19,6 @@ export class CardProbabilityComponent extends GraphModuleDirective {
   }
 
   ngOnInit() {
-    console.log('ngOnInit - card probability');
     this.barChartLabels = Object.keys(this.character.deck.cards);
     this.barChartOptions.layout.padding['top'] = 0;
     super.ngOnInit();
