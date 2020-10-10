@@ -7,6 +7,8 @@ import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
+import { Observable, Subscription } from 'rxjs';
+import { Character } from './classes/character';
 
 
 @Component({
@@ -15,13 +17,16 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Gloomhaven Perk Calculator';
-  deck = new Deck();
-  isMobile = environment.mobile;
-  faIcons = FaIcons;
+  public title = 'Gloomhaven Perk Calculator';
+  public deck = new Deck();
+  public isMobile = environment.mobile;
+  public faIcons = FaIcons;
 
-  statsModules = StatsModules;
-  showDeckModifiers = true;
+  public statsModules = StatsModules;
+  public showDeckModifiers = true;
+
+  public character: Character;
+  public subscriptions = new Subscription();
 
   constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
     // Fill character perks with stored info
@@ -33,6 +38,10 @@ export class AppComponent implements OnInit {
     });
 
     this.charService.selectCharacter(storageService.getSelectedChar());
+
+    this.subscriptions.add(this.charService.character$.subscribe(observer => {
+      this.character = observer;
+    }));
   }
 
   openBottomSheet(infoType: string): boolean {
@@ -42,6 +51,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   updateDeck(cards) {

@@ -1,11 +1,10 @@
-import { Input, ViewChild, DoCheck, OnInit, Directive } from '@angular/core';
+import { Input, ViewChild, DoCheck, OnInit, Directive, OnChanges } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import Utils from './utils';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
-import { CharacterService } from '../services/character.service';
 import { ChartOptions } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -19,11 +18,7 @@ interface Properties {
 }
 
 @Directive()
-export abstract class GraphModuleDirective implements DoCheck, OnInit {
-
-    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-        this.prevCharacter = Utils.clone(charServ.getCharacter());
-    }
+export abstract class GraphModuleDirective implements OnInit, DoCheck {
 
     public static Colors = {
         blue: { // blue
@@ -42,9 +37,9 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
     }
 
     @Input() properties: Properties;
+    @Input() character: Character;
 
-    @ViewChild('baseChart')
-    chart: BaseChartDirective;
+    @ViewChild('baseChart') chart: BaseChartDirective;
 
     protected prevCharacter: Character;
     protected infoPageName: StatsTypes;
@@ -58,16 +53,8 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
                     min: 0,
                     max: 100,
                     stepSize: 20,
-                    // fontFamily: GraphModuleDirective.Font.faimily,
-                    // fontSize: GraphModuleDirective.Font.size
                 }
             }],
-            // xAxes: [{
-            //     ticks: {
-            //         fontFamily: GraphModuleDirective.Font.faimily,
-            //         fontSize: GraphModuleDirective.Font.size
-            //     }
-            // }]
         },
         layout: {
             padding: {
@@ -85,14 +72,9 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
               formatter: (x => `${x}%`)
             }
           },
-        //   legend: {
-        //       labels: {
-        //         fontFamily: GraphModuleDirective.Font.faimily,
-        //         fontSize: GraphModuleDirective.Font.size
-        //       }
-        //   },
-          // animation: {duration: 10}
     };
+
+    constructor(public bottomSheet: MatBottomSheet) { }
 
     public abstract barChartLabels: string[];
     public barChartType: string;
@@ -101,17 +83,18 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
     public barChartPlugins = [pluginDataLabels];
 
     ngOnInit(): void {
+        console.log('ngOnInit - graphModule');
+        this.prevCharacter = Utils.clone(this.character);
         this.barChartType = 'bar';
         this.barChartData = this.getChartData();
-        this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
+        this.barChartLegend = this.character.compareDeck != null;
         this.infoPageName = this.properties.infoPage;
     }
 
     ngDoCheck() {
-        if (!Utils.equals(this.charServ.getCharacter(), this.prevCharacter)) {
-            // this.needRedraw = !Utils.equals(this.charServ.getCharacter().compareDeck, this.prevCharacter.compareDeck);
+        if (!Utils.equals(this.character, this.prevCharacter)) {
 
-            this.prevCharacter = Utils.clone(this.charServ.getCharacter());
+            this.prevCharacter = Utils.clone(this.character);
 
             const newChartData = this.getChartData();
             const newLabels = new Set(newChartData.map(x => x.label));
@@ -132,9 +115,35 @@ export abstract class GraphModuleDirective implements DoCheck, OnInit {
                 }
             });
 
-            this.barChartLegend = this.charServ.getCharacter().compareDeck != null;
+            this.barChartLegend = this.character.compareDeck != null;
         }
     }
+
+    // ngOnChanges() {
+    //   console.log('ngOnChanges');
+    //   this.prevCharacter = Utils.clone(this.character);
+
+    //         const newChartData = this.getChartData();
+    //         const newLabels = new Set(newChartData.map(x => x.label));
+
+    //         const currentLabels = new Set(this.barChartData.map(x => x.label));
+
+    //         this.barChartData.forEach((item, index) => {
+    //             if (!newLabels.has(item.label)) {
+    //                 this.barChartData.splice(index, 1);
+    //             } else {
+    //                 item.data = newChartData.find(x => x.label === item.label).data;
+    //             }
+    //         });
+
+    //         newChartData.forEach(item => {
+    //             if (!currentLabels.has(item.label)) {
+    //                 this.barChartData.push(item);
+    //             }
+    //         });
+
+    //         this.barChartLegend = this.character.compareDeck != null;
+    // }
 
     public abstract getChartData(): Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
 

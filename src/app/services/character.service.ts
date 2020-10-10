@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../classes/character';
 import charactersJson from '../../assets/settings/characters.json';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 
 @Injectable()
@@ -8,10 +9,16 @@ export class CharacterService {
   private characters: Character[];
   private selectedCharacter: number;
 
+  private characterSubject: BehaviorSubject<Character>;
+  public character$: Observable<Character>;
+
   constructor() {
     this.characters = charactersJson.characters.map(char => new Character(char));
     this.characters.sort(this.charSort);
     this.selectedCharacter = 0;
+
+    this.characterSubject = new BehaviorSubject<Character>(this.getCharacter());
+    this.character$ = this.characterSubject.asObservable();
   }
 
   getCharacters() {
@@ -24,6 +31,7 @@ export class CharacterService {
 
   selectCharacter(i: number) {
     this.selectedCharacter = i;
+    this.characterSubject.next(this.getCharacter());
   }
 
   private charSort(char1: Character, char2: Character): number {

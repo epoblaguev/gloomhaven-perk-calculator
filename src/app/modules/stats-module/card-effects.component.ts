@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CharacterService } from 'src/app/services/character.service';
 import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
@@ -14,17 +13,22 @@ export class CardEffectsComponent extends GraphModuleDirective implements OnInit
   public removeZeroColumns = true;
   public faIcons = FaIcons;
 
-  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-    super(bottomSheet, charServ);
-    this.barChartLabels = Object.keys(this.charServ.getCharacter().deck.cards);
+  constructor(public bottomSheet: MatBottomSheet) {
+    super(bottomSheet);
+
+  }
+
+  ngOnInit() {
+    this.barChartLabels = Object.keys(this.character.deck.cards); // Will probably cause issue
+    super.ngOnInit();
   }
 
 
   public getChartData() {
-    const probs = this.charServ.getCharacter().deck.getEffectsProbability();
-    // console.log(this.charServ.getCharacter().deck);
+    const probs = this.character.deck.getEffectsProbability();
+    // console.log(this.character.deck);
     // console.log(probs);
-    const compareProbs = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.getEffectsProbability();
+    const compareProbs = this.character.compareDeck && this.character.compareDeck.getEffectsProbability();
 
     // Rename 'None' to 'No Effect'
     probs['No Effect'] = probs['None'];
@@ -45,7 +49,7 @@ export class CardEffectsComponent extends GraphModuleDirective implements OnInit
       }
     ];
 
-    if (this.charServ.getCharacter().compareDeck != null) {
+    if (this.character.compareDeck != null) {
       Object.keys(compareProbs).forEach(key => compareProbs[key] = Math.round(compareProbs[key] * 100));
       probData.push({
         label: 'Comparison',

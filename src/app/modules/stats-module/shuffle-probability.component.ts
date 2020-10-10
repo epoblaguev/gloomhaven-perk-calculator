@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CharacterService } from 'src/app/services/character.service';
 import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
@@ -14,8 +13,8 @@ export class ShuffleProbabilityComponent extends GraphModuleDirective {
     public barChartLabels: string[] = ['1', '3', '5', '7', '9', '11'];
     public faIcons = FaIcons;
 
-    constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-        super(bottomSheet, charServ);
+    constructor(public bottomSheet: MatBottomSheet) {
+        super(bottomSheet);
 
         this.barChartOptions.scales.xAxes = [{
             scaleLabel: {
@@ -29,18 +28,18 @@ export class ShuffleProbabilityComponent extends GraphModuleDirective {
         const chartData = [
             {
                 label: 'Current', data: this.barChartLabels
-                    .map((val, index) => Math.round(this.charServ.getCharacter().deck.getShuffleChance(Number(val)) * 100)),
+                    .map((val, index) => Math.round(this.character.deck.getShuffleChance(Number(val)) * 100)),
                 backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
                 borderColor: GraphModuleDirective.Colors.blue.borderColor,
             }
         ];
 
-        if (this.charServ.getCharacter().compareDeck != null) {
+        if (this.character.compareDeck != null) {
             // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
             chartData.push({
                 label: 'Comparison',
                 data: this.barChartLabels
-                    .map((val, index) => Math.round(this.charServ.getCharacter().compareDeck.getShuffleChance(Number(val)) * 100)),
+                    .map((val, index) => Math.round(this.character.compareDeck.getShuffleChance(Number(val)) * 100)),
                 backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
                 borderColor: GraphModuleDirective.Colors.red.borderColor,
             });

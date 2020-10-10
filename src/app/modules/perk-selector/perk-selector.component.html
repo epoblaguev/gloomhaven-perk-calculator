@@ -25,7 +25,7 @@
                     <img src="assets/icons/charIcons/{{charService.getCharacter().icon}}" class="char-icon">
                     <div class="char-name-label">
                         <div>{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</div>
-                        <div class="game-label color-gray">{{charService.getCharacter().gameName}}</div>
+                        <div class="game-label float-right color-gray">{{charService.getCharacter().gameName}}</div>
                     </div>
                 </mat-select-trigger>
                 <ng-container  *ngFor="let character of charService.getCharacters(), let char_i = index">
