@@ -27,10 +27,10 @@
       <mat-select placeholder="Select Character" [(value)]="selectedCharacter"
         (selectionChange)="selectedCharacterChanged()">
         <mat-select-trigger fxLayout="row">
-          <img src="assets/icons/charIcons/{{charService.getCharacter().icon}}" class="char-icon">
+          <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
           <div class="char-name-label">
-            <div>{{ hideRealNames ? charService.getCharacter().hiddenName : charService.getCharacter().name}}</div>
-            <div class="game-label float-right color-gray">{{charService.getCharacter().gameName}}</div>
+            <div>{{ hideRealNames ? character.hiddenName : character.name}}</div>
+            <div class="game-label float-right color-gray">{{character.gameName}}</div>
           </div>
         </mat-select-trigger>
         <ng-container *ngFor="let character of charService.getCharacters(), let char_i = index">
@@ -46,7 +46,7 @@
     </mat-form-field>
     <div>
       <span class="font-sakkal-majalla">Perks Chosen: {{ getPerkCount() }}</span>
-      <div *ngFor="let perk of charService.getCharacter().perkList" fxLayoutGap="5px">
+      <div *ngFor="let perk of character.perkList" fxLayoutGap="5px">
         <span *ngFor="let use of perk.uses, let use_i = index">
           <mat-checkbox [(ngModel)]="perk.uses[use_i].used" (change)="perkChanged()" class="large-checkbox">
           </mat-checkbox>
@@ -67,6 +67,6 @@
   <mat-card-actions>
     <button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">Reset</button>
     <button mat-flat-button color="primary" (click)="toggleComparison()">
-      {{ charService.getCharacter().compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
+      {{ character.compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
   </mat-card-actions>
 </mat-card>

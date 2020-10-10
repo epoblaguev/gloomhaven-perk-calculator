@@ -1,12 +1,12 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform, Input } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { PerkIconsComponent } from 'src/app/modules/perk-icons/perk-icons.component';
 import { FaIcons } from 'src/app/classes/consts';
 import { GameService } from 'src/app/services/game.service';
 import { GameVersion } from 'src/app/classes/gameVersion';
 import { KeyValue } from '@angular/common';
+import { Character } from 'src/app/classes/character';
 
 
 @Component({
@@ -15,6 +15,8 @@ import { KeyValue } from '@angular/common';
   styleUrls: ['./perk-selector.component.scss']
 })
 export class PerkSelectorComponent implements OnInit {
+  @Input() character: Character;
+
   public iconWords = PerkIconsComponent.supportedWords;
   public showIcons = true;
   public selectedCharacter = 0;
@@ -23,12 +25,13 @@ export class PerkSelectorComponent implements OnInit {
   public getKeys = Object.keys;
 
   constructor(public charService: CharacterService, public gameService: GameService,
-    public storageService: StorageService, private sanitizer: DomSanitizer) {
-    this.selectedCharacter = charService.getCharacters().indexOf(charService.getCharacter());
+    public storageService: StorageService) {
     this.showIcons = storageService.loadPerkIconToggle();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.selectedCharacter = this.charService.getCharacters().indexOf(this.character);
+  }
 
   /**
    * Returns 'true' if passed gameName is the only gameName with the 'true' value
@@ -49,7 +52,7 @@ export class PerkSelectorComponent implements OnInit {
    */
   toggleGameVersion(gameVersion: GameVersion) {
     gameVersion.enabled = !gameVersion.enabled;
-    if (!gameVersion.enabled && this.charService.getCharacter().gameName === gameVersion.name) {
+    if (!gameVersion.enabled && this.character.gameName === gameVersion.name) {
       let charIdx = 0;
       for (const char of this.charService.getCharacters()) {
         // console.log(this.gameService.games);
@@ -69,7 +72,7 @@ export class PerkSelectorComponent implements OnInit {
   }
 
   getPerkCount() {
-    return this.charService.getCharacter()
+    return this.character
       .perkList.map(perk => perk.uses.filter(val => val.used).length)
       .reduce((a, b) => a + b);
   }
@@ -80,15 +83,15 @@ export class PerkSelectorComponent implements OnInit {
   }
 
   perkChanged() {
-    this.charService.getCharacter().applyModifiers();
-    this.storageService.saveAllMods(this.charService.getCharacter());
+    this.character.applyModifiers();
+    this.storageService.saveAllMods(this.character);
   }
 
   reset() {
     this.resetPerkCheckboxes();
     this.resetDeck();
     this.resetDeckModifiers();
-    this.storageService.clearCharacterPerks(this.charService.getCharacter().name);
+    this.storageService.clearCharacterPerks(this.character.name);
   }
 
   togglePerkIcons() {
@@ -97,7 +100,7 @@ export class PerkSelectorComponent implements OnInit {
   }
 
   toggleComparison() {
-    const character = this.charService.getCharacter();
+    const character = this.character;
     if (character.compareDeck == null) {
       character.compareDeck = character.deck.cloneDeck();
       this.storageService.saveComparisonDeck(character);
@@ -108,15 +111,15 @@ export class PerkSelectorComponent implements OnInit {
   }
 
   private resetPerkCheckboxes() {
-    this.charService.getCharacter().perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
+    this.character.perkList.forEach(perk => perk.uses.forEach(use => use.used = false));
   }
 
   private resetDeck() {
-    this.charService.getCharacter().deck.reset();
+    this.character.deck.reset();
   }
 
   private resetDeckModifiers() {
-    const char = this.charService.getCharacter();
+    const char = this.character;
     const modifiers = [char.negItemEffects, char.posItemEffects, char.negScenarioEffects, char.miscModifiers];
     modifiers.forEach(modList => modList.forEach(mod => mod.uses.forEach(use => use.used = false)));
   }
