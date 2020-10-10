@@ -1,76 +1,81 @@
 <mat-card fxLayout="column">
-    <mat-card-subtitle>
-        <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true" class="color-purple"></fa-icon>
-        Misc. Deck Modifiers</mat-card-subtitle>
-    <mat-card-content fxLayoutGap="5%" fxLayout="row wrap">
-        <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Scenario Curses" [(value)]="modifiers.curse" (selectionChange)="selectionChange()">
-                <mat-select-trigger>
-                    <span *ngIf="modifiers.curse == 0; else elseCurses">None</span>
-                    <ng-template #elseCurses>{{modifiers.curse >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers.curse)}}
-                        <app-perk-icons icon="CURSE"></app-perk-icons> cards
-                    </ng-template>
-                </mat-select-trigger>
-                <mat-option *ngFor="let character of ' '.repeat(counts.curse + 1).split(''), let i = index" [value]="i">
-                    <span *ngIf="i == 0; else elseBlock">None</span>
-                    <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-                        <app-perk-icons icon="CURSE"></app-perk-icons> cards</ng-template>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+  <mat-card-subtitle>
+    <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true" class="color-purple"></fa-icon>
+    Misc. Deck Modifiers
+  </mat-card-subtitle>
+  <mat-card-content fxLayoutGap="5%" fxLayout="row wrap">
+    <mat-form-field fxFlex="45%">
+      <mat-select placeholder="Scenario Curses" [(value)]="modifiers.curse" (selectionChange)="selectionChange()">
+        <mat-select-trigger>
+          <span *ngIf="modifiers.curse == 0; else elseCurses">None</span>
+          <ng-template #elseCurses>{{modifiers.curse >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers.curse)}}
+            <app-perk-icons icon="CURSE"></app-perk-icons> cards
+          </ng-template>
+        </mat-select-trigger>
+        <mat-option *ngFor="let character of ' '.repeat(counts.curse + 1).split(''), let i = index" [value]="i">
+          <span *ngIf="i == 0; else elseBlock">None</span>
+          <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
+            <app-perk-icons icon="CURSE"></app-perk-icons> cards</ng-template>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
-        <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Scenario (-1) Cards" [(value)]="modifiers['scenario-1']" (selectionChange)="selectionChange()">
-                <mat-select-trigger>
-                    <span *ngIf="modifiers['scenario-1'] == 0; else elseScenario">None</span>
-                    <ng-template #elseScenario>
-                        {{modifiers['scenario-1'] >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers['scenario-1'])}}
-                        <app-perk-icons icon="(-1)"></app-perk-icons> cards
-                    </ng-template>
-                </mat-select-trigger>
-                <mat-option *ngFor="let character of ' '.repeat(counts['scenario-1'] + 1).split(''), let i = index" [value]="i">
-                    <span *ngIf="i == 0; else elseBlock">None</span>
-                    <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-                        <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field fxFlex="45%">
+      <mat-select placeholder="Scenario (-1) Cards" [(value)]="modifiers['scenario-1']"
+        (selectionChange)="selectionChange()">
+        <mat-select-trigger>
+          <span *ngIf="modifiers['scenario-1'] == 0; else elseScenario">None</span>
+          <ng-template #elseScenario>
+            {{modifiers['scenario-1'] >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers['scenario-1'])}}
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards
+          </ng-template>
+        </mat-select-trigger>
+        <mat-option *ngFor="let character of ' '.repeat(counts['scenario-1'] + 1).split(''), let i = index" [value]="i">
+          <span *ngIf="i == 0; else elseBlock">None</span>
+          <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
-        <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Item (-1) Cards" [(value)]="itemEffectsCount" (selectionChange)="selectionChange()">
-                <mat-select-trigger>
-                    <span *ngIf="itemEffectsCount == 0; else elseItemEffects">None</span>
-                    <ng-template #elseItemEffects>
-                        {{itemEffectsCount >= 0 ? 'Add' : 'Remove'}} {{math.abs(itemEffectsCount)}}
-                        <app-perk-icons icon="(-1)"></app-perk-icons> cards
-                    </ng-template>
-                </mat-select-trigger>
-                <mat-option *ngFor="let character of ' '.repeat(counts['item-1'] + counts['item-1_remove'] + 1).split(''), let i = index" [value]="i - counts['item-1_remove']">
-                    <span *ngIf="i - counts['item-1_remove'] == 0; else elseBlock">None</span>
-                    <ng-template #elseBlock>{{i - counts['item-1_remove']>= 0 ? 'Add' : 'Remove'}} {{math.abs(i - counts['item-1_remove'])}}
-                        <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field fxFlex="45%">
+      <mat-select placeholder="Item (-1) Cards" [(value)]="itemEffectsCount" (selectionChange)="selectionChange()">
+        <mat-select-trigger>
+          <span *ngIf="itemEffectsCount == 0; else elseItemEffects">None</span>
+          <ng-template #elseItemEffects>
+            {{itemEffectsCount >= 0 ? 'Add' : 'Remove'}} {{math.abs(itemEffectsCount)}}
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards
+          </ng-template>
+        </mat-select-trigger>
+        <mat-option
+          *ngFor="let character of ' '.repeat(counts['item-1'] + counts['item-1_remove'] + 1).split(''), let i = index"
+          [value]="i - counts['item-1_remove']">
+          <span *ngIf="i - counts['item-1_remove'] == 0; else elseBlock">None</span>
+          <ng-template #elseBlock>{{i - counts['item-1_remove']>= 0 ? 'Add' : 'Remove'}}
+            {{math.abs(i - counts['item-1_remove'])}}
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
 
-        <mat-form-field fxFlex="45%">
-            <mat-select placeholder="Blessings" [(value)]="modifiers.bless" (selectionChange)="selectionChange()">
-                <mat-select-trigger>
-                    <span *ngIf="modifiers.bless == 0; else elseBless">None</span>
-                    <ng-template #elseBless>
-                        {{modifiers.bless >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers.bless)}}
-                        <app-perk-icons icon="BLESS"></app-perk-icons> cards
-                    </ng-template>
-                </mat-select-trigger>
-                <mat-option *ngFor="let character of ' '.repeat(counts.bless + 1).split(''), let i = index" [value]="i">
-                    <span *ngIf="i == 0; else elseBlock">None</span>
-                    <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-                        <app-perk-icons icon="BLESS"></app-perk-icons> cards</ng-template>
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </mat-card-content>
+    <mat-form-field fxFlex="45%">
+      <mat-select placeholder="Blessings" [(value)]="modifiers.bless" (selectionChange)="selectionChange()">
+        <mat-select-trigger>
+          <span *ngIf="modifiers.bless == 0; else elseBless">None</span>
+          <ng-template #elseBless>
+            {{modifiers.bless >= 0 ? 'Add' : 'Remove'}} {{math.abs(modifiers.bless)}}
+            <app-perk-icons icon="BLESS"></app-perk-icons> cards
+          </ng-template>
+        </mat-select-trigger>
+        <mat-option *ngFor="let character of ' '.repeat(counts.bless + 1).split(''), let i = index" [value]="i">
+          <span *ngIf="i == 0; else elseBlock">None</span>
+          <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
+            <app-perk-icons icon="BLESS"></app-perk-icons> cards</ng-template>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
 </mat-card>

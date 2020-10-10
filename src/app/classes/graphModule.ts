@@ -12,151 +12,151 @@ import _ from 'lodash';
 
 
 interface Properties {
-    text: string;
-    icon: IconDefinition;
-    iconClasses: string[];
-    infoPage: StatsTypes;
+  text: string;
+  icon: IconDefinition;
+  iconClasses: string[];
+  infoPage: StatsTypes;
 }
 
 @Directive()
 export abstract class GraphModuleDirective implements OnInit, DoCheck {
 
-    public static Colors = {
-        blue: { // blue
-            backgroundColor: '#93a8c7',
-            borderColor: '#718eb5',
-        },
-        red: { // red
-            backgroundColor: '#f55a4e',
-            borderColor: '#f32c1e',
+  public static Colors = {
+    blue: { // blue
+      backgroundColor: '#93a8c7',
+      borderColor: '#718eb5',
+    },
+    red: { // red
+      backgroundColor: '#f55a4e',
+      borderColor: '#f32c1e',
+    }
+  };
+
+  public static Font = {
+    faimily: '"Sakkal Majalla"',
+    size: 17
+  }
+
+  @Input() properties: Properties;
+  @Input() character: Character;
+
+  @ViewChild('baseChart') chart: BaseChartDirective;
+
+  protected prevCharacter: Character;
+  protected infoPageName: StatsTypes;
+
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 100,
+          stepSize: 20,
         }
-    };
+      }],
+    },
+    layout: {
+      padding: {
+        top: 15,
+      }
+    },
+    tooltips: { enabled: false },
+    events: [],
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        clamp: true,
+        offset: -5,
+        formatter: (x => `${x}%`)
+      }
+    },
+  };
 
-    public static Font = {
-        faimily: '"Sakkal Majalla"',
-        size: 17
-    }
+  constructor(public bottomSheet: MatBottomSheet) { }
 
-    @Input() properties: Properties;
-    @Input() character: Character;
+  public abstract barChartLabels: string[];
+  public barChartType: string;
+  public barChartLegend: boolean;
+  public barChartData: Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
+  public barChartPlugins = [pluginDataLabels];
 
-    @ViewChild('baseChart') chart: BaseChartDirective;
+  ngOnInit(): void {
+    console.log('ngOnInit - graphModule');
+    this.prevCharacter = _.cloneDeep(this.character);
+    this.barChartType = 'bar';
+    this.barChartData = this.getChartData();
+    this.barChartLegend = this.character.compareDeck != null;
+    this.infoPageName = this.properties.infoPage;
+  }
 
-    protected prevCharacter: Character;
-    protected infoPageName: StatsTypes;
+  ngDoCheck() {
+    if (!equal(this.character, this.prevCharacter)) {
+      // console.log('Character Changes');
 
-    public barChartOptions: ChartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                    max: 100,
-                    stepSize: 20,
-                }
-            }],
-        },
-        layout: {
-            padding: {
-                top: 15,
-            }
-        },
-        tooltips: {enabled: false},
-        events: [],
-        plugins: {
-            datalabels: {
-              anchor: 'end',
-              align: 'end',
-              clamp: true,
-              offset: -5,
-              formatter: (x => `${x}%`)
-            }
-          },
-    };
+      this.prevCharacter = _.cloneDeep(this.character);
 
-    constructor(public bottomSheet: MatBottomSheet) { }
+      const newChartData = this.getChartData();
+      const newLabels = new Set(newChartData.map(x => x.label));
 
-    public abstract barChartLabels: string[];
-    public barChartType: string;
-    public barChartLegend: boolean;
-    public barChartData: Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
-    public barChartPlugins = [pluginDataLabels];
+      const currentLabels = new Set(this.barChartData.map(x => x.label));
 
-    ngOnInit(): void {
-        console.log('ngOnInit - graphModule');
-        this.prevCharacter = _.cloneDeep(this.character);
-        this.barChartType = 'bar';
-        this.barChartData = this.getChartData();
-        this.barChartLegend = this.character.compareDeck != null;
-        this.infoPageName = this.properties.infoPage;
-    }
-
-    ngDoCheck() {
-        if(!equal(this.character, this.prevCharacter)){
-          // console.log('Character Changes');
-
-            this.prevCharacter = _.cloneDeep(this.character);
-
-            const newChartData = this.getChartData();
-            const newLabels = new Set(newChartData.map(x => x.label));
-
-            const currentLabels = new Set(this.barChartData.map(x => x.label));
-
-            this.barChartData.forEach((item, index) => {
-                if (!newLabels.has(item.label)) {
-                    this.barChartData.splice(index, 1);
-                } else {
-                    item.data = newChartData.find(x => x.label === item.label).data;
-                }
-            });
-
-            newChartData.forEach(item => {
-                if (!currentLabels.has(item.label)) {
-                    this.barChartData.push(item);
-                }
-            });
-
-            this.barChartLegend = this.character.compareDeck != null;
+      this.barChartData.forEach((item, index) => {
+        if (!newLabels.has(item.label)) {
+          this.barChartData.splice(index, 1);
+        } else {
+          item.data = newChartData.find(x => x.label === item.label).data;
         }
+      });
+
+      newChartData.forEach(item => {
+        if (!currentLabels.has(item.label)) {
+          this.barChartData.push(item);
+        }
+      });
+
+      this.barChartLegend = this.character.compareDeck != null;
     }
+  }
 
-    public abstract getChartData(): Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
+  public abstract getChartData(): Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
 
-    public redrawChart() {
-        this.chart.ngOnDestroy();
-        this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
-    }
+  public redrawChart() {
+    this.chart.ngOnDestroy();
+    this.chart.chart = this.chart.getChartBuilder(this.chart.ctx);
+  }
 
 
-    /**
-     * Fits result set to barChartLabels. Padding missing values with zeroes.
-     * @param cardValues - map of labels to values
-     */
-    protected fitToChart(cardValues: object): number[] {
-        const values: number[] = [];
+  /**
+   * Fits result set to barChartLabels. Padding missing values with zeroes.
+   * @param cardValues - map of labels to values
+   */
+  protected fitToChart(cardValues: object): number[] {
+    const values: number[] = [];
 
-        this.barChartLabels.forEach(label => {
-            if (label in cardValues) {
-                values.push(cardValues[label]);
-            } else {
-                values.push(0);
-            }
-        });
+    this.barChartLabels.forEach(label => {
+      if (label in cardValues) {
+        values.push(cardValues[label]);
+      } else {
+        values.push(0);
+      }
+    });
 
-        return values;
-    }
+    return values;
+  }
 
-    public openInfoPage() {
-        this.bottomSheet.open(InfoPageComponent, { data: { infoType: this.infoPageName } });
-    }
+  public openInfoPage() {
+    this.bottomSheet.open(InfoPageComponent, { data: { infoType: this.infoPageName } });
+  }
 
-    // events
-    public chartClicked(e: any): void {
-        // console.log(e);
-    }
+  // events
+  public chartClicked(e: any): void {
+    // console.log(e);
+  }
 
-    public chartHovered(e: any): void {
-        // console.log(e);
-    }
+  public chartHovered(e: any): void {
+    // console.log(e);
+  }
 }

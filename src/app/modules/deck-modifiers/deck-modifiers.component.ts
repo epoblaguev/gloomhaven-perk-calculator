@@ -51,7 +51,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if(!equal(this.charServ.getCharacter(), this.prevCharacter)) {
+    if (!equal(this.charServ.getCharacter(), this.prevCharacter)) {
       this.updateDropdowns();
     }
   }

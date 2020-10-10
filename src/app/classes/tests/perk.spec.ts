@@ -1,7 +1,4 @@
 import { PERK_LIST, DeckModifier } from '../deckModifier';
-import { Deck } from '../deck';
-import Utils from '../utils';
-import { Character } from '../character';
 
 describe('Perk', () => {
     Object.keys(PERK_LIST).forEach(key => {

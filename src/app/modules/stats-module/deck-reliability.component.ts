@@ -4,47 +4,47 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
-    selector: 'app-deck-reliability',
-    templateUrl: './stats-module.component.html',
-    styleUrls: ['./stats-module.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-deck-reliability',
+  templateUrl: './stats-module.component.html',
+  styleUrls: ['./stats-module.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DeckReliabilityComponent extends GraphModuleDirective {
-    public barChartLabels: string[] = ['≤1', '=0', '≥1'];
-    public faIcons = FaIcons;
+  public barChartLabels: string[] = ['≤1', '=0', '≥1'];
+  public faIcons = FaIcons;
 
-    constructor(public bottomSheet: MatBottomSheet) {
-        super(bottomSheet);
-        this.barChartOptions.layout.padding['top'] = 0;
+  constructor(public bottomSheet: MatBottomSheet) {
+    super(bottomSheet);
+    this.barChartOptions.layout.padding['top'] = 0;
+  }
+
+  public getChartData() {
+    // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
+    const chartData = [
+      {
+        label: 'Current', data: [
+          Math.round(this.character.deck.reliabilityNegative() * 100),
+          Math.round(this.character.deck.reliabilityZero() * 100),
+          Math.round(this.character.deck.reliabilityPositive() * 100)
+        ],
+        backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
+        borderColor: GraphModuleDirective.Colors.blue.borderColor,
+      }
+    ];
+
+    if (this.character.compareDeck != null) {
+      // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+      chartData.push({
+        label: 'Comparison',
+        data: [
+          Math.round(this.character.compareDeck.reliabilityNegative() * 100),
+          Math.round(this.character.compareDeck.reliabilityZero() * 100),
+          Math.round(this.character.compareDeck.reliabilityPositive() * 100)
+        ],
+        backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
+        borderColor: GraphModuleDirective.Colors.red.borderColor,
+      });
     }
-
-    public getChartData() {
-        // let cards = Deck.modifyCards(this.deck.cards, this.deck.deckModifiers);
-        const chartData = [
-            {
-                label: 'Current', data: [
-                    Math.round(this.character.deck.reliabilityNegative() * 100),
-                    Math.round(this.character.deck.reliabilityZero() * 100),
-                    Math.round(this.character.deck.reliabilityPositive() * 100)
-                ],
-                backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
-                borderColor: GraphModuleDirective.Colors.blue.borderColor,
-            }
-        ];
-
-        if (this.character.compareDeck != null) {
-            // cards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
-            chartData.push({
-                label: 'Comparison',
-                data: [
-                    Math.round(this.character.compareDeck.reliabilityNegative() * 100),
-                    Math.round(this.character.compareDeck.reliabilityZero() * 100),
-                    Math.round(this.character.compareDeck.reliabilityPositive() * 100)
-                ],
-                backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
-                borderColor: GraphModuleDirective.Colors.red.borderColor,
-            });
-        }
-        return chartData;
-    }
+    return chartData;
+  }
 }
