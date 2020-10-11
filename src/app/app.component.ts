@@ -31,14 +31,7 @@ export class AppComponent implements OnInit {
   public characters: Character[];
   public subscriptions = new Subscription();
 
-  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService,
-    iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-
-    // Register Icons
-    Object.keys(IconMap).forEach(key => {
-      iconRegistry.addSvgIcon(key, sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${IconMap[key].icon}`))
-    });
-
+  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
 
     // Fill character perks with stored info
     this.charService.getCharacters().forEach(char => {
