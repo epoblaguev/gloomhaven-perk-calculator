@@ -36,9 +36,9 @@
         <ng-container *ngFor="let char of characters, let char_i = index">
           <mat-option *ngIf="gameService.games.get(char.gameName)?.enabled" [value]="char_i">
             <div>
-              <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
-              <span class="char-name-label">{{ hideRealNames ? character.hiddenName : character.name }}</span>
-              <span class="game-label float-right color-gray">{{character.gameName}}</span>
+              <img src="assets/icons/charIcons/{{char.icon}}" class="char-icon">
+              <span class="char-name-label">{{ hideRealNames ? char.hiddenName : char.name }}</span>
+              <span class="game-label float-right color-gray">{{char.gameName}}</span>
             </div>
           </mat-option>
         </ng-container>
@@ -52,14 +52,7 @@
           </mat-checkbox>
         </span>
         <b>
-          <ng-container *ngFor="let word of perk.name.split(' ')">
-            <ng-container *ngIf="iconWords.has(word) && showIcons; else elseTemplate">
-              <app-perk-icons [icon]="word"></app-perk-icons>
-            </ng-container>
-            <ng-template #elseTemplate>
-              <span class="font-sakkal-majalla"> {{word}}</span>
-            </ng-template>
-          </ng-container>
+          <app-perk-label [perk]="perk" [showIcons]="showIcons"></app-perk-label>
         </b>
       </div>
     </div>
