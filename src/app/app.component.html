@@ -61,7 +61,7 @@
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
         <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
-        <app-perk-selector [character]="character" fxFlex="100"></app-perk-selector>
+        <app-perk-selector fxFlex="100"></app-perk-selector>
         <app-deck-modifiers *ngIf="showDeckModifiers" [character]="character" fxFlex="100"></app-deck-modifiers>
         <mat-card fxLayout="column" *ngIf="!isMobile">
             <mat-card-subtitle>

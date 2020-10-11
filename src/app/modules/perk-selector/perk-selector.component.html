@@ -33,8 +33,8 @@
             <div class="game-label float-right color-gray">{{character.gameName}}</div>
           </div>
         </mat-select-trigger>
-        <ng-container *ngFor="let character of charService.getCharacters(), let char_i = index">
-          <mat-option *ngIf="gameService.games.get(character.gameName)?.enabled" [value]="char_i">
+        <ng-container *ngFor="let char of characters, let char_i = index">
+          <mat-option *ngIf="gameService.games.get(char.gameName)?.enabled" [value]="char_i">
             <div>
               <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
               <span class="char-name-label">{{ hideRealNames ? character.hiddenName : character.name }}</span>

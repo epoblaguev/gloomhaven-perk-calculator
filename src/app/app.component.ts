@@ -7,6 +7,7 @@ import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators'
 import { Character } from './classes/character';
 import Utils from './classes/utils';
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
   public showDeckModifiers = true;
 
   public character: Character;
+  public characters: Character[];
   public subscriptions = new Subscription();
 
   constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
@@ -39,9 +41,8 @@ export class AppComponent implements OnInit {
 
     this.charService.selectCharacter(storageService.getSelectedChar());
 
-    this.subscriptions.add(this.charService.character$.subscribe(observer => {
-      this.character = observer;
-    }));
+    this.subscriptions.add(this.charService.characters$.subscribe(val => this.characters = val));
+    this.subscriptions.add(this.charService.character$.subscribe(val => this.character = val));
   }
 
   openBottomSheet(infoType: string): boolean {

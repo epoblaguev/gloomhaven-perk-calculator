@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, Sanitizer, Pipe, PipeTransform, Input, OnDestroy } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { PerkIconsComponent } from 'src/app/modules/perk-icons/perk-icons.component';
@@ -7,6 +7,7 @@ import { GameService } from 'src/app/services/game.service';
 import { GameVersion } from 'src/app/classes/gameVersion';
 import { KeyValue } from '@angular/common';
 import { Character } from 'src/app/classes/character';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,8 +15,9 @@ import { Character } from 'src/app/classes/character';
   templateUrl: './perk-selector.component.html',
   styleUrls: ['./perk-selector.component.scss']
 })
-export class PerkSelectorComponent implements OnInit {
-  @Input() character: Character;
+export class PerkSelectorComponent implements OnInit, OnDestroy {
+  public character: Character;
+  public characters: Character[];
 
   public iconWords = PerkIconsComponent.supportedWords;
   public showIcons = true;
@@ -24,13 +26,22 @@ export class PerkSelectorComponent implements OnInit {
   public hideRealNames = true;
   public getKeys = Object.keys;
 
+  private subscriptions = new Subscription();
+
   constructor(public charService: CharacterService, public gameService: GameService,
     public storageService: StorageService) {
     this.showIcons = storageService.loadPerkIconToggle();
+
+    this.subscriptions.add(charService.characters$.subscribe(observer => this.characters = observer));
+    this.subscriptions.add(charService.character$.subscribe(observer => this.character = observer));
   }
 
   ngOnInit(): void {
-    this.selectedCharacter = this.charService.getCharacters().indexOf(this.character);
+    this.selectedCharacter = this.characters.indexOf(this.character);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   /**
@@ -54,7 +65,7 @@ export class PerkSelectorComponent implements OnInit {
     gameVersion.enabled = !gameVersion.enabled;
     if (!gameVersion.enabled && this.character.gameName === gameVersion.name) {
       let charIdx = 0;
-      for (const char of this.charService.getCharacters()) {
+      for (let char of this.characters) {
         // console.log(this.gameService.games);
         // console.log(char.gameName);
         if (this.gameService.games.get(char.gameName).enabled) {

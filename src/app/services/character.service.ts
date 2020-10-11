@@ -12,10 +12,16 @@ export class CharacterService {
   private characterSubject: BehaviorSubject<Character>;
   public character$: Observable<Character>;
 
+  private charactersSubject: BehaviorSubject<Character[]>;
+  public characters$: Observable<Character[]>;
+
   constructor() {
     this.characters = charactersJson.characters.map(char => new Character(char));
     this.characters.sort(this.charSort);
     this.selectedCharacter = 0;
+
+    this.charactersSubject = new BehaviorSubject<Character[]>(this.characters);
+    this.characters$ = this.charactersSubject.asObservable();
 
     this.characterSubject = new BehaviorSubject<Character>(this.getCharacter());
     this.character$ = this.characterSubject.asObservable();
@@ -25,7 +31,7 @@ export class CharacterService {
     return this.characters;
   }
 
-  getCharacter() {
+  private getCharacter() {
     return this.characters[this.selectedCharacter];
   }
 
