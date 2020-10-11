@@ -31,7 +31,11 @@
             "styles": [
               "src/assets/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "chartjs-plugin-datalabels",
+              "chart.js"
+            ]
           },
           "configurations": {
             "production": {

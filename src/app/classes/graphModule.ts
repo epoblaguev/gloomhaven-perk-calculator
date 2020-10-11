@@ -83,7 +83,6 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
   public barChartPlugins = [pluginDataLabels];
 
   ngOnInit(): void {
-    console.log('ngOnInit - graphModule');
     this.prevCharacter = Utils.clone(this.character);
     this.barChartType = 'bar';
     this.barChartData = this.getChartData();
