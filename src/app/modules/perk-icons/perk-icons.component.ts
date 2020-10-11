@@ -15,14 +15,20 @@ export class PerkIconsComponent implements OnInit {
     'EARTH', 'WIND', 'FROST', 'FIRE', 'SUN', 'FIRESUN']);
   public faIcons = FaIcons;
 
+  public static registeredIcons = new Set<string>()
+
   public iconMap = IconMap;
-
-
-  constructor() { }
-
   @Input() icon: string;
 
+
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
+
   ngOnInit() {
+    if(IconMap[this.icon] !== undefined && !PerkIconsComponent.registeredIcons.has(this.icon)) {
+      this.iconRegistry.addSvgIcon(this.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${IconMap[this.icon].icon}`));
+      PerkIconsComponent.registeredIcons.add(this.icon);
+      // console.log(`Registered Icon - ${this.icon}`);
+    }
   }
 
 }
