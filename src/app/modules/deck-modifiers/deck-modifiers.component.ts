@@ -1,11 +1,9 @@
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
-import { CharacterService } from 'src/app/services/character.service';
 import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MODIFIERS_LIST, POS_ITEM_EFFECTS_LIST } from 'src/app/classes/deckModifier';
 import { Character } from 'src/app/classes/character';
 import { StorageService } from 'src/app/services/storage.service';
 import { FaIcons } from 'src/app/classes/consts';
 import Utils from 'src/app/classes/utils';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-deck-modifiers',
@@ -28,6 +26,12 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     'item-1': 0,
     'item-1_remove': 0,
   };
+  public countArrays = {
+    bless: [],
+    curse: [],
+    'scenario-1': [],
+    'items-1': []
+  }
   public faIcons = FaIcons;
   public math = Math;
 
@@ -42,6 +46,11 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     this.counts['scenario-1'] = this.character.negScenarioEffects.find(mod => mod.name === '-1').uses.length;
     this.counts['item-1'] = this.character.negItemEffects.find(mod => mod.name === '-1').uses.length;
     this.counts['item-1_remove'] = this.character.posItemEffects.find(mod => mod.name === '-1').uses.length;
+
+    this.countArrays.bless = Array(this.counts.bless + 1);
+    this.countArrays.curse = Array(this.counts.curse + 1);
+    this.countArrays['scenario-1'] = Array(this.counts['scenario-1'] + 1);
+    this.countArrays["items-1"] = Array(this.counts['item-1'] + this.counts['item-1_remove'] + 1)
 
     this.updateDropdowns();
   }

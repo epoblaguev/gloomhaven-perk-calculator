@@ -12,10 +12,11 @@
             <app-perk-icons icon="CURSE"></app-perk-icons> cards
           </ng-template>
         </mat-select-trigger>
-        <mat-option *ngFor="let character of ' '.repeat(counts.curse + 1).split(''), let i = index" [value]="i">
+        <mat-option *ngFor="let _ of countArrays.curse, let i = index" [value]="i">
           <span *ngIf="i == 0; else elseBlock">None</span>
           <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-            <app-perk-icons icon="CURSE"></app-perk-icons> cards</ng-template>
+            <app-perk-icons icon="CURSE"></app-perk-icons> cards
+          </ng-template>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -31,10 +32,11 @@
             <app-perk-icons icon="(-1)"></app-perk-icons> cards
           </ng-template>
         </mat-select-trigger>
-        <mat-option *ngFor="let character of ' '.repeat(counts['scenario-1'] + 1).split(''), let i = index" [value]="i">
+        <mat-option *ngFor="let _ of countArrays['scenario-1'], let i = index" [value]="i">
           <span *ngIf="i == 0; else elseBlock">None</span>
           <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-            <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards
+          </ng-template>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -50,12 +52,13 @@
           </ng-template>
         </mat-select-trigger>
         <mat-option
-          *ngFor="let character of ' '.repeat(counts['item-1'] + counts['item-1_remove'] + 1).split(''), let i = index"
+          *ngFor="let _ of countArrays['items-1'] let i = index"
           [value]="i - counts['item-1_remove']">
           <span *ngIf="i - counts['item-1_remove'] == 0; else elseBlock">None</span>
           <ng-template #elseBlock>{{i - counts['item-1_remove']>= 0 ? 'Add' : 'Remove'}}
             {{math.abs(i - counts['item-1_remove'])}}
-            <app-perk-icons icon="(-1)"></app-perk-icons> cards</ng-template>
+            <app-perk-icons icon="(-1)"></app-perk-icons> cards
+          </ng-template>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -70,10 +73,11 @@
             <app-perk-icons icon="BLESS"></app-perk-icons> cards
           </ng-template>
         </mat-select-trigger>
-        <mat-option *ngFor="let character of ' '.repeat(counts.bless + 1).split(''), let i = index" [value]="i">
+        <mat-option *ngFor="let _ of countArrays.bless, let i = index" [value]="i">
           <span *ngIf="i == 0; else elseBlock">None</span>
           <ng-template #elseBlock>{{i >= 0 ? 'Add' : 'Remove'}} {{math.abs(i)}}
-            <app-perk-icons icon="BLESS"></app-perk-icons> cards</ng-template>
+            <app-perk-icons icon="BLESS"></app-perk-icons> cards
+          </ng-template>
         </mat-option>
       </mat-select>
     </mat-form-field>

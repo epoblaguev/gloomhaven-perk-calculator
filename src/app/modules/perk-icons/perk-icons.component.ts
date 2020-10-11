@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
   selector: 'app-perk-icons',
   templateUrl: './perk-icons.component.html',
-  styleUrls: ['./perk-icons.component.scss']
+  styleUrls: ['./perk-icons.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PerkIconsComponent implements OnInit {
   public static supportedWords = new Set<string>(['(-2)', '(-1)', '(+0)', '(+1)', '(+2)', '(+3)', '(+4)',
