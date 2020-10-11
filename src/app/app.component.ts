@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
-import { StatsModules, FaIcons } from './classes/consts';
+import { StatsModules, FaIcons, IconMap } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators'
 import { Character } from './classes/character';
 import Utils from './classes/utils';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 
 @Component({
@@ -30,7 +31,15 @@ export class AppComponent implements OnInit {
   public characters: Character[];
   public subscriptions = new Subscription();
 
-  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
+  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService,
+    iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+
+    // Register Icons
+    Object.keys(IconMap).forEach(key => {
+      iconRegistry.addSvgIcon(key, sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${IconMap[key].icon}`))
+    });
+
+
     // Fill character perks with stored info
     this.charService.getCharacters().forEach(char => {
       storageService.loadAllMods(char);

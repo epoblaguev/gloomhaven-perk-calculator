@@ -9,6 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 /*
@@ -26,6 +28,7 @@ Include all UI Components here
     MatToolbarModule,
     MatBottomSheetModule,
     MatListModule,
+    MatIconModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -38,6 +41,7 @@ Include all UI Components here
     MatToolbarModule,
     MatBottomSheetModule,
     MatListModule,
+    MatIconModule
   ],
 })
 export class UIModule { }

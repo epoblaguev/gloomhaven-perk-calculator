@@ -20,6 +20,7 @@ import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
     ChartsModule,
     MatMenuModule,
     MatSlideToggleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   entryComponents: [InfoPageComponent],
   providers: [CharacterService, StorageService],

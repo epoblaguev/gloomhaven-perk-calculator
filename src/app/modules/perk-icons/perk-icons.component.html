@@ -5,5 +5,8 @@
 
 <ng-template #elseBlock>
   {{iconMap[icon].text}}
-  <img class="icon" [ngClass]="iconMap[icon].class" src="assets/icons/{{iconMap[icon].icon}}">
+  <mat-icon *ngIf="iconMap[icon].icon.endsWith('.svg') else notSVG" class="icon" [ngClass]="iconMap[icon].class" [svgIcon]="icon"></mat-icon>
+  <ng-template #notSVG>
+    <img class="icon" [ngClass]="iconMap[icon].class" [src]="'assets/icons/' + iconMap[icon].icon">
+  </ng-template>
 </ng-template>
