@@ -1,78 +1,77 @@
 <div class="mat-typography" fxLayout="column" fxLayoutGap="10px">
-    <mat-toolbar color="primary">
-        <mat-menu #appMenu="matMenu">
-            <button mat-menu-item *ngFor="let item of statsModules | keyvalue" (click)="$event.stopPropagation(); item.value.show = !item.value.show">
-        <span [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}"> 
-            <fa-icon [icon]="item.value.icon" [fixedWidth]="true"></fa-icon>
-       </span> Toggle {{item.value.text}}
+  <mat-toolbar color="primary">
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item *ngFor="let item of statsModules | keyvalue" (click)="$event.stopPropagation(); item.value.show = !item.value.show">
+        <span [ngClass]="{'color-green': item.value.show, 'color-red': !item.value.show}">
+          <fa-icon [icon]="item.value.icon" [fixedWidth]="true"></fa-icon>
+        </span> Toggle {{item.value.text}}
       </button>
-            <button mat-menu-item (click)="$event.stopPropagation(); showDeckModifiers = !showDeckModifiers">
+      <button mat-menu-item (click)="$event.stopPropagation(); showDeckModifiers = !showDeckModifiers">
         <span [ngClass]="{'color-green': showDeckModifiers, 'color-red': !showDeckModifiers}">
-            <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true"></fa-icon>
-       </span> Toggle Deck Modifiers
+          <fa-icon [icon]="faIcons.fas.faMoneyBill" [fixedWidth]="true"></fa-icon>
+        </span> Toggle Deck Modifiers
       </button>
-            <mat-divider></mat-divider>
-            <a mat-menu-item href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank">
-                <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" class="color-gray"></fa-icon>
-                Fork me on Github
-            </a>
-            <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')">
-                <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon> Download Mobile App
-            </button>
-            <button mat-menu-item (click)="openBottomSheet('about')">
-                <fa-icon [icon]="faIcons.fas.faInfoCircle" [fixedWidth]="true" class="color-gray"></fa-icon> About
-            </button>
-        </mat-menu>
+      <mat-divider></mat-divider>
+      <a mat-menu-item href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank">
+        <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" class="color-gray"></fa-icon>
+        Fork me on Github
+      </a>
+      <button *ngIf="!isMobile" mat-menu-item (click)="openBottomSheet('app')">
+        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon> Download Mobile App
+      </button>
+      <button mat-menu-item (click)="openBottomSheet('about')">
+        <fa-icon [icon]="faIcons.fas.faInfoCircle" [fixedWidth]="true" class="color-gray"></fa-icon> About
+      </button>
+    </mat-menu>
 
-        <button mat-icon-button [matMenuTriggerFor]="appMenu" class="hamburger-fix">
-            <fa-icon [icon]="faIcons.fas.faBars" size="2x" class="hamburger-fix"></fa-icon>
-        </button>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" class="hamburger-fix">
+      <fa-icon [icon]="faIcons.fas.faBars" size="2x" class="hamburger-fix"></fa-icon>
+    </button>
 
-        <span class="font-pirata-one title">{{ title }}</span>
+    <span class="font-pirata-one title">{{ title }}</span>
 
-        <span style="flex: 1 1 auto;"></span>
+    <span style="flex: 1 1 auto;"></span>
 
-        <a *ngIf="!isMobile" fxHide.xs (click)="openBottomSheet('app')" class="top-right-logo">
-            <fa-layers [fixedWidth]="true" size="2x">
-                <fa-icon [icon]="faIcons.fas.faMobileAlt" transform="grow-1.5"></fa-icon>
-                <fa-icon [icon]="faIcons.fab.faApple" transform="shrink-10 up-3.5"></fa-icon>
-                <fa-icon [icon]="faIcons.fab.faAndroid" transform="shrink-10 down-2"></fa-icon>
-            </fa-layers>
-        </a>
+    <a *ngIf="!isMobile" fxHide.xs (click)="openBottomSheet('app')" class="top-right-logo">
+      <fa-layers [fixedWidth]="true" size="2x">
+        <fa-icon [icon]="faIcons.fas.faMobileAlt" transform="grow-1.5"></fa-icon>
+        <fa-icon [icon]="faIcons.fab.faApple" transform="shrink-10 up-3.5"></fa-icon>
+        <fa-icon [icon]="faIcons.fab.faAndroid" transform="shrink-10 down-2"></fa-icon>
+      </fa-layers>
+    </a>
 
-        <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="top-right-logo">
-            <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" size="2x"></fa-icon>
-        </a>
+    <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="top-right-logo">
+      <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" size="2x"></fa-icon>
+    </a>
+  </mat-toolbar>
 
-    </mat-toolbar>
-
-    <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
-        <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
-            <div fxLayout="column" fxLayoutGap="6px" fxFlex="60" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
-                <app-card-probability *ngIf="statsModules.cardProbability.show" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
-                </app-card-probability>
-                <app-card-effects *ngIf="statsModules.effectProbability.show" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
-                </app-card-effects>
-                <app-deck-reliability *ngIf="statsModules.deckReliability.show" [properties]="statsModules.deckReliability" fxFlex="100">
-                </app-deck-reliability>
-                <app-average-damage *ngIf="statsModules.averageDamage.show" [properties]="statsModules.averageDamage" fxFlex="100" fxFlex.xs="100">
-                </app-average-damage>
-                <app-shuffle-probability *ngIf="statsModules.shuffleProbability.show" [properties]="statsModules.shuffleProbability" fxFlex="100">
-                </app-shuffle-probability>
-            </div>
-            <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
-                <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
-                <app-perk-selector fxFlex="100"></app-perk-selector>
-                <app-deck-modifiers *ngIf="showDeckModifiers" fxFlex="100"></app-deck-modifiers>
-                <mat-card fxLayout="column" *ngIf="!isMobile">
-                    <mat-card-subtitle>
-                        <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon>
-                        Download Mobile App</mat-card-subtitle>
-                    <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
-                        If you found this project useful, consider supporting its development by <a href (click)="openBottomSheet('app')" class="display-contents">Downloading the Mobile App</a>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
+  <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
+    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
+      <div fxLayout="column" fxLayoutGap="6px" fxFlex="60" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
+        <app-card-probability *ngIf="statsModules.cardProbability.show" [character]="character" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
+        </app-card-probability>
+        <app-card-effects *ngIf="statsModules.effectProbability.show" [character]="character" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">
+        </app-card-effects>
+        <app-deck-reliability *ngIf="statsModules.deckReliability.show" [character]="character" [properties]="statsModules.deckReliability" fxFlex="100">
+        </app-deck-reliability>
+        <app-average-damage *ngIf="statsModules.averageDamage.show" [character]="character" [properties]="statsModules.averageDamage" fxFlex="100" fxFlex.xs="100">
+        </app-average-damage>
+        <app-shuffle-probability *ngIf="statsModules.shuffleProbability.show" [character]="character" [properties]="statsModules.shuffleProbability" fxFlex="100">
+        </app-shuffle-probability>
+      </div>
+      <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
+        <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
+        <app-perk-selector fxFlex="100"></app-perk-selector>
+        <app-deck-modifiers *ngIf="showDeckModifiers" [character]="character" fxFlex="100"></app-deck-modifiers>
+        <mat-card fxLayout="column" *ngIf="!isMobile">
+            <mat-card-subtitle>
+                <fa-icon [icon]="faIcons.fas.faDownload" [fixedWidth]="true" class="color-gray"></fa-icon>
+                Download Mobile App</mat-card-subtitle>
+            <mat-card-content fxLayoutGap="1em" fxLayout="row wrap">
+                If you found this project useful, consider supporting its development by <a href (click)="openBottomSheet('app')" class="display-contents">Downloading the Mobile App</a>
+            </mat-card-content>
+        </mat-card>
+      </div>
     </div>
+  </div>
 </div>

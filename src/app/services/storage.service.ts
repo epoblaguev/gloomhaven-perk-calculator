@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../classes/character';
 import { DeckModifier } from '../classes/deckModifier';
-import Utils from '../classes/utils';
 
 @Injectable({
   providedIn: 'root'

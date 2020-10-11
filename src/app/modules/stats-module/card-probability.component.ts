@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CharacterService } from 'src/app/services/character.service';
 import { FaIcons } from 'src/app/classes/consts';
 
 
@@ -15,16 +14,19 @@ export class CardProbabilityComponent extends GraphModuleDirective {
   public removeZeroColumns = false;
   public faIcons = FaIcons;
 
-  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-    super(bottomSheet, charServ);
-    this.barChartLabels = Object.keys(this.charServ.getCharacter().deck.cards);
-    this.barChartOptions.layout.padding['top'] = 0;
+  constructor(public bottomSheet: MatBottomSheet) {
+    super(bottomSheet);
   }
 
+  ngOnInit() {
+    this.barChartLabels = Object.keys(this.character.deck.cards);
+    this.barChartOptions.layout.padding['top'] = 0;
+    super.ngOnInit();
+  }
 
   public getChartData() {
     this.setChartLabels();
-    let probs = this.charServ.getCharacter().deck.getCardsProbability();
+    let probs = this.character.deck.getCardsProbability();
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -35,8 +37,8 @@ export class CardProbabilityComponent extends GraphModuleDirective {
       }
     ];
 
-    if (this.charServ.getCharacter().compareDeck != null) {
-      probs = this.charServ.getCharacter().compareDeck.getCardsProbability();
+    if (this.character.compareDeck != null) {
+      probs = this.character.compareDeck.getCardsProbability();
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',
@@ -51,8 +53,8 @@ export class CardProbabilityComponent extends GraphModuleDirective {
 
   private setChartLabels() {
     let labels: string[];
-    const cards = this.charServ.getCharacter().deck.cards;
-    const compareCards = this.charServ.getCharacter().compareDeck && this.charServ.getCharacter().compareDeck.cards;
+    const cards = this.character.deck.cards;
+    const compareCards = this.character.compareDeck && this.character.compareDeck.cards;
 
     if (!this.removeZeroColumns) {
       labels = Object.keys(cards).filter(key => !['Bless', 'Curse'].includes(key)

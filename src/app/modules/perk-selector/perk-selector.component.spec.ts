@@ -8,9 +8,9 @@ describe('PerkSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerkSelectorComponent ]
+      declarations: [PerkSelectorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

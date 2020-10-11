@@ -9,9 +9,9 @@ describe('PerkIconsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerkIconsComponent ]
+      declarations: [PerkIconsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('PerkIconsComponent', () => {
 
   it('should support all words in "supportedWords" array (except numbers)', () => {
     PerkIconsComponent.supportedWords.forEach(word => {
-      if(!word.startsWith('(')) {
+      if (!word.startsWith('(')) {
         expect(component.iconMap.hasOwnProperty(word)).toBeTruthy(`"${word}" is not in list of iconMap`);
       }
     });

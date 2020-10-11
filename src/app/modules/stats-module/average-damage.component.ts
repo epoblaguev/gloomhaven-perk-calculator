@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { CharacterService } from 'src/app/services/character.service';
 import { FaIcons } from 'src/app/classes/consts';
 
 @Component({
@@ -14,8 +13,8 @@ export class AverageDamageComponent extends GraphModuleDirective {
   public barChartLabels: string[] = this.baseDamage.map(val => val.toString());
   public faIcons = FaIcons;
 
-  constructor(public bottomSheet: MatBottomSheet, public charServ: CharacterService) {
-    super(bottomSheet, charServ);
+  constructor(public bottomSheet: MatBottomSheet) {
+    super(bottomSheet);
     this.barChartOptions.scales.xAxes = [{
       scaleLabel: {
         display: true,
@@ -39,16 +38,16 @@ export class AverageDamageComponent extends GraphModuleDirective {
   public getChartData() {
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => this.charServ.getCharacter().deck.getAverageDamage(val)),
+      data: this.baseDamage.map(val => this.character.deck.getAverageDamage(val)),
       backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
       borderColor: GraphModuleDirective.Colors.blue.borderColor,
     }];
 
-    if (this.charServ.getCharacter().compareDeck != null) {
+    if (this.character.compareDeck != null) {
       // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => this.charServ.getCharacter().compareDeck.getAverageDamage(val)),
+        data: this.baseDamage.map(val => this.character.compareDeck.getAverageDamage(val)),
         backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
         borderColor: GraphModuleDirective.Colors.red.borderColor,
       });

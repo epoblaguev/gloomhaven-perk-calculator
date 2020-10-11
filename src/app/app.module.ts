@@ -17,8 +17,9 @@ import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
 import { StorageService } from './services/storage.service';
 import { PerkIconsComponent } from './modules/perk-icons/perk-icons.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DeckModifiersComponent,
     PerkSelectorComponent,
     PerkIconsComponent,
+    PerkLabelComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,4 +50,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class AppModule {
 
- }
+}
