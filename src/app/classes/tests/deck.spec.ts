@@ -1,5 +1,5 @@
 import { Deck } from '../deck';
-import Utils from '../utils';
+import * as Utils from '../utils';
 
 describe('Deck', () => {
     it('should create an instance', () => {

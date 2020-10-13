@@ -3,7 +3,7 @@ import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MO
 import { Character } from 'src/app/classes/character';
 import { StorageService } from 'src/app/services/storage.service';
 import { FaIcons } from 'src/app/classes/consts';
-import Utils from 'src/app/classes/utils';
+import * as Utils from 'src/app/classes/utils';
 
 @Component({
   selector: 'app-deck-modifiers',

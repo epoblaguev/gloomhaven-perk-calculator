@@ -8,7 +8,7 @@ import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
 import { Observable, Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import Utils from './classes/utils';
+import * as Utils from './classes/utils';
 
 
 @Component({

@@ -7,7 +7,7 @@ import { Character } from './character';
 import { ChartOptions } from 'chart.js';
 import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import Utils from './utils';
+import * as Utils from './utils';
 
 
 interface Properties {
