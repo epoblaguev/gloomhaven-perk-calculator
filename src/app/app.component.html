@@ -46,7 +46,7 @@
   </mat-toolbar>
 
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
-    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
+    <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100" *ngIf="(character$ | async) as character">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="60" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
         <app-card-probability *ngIf="statsModules.cardProbability.show" [character]="character" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-probability>
@@ -60,7 +60,6 @@
         </app-shuffle-probability>
       </div>
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="40" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
-        <!--<app-perk-chooser  [deck]="deck" fxFlex="100"></app-perk-chooser>-->
         <app-perk-selector fxFlex="100"></app-perk-selector>
         <app-deck-modifiers *ngIf="showDeckModifiers" [character]="character" fxFlex="100"></app-deck-modifiers>
         <mat-card fxLayout="column" *ngIf="!isMobile">
