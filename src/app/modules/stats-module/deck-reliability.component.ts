@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
+import {reliabilityNegative, reliabilityPositive, reliabilityZero} from '../../classes/statsCalc'
 
 @Component({
   selector: 'app-deck-reliability',
@@ -23,9 +24,9 @@ export class DeckReliabilityComponent extends GraphModuleDirective {
     const chartData = [
       {
         label: 'Current', data: [
-          Math.round(this.character.deck.reliabilityNegative() * 100),
-          Math.round(this.character.deck.reliabilityZero() * 100),
-          Math.round(this.character.deck.reliabilityPositive() * 100)
+          Math.round(reliabilityNegative(this.character.deck.cards) * 100),
+          Math.round(reliabilityZero(this.character.deck.cards) * 100),
+          Math.round(reliabilityPositive(this.character.deck.cards) * 100)
         ],
         backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
         borderColor: GraphModuleDirective.Colors.blue.borderColor,
@@ -37,9 +38,9 @@ export class DeckReliabilityComponent extends GraphModuleDirective {
       chartData.push({
         label: 'Comparison',
         data: [
-          Math.round(this.character.compareDeck.reliabilityNegative() * 100),
-          Math.round(this.character.compareDeck.reliabilityZero() * 100),
-          Math.round(this.character.compareDeck.reliabilityPositive() * 100)
+          Math.round(reliabilityNegative(this.character.compareDeck.cards) * 100),
+          Math.round(reliabilityZero(this.character.compareDeck.cards) * 100),
+          Math.round(reliabilityPositive(this.character.compareDeck.cards) * 100)
         ],
         backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
         borderColor: GraphModuleDirective.Colors.red.borderColor,

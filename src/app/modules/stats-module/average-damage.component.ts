@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
+import { getAverageDamage } from '../../classes/statsCalc'
 
 @Component({
   selector: 'app-average-damage',
@@ -38,7 +39,7 @@ export class AverageDamageComponent extends GraphModuleDirective {
   public getChartData() {
     const probData = [{
       label: 'Current',
-      data: this.baseDamage.map(val => this.character.deck.getAverageDamage(val)),
+      data: this.baseDamage.map(val => getAverageDamage(this.character.deck.cards, val)),
       backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
       borderColor: GraphModuleDirective.Colors.blue.borderColor,
     }];
@@ -47,7 +48,7 @@ export class AverageDamageComponent extends GraphModuleDirective {
       // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
       probData.push({
         label: 'Comparison',
-        data: this.baseDamage.map(val => this.character.compareDeck.getAverageDamage(val)),
+        data: this.baseDamage.map(val => getAverageDamage(this.character.compareDeck.cards, val)),
         backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
         borderColor: GraphModuleDirective.Colors.red.borderColor,
       });

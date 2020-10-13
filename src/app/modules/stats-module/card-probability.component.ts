@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
-
+import { getCardsProbability } from '../../classes/statsCalc'
 
 @Component({
   selector: 'app-card-probability',
@@ -26,7 +26,7 @@ export class CardProbabilityComponent extends GraphModuleDirective {
 
   public getChartData() {
     this.setChartLabels();
-    let probs = this.character.deck.getCardsProbability();
+    let probs = getCardsProbability(this.character.deck.cards);
     Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     const probData = [
       {
@@ -38,7 +38,7 @@ export class CardProbabilityComponent extends GraphModuleDirective {
     ];
 
     if (this.character.compareDeck != null) {
-      probs = this.character.compareDeck.getCardsProbability();
+      probs = getCardsProbability(this.character.compareDeck.cards);
       Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
       probData.push({
         label: 'Comparison',

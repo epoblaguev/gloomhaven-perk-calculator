@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
+import { getShuffleChance } from '../../classes/statsCalc';
 
 @Component({
   selector: 'app-shuffle-probability',
@@ -28,7 +29,7 @@ export class ShuffleProbabilityComponent extends GraphModuleDirective {
     const chartData = [
       {
         label: 'Current', data: this.barChartLabels
-          .map((val, index) => Math.round(this.character.deck.getShuffleChance(Number(val)) * 100)),
+          .map((val, index) => Math.round(getShuffleChance(this.character.deck.cards, Number(val)) * 100)),
         backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
         borderColor: GraphModuleDirective.Colors.blue.borderColor,
       }
@@ -39,7 +40,7 @@ export class ShuffleProbabilityComponent extends GraphModuleDirective {
       chartData.push({
         label: 'Comparison',
         data: this.barChartLabels
-          .map((val, index) => Math.round(this.character.compareDeck.getShuffleChance(Number(val)) * 100)),
+          .map((val, index) => Math.round(getShuffleChance(this.character.compareDeck.cards, Number(val)) * 100)),
         backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
         borderColor: GraphModuleDirective.Colors.red.borderColor,
       });
