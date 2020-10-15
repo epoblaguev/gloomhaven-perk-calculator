@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PerkIconsComponent } from './perk-icons.component';
 import { PERK_LIST } from 'src/app/classes/deckModifier';
@@ -7,7 +7,7 @@ describe('PerkIconsComponent', () => {
   let component: PerkIconsComponent;
   let fixture: ComponentFixture<PerkIconsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PerkIconsComponent]
     })

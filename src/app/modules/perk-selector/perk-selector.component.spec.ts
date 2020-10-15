@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PerkSelectorComponent } from './perk-selector.component';
 
@@ -6,7 +6,7 @@ describe('PerkSelectorComponent', () => {
   let component: PerkSelectorComponent;
   let fixture: ComponentFixture<PerkSelectorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PerkSelectorComponent]
     })

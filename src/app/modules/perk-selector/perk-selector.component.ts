@@ -29,7 +29,7 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor(public charService: CharacterService, public gameService: GameService,
-    public storageService: StorageService) {
+              public storageService: StorageService) {
     this.showIcons = storageService.loadPerkIconToggle();
 
     this.subscriptions.add(charService.characters$.subscribe(observer => this.characters = observer));
@@ -50,9 +50,7 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
    */
   disableGameNameCheckbox(gameName: string) {
     let numChecked = 0;
-    this.gameService.games.forEach(val => {
-      numChecked += val.enabled ? 1 : 0;
-    })
+    this.gameService.games.forEach(val => numChecked += val.enabled ? 1 : 0);
     return this.gameService.games.get(gameName).enabled && numChecked === 1;
   }
 
@@ -65,12 +63,12 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
     gameVersion.enabled = !gameVersion.enabled;
     if (!gameVersion.enabled && this.character.gameName === gameVersion.name) {
       let charIdx = 0;
-      for (let char of this.characters) {
+      for (const char of this.characters) {
         // console.log(this.gameService.games);
         // console.log(char.gameName);
         if (this.gameService.games.get(char.gameName).enabled) {
           this.selectedCharacter = charIdx;
-          this.selectedCharacterChanged()
+          this.selectedCharacterChanged();
           return;
         }
         charIdx += 1;

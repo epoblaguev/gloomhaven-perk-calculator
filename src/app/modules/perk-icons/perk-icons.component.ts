@@ -13,9 +13,9 @@ export class PerkIconsComponent implements OnInit {
   public static supportedWords = new Set<string>(['(-2)', '(-1)', '(+0)', '(+1)', '(+2)', '(+3)', '(+4)',
     'DARK', 'INVISIBLE', 'rolling', 'HEAL', 'Shield', 'CURSE', 'BLESS', 'MUDDLE', 'TARGET', 'PUSH', 'PULL', 'PIERCE', 'STUN', 'DISARM', 'IMMOBILIZE', 'POISON', 'WOUND', 'REGENERATE',
     'EARTH', 'WIND', 'FROST', 'FIRE', 'SUN', 'FIRESUN']);
-  public faIcons = FaIcons;
+  public static registeredIcons = new Set<string>();
 
-  public static registeredIcons = new Set<string>()
+  public faIcons = FaIcons;
 
   public iconMap = IconMap;
   @Input() icon: string;
@@ -24,7 +24,7 @@ export class PerkIconsComponent implements OnInit {
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    if(this.icon in IconMap && !PerkIconsComponent.registeredIcons.has(this.icon)) {
+    if (this.icon in IconMap && !PerkIconsComponent.registeredIcons.has(this.icon)) {
       this.iconRegistry.addSvgIcon(this.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${IconMap[this.icon].icon}`));
       PerkIconsComponent.registeredIcons.add(this.icon);
       // console.log(`Registered Icon - ${this.icon}`);
