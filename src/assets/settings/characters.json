@@ -475,7 +475,7 @@
                 {"name": "Add three rolling MUDDLE cards", "uses": 2},
                 {"name": "Add one rolling 'Move back one character token' card", "uses": 2},
                 {"name": "Ignore negative scenario effects and add one (+1) card", "uses": 1},
-                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1} 
+                {"name": "Ignore negative item effects and add one (+1) card", "uses": 1}
             ]
         }
     ]

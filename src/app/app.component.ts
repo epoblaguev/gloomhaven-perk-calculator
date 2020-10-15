@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Deck } from './classes/deck';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
@@ -16,7 +16,7 @@ import * as Utils from './classes/utils';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   public title = 'Gloomhaven Perk Calculator';
   public deck = new Deck();
   public isMobile = environment.mobile;
@@ -25,21 +25,25 @@ export class AppComponent implements OnInit {
   public statsModules = StatsModules;
   public showDeckModifiers = true;
 
-  public character$: Observable<Character>;
+  public character: Character;
+  private subscriptions = new Subscription();
+  private loadedChars = new Set();
 
   constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
-
-    // Fill character perks with stored info
-    this.charService.getCharacters().forEach(char => {
-      storageService.loadAllMods(char);
-      storageService.loadComparisonDeck(char);
-      char.applyModifiers();
-      // console.log(char);
-    });
-
     this.charService.selectCharacter(storageService.getSelectedChar());
 
-    this.character$ = this.charService.character$;
+    this.subscriptions.add(this.charService.character$.subscribe(char => {
+      // Load saved perks if not done already
+      if (!this.loadedChars.has(char.name)) {
+        console.log(`Loading saved perks for ${char.name}`);
+        storageService.loadAllMods(char);
+        storageService.loadComparisonDeck(char);
+        char.applyModifiers();
+        this.loadedChars.add(char.name);
+      }
+
+      this.character = char;
+    }));
   }
 
   openBottomSheet(infoType: string): boolean {
@@ -51,7 +55,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateDeck(cards) {
-    this.deck.cards = Utils.clone(cards);
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
