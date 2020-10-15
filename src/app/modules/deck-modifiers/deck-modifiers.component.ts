@@ -31,7 +31,8 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     curse: [],
     'scenario-1': [],
     'items-1': []
-  }
+  };
+
   public faIcons = FaIcons;
   public math = Math;
 
@@ -50,7 +51,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     this.countArrays.bless = Array(this.counts.bless + 1);
     this.countArrays.curse = Array(this.counts.curse + 1);
     this.countArrays['scenario-1'] = Array(this.counts['scenario-1'] + 1);
-    this.countArrays["items-1"] = Array(this.counts['item-1'] + this.counts['item-1_remove'] + 1)
+    this.countArrays['items-1'] = Array(this.counts['item-1'] + this.counts['item-1_remove'] + 1);
 
     this.updateDropdowns();
   }

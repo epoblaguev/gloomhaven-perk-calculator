@@ -51,9 +51,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnDestroy() {
-  }
-
   updateDeck(cards) {
     this.deck.cards = Utils.clone(cards);
   }

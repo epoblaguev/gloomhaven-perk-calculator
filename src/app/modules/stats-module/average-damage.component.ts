@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
-import { getAverageDamage } from '../../classes/statsCalc'
+import { getAverageDamage } from '../../classes/statsCalc';
 
 @Component({
   selector: 'app-average-damage',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
-import { getEffectsProbability } from '../../classes/statsCalc'
+import { getEffectsProbability } from '../../classes/statsCalc';
 
 @Component({
   selector: 'app-card-effects',

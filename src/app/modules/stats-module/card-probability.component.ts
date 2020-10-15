@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
-import { getCardsProbability } from '../../classes/statsCalc'
+import { getCardsProbability } from '../../classes/statsCalc';
 
 @Component({
   selector: 'app-card-probability',
   templateUrl: './stats-module.component.html',
   styleUrls: ['./stats-module.component.scss']
 })
-export class CardProbabilityComponent extends GraphModuleDirective {
+export class CardProbabilityComponent extends GraphModuleDirective implements OnInit {
   public barChartLabels: string[]; // = Object.keys(this.character.deck.cards);
   public removeZeroColumns = false;
   public faIcons = FaIcons;

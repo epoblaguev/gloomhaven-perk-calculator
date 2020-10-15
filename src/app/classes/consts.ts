@@ -1,9 +1,8 @@
 import { faAndroid, faApple, faGithub, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
-import { faCircle, faQuestionCircle, faSnowflake, faSquare } from '@fortawesome/free-regular-svg-icons';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import {
-  faAllergies, faBars, faBolt, faBullseye, faBurn, faCertificate, faCircle as fasCircle, faCloud, faDownload,
-  faExclamation, faFireAlt, faHandPaper, faInfoCircle, faLeaf, faLongArrowAltLeft, faLongArrowAltRight, faMobileAlt, faMoneyBill, faPlus,
-  faQuestion, faShare, faShieldAlt, faSkull, faSocks, faSun, faTasks, faTimes, faTint, faUserCheck, faWind, faDice, faCrosshairs,
+  faBars, faDownload,
+  faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,7 +22,7 @@ export const FaIcons = {
     faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
     faFistRaised, faFire, faSyncAlt
   },
-}
+};
 
 export const StatsModules = {
   cardProbability: {

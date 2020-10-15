@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { GraphModuleDirective } from 'src/app/classes/graphModule';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { FaIcons } from 'src/app/classes/consts';
-import {reliabilityNegative, reliabilityPositive, reliabilityZero} from '../../classes/statsCalc'
+import {reliabilityNegative, reliabilityPositive, reliabilityZero} from '../../classes/statsCalc';
 
 @Component({
   selector: 'app-deck-reliability',

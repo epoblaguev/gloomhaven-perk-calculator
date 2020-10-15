@@ -34,7 +34,7 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
   public static Font = {
     faimily: '"Sakkal Majalla"',
     size: 17
-  }
+  };
 
   @Input() properties: Properties;
   @Input() character: Character;
