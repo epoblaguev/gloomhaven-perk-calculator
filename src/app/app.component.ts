@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private loadedChars = new Set();
 
-  constructor(public bottomSheet: MatBottomSheet, public charService: CharacterService, public storageService: StorageService) {
+  constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, private storageService: StorageService) {
     this.charService.selectCharacter(storageService.getSelectedChar());
 
     this.subscriptions.add(this.charService.character$.subscribe(char => {

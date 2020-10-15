@@ -39,7 +39,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   @Input() character: Character;
   private prevCharacter: Character;
 
-  constructor(public storageService: StorageService) { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
     this.counts.bless = this.character.miscModifiers.find(mod => mod.name === 'Bless').uses.length;
@@ -103,7 +103,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     // console.log(this.itemEffectsCount);
 
     char.applyModifiers();
-    this.prevCharacter = Utils.clone(this.character);
+    this.prevCharacter = Utils.clone(char);
     this.storageService.saveAllMods(char);
     // console.log(char);
   }

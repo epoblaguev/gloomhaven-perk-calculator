@@ -28,8 +28,8 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
 
   private subscriptions = new Subscription();
 
-  constructor(public charService: CharacterService, public gameService: GameService,
-              public storageService: StorageService) {
+  constructor(private charService: CharacterService, public gameService: GameService,
+              private storageService: StorageService) {
     this.showIcons = storageService.loadPerkIconToggle();
 
     this.subscriptions.add(charService.characters$.subscribe(observer => this.characters = observer));
