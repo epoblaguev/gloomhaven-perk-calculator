@@ -1,6 +1,6 @@
 import * as Utils from './utils';
 
-export const DefaultCards = {
+export const DefaultCards: Record<string, number> = {
   x0: 1,
   '-2': 1,
   '-1': 5,
@@ -16,13 +16,13 @@ export const DefaultCards = {
   Curse: 0,
 };
 
-export const DefaultEffects = {
+export const DefaultEffects: Record<string, number>  = {
   None: 20,
 };
 
 export class Deck {
-  public effects: typeof DefaultEffects;
-  public cards: typeof DefaultCards;
+  public effects: Record<string, number> ;
+  public cards: Record<string, number> ;
 
   constructor() {
     this.cards = Utils.clone(DefaultCards);
@@ -41,10 +41,7 @@ export class Deck {
   }
 
   public cloneDeck() {
-    const newDeck = new Deck();
-    newDeck.cards = Utils.clone(this.cards);
-    newDeck.effects = Utils.clone(this.effects);
-    return newDeck;
+    return Utils.clone(this);
   }
 
   public addEffect(cardEffect: string, count) {

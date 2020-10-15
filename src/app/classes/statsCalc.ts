@@ -1,4 +1,3 @@
-import { Deck, DefaultCards, DefaultEffects } from './deck';
 import * as Utils from './utils';
 
 
@@ -19,35 +18,39 @@ const cardValue = {
   Bless: (x: number) => x * 2,
 };
 
-function sum(cards: object): number {
+function sum(cards: Record<string, number> ): number {
   let result = 0;
-  for(const key in cards) {
-    result += cards[key];
+  for (const key in cards) {
+    if (cards.hasOwnProperty(key)) {
+      result += cards[key];
+    }
   }
   return result;
 }
 
-function nonRollingSum(cards: object): number {
+function nonRollingSum(cards: Record<string, number> ): number {
   let result = 0;
-  for(const key in cards) {
-    result += key.startsWith('r+') || key.startsWith('Rolling') ? 0 : cards[key];
+  for (const key in cards) {
+    if (cards.hasOwnProperty(key)) {
+      result += key.startsWith('r+') || key.startsWith('Rolling') ? 0 : cards[key];
+    }
   }
   return result;
 }
 
-export function getCardsProbability(cards: typeof DefaultCards): object {
+export function getCardsProbability(cards: Record<string, number> ): object {
   const nrs = nonRollingSum(cards);
   const probabilities = {};
 
   for (const [key, value] of Object.entries(cards)) {
-    const sum = key.startsWith('r+') || key.startsWith('Rolling') ? nrs + value : nrs;
-    probabilities[key] = value / sum;
+    const rollingSum = key.startsWith('r+') || key.startsWith('Rolling') ? nrs + value : nrs;
+    probabilities[key] = value / rollingSum;
   }
 
   return probabilities;
 }
 
-function getReliability(cards: typeof DefaultCards, rollingValue = 0, compareFunc: (x: number) => boolean) {
+function getReliability(cards: Record<string, number> , rollingValue = 0, compareFunc: (x: number) => boolean) {
   // The base damage from which to start calculating.
   // If ending value is less, reliability is negative, if same, neutral, and if more positive.
   const baseValue = 10;
@@ -74,25 +77,25 @@ function getReliability(cards: typeof DefaultCards, rollingValue = 0, compareFun
   return probability;
 }
 
-export function reliabilityNegative(cards: typeof DefaultCards) {
+export function reliabilityNegative(cards: Record<string, number> ) {
   const compareFunc = (x: number) => x < 0;
   const probability = getReliability(cards, 0, compareFunc);
   return probability;
 }
 
-export function reliabilityZero(cards: typeof DefaultCards) {
+export function reliabilityZero(cards: Record<string, number> ) {
   const compareFunc = (x: number) => x === 0;
   const probability = getReliability(cards, 0, compareFunc);
   return probability;
 }
 
-export function reliabilityPositive(cards: typeof DefaultCards) {
+export function reliabilityPositive(cards: Record<string, number> ) {
   const compareFunc = (x: number) => x > 0;
   const probability = getReliability(cards, 0, compareFunc);
   return probability;
 }
 
-export function getEffectsProbability(effects: typeof DefaultEffects, probHistory = {}) {
+export function getEffectsProbability(effects: Record<string, number> , probHistory = {}) {
   const probabilities = {};
   const effectSum = sum(effects);
 
@@ -124,7 +127,7 @@ export function getEffectsProbability(effects: typeof DefaultEffects, probHistor
   return probabilities;
 }
 
-export function getAverageDamage(cards: typeof DefaultCards, baseDamage: number): number {
+export function getAverageDamage(cards: Record<string, number> , baseDamage: number): number {
   let damage = 0;
   const cardsSum = sum(cards);
 
@@ -144,7 +147,7 @@ export function getAverageDamage(cards: typeof DefaultCards, baseDamage: number)
   return damage;
 }
 
-export function getShuffleChance(cards: typeof DefaultCards, actionNumber: number) {
+export function getShuffleChance(cards: Record<string, number> , actionNumber: number) {
   const shuffleCards = cards.x0 + cards.x2;
   const nonRollingCards: number = nonRollingSum(cards);
 
