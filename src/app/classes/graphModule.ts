@@ -1,11 +1,11 @@
 import { Input, ViewChild, DoCheck, OnInit, Directive, OnChanges } from '@angular/core';
-import { BaseChartDirective } from 'ng2-charts';
+// import { BaseChartDirective } from 'ng2-charts';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { InfoPageComponent } from '../modules/info-page/info-page.component';
 import { StatsTypes } from './consts';
 import { Character } from './character';
-import { ChartOptions } from 'chart.js';
-import pluginDataLabels from 'chartjs-plugin-datalabels';
+// import { ChartOptions } from 'chart.js';
+// import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import * as Utils from './utils';
 
@@ -39,12 +39,12 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
   @Input() properties: Properties;
   @Input() character: Character;
 
-  @ViewChild('baseChart') chart: BaseChartDirective;
+  @ViewChild('baseChart') chart: any; // BaseChartDirective;
 
   protected prevCharacter: Character;
   protected infoPageName: StatsTypes;
 
-  public barChartOptions: ChartOptions = {
+  public barChartOptions: any = { // ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -80,7 +80,7 @@ export abstract class GraphModuleDirective implements OnInit, DoCheck {
   public barChartType: string;
   public barChartLegend: boolean;
   public barChartData: Array<{ label: string, data: number[], backgroundColor: string, borderColor: string }>;
-  public barChartPlugins = [pluginDataLabels];
+  // public barChartPlugins = [pluginDataLabels];
 
   ngOnInit(): void {
     this.prevCharacter = Utils.clone(this.character);

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIModule } from './modules/ui-modules/ui.module';
 import { MatMenuModule } from '@angular/material/menu';
-import { ChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
 import { HttpClientModule } from '@angular/common/http';
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -40,11 +41,12 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     UIModule,
-    ChartsModule,
+    // ChartsModule,
     MatMenuModule,
     MatSlideToggleModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    // NgxChartsModule,
   ],
   entryComponents: [InfoPageComponent],
   providers: [CharacterService, StorageService],

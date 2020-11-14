@@ -11,8 +11,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 
-
-
 /*
 Include all UI Components here
 */
@@ -41,7 +39,7 @@ Include all UI Components here
     MatToolbarModule,
     MatBottomSheetModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
   ],
 })
 export class UIModule { }
