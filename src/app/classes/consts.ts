@@ -5,7 +5,9 @@ import {
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { getCardsProbability, getCardsProbabilityLabels, getEffectsProbability, getEffectsProbabilityLabels } from './chartDataCalc';
+import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
+import { getCardsProbability, getCardsProbabilityLabels, getDeckReliability,
+  getDeckReliabilityLabels, getEffectsProbability, getEffectsProbabilityLabels } from './chartDataCalc';
 
 export enum StatsTypes {
   CARD_PROBABILITY,
@@ -25,7 +27,7 @@ export const FaIcons = {
   },
 };
 
-export const StatsModules = {
+export const StatsModules: Record<string, StatsCardProperties> = {
   cardProbability: {
     text: 'Card Probability',
     icon: FaIcons.fas.faDice, // 'fa-dice',
@@ -43,8 +45,8 @@ export const StatsModules = {
     infoPage: StatsTypes.DECK_RELIABILITY,
     shortDescription: 'The chance that your attack damage will be affected positively, negatively, or not at all',
     show: true,
-    getDataFunc: getCardsProbability,
-    chartLabelsFunc: getCardsProbabilityLabels
+    getDataFunc: getDeckReliability,
+    chartLabelsFunc: getDeckReliabilityLabels
   },
   averageDamage: {
     text: 'Average Damage',

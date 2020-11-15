@@ -73,3 +73,31 @@ export function getEffectsProbabilityLabels(stats: StatsData[]): string[] {
 
   return labels;
 }
+
+export function getDeckReliability(current: Deck, compare: Deck): StatsData[] {
+  const chartData: StatsData[] = [
+    {
+      label: 'Current',
+      data: {
+        '≤1': Math.round(statsCalc.reliabilityNegative(current.cards) * 100),
+        '=0': Math.round(statsCalc.reliabilityZero(current.cards) * 100),
+        '≥1': Math.round(statsCalc.reliabilityPositive(current.cards) * 100)
+      }
+    }
+  ];
+  if (compare != null) {
+    chartData.push({
+      label: 'Comparison',
+      data: {
+        '≤1': Math.round(statsCalc.reliabilityNegative(compare.cards) * 100),
+        '=0': Math.round(statsCalc.reliabilityZero(compare.cards) * 100),
+        '≥1': Math.round(statsCalc.reliabilityPositive(compare.cards) * 100)
+      }
+    });
+  }
+  return chartData;
+}
+
+export function getDeckReliabilityLabels(stats: StatsData[]) {
+  return ['≤1', '=0', '≥1'];
+}

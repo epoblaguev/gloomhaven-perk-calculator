@@ -11,11 +11,15 @@ import { ChartOptions } from 'chart.js';
 import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Deck } from 'src/app/classes/deck';
 
-interface Properties {
+export interface StatsCardProperties {
   text: string;
   icon: IconDefinition;
   iconClasses: string[];
   infoPage: StatsTypes;
+  shortDescription: string;
+  show: boolean;
+  getDataFunc: (current: Deck, compare: Deck) => StatsData[];
+  chartLabelsFunc: (stats: StatsData[]) => string[];
 }
 
 export interface ChartData {
@@ -49,11 +53,9 @@ export class StatsCardComponent implements OnInit, DoCheck {
   };
 
 
-  @Input() properties: Properties;
+  @Input() properties: StatsCardProperties;
   @Input() character: Character;
   @Input() barChartOptionsPatch: ChartOptions;
-  @Input() getChartData: (current: Deck, compare: Deck) => StatsData[];
-  @Input() getChartLabels: (stats: StatsData[]) => string[];
 
   @ViewChild('baseChart') chart: BaseChartDirective;
 
@@ -107,8 +109,6 @@ export class StatsCardComponent implements OnInit, DoCheck {
 
     this.prevCharacter = Utils.clone(this.character);
     this.barChartType = 'bar';
-    // this.barChartLabels = this.getChartLabels(this.character.deck, this.character.compareDeck);
-    // this.barChartData = this.getChartData(this.character.deck, this.character.compareDeck);
     this.barChartLegend = this.character.compareDeck != null;
     this.updateDataAndLabels();
 
@@ -130,8 +130,8 @@ export class StatsCardComponent implements OnInit, DoCheck {
   }
 
   private updateDataAndLabels() {
-    const statsData = this.getChartData(this.character.deck, this.character.compareDeck);
-    this.barChartLabels = this.getChartLabels(statsData);
+    const statsData = this.properties.getDataFunc(this.character.deck, this.character.compareDeck);
+    this.barChartLabels = this.properties.chartLabelsFunc(statsData);
 
     const newLabels = new Set(statsData.map(x => x.label));
     const currentLabels = new Set(this.barChartData.map(item => item.label));
