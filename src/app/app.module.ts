@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StatsCardComponent } from './modules/stats-card/stats-card.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     PerkSelectorComponent,
     PerkIconsComponent,
     PerkLabelComponent,
+    StatsCardComponent,
   ],
   imports: [
     BrowserModule,

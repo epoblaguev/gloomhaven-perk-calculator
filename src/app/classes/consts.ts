@@ -5,6 +5,7 @@ import {
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { getCardsProbability, setChartLabels } from './chartDataCalc';
 
 export enum StatsTypes {
   CARD_PROBABILITY,
@@ -31,7 +32,9 @@ export const StatsModules = {
     iconClasses: ['color-blue'],
     infoPage: StatsTypes.CARD_PROBABILITY,
     shortDescription: 'The chance that a given number card will be drawn',
-    show: true
+    show: true,
+    getDataFunc: getCardsProbability,
+    chartLabelsFunc: setChartLabels
   },
   deckReliability: {
     text: 'Deck Reliability',
@@ -39,7 +42,9 @@ export const StatsModules = {
     iconClasses: ['color-yellow'],
     infoPage: StatsTypes.DECK_RELIABILITY,
     shortDescription: 'The chance that your attack damage will be affected positively, negatively, or not at all',
-    show: true
+    show: true,
+    getDataFunc: getCardsProbability,
+    chartLabelsFunc: setChartLabels
   },
   averageDamage: {
     text: 'Average Damage',
@@ -47,7 +52,9 @@ export const StatsModules = {
     iconClasses: ['color-green'],
     infoPage: StatsTypes.AVERAGE_DAMAGE,
     shortDescription: 'The average damage of an attack given a starting base damage',
-    show: true
+    show: true,
+    getDataFunc: getCardsProbability,
+    chartLabelsFunc: setChartLabels
   },
   effectProbability: {
     text: 'Effect Probability',
@@ -55,7 +62,9 @@ export const StatsModules = {
     iconClasses: ['color-red'],
     infoPage: StatsTypes.EFFECT_PROBABILITY,
     shortDescription: 'The chance that a given effect comes into play during your action',
-    show: true
+    show: true,
+    getDataFunc: getCardsProbability,
+    chartLabelsFunc: setChartLabels
   },
   shuffleProbability: {
     text: 'Shuffle Probability',
@@ -63,7 +72,9 @@ export const StatsModules = {
     iconClasses: ['color-dark-purple'],
     infoPage: StatsTypes.SHUFFLE_PROBABILITY,
     shortDescription: 'The chance that the deck will be shuffled on a given action',
-    show: true
+    show: true,
+    getDataFunc: getCardsProbability,
+    chartLabelsFunc: setChartLabels
   }
 };
 
