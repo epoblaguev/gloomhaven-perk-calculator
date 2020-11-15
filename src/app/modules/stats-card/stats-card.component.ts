@@ -91,10 +91,10 @@ export class StatsCardComponent implements OnInit, DoCheck {
 
   public faIcons = FaIcons;
 
-  public barChartLabels: string[];
+  public barChartLabels: string[] = [];
   public barChartType: string;
   public barChartLegend: boolean;
-  public barChartData: ChartData[];
+  public barChartData: ChartData[] = [];
   public barChartPlugins = [pluginDataLabels];
 
   constructor(public bottomSheet: MatBottomSheet) { }
@@ -133,13 +133,30 @@ export class StatsCardComponent implements OnInit, DoCheck {
     const statsData = this.getChartData(this.character.deck, this.character.compareDeck);
     this.barChartLabels = this.getChartLabels(statsData);
 
-    this.barChartData = statsData.map(item => {
+    const newLabels = new Set(statsData.map(x => x.label));
+    const currentLabels = new Set(this.barChartData.map(item => item.label));
+
+    const newChartData = statsData.map(item => {
       return {
         label: item.label,
         data: this.fitToChart(item.data),
         backgroundColor: item.label === 'Current' ? this.Colors.blue.backgroundColor : this.Colors.red.backgroundColor,
         borderColor: item.label === 'Current' ? this.Colors.blue.borderColor : this.Colors.red.borderColor
       } as ChartData;
+    });
+
+    this.barChartData.forEach((item, index) => {
+      if (!newLabels.has(item.label)) {
+        this.barChartData.splice(index, 1);
+      } else {
+        item.data = newChartData.find(x => x.label === item.label).data;
+      }
+    });
+
+    newChartData.forEach(item => {
+      if (!currentLabels.has(item.label)) {
+        this.barChartData.push(item);
+      }
     });
   }
 
