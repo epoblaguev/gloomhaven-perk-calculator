@@ -5,7 +5,7 @@ import {
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { getCardsProbability, setChartLabels } from './chartDataCalc';
+import { getCardsProbability, getCardsProbabilityLabels, getEffectsProbability, getEffectsProbabilityLabels } from './chartDataCalc';
 
 export enum StatsTypes {
   CARD_PROBABILITY,
@@ -34,7 +34,7 @@ export const StatsModules = {
     shortDescription: 'The chance that a given number card will be drawn',
     show: true,
     getDataFunc: getCardsProbability,
-    chartLabelsFunc: setChartLabels
+    chartLabelsFunc: getCardsProbabilityLabels
   },
   deckReliability: {
     text: 'Deck Reliability',
@@ -44,7 +44,7 @@ export const StatsModules = {
     shortDescription: 'The chance that your attack damage will be affected positively, negatively, or not at all',
     show: true,
     getDataFunc: getCardsProbability,
-    chartLabelsFunc: setChartLabels
+    chartLabelsFunc: getCardsProbabilityLabels
   },
   averageDamage: {
     text: 'Average Damage',
@@ -54,7 +54,7 @@ export const StatsModules = {
     shortDescription: 'The average damage of an attack given a starting base damage',
     show: true,
     getDataFunc: getCardsProbability,
-    chartLabelsFunc: setChartLabels
+    chartLabelsFunc: getCardsProbabilityLabels
   },
   effectProbability: {
     text: 'Effect Probability',
@@ -63,8 +63,8 @@ export const StatsModules = {
     infoPage: StatsTypes.EFFECT_PROBABILITY,
     shortDescription: 'The chance that a given effect comes into play during your action',
     show: true,
-    getDataFunc: getCardsProbability,
-    chartLabelsFunc: setChartLabels
+    getDataFunc: getEffectsProbability,
+    chartLabelsFunc: getEffectsProbabilityLabels
   },
   shuffleProbability: {
     text: 'Shuffle Probability',
@@ -74,7 +74,7 @@ export const StatsModules = {
     shortDescription: 'The chance that the deck will be shuffled on a given action',
     show: true,
     getDataFunc: getCardsProbability,
-    chartLabelsFunc: setChartLabels
+    chartLabelsFunc: getCardsProbabilityLabels
   }
 };
 

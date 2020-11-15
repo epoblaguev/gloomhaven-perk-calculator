@@ -48,9 +48,13 @@
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">
     <div fxLayoutGap="7px" fxLayout.xs="column wrap" fxLayout="row" fxFlex.xs="100">
       <div fxLayout="column" fxLayoutGap="6px" fxFlex="60" fxFlex.sm="50" fxFlex.xs="100" style="height: 100%;">
-        <app-stats-card *ngIf="statsModules.cardProbability.show" [getChartData]="statsModules.cardProbability.getDataFunc"
-        [getChartLabels]="statsModules.cardProbability.chartLabelsFunc"
+        <app-stats-card *ngIf="statsModules.cardProbability.show"
+        [getChartData]="statsModules.cardProbability.getDataFunc" [getChartLabels]="statsModules.cardProbability.chartLabelsFunc"
         [character]="character" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100"></app-stats-card>
+
+        <app-stats-card *ngIf="statsModules.effectProbability.show"
+        [getChartData]="statsModules.effectProbability.getDataFunc" [getChartLabels]="statsModules.effectProbability.chartLabelsFunc"
+        [character]="character" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100"></app-stats-card>
         <!-- <app-card-probability *ngIf="statsModules.cardProbability.show" [character]="character" [properties]="statsModules.cardProbability" fxFlex="100" fxFlex.xs="100">
         </app-card-probability>
         <app-card-effects *ngIf="statsModules.effectProbability.show" [character]="character" [properties]="statsModules.effectProbability" fxFlex="100" fxFlex.xs="100">

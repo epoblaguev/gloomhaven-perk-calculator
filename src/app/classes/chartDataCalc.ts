@@ -1,86 +1,75 @@
 import * as statsCalc from './statsCalc';
 import { Deck } from './deck';
-import { GraphModuleDirective } from './graphModule';
-import { ChartData } from '../modules/stats-card/stats-card.component';
 
-interface GraphData {
-  name: string;
-  series: {
-    name: string;
-    value: number;
-  }[];
+export interface StatsData {
+  label: 'Current' | 'Comparison';
+  data: Record<string, number>;
 }
 
-// export function getCardsProbability2(current: Deck, compare: Deck): ChartData[] {
-//   const results: GraphData[] = [];
-//   const currentProbs = statsCalc.getCardsProbability(current.cards);
-//   const compareProbs: Record<string, number> = compare ? statsCalc.getCardsProbability(compare.cards) : {};
-
-//   const keys = new Set([...Object.keys(currentProbs), ...Object.keys(compareProbs)]);
-
-//   keys.forEach(key => {
-//     const result: GraphData = { name: key, series: [] };
-//     results.push(result);
-
-//     // Add Current Series
-//     if (currentProbs.hasOwnProperty(key)) {
-//       result.series.push({
-//         name: 'Current',
-//         value: Math.round(currentProbs[key] * 100)
-//       });
-//     }
-
-//     // Add Compare Series
-//     if (compareProbs.hasOwnProperty(key)) {
-//       result.series.push({
-//         name: 'Compare',
-//         value: Math.round(compareProbs[key] * 100)
-//       });
-//     }
-//   });
-
-//   return results;
-// }
-
-export function getCardsProbability(current: Deck, compare: Deck): ChartData[] {
-  let probs = statsCalc.getCardsProbability(current.cards);
-  Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
-  const probData: ChartData[] = [
+export function getCardsProbability(current: Deck, compare: Deck): StatsData[] {
+  const probData: StatsData[] = [
     {
       label: 'Current',
-      data: this.fitToChart(probs),
-      backgroundColor: GraphModuleDirective.Colors.blue.backgroundColor,
-      borderColor: GraphModuleDirective.Colors.blue.borderColor,
+      data: statsCalc.getCardsProbability(current.cards)
     }
   ];
-
   if (compare != null) {
-    probs = statsCalc.getCardsProbability(this.character.compareDeck.cards);
-    Object.keys(probs).forEach(key => probs[key] = Math.round(probs[key] * 100));
     probData.push({
       label: 'Comparison',
-      data: this.fitToChart(probs),
-      backgroundColor: GraphModuleDirective.Colors.red.backgroundColor,
-      borderColor: GraphModuleDirective.Colors.red.borderColor,
+      data: statsCalc.getCardsProbability(compare.cards)
     });
   }
+
+  // Change range of data from 0 - 1, to 0 - 100
+  probData.forEach(item => Object.keys(item.data).forEach(key => item.data[key] = Math.round(item.data[key] * 100)));
 
   return probData;
 }
 
-export function setChartLabels(current: Deck, compare: Deck): string[] {
-  let labels: string[];
-  const cards = current.cards;
-  const compareCards = compare?.cards;
-
-  labels = Object.keys(cards).filter(key =>
-    !['Bless', 'Curse'].includes(key) || cards[key] !== 0 || (compareCards && compareCards[key] !== 0)
-  );
+export function getCardsProbabilityLabels(stats: StatsData[]): string[] {
+  const labels: string[] = [...new Set(
+    stats.map(stat =>
+      Object.keys(stat.data).filter(key => !['Bless', 'Curse'].includes(key) || stat.data[key] !== 0)
+    ).reduce((a, b) => a.concat(b))
+  )];
 
   return labels;
+}
 
-  // if (this.barChartLabels.toString() !== labels.toString()) {
-  //   // console.log(`${this.barChartLabels} !== ${labels}`);
-  //   this.barChartLabels = labels;
-  // }
+export function getEffectsProbability(current: Deck, compare: Deck): StatsData[] {
+  const probData: StatsData[] = [
+    {
+      label: 'Current',
+      data: statsCalc.getEffectsProbability(current.effects),
+    }
+  ];
+
+  if (compare != null) {
+    probData.push({
+      label: 'Comparison',
+      data: statsCalc.getEffectsProbability(compare.effects),
+    });
+  }
+
+  // Rename 'No Effect' value, and change probability range to percent.
+  probData.forEach(item => {
+    item.data['No Effect'] = item.data['None'];
+    delete item.data['None'];
+    Object.keys(item.data).forEach(key => item.data[key] = Math.round(item.data[key] * 100));
+  });
+
+  console.log(probData);
+
+  return probData;
+}
+
+export function getEffectsProbabilityLabels(stats: StatsData[]): string[] {
+  let labels = [...new Set(stats.map(stat => Object.keys(stat.data)).reduce((a, b) => a.concat(b)))];
+
+  // Sort the array but place 'No Effect' first
+  labels = labels.filter(key => key !== 'No Effect');
+  labels.sort();
+  labels.unshift('No Effect');
+
+  return labels;
 }

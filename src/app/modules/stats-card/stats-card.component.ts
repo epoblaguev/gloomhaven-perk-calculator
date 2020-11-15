@@ -3,10 +3,10 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { Character } from 'src/app/classes/character';
 import { FaIcons, StatsTypes } from 'src/app/classes/consts';
-import { getCardsProbability } from 'src/app/classes/chartDataCalc';
+import { StatsData } from 'src/app/classes/chartDataCalc';
 import * as Utils from 'src/app/classes/utils';
 import { InfoPageComponent } from '../info-page/info-page.component';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective, defaultColors } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
 import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Deck } from 'src/app/classes/deck';
@@ -19,7 +19,7 @@ interface Properties {
 }
 
 export interface ChartData {
-  label: string;
+  label: 'Current' | 'Comparison';
   data: number[];
   backgroundColor: string;
   borderColor: string;
@@ -32,8 +32,12 @@ export interface ChartData {
   styleUrls: ['./stats-card.component.sass']
 })
 export class StatsCardComponent implements OnInit, DoCheck {
+  public static Font = {
+    faimily: '"Sakkal Majalla"',
+    size: 17
+  };
 
-  public static Colors = {
+  private Colors = {
     blue: { // blue
       backgroundColor: '#93a8c7',
       borderColor: '#718eb5',
@@ -44,17 +48,12 @@ export class StatsCardComponent implements OnInit, DoCheck {
     }
   };
 
-  public static Font = {
-    faimily: '"Sakkal Majalla"',
-    size: 17
-  };
-
 
   @Input() properties: Properties;
   @Input() character: Character;
   @Input() barChartOptionsPatch: ChartOptions;
-  @Input() getChartData: (current: Deck, compare: Deck) => ChartData[];
-  @Input() getChartLabels: (current: Deck, compare: Deck) => string[];
+  @Input() getChartData: (current: Deck, compare: Deck) => StatsData[];
+  @Input() getChartLabels: (stats: StatsData[]) => string[];
 
   @ViewChild('baseChart') chart: BaseChartDirective;
 
@@ -108,9 +107,10 @@ export class StatsCardComponent implements OnInit, DoCheck {
 
     this.prevCharacter = Utils.clone(this.character);
     this.barChartType = 'bar';
-    this.barChartLabels = this.getChartLabels(this.character.deck, this.character.compareDeck);
-    this.barChartData = this.getChartData(this.character.deck, this.character.compareDeck);
+    // this.barChartLabels = this.getChartLabels(this.character.deck, this.character.compareDeck);
+    // this.barChartData = this.getChartData(this.character.deck, this.character.compareDeck);
     this.barChartLegend = this.character.compareDeck != null;
+    this.updateDataAndLabels();
 
     console.log({barChartData: this.barChartData, barChartLabels: this.barChartLabels});
   }
@@ -119,9 +119,7 @@ export class StatsCardComponent implements OnInit, DoCheck {
     if (Utils.equals(this.character, this.prevCharacter)) { return; }
     this.prevCharacter = Utils.clone(this.character);
 
-    this.barChartLabels = this.getChartLabels(this.character.deck, this.character.compareDeck);
-    this.barChartData = this.getChartData(this.character.deck, this.character.compareDeck);
-    // this.data = [...getCardsProbability(this.character.deck, this.character.compareDeck)];
+    this.updateDataAndLabels();
 
     this.barChartLegend = this.character.compareDeck != null;
     console.log('Change!');
@@ -129,6 +127,20 @@ export class StatsCardComponent implements OnInit, DoCheck {
 
   public openInfoPage() {
     this.bottomSheet.open(InfoPageComponent, { data: { infoType: this.properties.infoPage } });
+  }
+
+  private updateDataAndLabels() {
+    const statsData = this.getChartData(this.character.deck, this.character.compareDeck);
+    this.barChartLabels = this.getChartLabels(statsData);
+
+    this.barChartData = statsData.map(item => {
+      return {
+        label: item.label,
+        data: this.fitToChart(item.data),
+        backgroundColor: item.label === 'Current' ? this.Colors.blue.backgroundColor : this.Colors.red.backgroundColor,
+        borderColor: item.label === 'Current' ? this.Colors.blue.borderColor : this.Colors.red.borderColor
+      } as ChartData;
+    });
   }
 
   /**
