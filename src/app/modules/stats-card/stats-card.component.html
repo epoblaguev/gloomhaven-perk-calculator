@@ -11,6 +11,10 @@
     <!-- <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
       [legend]="barChartLegend" [chartType]="barChartType" [plugins]="barChartPlugins"></canvas> -->
 
-      <ngx-charts-bar-vertical [results]="barChartData"></ngx-charts-bar-vertical>
+      <ngx-charts-bar-vertical-2d fxFlex
+      [results]="data"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showGridLines]="true"></ngx-charts-bar-vertical-2d>
   </mat-card-content>
 </mat-card>

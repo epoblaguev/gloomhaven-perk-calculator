@@ -21,7 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PerkLabelComponent } from './modules/perk-label/perk-label.component';
 import { HttpClientModule } from '@angular/common/http';
-// import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { StatsCardComponent } from './modules/stats-card/stats-card.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     PerkSelectorComponent,
     PerkIconsComponent,
     PerkLabelComponent,
+    StatsCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSlideToggleModule,
     FontAwesomeModule,
     HttpClientModule,
-    // NgxChartsModule,
+    NgxChartsModule,
   ],
   entryComponents: [InfoPageComponent],
   providers: [CharacterService, StorageService],

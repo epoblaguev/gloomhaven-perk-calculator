@@ -38,9 +38,9 @@ function nonRollingSum(cards: Record<string, number> ): number {
   return result;
 }
 
-export function getCardsProbability(cards: Record<string, number> ): object {
+export function getCardsProbability(cards: Record<string, number> ){
   const nrs = nonRollingSum(cards);
-  const probabilities = {};
+  const probabilities: Record<string, number> = {};
 
   for (const [key, value] of Object.entries(cards)) {
     const rollingSum = key.startsWith('r+') || key.startsWith('Rolling') ? nrs + value : nrs;
