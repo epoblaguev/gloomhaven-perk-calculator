@@ -20,6 +20,7 @@ export interface StatsCardProperties {
   show: boolean;
   getDataFunc: (current: Deck, compare: Deck) => StatsData[];
   chartLabelsFunc: (stats: StatsData[]) => string[];
+  modOptions?: (options: ChartOptions) => ChartOptions;
 }
 
 export interface ChartData {
@@ -103,8 +104,8 @@ export class StatsCardComponent implements OnInit, DoCheck {
 
 
   ngOnInit(): void {
-    if (this.barChartOptionsPatch) {
-      this.barChartOptions = this.barChartOptionsPatch;
+    if (this.properties.modOptions) {
+      this.barChartOptions = this.properties.modOptions(this.barChartOptions);
     }
 
     this.prevCharacter = Utils.clone(this.character);

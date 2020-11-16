@@ -5,9 +5,13 @@ import {
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
+import { ChartOptions } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
-import { getCardsProbability, getCardsProbabilityLabels, getDeckReliability,
-  getDeckReliabilityLabels, getEffectsProbability, getEffectsProbabilityLabels } from './chartDataCalc';
+import {
+  getAverageDamage, getAverageDamageLabels, getCardsProbability, getCardsProbabilityLabels, getDeckReliability,
+  getDeckReliabilityLabels, getEffectsProbability, getEffectsProbabilityLabels
+} from './chartDataCalc';
+import * as Utils from './utils';
 
 export enum StatsTypes {
   CARD_PROBABILITY,
@@ -55,8 +59,27 @@ export const StatsModules: Record<string, StatsCardProperties> = {
     infoPage: StatsTypes.AVERAGE_DAMAGE,
     shortDescription: 'The average damage of an attack given a starting base damage',
     show: true,
-    getDataFunc: getCardsProbability,
-    chartLabelsFunc: getCardsProbabilityLabels
+    getDataFunc: getAverageDamage,
+    chartLabelsFunc: getAverageDamageLabels,
+    modOptions: (options: ChartOptions) => {
+      const newOptions = Utils.clone(options);
+      newOptions.scales.xAxes = [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Base Damage'
+        }
+      }];
+
+      newOptions.scales.yAxes = [{
+        ticks: {
+          beginAtZero: true,
+          stepSize: 1,
+        },
+      }];
+
+      newOptions.plugins.datalabels.formatter = (x => x.toFixed(2));
+      return newOptions;
+    }
   },
   effectProbability: {
     text: 'Effect Probability',

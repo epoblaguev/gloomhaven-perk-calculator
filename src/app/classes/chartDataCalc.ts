@@ -64,7 +64,7 @@ export function getEffectsProbability(current: Deck, compare: Deck): StatsData[]
 }
 
 export function getEffectsProbabilityLabels(stats: StatsData[]): string[] {
-  let labels = [...new Set(stats.map(stat => Object.keys(stat.data)).reduce((a, b) => a.concat(b)))];
+  let labels = [...new Set(stats.reduce((a, b) => a.concat(Object.keys(b.data)), Array<string>()))];
 
   // Sort the array but place 'No Effect' first
   labels = labels.filter(key => key !== 'No Effect');
@@ -100,4 +100,26 @@ export function getDeckReliability(current: Deck, compare: Deck): StatsData[] {
 
 export function getDeckReliabilityLabels(stats: StatsData[]) {
   return ['≤1', '=0', '≥1'];
+}
+
+
+export function getAverageDamage(current: Deck, compare: Deck): StatsData[] {
+  const baseDamage = [0, 1, 2, 3, 4, 5];
+  const probData: StatsData[] = [{
+    label: 'Current',
+    data: baseDamage.reduce((a, b) => (a[b] = statsCalc.getAverageDamage(current.cards, b), a), {})
+  }];
+
+  if (compare != null) {
+    // const compareCards = Deck.modifyCards(this.deck.comparison.cards, this.deck.comparison.deckModifiers);
+    probData.push({
+      label: 'Comparison',
+      data: baseDamage.reduce((a, b) => (a[b] = statsCalc.getAverageDamage(compare.cards, b), a), {}),
+    });
+  }
+  return probData;
+}
+
+export function getAverageDamageLabels(stats: StatsData[]): string[] {
+  return [...new Set(stats.reduce((a, b) => a.concat(Object.keys(b.data)), Array<string>()))].sort();
 }
