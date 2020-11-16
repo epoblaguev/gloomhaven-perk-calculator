@@ -6,12 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
-import { DeckReliabilityComponent } from './modules/stats-module/deck-reliability.component';
-import { ShuffleProbabilityComponent } from './modules/stats-module/shuffle-probability.component';
-import { CardProbabilityComponent } from './modules/stats-module/card-probability.component';
-import { CardEffectsComponent } from './modules/stats-module/card-effects.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
-import { AverageDamageComponent } from './modules/stats-module/average-damage.component';
 import { DeckModifiersComponent } from './modules/deck-modifiers/deck-modifiers.component';
 import { CharacterService } from './services/character.service';
 import { PerkSelectorComponent } from './modules/perk-selector/perk-selector.component';
@@ -26,11 +21,6 @@ import { StatsCardComponent } from './modules/stats-card/stats-card.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DeckReliabilityComponent,
-    ShuffleProbabilityComponent,
-    CardProbabilityComponent,
-    AverageDamageComponent,
-    CardEffectsComponent,
     InfoPageComponent,
     DeckModifiersComponent,
     PerkSelectorComponent,
