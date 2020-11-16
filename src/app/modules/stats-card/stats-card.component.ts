@@ -113,7 +113,7 @@ export class StatsCardComponent implements OnInit, DoCheck {
     this.barChartLegend = this.character.compareDeck != null;
     this.updateDataAndLabels();
 
-    console.log({barChartData: this.barChartData, barChartLabels: this.barChartLabels});
+    // console.log({barChartData: this.barChartData, barChartLabels: this.barChartLabels});
   }
 
   ngDoCheck() {
@@ -123,7 +123,7 @@ export class StatsCardComponent implements OnInit, DoCheck {
     this.updateDataAndLabels();
 
     this.barChartLegend = this.character.compareDeck != null;
-    console.log('Change!');
+    // console.log('Change!');
   }
 
   public openInfoPage() {
