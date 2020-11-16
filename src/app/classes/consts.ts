@@ -9,7 +9,7 @@ import { ChartOptions } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
 import {
   getAverageDamage, getAverageDamageLabels, getCardsProbability, getCardsProbabilityLabels, getDeckReliability,
-  getDeckReliabilityLabels, getEffectsProbability, getEffectsProbabilityLabels
+  getDeckReliabilityLabels, getEffectsProbability, getEffectsProbabilityLabels, getShuffleProbability, getShuffleProbabilityLabels
 } from './chartDataCalc';
 import * as Utils from './utils';
 
@@ -98,8 +98,8 @@ export const StatsModules: Record<string, StatsCardProperties> = {
     infoPage: StatsTypes.SHUFFLE_PROBABILITY,
     shortDescription: 'The chance that the deck will be shuffled on a given action',
     show: true,
-    getDataFunc: getCardsProbability,
-    chartLabelsFunc: getCardsProbabilityLabels
+    getDataFunc: getShuffleProbability,
+    chartLabelsFunc: getShuffleProbabilityLabels
   }
 };
 

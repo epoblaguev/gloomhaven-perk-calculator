@@ -58,7 +58,7 @@ export function getEffectsProbability(current: Deck, compare: Deck): StatsData[]
     Object.keys(item.data).forEach(key => item.data[key] = Math.round(item.data[key] * 100));
   });
 
-  console.log(probData);
+  // console.log(probData);
 
   return probData;
 }
@@ -122,4 +122,31 @@ export function getAverageDamage(current: Deck, compare: Deck): StatsData[] {
 
 export function getAverageDamageLabels(stats: StatsData[]): string[] {
   return [...new Set(stats.reduce((a, b) => a.concat(Object.keys(b.data)), Array<string>()))].sort();
+}
+
+export function getShuffleProbability(current: Deck, compare: Deck): StatsData[] {
+  const labels: string[] = ['1', '3', '5', '7', '9', '11'];
+  const chartData: StatsData[] = [
+    {
+      label: 'Current',
+      data: labels.reduce((a, b) => (a[b] = Math.round(statsCalc.getShuffleChance(current.cards, Number(b)) * 100), a), {})
+    }
+  ];
+
+  if (compare != null) {
+    chartData.push({
+      label: 'Comparison',
+      data: labels.reduce((a, b) => (a[b] = Math.round(statsCalc.getShuffleChance(compare.cards, Number(b)) * 100), a), {})
+    });
+  }
+  return chartData;
+}
+
+export function getShuffleProbabilityLabels(stats: StatsData[]): string[] {
+  return  [...new Set(stats.reduce((a, b) => a.concat(Object.keys(b.data)), Array<string>()))].sort((a, b) => {
+    const na = Number(a);
+    const nb = Number(b);
+
+    return na < nb ? -1 : (na > nb ? 1 : 0);
+  });
 }
