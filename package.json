@@ -30,6 +30,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "darkreader": "^4.9.26",
     "fast-deep-equal": "^3.1.3",
     "handlebars": "^4.7.6",
     "lodash-es": "^4.17.15",

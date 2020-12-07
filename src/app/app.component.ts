@@ -6,9 +6,9 @@ import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import * as Utils from './classes/utils';
+import * as DarkReader from 'darkreader';
 
 
 @Component({
@@ -43,6 +43,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       this.character = char;
+
+      DarkReader.auto({
+        brightness: 100,
+        contrast: 90,
+        sepia: 10
+    });
     }));
   }
 
