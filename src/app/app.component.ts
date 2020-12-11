@@ -8,7 +8,12 @@ import { StorageService } from './services/storage.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import * as DarkReader from 'darkreader';
+import {
+  enable as enableDarkMode,
+  disable as disableDarkMode,
+  auto as followSystemColorScheme,
+  exportGeneratedCSS as collectCSS,
+} from 'darkreader';
 
 
 @Component({
@@ -44,11 +49,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
       this.character = char;
 
-      DarkReader.auto({
+      followSystemColorScheme({
         brightness: 100,
         contrast: 90,
         sepia: 10
-    });
+      });
     }));
   }
 

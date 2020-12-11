@@ -27,7 +27,8 @@
       <mat-select placeholder="Select Character" [(value)]="selectedCharacter"
         (selectionChange)="selectedCharacterChanged()">
         <mat-select-trigger fxLayout="row">
-          <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon">
+          <mat-icon class="char-icon" [svgIcon]="character.icon"></mat-icon>
+          <!-- <img src="assets/icons/charIcons/{{character.icon}}" class="char-icon"> -->
           <div class="char-name-label">
             <div>{{ hideRealNames ? character.hiddenName : character.name}}</div>
             <div class="game-label float-right color-gray">{{character.gameName}}</div>
@@ -36,7 +37,8 @@
         <ng-container *ngFor="let char of characters, let char_i = index">
           <mat-option *ngIf="gameService.games.get(char.gameName)?.enabled" [value]="char_i">
             <div>
-              <img src="assets/icons/charIcons/{{char.icon}}" class="char-icon">
+              <mat-icon class="char-icon" [svgIcon]="char.icon"></mat-icon>
+              <!-- <img src="assets/icons/charIcons/{{char.icon}}" class="char-icon"> -->
               <span class="char-name-label">{{ hideRealNames ? char.hiddenName : char.name }}</span>
               <span class="game-label float-right color-gray">{{char.gameName}}</span>
             </div>

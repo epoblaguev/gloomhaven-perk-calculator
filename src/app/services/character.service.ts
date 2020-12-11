@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Character } from '../classes/character';
 import charactersJson from '../../assets/settings/characters.json';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Injectable()
@@ -15,7 +17,7 @@ export class CharacterService {
   private charactersSubject: BehaviorSubject<Character[]>;
   public characters$: Observable<Character[]>;
 
-  constructor() {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     this.characters = charactersJson.characters.map(char => new Character(char));
     this.characters.sort(this.charSort);
     this.selectedCharacter = 0;
@@ -25,6 +27,11 @@ export class CharacterService {
 
     this.characterSubject = new BehaviorSubject<Character>(this.getCharacter());
     this.character$ = this.characterSubject.asObservable();
+
+    //Add icon to registry
+    this.characters.forEach(char => {
+      this.iconRegistry.addSvgIcon(char.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/charIcons/${char.icon}`));
+    });
   }
 
   getCharacters() {
