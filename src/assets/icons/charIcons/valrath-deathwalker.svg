@@ -4,11 +4,9 @@
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="300.000000pt" height="446.000000pt" viewBox="0 0 300.000000 446.000000"
  preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.10, written by Peter Selinger 2001-2011
-</metadata>
+
 <g transform="translate(0.000000,446.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+style="stroke:none;fill-rule:nonzero;fill:#000">
 <path d="M1162 4353 c-14 -34 -27 -106 -52 -283 -10 -74 -23 -147 -29 -163 -6
 -15 -15 -73 -20 -130 -6 -56 -17 -122 -26 -146 -8 -24 -15 -60 -15 -80 -1 -78
 -94 -412 -126 -452 -7 -8 -15 -30 -19 -49 -4 -19 -16 -51 -26 -70 -11 -19 -19
