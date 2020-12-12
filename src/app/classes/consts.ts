@@ -3,7 +3,7 @@ import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars, faDownload,
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
-  faFistRaised, faFire, faSyncAlt
+  faFistRaised, faFire, faSyncAlt, faMoon
 } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
@@ -22,7 +22,7 @@ export enum StatsTypes {
 }
 
 export const FaIcons = {
-  far: { faQuestionCircle },
+  far: { faQuestionCircle, faMoon },
   fab: { faAndroid, faApple, faGithub, faGooglePlay },
   fas: {
     faBars, faDownload, faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill,

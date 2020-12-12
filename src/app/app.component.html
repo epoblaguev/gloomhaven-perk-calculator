@@ -43,6 +43,10 @@
     <a fxHide.xs href="https://github.com/epoblaguev/gloomhaven-perk-calculator" target="_blank" class="top-right-logo">
       <fa-icon [icon]="faIcons.fab.faGithub" [fixedWidth]="true" size="2x"></fa-icon>
     </a>
+
+    <a (click)="toggleDarkMode()" class="top-right-logo">
+      <fa-icon [icon]="faIcons.far.faMoon" [fixedWidth]="true" size="2x"></fa-icon>
+    </a>
   </mat-toolbar>
 
   <div fxLayout="column" fxLayoutGap="6px" class="wrapper">

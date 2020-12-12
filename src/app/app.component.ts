@@ -34,6 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private loadedChars = new Set();
 
+  private darkMode = false;
+
   constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, private storageService: StorageService) {
     this.charService.selectCharacter(storageService.getSelectedChar());
 
@@ -48,12 +50,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       this.character = char;
-
-      followSystemColorScheme({
-        brightness: 100,
-        contrast: 90,
-        sepia: 10
-      });
     }));
   }
 
@@ -68,5 +64,22 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    this.setDarkMode();
+  }
+
+  setDarkMode() {
+    if (this.darkMode) {
+      enableDarkMode({
+        brightness: 100,
+        contrast: 90,
+        sepia: 10,
+      });
+    } else {
+      disableDarkMode();
+    }
   }
 }
