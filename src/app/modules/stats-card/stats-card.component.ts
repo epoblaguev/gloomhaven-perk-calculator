@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, DoCheck, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { Character } from 'src/app/classes/character';
@@ -6,10 +6,12 @@ import { FaIcons, StatsTypes } from 'src/app/classes/consts';
 import { StatsData } from 'src/app/classes/chartDataCalc';
 import * as Utils from 'src/app/classes/utils';
 import { InfoPageComponent } from '../info-page/info-page.component';
-import { BaseChartDirective, defaultColors } from 'ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { ChartOptions } from 'chart.js';
 import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Deck } from 'src/app/classes/deck';
+import { DarkModeService } from 'src/app/services/dark-mode.service';
+import { Subscription } from 'rxjs';
 
 export interface StatsCardProperties {
   text: string;
@@ -36,7 +38,7 @@ export interface ChartData {
   templateUrl: './stats-card.component.html',
   styleUrls: ['./stats-card.component.sass']
 })
-export class StatsCardComponent implements OnInit, DoCheck {
+export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
   public static Font = {
     faimily: '"Sakkal Majalla"',
     size: 17
@@ -69,8 +71,20 @@ export class StatsCardComponent implements OnInit, DoCheck {
           min: 0,
           max: 100,
           stepSize: 20,
-        }
+          fontColor: undefined
+        },
+        gridLines: {
+          color: undefined
+        },
       }],
+      xAxes: [{
+        ticks: {
+          fontColor: undefined
+        },
+        gridLines: {
+          color: undefined
+        },
+      }]
     },
     layout: {
       padding: {
@@ -88,6 +102,11 @@ export class StatsCardComponent implements OnInit, DoCheck {
         formatter: (x => `${x}%`)
       }
     },
+    legend: {
+      labels: {
+        fontColor: undefined
+      }
+    }
   };
 
   private prevCharacter: Character;
@@ -100,7 +119,24 @@ export class StatsCardComponent implements OnInit, DoCheck {
   public barChartData: ChartData[] = [];
   public barChartPlugins = [pluginDataLabels];
 
-  constructor(public bottomSheet: MatBottomSheet) { }
+  private subscriptions = new Subscription();
+
+  constructor(private bottomSheet: MatBottomSheet, private darkModeServ: DarkModeService) {
+    this.subscriptions.add(this.darkModeServ.getDarkModeObservable().subscribe(status => {
+      const fontColor = status ? '#cecece' : undefined;
+      const gridColor = status ? '#4d5256' : undefined;
+
+      const bco = this.barChartOptions;
+      bco.legend.labels.fontColor = fontColor;
+      bco.plugins.datalabels.color = fontColor;
+      bco.scales.xAxes[0].ticks.fontColor = fontColor;
+      bco.scales.yAxes[0].ticks.fontColor = fontColor;
+      bco.scales.xAxes[0].gridLines.color = gridColor;
+      bco.scales.yAxes[0].gridLines.color = gridColor;
+
+      this.barChartOptions = Utils.clone(this.barChartOptions);
+    }));
+  }
 
 
   ngOnInit(): void {
@@ -114,6 +150,10 @@ export class StatsCardComponent implements OnInit, DoCheck {
     this.updateDataAndLabels();
 
     // console.log({barChartData: this.barChartData, barChartLabels: this.barChartLabels});
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   ngDoCheck() {
@@ -142,7 +182,7 @@ export class StatsCardComponent implements OnInit, DoCheck {
         label: item.label,
         data: this.fitToChart(item.data),
         backgroundColor: item.label === 'Current' ? this.Colors.blue.backgroundColor : this.Colors.red.backgroundColor,
-        borderColor: item.label === 'Current' ? this.Colors.blue.borderColor : this.Colors.red.borderColor
+        borderColor: item.label === 'Current' ? this.Colors.blue.borderColor : this.Colors.red.borderColor,
       } as ChartData;
     });
 

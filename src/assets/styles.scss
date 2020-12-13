@@ -23,15 +23,6 @@ mat-card-subtitle {
     font-family: 'Pirata One';
 }
 
-// mat-option div,
-// mat-select-trigger {
-//     font-family: 'Sakkal Majalla';
-//     font-size: 1.5em;
-// }
-// mat-checkbox {
-//     font-family: 'Sakkal Majalla';
-//     font-size: 1.25em;
-// }
 .valign-middle {
     vertical-align: middle;
 }
@@ -129,7 +120,7 @@ mat-card-subtitle {
     margin-bottom: 0;
 }
 
-.cursor-pointer {
+.cursor-pointer:hover {
     cursor: pointer;
 }
 
@@ -145,11 +136,8 @@ mat-card-subtitle {
     text-decoration-line: none;
 }
 
-a:not([href]) {
+a:not([href]):hover {
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none
 }
 
 a {
@@ -176,4 +164,60 @@ a {
 
 .display-contents {
     display: contents;
+}
+
+
+// html[data-theme='dark-mode'] {
+//     filter: invert(1) hue-rotate(180deg);
+// }
+
+// html {
+//     transition: color 2s, background-color 2s;
+// }
+
+
+// Force the color of all char icons to be the current color
+.char-icon svg *{
+    fill: currentColor !important;
+}
+
+
+// Override Material styles for icons inside dropdowns
+.mat-option .mat-icon {
+    margin-right: 0 !important;
+}
+
+.mat-option .mat-icon svg {
+    vertical-align: unset !important;
+}
+
+
+
+
+/// Dark Mode
+.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary, .dark-mode .mat-select-value,
+.dark-mode mat-bottom-sheet-container, .dark-mode .mat-menu-content, .dark-mode .mat-menu-item, .dark-mode .top-right-logo,
+.dark-mode .mat-select-panel, .dark-mode .mat-option, .dark-mode .bottom-sheet-close{
+    background-color: #2f3233;
+    color: #cecece;
+}
+
+.dark-mode .mat-option-text {
+    color: #cecece;
+}
+
+.dark-mode a {
+    color: aqua;
+}
+
+.dark-mode .mat-form-field-label, .dark-mode .mat-select-arrow, .dark-mode .mat-form-field.mat-focused .mat-form-field-label{
+    color: #757575;
+}
+
+.dark-mode .mat-checkbox-frame{
+    border-color: #757575;
+}
+
+body.dark-mode {
+    background-color: black;
 }

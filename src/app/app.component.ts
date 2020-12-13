@@ -5,10 +5,11 @@ import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
+import { DarkModeService } from './services/dark-mode.service';
 import { environment } from 'src/environments/environment';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import * as Utils from './classes/utils';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -29,10 +30,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private loadedChars = new Set();
 
-  constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, private storageService: StorageService) {
+  public moonIcon: IconDefinition;
+
+  constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, storageService: StorageService,
+    private darkModeService: DarkModeService) {
     this.charService.selectCharacter(storageService.getSelectedChar());
 
-    this.subscriptions.add(this.charService.character$.subscribe(char => {
+    this.subscriptions.add(this.charService.getCharacterObservable().subscribe(char => {
       // Load saved perks if not done already
       if (!this.loadedChars.has(char.name)) {
         console.log(`Loading saved perks for ${char.name}`);
@@ -43,6 +47,13 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       this.character = char;
+    }));
+
+    // Subscribe to dark mode value;
+    this.subscriptions.add(this.darkModeService.getDarkModeObservable().subscribe(status => {
+      const body = document.getElementById('body');
+      body.className = status ? 'dark-mode' : '';
+      this.moonIcon = status ? this.faIcons.fas.faMoon : this.faIcons.far.faMoon;
     }));
   }
 
@@ -57,5 +68,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  toggleDarkMode() {
+    this.darkModeService.toggleDarkMode();
   }
 }

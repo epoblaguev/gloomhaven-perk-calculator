@@ -32,8 +32,8 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
               private storageService: StorageService) {
     this.showIcons = storageService.loadPerkIconToggle();
 
-    this.subscriptions.add(charService.characters$.subscribe(observer => this.characters = observer));
-    this.subscriptions.add(charService.character$.subscribe(observer => this.character = observer));
+    this.subscriptions.add(charService.getCharactersObservable().subscribe(characters => this.characters = characters));
+    this.subscriptions.add(charService.getCharacterObservable().subscribe(character => this.character = character));
   }
 
   ngOnInit(): void {

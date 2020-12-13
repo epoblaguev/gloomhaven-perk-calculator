@@ -1,9 +1,9 @@
 import { faAndroid, faApple, faGithub, faGooglePlay } from '@fortawesome/free-brands-svg-icons';
-import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { faQuestionCircle, faMoon as farMoon } from '@fortawesome/free-regular-svg-icons';
 import {
   faBars, faDownload,
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
-  faFistRaised, faFire, faSyncAlt
+  faFistRaised, faFire, faSyncAlt, faMoon as fasMoon, faMinusCircle, faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
@@ -22,12 +22,12 @@ export enum StatsTypes {
 }
 
 export const FaIcons = {
-  far: { faQuestionCircle },
+  far: { faQuestionCircle, faMoon: farMoon },
   fab: { faAndroid, faApple, faGithub, faGooglePlay },
   fas: {
     faBars, faDownload, faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill,
     faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
-    faFistRaised, faFire, faSyncAlt
+    faFistRaised, faFire, faSyncAlt, faMoon: fasMoon, faMinusCircle, faPlusCircle
   },
 };
 
