@@ -188,12 +188,18 @@ a {
 // }
 
 
+// Force the color of all char icons to be the current color
+.char-icon svg *{
+    fill: currentColor !important;
+}
+
+
 
 
 /// Dark Mode
-.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary {
+.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary, .dark-mode .mat-select-value{
     background-color: #2f3233;
-    color: rgb(206, 206, 206);
+    color: #cecece;
 }
 
 body.dark-mode {
