@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Character } from 'src/app/classes/character';
 
 import { PerkLabelComponent } from './perk-label.component';
 
-describe('PerkNameComponent', () => {
+describe('PerkLabelComponent', () => {
   let component: PerkLabelComponent;
   let fixture: ComponentFixture<PerkLabelComponent>;
 
@@ -16,6 +17,11 @@ describe('PerkNameComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PerkLabelComponent);
     component = fixture.componentInstance;
+    component.perk = {
+      name: 'Test Perk',
+      uses: [{used: true}, {used: false}],
+      applyToCharacter: (character: Character) => {}
+    };
     fixture.detectChanges();
   });
 
