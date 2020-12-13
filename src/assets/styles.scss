@@ -197,9 +197,27 @@ a {
 
 
 /// Dark Mode
-.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary, .dark-mode .mat-select-value{
+.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary, .dark-mode .mat-select-value,
+.dark-mode mat-bottom-sheet-container, .dark-mode .mat-menu-content, .dark-mode .mat-menu-item, .dark-mode .top-right-logo,
+.dark-mode .mat-select-panel, .dark-mode .mat-option, .dark-mode{
     background-color: #2f3233;
     color: #cecece;
+}
+
+.dark-mode .mat-option-text {
+    color: #cecece;
+}
+
+.dark-mode a {
+    color: aqua;
+}
+
+.dark-mode .mat-form-field-label, .dark-mode .mat-select-arrow{
+    color: #757575;
+}
+
+.dark-mode .mat-checkbox-frame{
+    border-color: #757575;
 }
 
 body.dark-mode {
