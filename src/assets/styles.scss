@@ -186,3 +186,16 @@ a {
 // html {
 //     transition: color 2s, background-color 2s;
 // }
+
+
+
+
+/// Dark Mode
+.dark-mode mat-card, .dark-mode mat-card-subtitle, .dark-mode .mat-toolbar.mat-primary {
+    background-color: #2f3233;
+    color: rgb(206, 206, 206);
+}
+
+body.dark-mode {
+    background-color: black;
+}

@@ -88,6 +88,11 @@ export class StatsCardComponent implements OnInit, DoCheck {
         formatter: (x => `${x}%`)
       }
     },
+    legend: {
+      labels: {
+        fontColor: 'currentColor'
+      }
+    }
   };
 
   private prevCharacter: Character;

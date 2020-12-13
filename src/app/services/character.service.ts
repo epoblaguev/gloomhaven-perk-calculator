@@ -12,10 +12,10 @@ export class CharacterService {
   private selectedCharacter: number;
 
   private characterSubject: BehaviorSubject<Character>;
-  public character$: Observable<Character>;
+  // public character$: Observable<Character>;
 
   private charactersSubject: BehaviorSubject<Character[]>;
-  public characters$: Observable<Character[]>;
+  // public characters$: Observable<Character[]>;
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     this.characters = charactersJson.characters.map(char => new Character(char));
@@ -23,26 +23,29 @@ export class CharacterService {
     this.selectedCharacter = 0;
 
     this.charactersSubject = new BehaviorSubject<Character[]>(this.characters);
-    this.characters$ = this.charactersSubject.asObservable();
+    // this.characters$ = this.charactersSubject.asObservable();
 
     this.characterSubject = new BehaviorSubject<Character>(this.getCharacter());
-    this.character$ = this.characterSubject.asObservable();
+    // this.character$ = this.characterSubject.asObservable();
 
     //Add icon to registry
     this.characters.forEach(char => {
       this.iconRegistry.addSvgIcon(char.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/charIcons/${char.icon}`));
     });
   }
-
-  getCharacters() {
-    return this.characters;
-  }
-
   private getCharacter() {
     return this.characters[this.selectedCharacter];
   }
 
-  selectCharacter(i: number) {
+  public getCharacterObservable() {
+    return this.characterSubject.asObservable();
+  }
+
+  public getCharactersObservable() {
+    return this.charactersSubject.asObservable();
+  }
+
+  public selectCharacter(i: number) {
     this.selectedCharacter = i;
     this.characterSubject.next(this.getCharacter());
   }

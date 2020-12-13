@@ -5,15 +5,10 @@ import { InfoPageComponent } from './modules/info-page/info-page.component';
 import { StatsModules, FaIcons } from './classes/consts';
 import { CharacterService } from './services/character.service';
 import { StorageService } from './services/storage.service';
+import { DarkModeService } from './services/dark-mode.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
-import {
-  enable as enableDarkMode,
-  disable as disableDarkMode,
-  auto as followSystemColorScheme,
-  exportGeneratedCSS as collectCSS,
-} from 'darkreader';
 
 
 @Component({
@@ -34,12 +29,11 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private loadedChars = new Set();
 
-  private darkMode = false;
-
-  constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, private storageService: StorageService) {
+  constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, storageService: StorageService,
+    private darkModeService: DarkModeService) {
     this.charService.selectCharacter(storageService.getSelectedChar());
 
-    this.subscriptions.add(this.charService.character$.subscribe(char => {
+    this.subscriptions.add(this.charService.getCharacterObservable().subscribe(char => {
       // Load saved perks if not done already
       if (!this.loadedChars.has(char.name)) {
         console.log(`Loading saved perks for ${char.name}`);
@@ -50,6 +44,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
 
       this.character = char;
+    }));
+
+    // Subscribe to dark mode value;
+    this.subscriptions.add(this.darkModeService.getDarkModeObservable().subscribe(status => {
+      const body = document.getElementById('body');
+      body.className = status ? 'dark-mode' : '';
     }));
   }
 
@@ -67,19 +67,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    this.setDarkMode();
-  }
-
-  setDarkMode() {
-    if (this.darkMode) {
-      enableDarkMode({
-        brightness: 100,
-        contrast: 90,
-        sepia: 10,
-      });
-    } else {
-      disableDarkMode();
-    }
+    this.darkModeService.toggleDarkMode();
   }
 }
