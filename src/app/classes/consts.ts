@@ -3,7 +3,7 @@ import { faQuestionCircle, faMoon as farMoon } from '@fortawesome/free-regular-s
 import {
   faBars, faDownload,
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
-  faFistRaised, faFire, faSyncAlt, faMoon as fasMoon
+  faFistRaised, faFire, faSyncAlt, faMoon as fasMoon, faMinusCircle, faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
 import { ChartOptions } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
@@ -27,7 +27,7 @@ export const FaIcons = {
   fas: {
     faBars, faDownload, faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill,
     faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
-    faFistRaised, faFire, faSyncAlt, faMoon: fasMoon
+    faFistRaised, faFire, faSyncAlt, faMoon: fasMoon, faMinusCircle, faPlusCircle
   },
 };
 

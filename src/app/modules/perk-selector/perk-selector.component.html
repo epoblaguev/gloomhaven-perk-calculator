@@ -36,10 +36,10 @@
         </mat-select-trigger>
         <ng-container *ngFor="let char of characters, let char_i = index">
           <mat-option *ngIf="gameService.games.get(char.gameName)?.enabled" [value]="char_i">
-              <mat-icon class="char-icon" [svgIcon]="char.icon"></mat-icon>
-              <!-- <img src="assets/icons/charIcons/{{char.icon}}" class="char-icon"> -->
-              <span class="char-name-label">{{ hideRealNames ? char.hiddenName : char.name }}</span>
-              <span class="game-label float-right color-gray">{{char.gameName}}</span>
+            <mat-icon class="char-icon" [svgIcon]="char.icon"></mat-icon>
+            <!-- <img src="assets/icons/charIcons/{{char.icon}}" class="char-icon"> -->
+            <span class="char-name-label">{{ hideRealNames ? char.hiddenName : char.name }}</span>
+            <span class="game-label float-right color-gray">{{char.gameName}}</span>
           </mat-option>
         </ng-container>
       </mat-select>
@@ -58,8 +58,13 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">Reset</button>
+    <button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">
+      <fa-icon [icon]="faIcons.fas.faSyncAlt" [fixedWidth]="true" size="sm"></fa-icon>
+      Reset
+    </button>
     <button mat-flat-button color="primary" (click)="toggleComparison()">
-      {{ character.compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}</button>
+      <fa-icon [icon]="character.compareDeck == null ? faIcons.fas.faPlusCircle : faIcons.fas.faMinusCircle" [fixedWidth]="true" size="sm"></fa-icon>
+      {{ character.compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}
+    </button>
   </mat-card-actions>
 </mat-card>

@@ -210,7 +210,7 @@ a {
     color: aqua;
 }
 
-.dark-mode .mat-form-field-label, .dark-mode .mat-select-arrow{
+.dark-mode .mat-form-field-label, .dark-mode .mat-select-arrow, .dark-mode .mat-form-field.mat-focused .mat-form-field-label{
     color: #757575;
 }
 
