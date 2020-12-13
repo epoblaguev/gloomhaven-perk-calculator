@@ -25,7 +25,7 @@ export class PerkIconsComponent implements OnInit {
 
   ngOnInit() {
     if (this.icon in IconMap && !PerkIconsComponent.registeredIcons.has(this.icon)) {
-      this.iconRegistry.addSvgIcon(this.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${IconMap[this.icon].icon}`));
+      this.iconRegistry.addSvgIcon(this.icon, this.sanitizer.bypassSecurityTrustResourceUrl(`assets/icons/effects/${IconMap[this.icon].icon}`));
       PerkIconsComponent.registeredIcons.add(this.icon);
       // console.log(`Registered Icon - ${this.icon}`);
     }
