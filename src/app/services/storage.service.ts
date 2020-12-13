@@ -10,6 +10,14 @@ export class StorageService {
 
   constructor() { }
 
+  setDarkMode(value: boolean) {
+    window.localStorage.setItem('darkMode', String(value));
+  }
+
+  getDarkMode() {
+    return window.localStorage.getItem('darkMode') === 'true';
+  }
+
   setSelectedChar(i: number) {
     window.localStorage.setItem('selectedChar', String(i));
   }
