@@ -23,15 +23,6 @@ mat-card-subtitle {
     font-family: 'Pirata One';
 }
 
-// mat-option div,
-// mat-select-trigger {
-//     font-family: 'Sakkal Majalla';
-//     font-size: 1.5em;
-// }
-// mat-checkbox {
-//     font-family: 'Sakkal Majalla';
-//     font-size: 1.25em;
-// }
 .valign-middle {
     vertical-align: middle;
 }
@@ -129,7 +120,7 @@ mat-card-subtitle {
     margin-bottom: 0;
 }
 
-.cursor-pointer {
+.cursor-pointer:hover {
     cursor: pointer;
 }
 
@@ -145,11 +136,8 @@ mat-card-subtitle {
     text-decoration-line: none;
 }
 
-a:not([href]) {
+a:not([href]):hover {
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none
 }
 
 a {
@@ -191,6 +179,16 @@ a {
 // Force the color of all char icons to be the current color
 .char-icon svg *{
     fill: currentColor !important;
+}
+
+
+// Override Material styles for icons inside dropdowns
+.mat-option .mat-icon {
+    margin-right: 0 !important;
+}
+
+.mat-option .mat-icon svg {
+    vertical-align: unset !important;
 }
 
 

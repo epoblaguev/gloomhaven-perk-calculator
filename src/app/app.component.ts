@@ -9,6 +9,7 @@ import { DarkModeService } from './services/dark-mode.service';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Character } from './classes/character';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public character: Character;
   private subscriptions = new Subscription();
   private loadedChars = new Set();
+
+  public moonIcon: IconDefinition;
 
   constructor(private bottomSheet: MatBottomSheet, private charService: CharacterService, storageService: StorageService,
     private darkModeService: DarkModeService) {
@@ -50,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.darkModeService.getDarkModeObservable().subscribe(status => {
       const body = document.getElementById('body');
       body.className = status ? 'dark-mode' : '';
+      this.moonIcon = status ? this.faIcons.fas.faMoon : this.faIcons.far.faMoon;
     }));
   }
 
