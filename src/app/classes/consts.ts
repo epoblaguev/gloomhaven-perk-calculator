@@ -62,11 +62,18 @@ export const StatsModules: Record<string, StatsCardProperties> = {
     getDataFunc: getAverageDamage,
     chartLabelsFunc: getAverageDamageLabels,
     modOptions: (options: ChartOptions) => {
-      const newOptions = Utils.clone(options);
+      const newOptions: ChartOptions = Utils.clone(options);
       newOptions.scales.xAxes = [{
         scaleLabel: {
           display: true,
-          labelString: 'Base Damage'
+          labelString: 'Base Damage',
+          fontColor: options.scales.xAxes[0]?.scaleLabel.fontColor
+        },
+        ticks: {
+          fontColor: options.scales.xAxes[0]?.ticks.fontColor
+        },
+        gridLines: {
+          color: options.scales.xAxes[0]?.gridLines.color
         }
       }];
 
@@ -74,7 +81,11 @@ export const StatsModules: Record<string, StatsCardProperties> = {
         ticks: {
           beginAtZero: true,
           stepSize: 1,
+          fontColor: options.scales.yAxes[0]?.ticks.fontColor
         },
+        gridLines: {
+          color: options.scales.yAxes[0]?.gridLines.color
+        }
       }];
 
       newOptions.plugins.datalabels.formatter = (x => x.toFixed(2));
