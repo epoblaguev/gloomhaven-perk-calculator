@@ -59,11 +59,11 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button color="primary" (click)="reset()" style="margin-right: 1em">
-      <fa-icon [icon]="faIcons.fas.faSyncAlt" [fixedWidth]="true" size="sm"></fa-icon>
+      <!-- <fa-icon [icon]="faIcons.fas.faSyncAlt" [fixedWidth]="true" size="sm"></fa-icon> -->
       Reset
     </button>
     <button mat-flat-button color="primary" (click)="toggleComparison()">
-      <fa-icon [icon]="character.compareDeck == null ? faIcons.fas.faPlusCircle : faIcons.fas.faMinusCircle" [fixedWidth]="true" size="sm"></fa-icon>
+      <!-- <fa-icon [icon]="character.compareDeck == null ? faIcons.fas.faPlusCircle : faIcons.fas.faMinusCircle" [fixedWidth]="true" size="sm"></fa-icon> -->
       {{ character.compareDeck == null ? 'Add Comparison' : 'Remove Comparison' }}
     </button>
   </mat-card-actions>
