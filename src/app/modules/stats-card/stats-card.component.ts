@@ -76,6 +76,9 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
         gridLines: {
           color: undefined
         },
+        scaleLabel: {
+          fontColor: undefined
+        }
       }],
       xAxes: [{
         ticks: {
@@ -84,6 +87,9 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
         gridLines: {
           color: undefined
         },
+        scaleLabel: {
+          fontColor: undefined
+        }
       }]
     },
     layout: {
@@ -129,6 +135,7 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
       const bco = this.barChartOptions;
       bco.legend.labels.fontColor = fontColor;
       bco.plugins.datalabels.color = fontColor;
+      bco.scales.xAxes[0].scaleLabel.fontColor = fontColor;
       bco.scales.xAxes[0].ticks.fontColor = fontColor;
       bco.scales.yAxes[0].ticks.fontColor = fontColor;
       bco.scales.xAxes[0].gridLines.color = gridColor;

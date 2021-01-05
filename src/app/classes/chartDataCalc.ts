@@ -79,9 +79,9 @@ export function getDeckReliability(current: Deck, compare: Deck): StatsData[] {
     {
       label: 'Current',
       data: {
-        '≤1': Math.round(statsCalc.reliabilityNegative(current.cards) * 100),
-        '=0': Math.round(statsCalc.reliabilityZero(current.cards) * 100),
-        '≥1': Math.round(statsCalc.reliabilityPositive(current.cards) * 100)
+        'Reduce Damage': Math.round(statsCalc.reliabilityNegative(current.cards) * 100),
+        'No Change': Math.round(statsCalc.reliabilityZero(current.cards) * 100),
+        'Increase Damage': Math.round(statsCalc.reliabilityPositive(current.cards) * 100)
       }
     }
   ];
@@ -89,9 +89,9 @@ export function getDeckReliability(current: Deck, compare: Deck): StatsData[] {
     chartData.push({
       label: 'Comparison',
       data: {
-        '≤1': Math.round(statsCalc.reliabilityNegative(compare.cards) * 100),
-        '=0': Math.round(statsCalc.reliabilityZero(compare.cards) * 100),
-        '≥1': Math.round(statsCalc.reliabilityPositive(compare.cards) * 100)
+        'Reduce Damage': Math.round(statsCalc.reliabilityNegative(compare.cards) * 100),
+        'No Change': Math.round(statsCalc.reliabilityZero(compare.cards) * 100),
+        'Increase Damage': Math.round(statsCalc.reliabilityPositive(compare.cards) * 100)
       }
     });
   }
@@ -99,7 +99,7 @@ export function getDeckReliability(current: Deck, compare: Deck): StatsData[] {
 }
 
 export function getDeckReliabilityLabels(stats: StatsData[]) {
-  return ['≤1', '=0', '≥1'];
+  return ['Reduce Damage', 'No Change', 'Increase Damage'];
 }
 
 
