@@ -34,7 +34,7 @@
     "handlebars": "^4.7.6",
     "lodash-es": "^4.17.15",
     "ng2-charts": "^2.4.2",
-    "postcss": "^8.1.7",
+    "postcss": "^8.2.10",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
