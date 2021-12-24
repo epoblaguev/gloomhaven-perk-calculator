@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIModule } from './modules/ui-modules/ui.module';
 import { MatMenuModule } from '@angular/material/menu';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
@@ -32,7 +32,7 @@ import { StatsCardComponent } from './modules/stats-card/stats-card.component';
         BrowserModule,
         FormsModule,
         UIModule,
-        ChartsModule,
+        NgChartsModule,
         MatMenuModule,
         MatSlideToggleModule,
         FontAwesomeModule,

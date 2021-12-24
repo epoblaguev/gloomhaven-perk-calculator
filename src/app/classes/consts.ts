@@ -5,7 +5,7 @@ import {
   faFireAlt, faInfoCircle, faMobileAlt, faMoneyBill, faQuestion, faTasks, faTimes, faUserCheck, faDice, faCrosshairs,
   faFistRaised, faFire, faSyncAlt, faMoon as fasMoon, faMinusCircle, faPlusCircle, faCoffee, faMugHot
 } from '@fortawesome/free-solid-svg-icons';
-import { ChartOptions } from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
 import { StatsCardProperties } from '../modules/stats-card/stats-card.component';
 import {
   getAverageDamage, getAverageDamageLabels, getCardsProbability, getCardsProbabilityLabels, getDeckReliability,
@@ -61,32 +61,34 @@ export const StatsModules: Record<string, StatsCardProperties> = {
     show: true,
     getDataFunc: getAverageDamage,
     chartLabelsFunc: getAverageDamageLabels,
-    modOptions: (options: ChartOptions) => {
-      const newOptions: ChartOptions = Utils.clone(options);
-      newOptions.scales.xAxes = [{
-        scaleLabel: {
+    modOptions: (options: ChartConfiguration['options']) => {
+      const newOptions: ChartConfiguration['options'] = Utils.clone(options);
+      newOptions.scales.x = {
+        title: {
           display: true,
-          labelString: 'Base Damage',
-          fontColor: options.scales.xAxes[0]?.scaleLabel.fontColor
-        },
-        ticks: {
-          fontColor: options.scales.xAxes[0]?.ticks.fontColor
-        },
-        gridLines: {
-          color: options.scales.xAxes[0]?.gridLines.color
-        }
-      }];
+          text: 'Base Damage',
+          // color: options.scales.x['title']['color'] //Will this work?
 
-      newOptions.scales.yAxes = [{
-        ticks: {
-          beginAtZero: true,
-          stepSize: 1,
-          fontColor: options.scales.yAxes[0]?.ticks.fontColor
         },
-        gridLines: {
-          color: options.scales.yAxes[0]?.gridLines.color
+        ticks: {
+          color: options.scales.x?.ticks.color
+          // fontColor: options.scales.xAxes[0]?.ticks.fontColor
+        },
+        grid: {
+          color: options.scales.x?.grid.color
         }
-      }];
+      };
+
+      newOptions.scales.y = {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 1,
+          color: options.scales.y?.ticks.color
+        },
+        grid: {
+          color: options.scales.y?.grid.color
+        }
+      };
 
       newOptions.plugins.datalabels.formatter = (x => x.toFixed(2));
       return newOptions;

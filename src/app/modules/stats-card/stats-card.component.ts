@@ -7,7 +7,7 @@ import { StatsData } from 'src/app/classes/chartDataCalc';
 import * as Utils from 'src/app/classes/utils';
 import { InfoPageComponent } from '../info-page/info-page.component';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartOptions } from 'chart.js';
+import { ChartConfiguration, ChartOptions } from 'chart.js';
 import pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Deck } from 'src/app/classes/deck';
 import { DarkModeService } from 'src/app/services/dark-mode.service';
@@ -58,7 +58,7 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
 
   @Input() properties: StatsCardProperties;
   @Input() character: Character;
-  @Input() barChartOptionsPatch: ChartOptions;
+  @Input() barChartOptionsPatch: ChartConfiguration['options'];
 
   @ViewChild('baseChart') chart: BaseChartDirective;
 
@@ -66,51 +66,52 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      yAxes: [{
+      y: {
+        min: 0,
+        max: 100,
         ticks: {
-          min: 0,
-          max: 100,
           stepSize: 20,
-          fontColor: undefined
+          font: undefined
         },
-        gridLines: {
+        grid: {
           color: undefined
         },
-        scaleLabel: {
-          fontColor: undefined
+        title: {
+          font: undefined
         }
-      }],
-      xAxes: [{
+      },
+      x: {
         ticks: {
-          fontColor: undefined
-        },
-        gridLines: {
           color: undefined
         },
-        scaleLabel: {
-          fontColor: undefined
+        grid: {
+          color: undefined
+        },
+        title: {
+          color: undefined
         }
-      }]
+      }
     },
     layout: {
       padding: {
         top: 15,
       }
     },
-    tooltips: { enabled: false },
+    // tooltip: { enabled: false },
     events: [],
     plugins: {
       datalabels: {
         anchor: 'end',
         align: 'end',
         clamp: true,
-        offset: -5,
         formatter: (x => `${x}%`)
-      }
-    },
-    legend: {
-      labels: {
-        fontColor: undefined
+      },
+      tooltip: {enabled: false},
+      legend: {
+        labels: {
+          // fontColor: undefined
+          color: undefined
+        }
       }
     }
   };
@@ -133,13 +134,13 @@ export class StatsCardComponent implements OnInit, DoCheck, OnDestroy {
       const gridColor = status ? '#4d5256' : undefined;
 
       const bco = this.barChartOptions;
-      bco.legend.labels.fontColor = fontColor;
+      bco.plugins.legend.labels.color = fontColor;
       bco.plugins.datalabels.color = fontColor;
-      bco.scales.xAxes[0].scaleLabel.fontColor = fontColor;
-      bco.scales.xAxes[0].ticks.fontColor = fontColor;
-      bco.scales.yAxes[0].ticks.fontColor = fontColor;
-      bco.scales.xAxes[0].gridLines.color = gridColor;
-      bco.scales.yAxes[0].gridLines.color = gridColor;
+      // bco.scales.x['title'].color = fontColor;
+      bco.scales.x.ticks.color = fontColor;
+      bco.scales.y.ticks.color = fontColor;
+      bco.scales.x.grid.color = gridColor;
+      bco.scales.y.grid.color = gridColor;
 
       this.barChartOptions = Utils.clone(this.barChartOptions);
     }));
