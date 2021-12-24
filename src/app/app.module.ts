@@ -19,28 +19,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatsCardComponent } from './modules/stats-card/stats-card.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InfoPageComponent,
-    DeckModifiersComponent,
-    PerkSelectorComponent,
-    PerkIconsComponent,
-    PerkLabelComponent,
-    StatsCardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    UIModule,
-    ChartsModule,
-    MatMenuModule,
-    MatSlideToggleModule,
-    FontAwesomeModule,
-    HttpClientModule
-  ],
-  entryComponents: [InfoPageComponent],
-  providers: [CharacterService, StorageService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        InfoPageComponent,
+        DeckModifiersComponent,
+        PerkSelectorComponent,
+        PerkIconsComponent,
+        PerkLabelComponent,
+        StatsCardComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        UIModule,
+        ChartsModule,
+        MatMenuModule,
+        MatSlideToggleModule,
+        FontAwesomeModule,
+        HttpClientModule
+    ],
+    providers: [CharacterService, StorageService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 
