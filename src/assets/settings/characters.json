@@ -443,17 +443,16 @@
             "name": "Deathwalker",
             "hidden_name": "Deathwalker",
             "icon": "valrath-deathwalker.svg",
-            "from_game": "Frosthaven (beta)",
+            "from_game": "Frosthaven",
             "perks": [
                 {"name": "Remove two (-1) cards", "uses": 1},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 3},
-                {"name": "Replace one (-2) card with one (-1) card and one (+1) card", "uses": 1},
-                {"name": "Add two (+1) cards", "uses": 2},
-                {"name": "Add three rolling PUSH 1 cards", "uses": 1},
-                {"name": "Add two rolling WOUND cards", "uses": 2},
-                {"name": "Add one rolling HEAL 2, Ally card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) CURSE card", "uses": 3},
                 {"name": "Add one (+2) DARK card", "uses": 2},
-                {"name": "Ignore negative scenario effects and remove one (-1) card", "uses": 1}
+                {"name": "Add one rolling DISARM and one rolling MUDDLE card", "uses": 2},
+                {"name": "Add one rolling HEAL 1, Ally card", "uses": 2},
+                {"name": "Ignore scenario effects", "uses": 1}
             ]
         },
         {

@@ -275,6 +275,10 @@ export const PERK_LIST = {
     char.deck.addCard('+0', 'None', -1);
     char.deck.addCard('+1', '+1 for each ally adjacent to target', 1);
   },
+  'Replace one (+0) card with one (+1) CURSE card': (char: Character) => {
+    char.deck.addCard('+0', 'None', -1);
+    char.deck.addCard('+1', 'Curse', 1);
+  },
   // Effect only perks
   'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.addEffect('Rolling Push 2', 2); },
   'Add two rolling EARTH cards': (char: Character) => { char.deck.addEffect('Rolling Earth', 2); },
@@ -286,6 +290,7 @@ export const PERK_LIST = {
   'Add two rolling IMMOBILIZE cards': (char: Character) => { char.deck.addEffect('Rolling Immobilize', 2); },
   'Add two rolling HEAL 1 cards': (char: Character) => { char.deck.addEffect('Rolling Heal 1', 2); },
   'Add two rolling HEAL 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Heal 1, Self', 2); },
+  'Add one rolling HEAL 1, Ally card': (char: Character) => { char.deck.addEffect('Rolling Heal 1, Ally', 1); },
   'Add one rolling HEAL 2, Ally card': (char: Character) => { char.deck.addEffect('Rolling Heal 2, Ally', 1); },
   'Add one rolling HEAL 3 card': (char: Character) => { char.deck.addEffect('Rolling Heal 3', 1); },
   // 'Add two rolling STUN cards': (char: Character) => { char.deck.addEffect('Rolling Stun', 2); },
