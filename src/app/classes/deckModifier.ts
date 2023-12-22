@@ -49,6 +49,7 @@ export const PERK_LIST = {
   'Add one (+1) WIND card': (char: Character) => { char.deck.addCard('+1', 'Wind', 1); },
   'Add one (+1) POISON card': (char: Character) => { char.deck.addCard('+1', 'Poison', 1); },
   'Add one (+1) FIRE_AND_LIGHT card': (char: Character) => { char.deck.addCard('+1', 'Fire & Light', 1); },
+  'Add one (+2) EARTH_OR_DARK card': (char: Character) => { char.deck.addCard('+2', 'Earth / Dark', 2); },
   'Add one rolling (+1) REGENERATE , Self card': (char: Character) => { char.deck.addCard('r+1', 'Regenerate, Self', 1); },
   'Add one (+2) FIRE card': (char: Character) => { char.deck.addCard('+2', 'Fire', 1); },
   'Add one (+2) WIND card': (char: Character) => { char.deck.addCard('+2', 'Wind', 1); },
@@ -140,6 +141,10 @@ export const PERK_LIST = {
   'Replace one (-1) card with one (+0) WOUND card': (char: Character) => {
     char.deck.addCard('-1', 'None', -1);
     char.deck.addCard('+0', 'Wound', 1);
+  },
+  'Replace one (-1) card with one (+0) CURSE card': (char: Character) => {
+    char.deck.addCard('-1', 'None', -1);
+    char.deck.addCard('+0', 'Curse', 1);
   },
   'Replace one (+0) card with one (+2) card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
@@ -293,6 +298,10 @@ export const PERK_LIST = {
     char.deck.addCard('+0', 'None', -1);
     char.deck.addEffect('+2 Next Attack', 1);
   },
+  'Replace one (+0) card with one (+1) \'Kill the attacking summon to instead add (+4) \' card': (char: Character) => {
+    char.deck.addCard('+0', 'None', -1);
+    char.deck.addEffect('Kill Summon, +4', 1);
+  },
   'Replace two (+0) cards with two rolling PIERCE 3 cards': (char: Character) => {
     char.deck.addCard('+0', 'None', -2);
     char.deck.addEffect('Pierce 3', 2);
@@ -315,6 +324,7 @@ export const PERK_LIST = {
   'Add one rolling HEAL 1, Ally card': (char: Character) => { char.deck.addEffect('Rolling Heal 1, Ally', 1); },
   'Add one rolling HEAL 2, Ally card': (char: Character) => { char.deck.addEffect('Rolling Heal 2, Ally', 1); },
   'Add one rolling HEAL 3 card': (char: Character) => { char.deck.addEffect('Rolling Heal 3', 1); },
+  'Add three rolling HEAL 1, Target Boneshaper cards': (char: Character) => { char.deck.addEffect('Rolling Heal 1, Boneshaper', 3); },
   // 'Add two rolling STUN cards': (char: Character) => { char.deck.addEffect('Rolling Stun', 2); },
   'Add two rolling WOUND cards': (char: Character) => { char.deck.addEffect('Rolling Wound', 2); },
   'Add two rolling LIGHT cards': (char: Character) => { char.deck.addEffect('Rolling Light', 2); },

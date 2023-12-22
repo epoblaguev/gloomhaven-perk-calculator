@@ -138,5 +138,6 @@ export const IconMap = {
   FIRE: { text: '', icon: 'fire.svg' },
   LIGHT: { text: '', icon: 'light.svg' },
   FIRE_AND_LIGHT: { text: '', icon: 'fire_and_light.svg' },
+  EARTH_OR_DARK: { text: '', icon: 'earth_or_dark.svg' },
   DARK: { text: '', icon: 'dark.svg' },
 };

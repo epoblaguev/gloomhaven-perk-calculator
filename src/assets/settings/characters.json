@@ -469,6 +469,21 @@
                 {"name": "Ignore negative scenario effects and add one (+1) card", "uses": 1},
                 {"name": "Ignore item (-1) effects and add one (+1) card", "uses": 1}
             ]
+        },
+        {
+            "name": "Boneshaper",
+            "hidden_name": "Boneshaper",
+            "icon": "aesther-boneshaper.svg",
+            "from_game": "Frosthaven",
+            "perks": [
+                {"name": "Replace one (-1) card with one (+0) CURSE card", "uses": 2},
+                {"name": "Replace one (-1) card with one (+0) POISON card", "uses": 2},
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+1) 'Kill the attacking summon to instead add (+4) ' card", "uses": 3},
+                {"name": "Add three rolling HEAL 1, Target Boneshaper cards", "uses": 2},
+                {"name": "Add one (+2) EARTH_OR_DARK card", "uses": 3},
+                {"name": "Ignore negative scenario effects and add two (+1) cards", "uses": 1}
+            ]
         }
     ]
 }

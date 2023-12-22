@@ -12,7 +12,7 @@ import { FaIcons, IconMap } from 'src/app/classes/consts';
 export class PerkIconsComponent implements OnInit {
   public static supportedWords = new Set<string>(['(-2)', '(-1)', '(+0)', '(+1)', '(+2)', '(+3)', '(+4)',
     'DARK', 'INVISIBLE', 'rolling', 'HEAL', 'Shield', 'CURSE', 'BLESS', 'MUDDLE', 'TARGET', 'PUSH', 'PULL', 'PIERCE', 'STUN', 'DISARM', 'IMMOBILIZE', 'POISON', 'WOUND', 'REGENERATE',
-    'EARTH', 'WIND', 'FROST', 'FIRE', 'LIGHT', 'FIRE_AND_LIGHT']);
+    'EARTH', 'WIND', 'FROST', 'FIRE', 'LIGHT', 'FIRE_AND_LIGHT', 'EARTH_OR_DARK']);
   public static registeredIcons = new Set<string>();
 
   public faIcons = FaIcons;
