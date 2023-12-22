@@ -75,6 +75,7 @@ export const PERK_LIST = {
   'Add three (+0) FROST cards': (char: Character) => { char.deck.addCard('+0', 'Frost', 3); },
   'Add three (+0) WIND cards': (char: Character) => { char.deck.addCard('+0', 'Wind', 3); },
   'Add three (+0) EARTH cards': (char: Character) => { char.deck.addCard('+0', 'Earth', 3); },
+  'Add one (+2) IMMOBILIZE card': (char: Character) => { char.deck.addCard('+2', 'Immobilize', 1); },
   'Ignore negative scenario effects': (char: Character) => { char.ignoreNegScenarioEffects = true; },
   'Ignore negative scenario effects and add one (+1) card': (char: Character) => {
     char.ignoreNegScenarioEffects = true;
@@ -104,6 +105,10 @@ export const PERK_LIST = {
   'Ignore negative item effects and add two (+1) cards': (char: Character) => {
     char.ignoreNegItemEffects = true;
     char.deck.addCard('+1', 'None', 2);
+  },
+  'Ignore item (-1) effects and add one (+1) card': (char: Character) => {
+    char.ignoreNegItemEffects = true;
+    char.deck.addCard('+1', 'None', 1);
   },
   'Remove four (+0) cards': (char: Character) => { char.deck.addCard('+0', 'None', -4); },
   'Remove two (-1) cards': (char: Character) => { char.deck.addCard('-1', 'None', -2); },
@@ -288,6 +293,14 @@ export const PERK_LIST = {
     char.deck.addCard('+0', 'None', -1);
     char.deck.addEffect('+2 Next Attack', 1);
   },
+  'Replace two (+0) cards with two rolling PIERCE 3 cards': (char: Character) => {
+    char.deck.addCard('+0', 'None', -2);
+    char.deck.addEffect('Pierce 3', 2);
+  },
+  'Replace two (+0) cards with two rolling PUSH 2 cards': (char: Character) => {
+    char.deck.addCard('+0', 'None', -2);
+    char.deck.addEffect('Push 2', 2);
+  },
   // Effect only perks
   'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.addEffect('Rolling Push 2', 2); },
   'Add two rolling EARTH cards': (char: Character) => { char.deck.addEffect('Rolling Earth', 2); },
@@ -307,8 +320,6 @@ export const PERK_LIST = {
   'Add two rolling LIGHT cards': (char: Character) => { char.deck.addEffect('Rolling Light', 2); },
   'Add two rolling CURSE cards': (char: Character) => { char.deck.addEffect('Rolling Curse', 2); },
   'Add two rolling Shield 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
-  // tslint:disable-next-line:max-line-length
-  'Add one rolling \'Move back one character token\' card': (char: Character) => { char.deck.addEffect('Move back one character token', 1); },
   'Add one rolling INVISIBLE card': (char: Character) => { char.deck.addEffect('Rolling Invisible', 1); },
   'Add one rolling STUN card': (char: Character) => { char.deck.addEffect('Rolling Stun', 1); },
   'Add one rolling DISARM and one rolling MUDDLE card': (char: Character) => {
