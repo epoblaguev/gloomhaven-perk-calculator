@@ -72,7 +72,7 @@
                 {"name": "Add one (+2) FIRE card", "uses": 2},
                 {"name": "Add one (+2) FROST card", "uses": 2},
                 {"name": "Add one rolling EARTH and one rolling WIND card", "uses": 1},
-                {"name": "Add one rolling SUN and one rolling DARK card", "uses": 1}
+                {"name": "Add one rolling LIGHT and one rolling DARK card", "uses": 1}
             ]
         },
         {
@@ -125,7 +125,7 @@
                 {"name": "Replace two (+1) cards with one (+3) Shield 1, Self card", "uses": 2},
                 {"name": "Replace one (+0) card with one (+1) Shield 1, Affect any ally card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) DARK card", "uses": 1},
-                {"name": "Replace one (+0) card with one (+2) SUN card", "uses": 1},
+                {"name": "Replace one (+0) card with one (+2) LIGHT card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+3) MUDDLE card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) CURSE card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+2) REGENERATE , Self card", "uses": 1},
@@ -148,7 +148,7 @@
                 {"name": "Add two rolling (+1) cards", "uses": 2},
                 {"name": "Add two rolling HEAL 1 cards", "uses": 2},
                 {"name": "Add one rolling STUN card", "uses": 1},
-                {"name": "Add two rolling SUN cards", "uses": 2},
+                {"name": "Add two rolling LIGHT cards", "uses": 2},
                 {"name": "Add two rolling Shield 1, Self cards", "uses": 1},
                 {"name": "Ignore negative item effects and add two (+1) cards", "uses": 1},
                 {"name": "Ignore negative scenario effects", "uses": 1}
@@ -400,8 +400,8 @@
                 {"name": "Remove one (-2) card and one (+1) card", "uses": 1},
                 {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
                 {"name": "Replace one (+1) card with one (+2) FIRE card", "uses": 2},
-                {"name": "Replace one (+1) card with one (+2) SUN card", "uses": 2},
-                {"name": "Add one (+1) FIRESUN card", "uses": 2},
+                {"name": "Replace one (+1) card with one (+2) LIGHT card", "uses": 2},
+                {"name": "Add one (+1) FIRE_AND_LIGHT card", "uses": 2},
                 {"name": "Add one (+1) Shield 1 card", "uses": 2},
                 {"name": "Replace one (+0) card with one (+1) IMMOBILIZE card", "uses": 1},
                 {"name": "Replace one (+0) card with one (+1) WOUND card", "uses": 1}

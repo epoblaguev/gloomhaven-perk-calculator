@@ -136,7 +136,7 @@ export const IconMap = {
   WIND: { text: '', icon: 'wind.svg' },
   FROST: { text: '', icon: 'frost.svg' },
   FIRE: { text: '', icon: 'fire.svg' },
-  SUN: { text: '', icon: 'sun.svg' },
-  FIRESUN: { text: '', icon: 'firesun.svg' },
+  LIGHT: { text: '', icon: 'light.svg' },
+  FIRE_AND_LIGHT: { text: '', icon: 'fire_and_light.svg' },
   DARK: { text: '', icon: 'dark.svg' },
 };

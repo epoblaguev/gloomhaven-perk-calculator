@@ -48,7 +48,7 @@ export const PERK_LIST = {
   'Add one (+1) WOUND card': (char: Character) => { char.deck.addCard('+1', 'Wound', 1); },
   'Add one (+1) WIND card': (char: Character) => { char.deck.addCard('+1', 'Wind', 1); },
   'Add one (+1) POISON card': (char: Character) => { char.deck.addCard('+1', 'Poison', 1); },
-  'Add one (+1) FIRESUN card': (char: Character) => { char.deck.addCard('+1', 'Fire / Sun', 1); },
+  'Add one (+1) FIRE_AND_LIGHT card': (char: Character) => { char.deck.addCard('+1', 'Fire & Light', 1); },
   'Add one (+1) REGENERATE, Self card': (char: Character) => { char.deck.addCard('+1', 'Regenerate, Self', 1); },
   'Add one (+2) FIRE card': (char: Character) => { char.deck.addCard('+2', 'Fire', 1); },
   'Add one (+2) WIND card': (char: Character) => { char.deck.addCard('+2', 'Wind', 1); },
@@ -198,9 +198,9 @@ export const PERK_LIST = {
     char.deck.addCard('+0', 'None', -1);
     char.deck.addCard('+2', 'Dark', 1);
   },
-  'Replace one (+0) card with one (+2) SUN card': (char: Character) => {
+  'Replace one (+0) card with one (+2) LIGHT card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
-    char.deck.addCard('+2', 'Sun', 1);
+    char.deck.addCard('+2', 'Light', 1);
   },
   'Replace one (+0) card with one (+2) REGENERATE , Self card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
@@ -218,9 +218,9 @@ export const PERK_LIST = {
     char.deck.addCard('+1', 'None', -1);
     char.deck.addCard('+2', 'Fire', 1);
   },
-  'Replace one (+1) card with one (+2) SUN card': (char: Character) => {
+  'Replace one (+1) card with one (+2) LIGHT card': (char: Character) => {
     char.deck.addCard('+1', 'None', -1);
-    char.deck.addCard('+2', 'Sun', 1);
+    char.deck.addCard('+2', 'Light', 1);
   },
   'Replace one (+1) card with one (+3) card': (char: Character) => {
     char.deck.addCard('+1', 'None', -1);
@@ -280,7 +280,7 @@ export const PERK_LIST = {
   'Add one rolling HEAL 3 card': (char: Character) => { char.deck.addEffect('Rolling Heal 3', 1); },
   // 'Add two rolling STUN cards': (char: Character) => { char.deck.addEffect('Rolling Stun', 2); },
   'Add two rolling WOUND cards': (char: Character) => { char.deck.addEffect('Rolling Wound', 2); },
-  'Add two rolling SUN cards': (char: Character) => { char.deck.addEffect('Rolling Sun', 2); },
+  'Add two rolling LIGHT cards': (char: Character) => { char.deck.addEffect('Rolling Light', 2); },
   'Add two rolling CURSE cards': (char: Character) => { char.deck.addEffect('Rolling Curse', 2); },
   'Add two rolling Shield 1, Self cards': (char: Character) => { char.deck.addEffect('Rolling Shield 1, Self', 2); },
   // tslint:disable-next-line:max-line-length
@@ -295,8 +295,8 @@ export const PERK_LIST = {
     char.deck.addEffect('Rolling Earth', 1);
     char.deck.addEffect('Rolling Wind', 1);
   },
-  'Add one rolling SUN and one rolling DARK card': (char: Character) => {
-    char.deck.addEffect('Rolling Sun', 1);
+  'Add one rolling LIGHT and one rolling DARK card': (char: Character) => {
+    char.deck.addEffect('Rolling Light', 1);
     char.deck.addEffect('Rolling Dark', 1);
   },
   'Add one rolling FIRE and one rolling WIND card': (char: Character) => {
