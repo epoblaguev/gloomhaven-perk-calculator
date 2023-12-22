@@ -63,6 +63,8 @@ export const PERK_LIST = {
     char.deck.addCard('-2', 'None', 1);
     char.deck.addCard('+2', 'None', 2);
   },
+  'Add one (+1) DISARM card': (char: Character) => { char.deck.addCard('+1', 'Disarm', 1); },
+  'Add one (+2) PUSH 1 card': (char: Character) => { char.deck.addCard('+2', 'Push 1', 1); },
   'Add one rolling (+1) DISARM card': (char: Character) => { char.deck.addCard('r+1', 'Rolling Disarm', 1); },
   'Add one rolling (+2) card': (char: Character) => { char.deck.cards['r+2'] += 1; },
   'Add two (+1) cards': (char: Character) => { char.deck.addCard('+1', 'None', 2); },
@@ -95,9 +97,9 @@ export const PERK_LIST = {
     char.ignoreNegItemEffects = true;
     char.deck.addCard('+1', 'None', 1);
   },
-  'Ignore negative item effects and add one (-1) card': (char: Character) => {
+  'Ignore item (-1) effects and remove one (-1) card': (char: Character) => {
     char.ignoreNegItemEffects = true;
-    char.deck.addCard('-1', 'None', 1);
+    char.deck.addCard('-1', 'None', -1);
   },
   'Ignore negative item effects and add two (+1) cards': (char: Character) => {
     char.ignoreNegItemEffects = true;
@@ -264,6 +266,14 @@ export const PERK_LIST = {
     char.deck.addCard('+0', 'None', -2);
     char.deck.addCard('+0', 'Frost', 1);
     char.deck.addCard('+0', 'Wind', 1);
+  },
+  'Replace one (-1) card with one rolling Shield 1, Self card': (char: Character) => {
+    char.deck.addCard('-1', 'None', -1);
+    char.deck.addEffect('Rolling Shield 1, Self', 1);
+  },
+  'Replace one (+0) card with one (+1) \'Add (+1) Attack for each ally adjacent to the target\' card': (char: Character) => {
+    char.deck.addCard('+0', 'None', -1);
+    char.deck.addCard('+1', '+1 for each ally adjacent to target', 1);
   },
   // Effect only perks
   'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.addEffect('Rolling Push 2', 2); },

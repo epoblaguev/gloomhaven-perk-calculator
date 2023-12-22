@@ -411,18 +411,14 @@
             "name": "Banner Spear",
             "hidden_name": "Banner Spear",
             "icon": "human-banner-spear.svg",
-            "from_game": "Frosthaven (beta)",
+            "from_game": "Frosthaven",
             "perks": [
-                {"name": "Remove four (+0) cards", "uses": 1},
-                {"name": "Remove two (-1) cards", "uses": 1},
-                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
-                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
-                {"name": "Add two rolling PIERCE 3 cards", "uses": 2},
+                {"name": "Replace one (-1) card with one rolling Shield 1, Self card", "uses": 3},
+                {"name": "Replace one (+0) card with one (+1) 'Add (+1) Attack for each ally adjacent to the target' card", "uses": 2},
+                {"name": "Add one (+1) DISARM card", "uses": 2},
+                {"name": "Add one (+2) PUSH 1 card", "uses": 2},
                 {"name": "Add two rolling (+1) cards", "uses": 2},
-                {"name": "Add two rolling HEAL 1, Self cards", "uses": 2},
-                {"name": "Add one (+1) Shield 1, Self card", "uses": 2},
-                {"name": "Add one (+1) WOUND card", "uses": 2},
-                {"name": "Ignore negative item effects and add one (-1) card", "uses": 1}
+                {"name": "Ignore item (-1) effects and remove one (-1) card", "uses": 1}
             ]
         },
         {

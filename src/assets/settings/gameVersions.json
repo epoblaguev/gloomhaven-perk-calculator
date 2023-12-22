@@ -16,9 +16,14 @@
             "enabled": true
         },
         {
-            "name": "Frosthaven (beta)",
+            "name": "Frosthaven",
             "priority": 4,
-            "enabled": false
+            "enabled": true
+        },
+        {
+          "name": "Frosthaven (beta)",
+          "priority": 5,
+          "enabled": false
         }
     ]
 }
