@@ -70,6 +70,7 @@ export const PERK_LIST = {
   'Add one rolling (+2) card': (char: Character) => { char.deck.cards['r+2'] += 1; },
   'Add two (+1) cards': (char: Character) => { char.deck.addCard('+1', 'None', 2); },
   'Add two (+1) PUSH 1 cards': (char: Character) => { char.deck.addCard('+1', 'Push 1', 2); },
+  'Add two (+1) PUSH 3 cards': (char: Character) => { char.deck.addCard('+1', 'Push 3', 2); },
   'Add two rolling (+1) cards': (char: Character) => { char.deck.cards['r+1'] += 2; },
   'Add three rolling (+1) cards': (char: Character) => { char.deck.cards['r+1'] += 3; },
   'Add three (+0) FIRE cards': (char: Character) => { char.deck.addCard('+0', 'Fire', 3); },
@@ -77,6 +78,7 @@ export const PERK_LIST = {
   'Add three (+0) WIND cards': (char: Character) => { char.deck.addCard('+0', 'Wind', 3); },
   'Add three (+0) EARTH cards': (char: Character) => { char.deck.addCard('+0', 'Earth', 3); },
   'Add one (+2) IMMOBILIZE card': (char: Character) => { char.deck.addCard('+2', 'Immobilize', 1); },
+  'Add one (2x) BRITTLE , Self card': (char: Character) => { char.deck.addCard('x2', 'Brittle', 1); },
   'Ignore negative scenario effects': (char: Character) => { char.ignoreNegScenarioEffects = true; },
   'Ignore negative scenario effects and add one (+1) card': (char: Character) => {
     char.ignoreNegScenarioEffects = true;
@@ -145,6 +147,10 @@ export const PERK_LIST = {
   'Replace one (-1) card with one (+0) CURSE card': (char: Character) => {
     char.deck.addCard('-1', 'None', -1);
     char.deck.addCard('+0', 'Curse', 1);
+  },
+  'Replace one (-1) card with one (+0) CONSUME_WILD : WILD card': (char: Character) => {
+    char.deck.addCard('-1', 'None', -1);
+    char.deck.addCard('+0', 'Convert Any Element', 1);
   },
   'Replace one (+0) card with one (+2) card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);

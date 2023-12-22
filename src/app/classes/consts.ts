@@ -132,6 +132,7 @@ export const IconMap = {
   POISON: { text: 'POISON', icon: 'poison.svg' },
   WOUND: { text: 'WOUND', icon: 'wound.svg' },
   REGENERATE: { text: 'REGENERATE', icon: 'regenerate.png' },
+  BRITTLE: { text: 'BRITTLE', icon: 'brittle.svg' },
   EARTH: { text: '', icon: 'earth.svg' },
   WIND: { text: '', icon: 'wind.svg' },
   FROST: { text: '', icon: 'frost.svg' },
@@ -140,4 +141,6 @@ export const IconMap = {
   FIRE_AND_LIGHT: { text: '', icon: 'fire_and_light.svg' },
   EARTH_OR_DARK: { text: '', icon: 'earth_or_dark.svg' },
   DARK: { text: '', icon: 'dark.svg' },
+  WILD: { text: '', icon: 'wild.svg' },
+  CONSUME_WILD: { text: '', icon: 'wild_consume.svg' },
 };

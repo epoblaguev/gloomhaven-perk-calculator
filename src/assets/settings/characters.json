@@ -484,6 +484,23 @@
                 {"name": "Add one (+2) EARTH_OR_DARK card", "uses": 3},
                 {"name": "Ignore negative scenario effects and add two (+1) cards", "uses": 1}
             ]
+        },
+        {
+            "name": "Geminate",
+            "hidden_name": "Geminate",
+            "icon": "harrower-geminate.svg",
+            "from_game": "Frosthaven",
+            "perks": [
+                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+0) CONSUME_WILD : WILD card", "uses": 3},
+                {"name": "Replace one (+0) card with one (+1) POISON card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) WOUND card", "uses": 2},
+                {"name": "Replace two (+0) cards with two rolling PIERCE 3 cards", "uses": 1},
+                {"name": "Add two (+1) PUSH 3 cards", "uses": 1},
+                {"name": "Add one (2x) BRITTLE , Self card", "uses": 1},
+                {"name": "Add one rolling (+1) REGENERATE , Self card", "uses": 2},
+                {"name": "Ignore negative scenario effects", "uses": 1}
+            ]
         }
     ]
 }
