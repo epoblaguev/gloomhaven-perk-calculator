@@ -422,21 +422,19 @@
             ]
         },
         {
-            "name": "Blink Blade",
-            "hidden_name": "Blink Blade",
+            "name": "Blinkblade",
+            "hidden_name": "Blinkblade",
             "icon": "quatryl-blinkblade.svg",
-            "from_game": "Frosthaven (beta)",
+            "from_game": "Frosthaven",
             "perks":[
-                {"name": "Remove four (+0) cards", "uses": 1},
-                {"name": "Remove two (-1) cards", "uses": 2},
-                {"name": "Replace one (+0) card with one (+2) card", "uses": 1},
-                {"name": "Replace one (-1) card with one (+1) card", "uses": 1},
-                {"name": "Replace one (-2) card with one (+0) card", "uses": 1},
-                {"name": "Add one (-1) 'Add one Counter' card", "uses": 2},
-                {"name": "Add one (+1) REGENERATE, Self card", "uses": 2},
-                {"name": "Add three rolling MUDDLE cards", "uses": 2},
-                {"name": "Add one (+1) IMMOBILIZE card", "uses": 2},
-                {"name": "Ignore negative scenario effects and remove two (+0) cards", "uses": 1}
+                {"name": "Remove one (-2) card", "uses": 1},
+                {"name": "Replace one (-1) card with one (+1) card", "uses": 2},
+                {"name": "Replace one (-1) card with one (+0) WOUND card", "uses": 2},
+                {"name": "Replace one (+0) card with one (+1) IMMOBILIZE card", "uses": 2},
+                {"name": "Replace one (+0) card with one rolling 'Place this card in your active area. On your next attack, discard this card to add (+2) Attack' card", "uses":  3},
+                {"name": "Replace two (+1) cards with two (+2) cards", "uses": 1},
+                {"name": "Add one (-1) 'Gain 1 Time Token' card", "uses": 2},
+                {"name": "Add one rolling (+1) REGENERATE , Self card", "uses": 2}
             ]
         },
         {

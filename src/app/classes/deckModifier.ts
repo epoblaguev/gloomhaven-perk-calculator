@@ -35,7 +35,7 @@ export const MISC_MODIFIERS_LIST = {
 
 export const PERK_LIST = {
   'Add one (-1) DARK card': (char: Character) => { char.deck.addCard('-1', 'Dark', 1); },
-  'Add one (-1) \'Add one Counter\' card': (char: Character) => { char.deck.addCard('-1', 'Add one Counter', 1); },
+  'Add one (-1) \'Gain 1 Time Token\' card': (char: Character) => { char.deck.addCard('-1', 'Gain 1 Time Token', 1); },
   'Add one (+0) ADD TARGET card': (char: Character) => { char.deck.addCard('+0', 'Add Target', 1); },
   'Add one (+0) STUN card': (char: Character) => { char.deck.addCard('+0', 'Stun', 1); },
   'Add one (+0) Refresh and item card': (char: Character) => { char.deck.addCard('+0', 'Refresh an item', 1); },
@@ -49,7 +49,7 @@ export const PERK_LIST = {
   'Add one (+1) WIND card': (char: Character) => { char.deck.addCard('+1', 'Wind', 1); },
   'Add one (+1) POISON card': (char: Character) => { char.deck.addCard('+1', 'Poison', 1); },
   'Add one (+1) FIRE_AND_LIGHT card': (char: Character) => { char.deck.addCard('+1', 'Fire & Light', 1); },
-  'Add one (+1) REGENERATE, Self card': (char: Character) => { char.deck.addCard('+1', 'Regenerate, Self', 1); },
+  'Add one rolling (+1) REGENERATE , Self card': (char: Character) => { char.deck.addCard('r+1', 'Regenerate, Self', 1); },
   'Add one (+2) FIRE card': (char: Character) => { char.deck.addCard('+2', 'Fire', 1); },
   'Add one (+2) WIND card': (char: Character) => { char.deck.addCard('+2', 'Wind', 1); },
   'Add one (+2) FROST card': (char: Character) => { char.deck.addCard('+2', 'Frost', 1); },
@@ -131,6 +131,10 @@ export const PERK_LIST = {
   'Replace one (-1) card with one (+0) POISON card': (char: Character) => {
     char.deck.addCard('-1', 'None', -1);
     char.deck.addCard('+0', 'Poison', 1);
+  },
+  'Replace one (-1) card with one (+0) WOUND card': (char: Character) => {
+    char.deck.addCard('-1', 'None', -1);
+    char.deck.addCard('+0', 'Wound', 1);
   },
   'Replace one (+0) card with one (+2) card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
@@ -278,6 +282,11 @@ export const PERK_LIST = {
   'Replace one (+0) card with one (+1) CURSE card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
     char.deck.addCard('+1', 'Curse', 1);
+  },
+  // tslint:disable-next-line:max-line-length
+  'Replace one (+0) card with one rolling \'Place this card in your active area. On your next attack, discard this card to add (+2) Attack\' card': (char: Character) => {
+    char.deck.addCard('+0', 'None', -1);
+    char.deck.addEffect('+2 Next Attack', 1);
   },
   // Effect only perks
   'Add two rolling PUSH 2 cards': (char: Character) => { char.deck.addEffect('Rolling Push 2', 2); },
