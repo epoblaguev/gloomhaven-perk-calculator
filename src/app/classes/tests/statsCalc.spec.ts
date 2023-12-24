@@ -130,10 +130,10 @@ describe('statsCalc', () => {
       }
     },
     {
-      input: { None: 1, Sun: 1 },
+      input: { None: 1, Light: 1 },
       output: {
         None: (1 / 2),
-        Sun: (1 / 2)
+        Light: (1 / 2)
       }
     },
     {
