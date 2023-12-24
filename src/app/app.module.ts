@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UIModule } from './modules/ui-modules/ui.module';
 import { MatMenuModule } from '@angular/material/menu';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { InfoPageComponent } from './modules/info-page/info-page.component';
@@ -19,28 +19,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { StatsCardComponent } from './modules/stats-card/stats-card.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InfoPageComponent,
-    DeckModifiersComponent,
-    PerkSelectorComponent,
-    PerkIconsComponent,
-    PerkLabelComponent,
-    StatsCardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    UIModule,
-    ChartsModule,
-    MatMenuModule,
-    MatSlideToggleModule,
-    FontAwesomeModule,
-    HttpClientModule
-  ],
-  entryComponents: [InfoPageComponent],
-  providers: [CharacterService, StorageService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        InfoPageComponent,
+        DeckModifiersComponent,
+        PerkSelectorComponent,
+        PerkIconsComponent,
+        PerkLabelComponent,
+        StatsCardComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        UIModule,
+        NgChartsModule,
+        MatMenuModule,
+        MatSlideToggleModule,
+        FontAwesomeModule,
+        HttpClientModule
+    ],
+    providers: [CharacterService, StorageService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 

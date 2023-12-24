@@ -1,6 +1,6 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
 @import './palettes.scss';
-@include mat-core();
+@include mat.core();
 @font-face {
     font-family: 'Pirata One';
     src: url('fonts/PirataOne-Regular.woff2') format('woff2'), url('fonts/PirataOne.woff') format('woff'), url('fonts/PirataOne.ttf') format('truetype');
@@ -16,21 +16,21 @@
     src: url('fonts/SakkalMajalla.woff2') format('woff2'), url('fonts/majalla.woff') format('woff'), url('fonts/majalla.ttf') format('truetype');
 }
 
-$custom-typography: mat-typography-config( $font-family: 'Sakkal Majalla',
-$body-1: mat-typography-level(20px,
+$custom-typography: mat.define-typography-config( $font-family: 'Sakkal Majalla',
+$body-1: mat.define-typography-level(20px,
 24px,
 500),
-$button: mat-typography-level(20px,
+$button: mat.define-typography-level(20px,
 24px,
 500));
-@include mat-core($custom-typography);
-$my-app-primary: mat-palette($md-gloomprimary);
-$my-app-accent: mat-palette($md-gloomaccent,
+@include mat.core($custom-typography);
+$my-app-primary: mat.define-palette($md-gloomprimary);
+$my-app-accent: mat.define-palette($md-gloomaccent,
 500,
 900,
 A100);
-$my-app-warn: mat-palette($md-gloomwarn);
-$my-app-theme: mat-light-theme($my-app-primary,
+$my-app-warn: mat.define-palette($md-gloomwarn);
+$my-app-theme: mat.define-light-theme($my-app-primary,
 $my-app-accent,
 $my-app-warn);
-@include angular-material-theme($my-app-theme);
+@include mat.all-component-themes($my-app-theme);
