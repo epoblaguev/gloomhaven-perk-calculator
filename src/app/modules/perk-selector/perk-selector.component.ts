@@ -129,7 +129,7 @@ export class PerkSelectorComponent implements OnInit, OnDestroy {
 
   private resetDeckModifiers() {
     const char = this.character;
-    const modifiers = [char.negItemEffects, char.posItemEffects, char.negScenarioEffects, char.miscModifiers];
+    const modifiers = [char.negItemEffects, char.posItemEffects, char.negScenarioEffects, char.posScenarioEffects];
     modifiers.forEach(modList => modList.forEach(mod => mod.uses.forEach(use => use.used = false)));
   }
 }

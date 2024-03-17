@@ -13,9 +13,10 @@ describe('Character', () => {
 
   // Test that all characters have exactly 15 perks
   charJson.characters.forEach(character => {
-    it(`${character.name} should have 15 perks`, () => {
+    const expected = ['Boneshaper', 'Geminate', 'Banner Spear'].includes(character.name) ? 14 : 15;
+    it(`${character.name} should have ${expected} perks`, () => {
       const char = new Character(character);
-      expect(char.perkList.map(perk => perk.uses.length).reduce((prev, cur) => prev + cur)).toBe(15, `${char.name} failed`);
+      expect(char.perkList.map(perk => perk.uses.length).reduce((prev, cur) => prev + cur)).toBe(expected, `${char.name} failed`);
     });
   });
 
@@ -30,7 +31,7 @@ describe('Character', () => {
     it(`${character.name} Modifiers should have effect on character`, () => {
       const char = new Character(character);
       const baseChar = new Character(character);
-      const modLists = [char.perkList, char.negScenarioEffects, char.negItemEffects, char.posItemEffects, char.miscModifiers];
+      const modLists = [char.perkList, char.negScenarioEffects, char.negItemEffects, char.posItemEffects, char.posScenarioEffects];
       modLists.forEach(modList => modList.forEach(mod => {
         mod.uses.forEach((use, idx) => {
           use.used = true;
