@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck, Input } from '@angular/core';
-import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, MISC_MODIFIERS_LIST, POS_ITEM_EFFECTS_LIST } from 'src/app/classes/deckModifier';
+import { NEG_SCENARIO_EFFECTS_LIST, DeckModifier, NEG_ITEM_EFFECTS_LIST, POS_SCENARIO_EFFECTS_LIST, POS_ITEM_EFFECTS_LIST } from 'src/app/classes/deckModifier';
 import { Character } from 'src/app/classes/character';
 import { StorageService } from 'src/app/services/storage.service';
 import { FaIcons } from 'src/app/classes/consts';
@@ -42,7 +42,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   constructor(private storageService: StorageService) { }
 
   ngOnInit() {
-    this.counts.bless = this.character.miscModifiers.find(mod => mod.name === 'Bless').uses.length;
+    this.counts.bless = this.character.posScenarioEffects.find(mod => mod.name === 'Bless').uses.length;
     this.counts.curse = this.character.negScenarioEffects.find(mod => mod.name === 'Curse').uses.length;
     this.counts['scenario-1'] = this.character.negScenarioEffects.find(mod => mod.name === '-1').uses.length;
     this.counts['item-1'] = this.character.negItemEffects.find(mod => mod.name === '-1').uses.length;
@@ -65,7 +65,7 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
   private updateDropdowns() {
     this.prevCharacter = Utils.clone(this.character);
 
-    this.modifiers.bless = this.getModUses(this.character.miscModifiers.find(mod => mod.name === 'Bless'));
+    this.modifiers.bless = this.getModUses(this.character.posScenarioEffects.find(mod => mod.name === 'Bless'));
     this.modifiers.curse = this.getModUses(this.character.negScenarioEffects.find(mod => mod.name === 'Curse'));
     this.modifiers['scenario-1'] = this.getModUses(this.character.negScenarioEffects.find(mod => mod.name === '-1'));
     this.modifiers['item-1'] = this.getModUses(this.character.negItemEffects.find(mod => mod.name === '-1'));
@@ -86,11 +86,11 @@ export class DeckModifiersComponent implements OnInit, DoCheck {
     char.negScenarioEffects.length = 0;
     char.negItemEffects.length = 0;
     char.posItemEffects.length = 0;
-    char.miscModifiers.length = 0;
+    char.posScenarioEffects.length = 0;
 
     char.negScenarioEffects.push(new DeckModifier('Curse', this.modifiers.curse, NEG_SCENARIO_EFFECTS_LIST.Curse, true));
     char.negScenarioEffects.push(new DeckModifier('-1', this.modifiers['scenario-1'], NEG_SCENARIO_EFFECTS_LIST['-1'], true));
-    char.miscModifiers.push(new DeckModifier('Bless', this.modifiers.bless, MISC_MODIFIERS_LIST.Bless, true));
+    char.posScenarioEffects.push(new DeckModifier('Bless', this.modifiers.bless, POS_SCENARIO_EFFECTS_LIST.Bless, true));
 
     if (this.itemEffectsCount > 0) {
       char.negItemEffects.push(new DeckModifier('-1', this.itemEffectsCount, NEG_ITEM_EFFECTS_LIST['-1'], true));
