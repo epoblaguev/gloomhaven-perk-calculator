@@ -1,4 +1,4 @@
-import { DeckModifier, PERK_LIST, MISC_MODIFIERS_LIST, NEG_SCENARIO_EFFECTS_LIST, NEG_ITEM_EFFECTS_LIST, POS_ITEM_EFFECTS_LIST, } from './deckModifier';
+import { DeckModifier, PERK_LIST, POS_SCENARIO_EFFECTS_LIST, NEG_SCENARIO_EFFECTS_LIST, NEG_ITEM_EFFECTS_LIST, POS_ITEM_EFFECTS_LIST, } from './deckModifier';
 import { Deck } from './deck';
 
 export class Character {
@@ -9,11 +9,13 @@ export class Character {
   public negScenarioEffects: DeckModifier[];
   public negItemEffects: DeckModifier[];
   public posItemEffects: DeckModifier[];
-  public miscModifiers: DeckModifier[];
+  public posScenarioEffects: DeckModifier[];
   public deck: Deck;
   public compareDeck: Deck;
   public ignoreNegItemEffects: boolean;
+  public ignorePosItemEffects: boolean;
   public ignoreNegScenarioEffects: boolean;
+  public ignorePosScenarioEffects: boolean;
   public icon: string;
 
   constructor(characterJson) {
@@ -21,7 +23,7 @@ export class Character {
     this.hiddenName = characterJson.hidden_name;
     this.gameName = characterJson.from_game;
     this.deck = new Deck();
-    this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
+    this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = this.ignorePosScenarioEffects = this.ignorePosItemEffects = false;
     this.icon = characterJson.icon;
 
     this.perkList = new Array<DeckModifier>();
@@ -33,18 +35,18 @@ export class Character {
     this.negScenarioEffects = Object.entries(NEG_SCENARIO_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
     this.negItemEffects = Object.entries(NEG_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
     this.posItemEffects = Object.entries(POS_ITEM_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 5, value));
-    this.miscModifiers = Object.entries(MISC_MODIFIERS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
+    this.posScenarioEffects = Object.entries(POS_SCENARIO_EFFECTS_LIST).map(([key, value]) => new DeckModifier(key, 10, value));
   }
 
   public applyModifiers() {
-    this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = false;
+    this.ignoreNegItemEffects = this.ignoreNegScenarioEffects = this.ignorePosScenarioEffects = this.ignorePosItemEffects = false;
 
     this.deck.reset();
     this.applyModifierList(this.perkList);
-    this.applyModifierList(this.miscModifiers);
-    this.applyModifierList(this.posItemEffects);
     if (!this.ignoreNegScenarioEffects) { this.applyModifierList(this.negScenarioEffects); }
+    if (!this.ignorePosScenarioEffects) { this.applyModifierList(this.posScenarioEffects); }
     if (!this.ignoreNegItemEffects) { this.applyModifierList(this.negItemEffects); }
+    if (!this.ignorePosItemEffects) { this.applyModifierList(this.posItemEffects); }
     Object.keys(this.deck.cards).forEach(key => {
       if (this.deck.cards[key] < 0) {
         this.deck.cards[key] = 0;

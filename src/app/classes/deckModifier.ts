@@ -28,7 +28,7 @@ export const POS_ITEM_EFFECTS_LIST = {
   '-1': (char: Character) => char.deck.addCard('-1', 'None', -1)
 };
 
-export const MISC_MODIFIERS_LIST = {
+export const POS_SCENARIO_EFFECTS_LIST = {
   '+1': (char: Character) => char.deck.addCard('+1', 'None', 1),
   Bless: (char: Character) => char.deck.addCard('Bless', 'None', 1)
 };
@@ -79,6 +79,15 @@ export const PERK_LIST = {
   'Add three (+0) EARTH cards': (char: Character) => { char.deck.addCard('+0', 'Earth', 3); },
   'Add one (+2) IMMOBILIZE card': (char: Character) => { char.deck.addCard('+2', 'Immobilize', 1); },
   'Add one (2x) BRITTLE , Self card': (char: Character) => { char.deck.addCard('x2', 'Brittle', 1); },
+  'Ignore scenario effects': (char: Character) => {
+    char.ignoreNegScenarioEffects = true;
+    char.ignorePosScenarioEffects = true;
+  },
+  'Ignore scenario effects and add two (+1) cards': (char: Character) => {
+    char.ignoreNegScenarioEffects = true;
+    char.ignorePosScenarioEffects = true;
+    char.deck.addCard('+1', 'None', 2);
+  },
   'Ignore negative scenario effects': (char: Character) => { char.ignoreNegScenarioEffects = true; },
   'Ignore negative scenario effects and add one (+1) card': (char: Character) => {
     char.ignoreNegScenarioEffects = true;
@@ -103,6 +112,7 @@ export const PERK_LIST = {
   },
   'Ignore item (-1) effects and remove one (-1) card': (char: Character) => {
     char.ignoreNegItemEffects = true;
+    char.ignorePosItemEffects = true
     char.deck.addCard('-1', 'None', -1);
   },
   'Ignore negative item effects and add two (+1) cards': (char: Character) => {
@@ -111,6 +121,7 @@ export const PERK_LIST = {
   },
   'Ignore item (-1) effects and add one (+1) card': (char: Character) => {
     char.ignoreNegItemEffects = true;
+    char.ignorePosItemEffects = true;
     char.deck.addCard('+1', 'None', 1);
   },
   'Remove four (+0) cards': (char: Character) => { char.deck.addCard('+0', 'None', -4); },
@@ -291,9 +302,9 @@ export const PERK_LIST = {
     char.deck.addCard('-1', 'None', -1);
     char.deck.addEffect('Rolling Shield 1, Self', 1);
   },
-  'Replace one (+0) card with one (+1) \'Add (+1) Attack for each ally adjacent to the target\' card': (char: Character) => {
+  'Replace one (+0) card with one (+1) \"Add +1 Attack for each ally adjacent to the target\" card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);
-    char.deck.addCard('+1', '+1 for each ally adjacent to target', 1);
+    char.deck.addCard('+1', '+1 Attack for each ally adjacent to target', 1);
   },
   'Replace one (+0) card with one (+1) CURSE card': (char: Character) => {
     char.deck.addCard('+0', 'None', -1);

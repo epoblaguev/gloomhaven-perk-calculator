@@ -33,7 +33,7 @@ export class StorageService {
     this.saveModList(char.name, 'negScenarioEffects', char.negScenarioEffects);
     this.saveModList(char.name, 'negItemEffects', char.negItemEffects);
     this.saveModList(char.name, 'posItemEffects', char.posItemEffects);
-    this.saveModList(char.name, 'miscModifiers', char.miscModifiers);
+    this.saveModList(char.name, 'miscModifiers', char.posScenarioEffects);
   }
 
   private saveModList(charName: string, listName: string, modList: DeckModifier[]) {
@@ -110,7 +110,7 @@ export class StorageService {
     this.loadModList(char.name, 'negScenarioEffects', char.negScenarioEffects);
     this.loadModList(char.name, 'negItemEffects', char.negItemEffects);
     this.loadModList(char.name, 'posItemEffects', char.posItemEffects);
-    this.loadModList(char.name, 'miscModifiers', char.miscModifiers);
+    this.loadModList(char.name, 'miscModifiers', char.posScenarioEffects);
   }
 
   private loadModList(charName: string, listName: string, modList: DeckModifier[]) {
