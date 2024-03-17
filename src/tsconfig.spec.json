@@ -1,11 +1,12 @@
 {
-  "extends": "../tsconfig.base.json",
+"extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "lib": ["ESNext", "DOM"]
   },
   "files": [
     "test.ts",
